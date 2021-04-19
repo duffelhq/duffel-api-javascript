@@ -4,8 +4,15 @@
   "description": "Javascript client library for the Duffel API",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
-  "repository": "https://github.com/duffelhq/duffel-api-javascript",
-  "author": "Duffel",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/duffelhq/duffel-api-javascript.git"
+  },
+  "homepage": "https://duffel.com",
+  "bugs": {
+    "url": "https://github.com/duffelhq/duffel-api-javascript/issues"
+  },
+  "author": "Duffel <help@duffel.com> (http://duffel.com)",
   "license": "MIT",
   "private": true,
   "scripts": {
@@ -13,16 +20,26 @@
     "start": "node ./dist/index.js",
     "dev": "ts-node ./src/index.ts",
     "lint": "eslint . --ext .ts,.tsx",
-    "test": "jest --passWithNoTests",
-    "prepare": "husky install"
+    "test": "jest",
+    "pre-push-check": "yarn lint && yarn test && yarn build --noEmit ",
+    "prepare": "husky install",
+    "example": "ts-node ./examples/example.ts"
   },
   "dependencies": {
     "@types/node": "^14.14.41",
+    "dotenv": "^8.2.0",
+    "isomorphic-unfetch": "^3.1.0",
+    "nock": "^13.0.11",
     "typescript": "^4.2.4"
   },
   "devDependencies": {
+    "@babel/core": "^7.13.15",
+    "@babel/preset-env": "^7.13.15",
+    "@babel/preset-typescript": "^7.13.0",
+    "@types/jest": "^26.0.22",
     "@typescript-eslint/eslint-plugin": "^4.22.0",
     "@typescript-eslint/parser": "^4.22.0",
+    "babel-jest": "^26.6.3",
     "eslint": "^7.24.0",
     "eslint-plugin-spellcheck": "^0.0.17",
     "husky": "^6.0.0",
