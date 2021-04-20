@@ -36,7 +36,8 @@ module.exports = {
             strings: true,
             identifiers: true,
             lang: 'en_GB',
-            skipWords: [
+            skipWords: [ 
+                "duffel"
             ],
             skipIfMatch: [
                 'http://[^s]*',
