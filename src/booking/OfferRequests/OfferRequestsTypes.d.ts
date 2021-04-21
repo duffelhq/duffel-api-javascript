@@ -166,7 +166,7 @@ export namespace Offers {
     baseAmount: string
 
     /**
-     * The currency of the `base_amount`, as an ISO 4217 currency code
+     * The currency of the `base_amount`, as an [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency code
      */
     baseCurrency: string
 
@@ -219,7 +219,7 @@ export namespace Offers {
     taxAmount: string | null
 
     /**
-     * The currency of the `tax_amount`, as an ISO 4217 currency code
+     * The currency of the `tax_amount`, as an [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency code
      */
     taxCurrency: string | null
 
@@ -236,7 +236,7 @@ export namespace Offers {
     totalEmissionsKg: string
 
     /**
-     * The currency of the `total_amount`, as an ISO 4217 currency code
+     * The currency of the `total_amount`, as an [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency code
      */
     totalCurrency: string
 
@@ -245,15 +245,69 @@ export namespace Offers {
      */
     paymentRequirements: PaymentRequirements
 
+    /**
+     * The conditions associated with this offer, describing the kinds of modifications you can make post-booking and any penalties that will apply to those modifications.
+     * This information assumes the condition is applied to all of the slices and passengers associated with this offer - for information at the slice level (e.g. "what happens if I just want to change the first slice?") refer to the `slices`.
+     * If a particular kind of modification is allowed, you may not always be able to take action through the Duffel API.
+     * In some cases, you may need to contact the Duffel support team or the airline directly.
+     */
     conditions: {
-      refundBeforeDeparture: {
+      /**
+       * Whether the whole offer can be refunded before the departure of the first slice.
+       * If all of the slices on the offer can be refunded then the `allowed` property will be `true` and information will be provided about any penalties.
+       * If any of the slices on the offer can't be refunded then the `allowed` property will be `false`.
+       * If the airline hasn't provided any information about whether this offer can be refunded then this property will be `null`.
+       */
+      refundBeforeDeparture?: {
+        /**
+         * The currency of the `penalty_amount` as an [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency code.
+         * This will be in a currency determined by the airline, which is not necessarily the same as the currency of the offer or order.
+         * If this is `null` then `penalty_amount` will also be `null`.
+         * @example "GBP"
+         */
         penaltyCurrency: string
-        penaltyAmount: string
+        /**
+         * If the modification is `allowed` then this is the amount payable to apply the modification to all passengers.
+         * If there is no penalty, the value will be zero. If the modification isn't `allowed` or the penalty is not known then this field will be `null`.
+         * If this is `null` then the `penalty_currency` will also be null.
+         * @example "100.00"
+         */
+        penaltyAmount?: string
+        /**
+         * Whether this kind of modification is allowed post-booking
+         *
+         * @example "true"
+         */
         allowed: boolean
       }
-      changeBeforeDeparture: {
+      /**
+       * Whether the whole offer can be changed before the departure of the first slice.
+       * If all of the slices on the offer can be changed then the `allowed` property will be `true`.
+       * Refer to the `slices` for information about change penalties.
+       * If any of the slices on the offer can't be changed then the `allowed` property will be `false`.
+       * In this case you should refer to the slices conditions to determine if any part of the offer is changeable.
+       * If the airline hasn't provided any information about whether this offer can be changed then this property will be `null`.
+       */
+      changeBeforeDeparture?: {
+        /**
+         * The currency of the `penalty_amount` as an [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency code.
+         * This will be in a currency determined by the airline, which is not necessarily the same as the currency of the offer or order.
+         * If this is `null` then `penalty_amount` will also be `null`.
+         * @example "GBP"
+         */
         penaltyCurrency: string
-        penaltyAmount: string
+        /**
+         * If the modification is `allowed` then this is the amount payable to apply the modification to all passengers.
+         * If there is no penalty, the value will be zero. If the modification isn't `allowed` or the penalty is not known then this field will be `null`.
+         * If this is `null` then the `penalty_currency` will also be null.
+         * @example "100.00"
+         */
+        penaltyAmount?: string
+        /**
+         * Whether this kind of modification is allowed post-booking
+         *
+         * @example "true"
+         */
         allowed: boolean
       }
     }
