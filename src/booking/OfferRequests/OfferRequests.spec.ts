@@ -37,7 +37,6 @@ describe('OfferRequests', () => {
     })
     expect(response.data?.id).toBe(mockOfferRequest.id)
   })
-
   test('should create an offer request and no offers should return when requested', async () => {
     const mockResponseWithoutOffer = omit(mockOfferRequest, 'offers')
     nock(/(.*)/).post(`/air/offer_requests/`).query(true).reply(200, { data: mockResponseWithoutOffer })
