@@ -1,4 +1,4 @@
-import { APIResponse } from 'types'
+import { APIResponse, PaginationMeta } from 'types'
 import { Resource } from '../../Resource'
 
 /** Aircraft */
@@ -13,17 +13,18 @@ export namespace Types {
   }
 }
 
-// TODO JSDOC - investigate how it works for other editors?
-// could work nicely with OpenAPI? Investigate...
-
 /** Aircraft are used to describe what passengers will fly in for a given trip */
 export class Aircraft extends Resource {
   /**
    * Retrieves an aircraft by its ID
-   * @param id Duffel's unique identifier for the aircraft
+   * @param {string} id - Duffel's unique identifier for the aircraft
    */
-  public get = async (id: string) => this.request('GET', `air/aircraft/${id}`) as APIResponse<Types.Aircraft>
+  public get = async (id: string): Promise<APIResponse<Types.Aircraft>> => this.request('GET', `air/aircraft/${id}`)
 
-  /** Retrieves a paginated list of all aircraft. The results may be returned in any order. Duffel's unique identifier for the aircraft */
-  public list = async () => this.request('GET', 'air/aircraft') as APIResponse<Types.Aircraft[]>
+  /**
+   * Retrieves a paginated list of all aircraft. The results may be returned in any order.
+   * @param {Object} [options] - Pagination options (optional: limit, after, before)
+   */
+  public list = (options?: PaginationMeta): AsyncGenerator<APIResponse<Types.Aircraft[]>, void, unknown> =>
+    this.paginatedRequest('air/aircraft', options)
 }

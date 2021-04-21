@@ -1,8 +1,8 @@
-import nock from 'nock'
 import omit from 'lodash/omit'
+import nock from 'nock'
 import { Client } from '../../Client'
+import { mockCreateOfferRequest, mockOfferRequest } from './mockOfferRequest'
 import { OfferRequests } from './OfferRequests'
-import { mockOfferRequest, mockCreateOfferRequest } from './mockOfferRequest'
 
 describe('OfferRequests', () => {
   afterEach(() => {
@@ -16,13 +16,17 @@ describe('OfferRequests', () => {
     expect(response.data?.id).toBe(mockOfferRequest.id)
   })
 
-  test('should get list of offer requests', async () => {
-    nock(/(.*)/)
-      .get(`/air/offer_requests`)
-      .reply(200, { data: [mockOfferRequest] })
-    const response = await new OfferRequests(new Client({ token: 'mockToken' })).list()
-    expect(response.data).toHaveLength(1)
-    expect(response.data![0].id).toBe(mockOfferRequest.id)
+  test('should get all offer requests', async () => {
+    function* testResponse() {
+      yield { data: [mockOfferRequest], meta: { limit: 50, before: 'test', after: null } }
+    }
+    nock(/(.*)/).get(`/air/aircraft`).reply(200, testResponse)
+
+    const response = new OfferRequests(new Client({ token: 'mockToken' })).list()
+    for await (const page of response) {
+      expect(page.data).toHaveLength(1)
+      expect(page.data![0].id).toBe(mockOfferRequest.id)
+    }
   })
 
   test('should create an offer request and return offers by default', async () => {
@@ -31,6 +35,7 @@ describe('OfferRequests', () => {
     const response = await new OfferRequests(new Client({ token: 'mockToken' })).create(mockCreateOfferRequest)
     expect(response.data?.id).toBe(mockOfferRequest.id)
   })
+
   test('should create an offer request and no offers should return when requested', async () => {
     const mockResponseWithoutOffer = omit(mockOfferRequest, 'offers')
     nock(/(.*)/).post(`/air/offer_requests/`).query(true).reply(200, { data: mockResponseWithoutOffer })

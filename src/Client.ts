@@ -1,11 +1,18 @@
 import fetch from 'isomorphic-unfetch'
 import camelCase from 'lodash/camelCase'
 import { transformDataKeys } from './lib'
-import { APIResponse } from './types'
+import { APIResponse, PaginationMeta } from './types'
 
 export interface Config {
   token: string
 }
+
+const getPaginationQuery = (path: string, options?: PaginationMeta) =>
+  options
+    ? `${path}?limit=${options?.limit}${options?.before ? `&before=${options?.before}` : ''}${
+        options?.after ? `&after=${options?.after}` : ''
+      }`
+    : path
 
 export class Client {
   private token: string
@@ -40,12 +47,6 @@ export class Client {
       body
     })
 
-    // TODO error handling, status codes...
-
-    if (response.status === 204 || !response.headers.get('content-type')) {
-      return {}
-    }
-
     const contentType = response.headers.get('content-type')
 
     if (contentType && contentType.includes('json')) {
@@ -55,6 +56,18 @@ export class Client {
     } else {
       const responseBody = (await response.text()) as any
       return responseBody
+    }
+  }
+
+  async *paginatedRequest<T_Response = any>(
+    path: string,
+    options?: PaginationMeta
+  ): AsyncGenerator<APIResponse<T_Response>, void, unknown> {
+    let response = await this.request('GET', getPaginationQuery(path, options))
+
+    while (response.meta && 'after' in response.meta && response.meta.after) {
+      yield response
+      response = await this.request('GET', getPaginationQuery(path, response.meta))
     }
   }
 }
