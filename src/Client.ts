@@ -24,7 +24,9 @@ export class Client {
     body?: any
   ): Promise<APIResponse<T_Response>> => {
     const fullPath = `${this.basePath}/${path}`
+    const userAgent = `Duffel/${this.apiVersion} duffel_api_javascript/${process.env.npm_package_version}`
     const headers = {
+      'User-Agent': userAgent,
       Accept: 'application/json',
       'Accept-Encoding': 'gzip',
       'Content-Type': 'application/json',
