@@ -1,7 +1,10 @@
 export interface PaginationMeta {
-  limit: number
-  before: string
-  after: string
+  /** The number of results to be returned in a page, between 1 and 200 (optional, default is 50) */
+  limit?: number
+  /** "Before" cursor for pagination */
+  before?: string
+  /** "After" cursor for pagination */
+  after?: string
 }
 
 export interface ApiResponseMeta {
@@ -11,7 +14,7 @@ export interface ApiResponseMeta {
 
 export interface ApiResponseError {
   code: string
-  documentation_url: string
+  documentationUrl: string
   message: string
   title: string
   type: string
@@ -19,6 +22,6 @@ export interface ApiResponseError {
 
 export interface APIResponse<T> {
   data?: T
-  meta?: ApiResponseMeta
+  meta?: ApiResponseMeta | PaginationMeta
   errors?: ApiResponseError[]
 }

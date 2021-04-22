@@ -8,20 +8,23 @@ describe('aircraft', () => {
     nock.cleanAll()
   })
 
-  test('Get a single aircraft', async () => {
+  test('should get a single aircraft', async () => {
     nock(/(.*)/).get(`/air/aircraft/${mockAircraft.id}`).reply(200, { data: mockAircraft })
+
     const response = await new Aircraft(new Client({ token: 'mockToken' })).get(mockAircraft.id)
     expect(response.data?.name).toBe(mockAircraft.name)
-
-    // TODO const response = await aircraft.retrieve("nonexistent_id") // (after we do error hand)
   })
 
-  test('Get all aircrafts', async () => {
-    nock(/(.*)/)
-      .get(`/air/aircraft`)
-      .reply(200, { data: [mockAircraft] })
-    const response = await new Aircraft(new Client({ token: 'mockToken' })).list()
-    expect(response.data).toHaveLength(1)
-    expect(response.data![0].name).toBe(mockAircraft.name)
+  test('should get all aircraft', async () => {
+    function* testResponse() {
+      yield { data: [mockAircraft], meta: { limit: 1, before: 'test', after: null } }
+    }
+    nock(/(.*)/).get(`/air/aircraft?limit=1&after=test`).reply(200, testResponse)
+
+    const response = new Aircraft(new Client({ token: 'mockToken' })).list({ limit: 1, after: 'test' })
+    for await (const page of response) {
+      expect(page.data).toHaveLength(1)
+      expect(page.data![0].name).toBe(mockAircraft.name)
+    }
   })
 })
