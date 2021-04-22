@@ -1,3 +1,4 @@
+export * from './Offer'
 export * from './shared'
 export * from './supportingResources'
 

@@ -16,7 +16,7 @@ export class Aircraft extends Resource {
 
   /**
    * Retrieves a paginated list of all aircraft. The results may be returned in any order.
-   * @param {Object} [queryParams] - Pagination options (optional: limit, after, before)
+   * @param {Object} [options] - Pagination query parameters (optional: limit, after, before)
    * @link https://duffel.com/docs/api/aircraft/get-aircraft
    */
   public list = (options?: {
