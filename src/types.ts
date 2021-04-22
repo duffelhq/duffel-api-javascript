@@ -22,5 +22,3 @@ export interface APIResponse<T> {
   meta?: ApiResponseMeta
   errors?: ApiResponseError[]
 }
-
-export type CabinClass = 'first' | 'business' | 'premium_economy' | 'economy'

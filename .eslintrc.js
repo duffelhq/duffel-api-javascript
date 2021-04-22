@@ -37,7 +37,11 @@ module.exports = {
             identifiers: true,
             lang: 'en_GB',
             skipWords: [ 
-                "duffel"
+                "duffel",
+                "Datetime",
+                "arrivalDatetime",
+                "departureDatetime",
+                "Earheart"
             ],
             skipIfMatch: [
                 'http://[^s]*',

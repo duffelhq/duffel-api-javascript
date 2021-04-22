@@ -1,4 +1,4 @@
-import { CabinClass } from 'types'
+import * as DuffelAPITypes from 'types/shared'
 
 export interface PaymentRequirements {
   /**
@@ -22,55 +22,13 @@ export interface PaymentRequirements {
 }
 
 export namespace Offers {
-  /**
-   * The metropolitan area where the airport is located.
-   * Only present for airports which are registered with IATA as belonging to a metropolitan area.
-   * @link https://portal.iata.org/faq/articles/en_US/FAQ/How-do-I-create-a-new-Metropolitan-Area
-   */
-  export interface CitySlice {
-    /**
-     * The three-character IATA code for the city
-     * @example "LON"
-     */
-    iataCode: string
-    /**
-     * The ISO 3166-1 alpha-2 code for the country where the city is located
-     * @link https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2
-     * @example "GB"
-     */
-    iataCountryCode: string
-    /**
-     * Duffel's unique identifier for the city
-     * @example "cit_lon_gb"
-     */
-    id: string
-    /**
-     * The name of the city
-     * @example "London"
-     */
-    name: string
-  }
-
-  /**
-   * The airports associated to a city.
-   * This will only be provided where the `type` is `city`.
-   */
-  export interface AirportsSlice {
-    city?: CitySlice
-    cityName: string
-    iataCode?: string
-    iataCountryCode: string
-    icaoCode?: string
-    id: string
-    latitude: number
-    longitude: number
-    name: string
-    timeZone: string
-  }
-
   export interface DestinationOrOriginProp {
-    airports?: AirportsSlice[]
-    city?: CitySlice
+    /**
+     * The airports associated to a city.
+     * This will only be provided where the `type` is `city`.
+     */
+    airports?: DuffelAPITypes.Airport[]
+    city?: DuffelAPITypes.City
     cityName?: string
     iataCityCode?: string
     iataCode: string
@@ -81,7 +39,7 @@ export namespace Offers {
     longitude?: number
     name: string
     timeZone?: string
-    type: 'airport' | 'city'
+    type: DuffelAPITypes.PlaceType
   }
 
   export interface OfferRequestSlice {
@@ -97,8 +55,8 @@ export namespace Offers {
      * The city or airport the passengers want to depart from
      */
     origin: DestinationOrOriginProp | string
-    originType: 'airport' | 'city'
-    destinationType: 'airport' | 'city'
+    originType: DuffelAPITypes.PlaceType
+    destinationType: DuffelAPITypes.PlaceType
   }
 
   /**
@@ -124,14 +82,14 @@ export namespace Offers {
   }
 
   export interface OfferRequest {
-    cabinClass?: CabinClass
+    cabinClass?: DuffelAPITypes.CabinClass
     /**
      * The slices that make up this offer request.
      * One-way journeys can be expressed using one slice, whereas return trips will need two.
      * @link https://duffel.com/docs/api/overview/key-principles
      */
     slices: OfferRequestSlice[]
-    cabinClass?: CabinClass
+    cabinClass?: DuffelAPITypes.CabinClass
     createdAt: string
     id: string
     liveMode: boolean
@@ -140,7 +98,7 @@ export namespace Offers {
   }
 
   export interface CreateOfferRequest {
-    cabinClass: CabinClass
+    cabinClass: DuffelAPITypes.CabinClass
     passengers: Omit<OfferRequestPassenger, 'id'>[]
     slices: Omit<OfferRequestSlice, 'originType' | 'destinationType'>[]
   }
@@ -251,65 +209,6 @@ export namespace Offers {
      * If a particular kind of modification is allowed, you may not always be able to take action through the Duffel API.
      * In some cases, you may need to contact the Duffel support team or the airline directly.
      */
-    conditions: {
-      /**
-       * Whether the whole offer can be refunded before the departure of the first slice.
-       * If all of the slices on the offer can be refunded then the `allowed` property will be `true` and information will be provided about any penalties.
-       * If any of the slices on the offer can't be refunded then the `allowed` property will be `false`.
-       * If the airline hasn't provided any information about whether this offer can be refunded then this property will be `null`.
-       */
-      refundBeforeDeparture?: {
-        /**
-         * The currency of the `penalty_amount` as an [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency code.
-         * This will be in a currency determined by the airline, which is not necessarily the same as the currency of the offer or order.
-         * If this is `null` then `penalty_amount` will also be `null`.
-         * @example "GBP"
-         */
-        penaltyCurrency: string
-        /**
-         * If the modification is `allowed` then this is the amount payable to apply the modification to all passengers.
-         * If there is no penalty, the value will be zero. If the modification isn't `allowed` or the penalty is not known then this field will be `null`.
-         * If this is `null` then the `penalty_currency` will also be null.
-         * @example "100.00"
-         */
-        penaltyAmount?: string
-        /**
-         * Whether this kind of modification is allowed post-booking
-         *
-         * @example "true"
-         */
-        allowed: boolean
-      }
-      /**
-       * Whether the whole offer can be changed before the departure of the first slice.
-       * If all of the slices on the offer can be changed then the `allowed` property will be `true`.
-       * Refer to the `slices` for information about change penalties.
-       * If any of the slices on the offer can't be changed then the `allowed` property will be `false`.
-       * In this case you should refer to the slices conditions to determine if any part of the offer is changeable.
-       * If the airline hasn't provided any information about whether this offer can be changed then this property will be `null`.
-       */
-      changeBeforeDeparture?: {
-        /**
-         * The currency of the `penalty_amount` as an [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency code.
-         * This will be in a currency determined by the airline, which is not necessarily the same as the currency of the offer or order.
-         * If this is `null` then `penalty_amount` will also be `null`.
-         * @example "GBP"
-         */
-        penaltyCurrency: string
-        /**
-         * If the modification is `allowed` then this is the amount payable to apply the modification to all passengers.
-         * If there is no penalty, the value will be zero. If the modification isn't `allowed` or the penalty is not known then this field will be `null`.
-         * If this is `null` then the `penalty_currency` will also be null.
-         * @example "100.00"
-         */
-        penaltyAmount?: string
-        /**
-         * Whether this kind of modification is allowed post-booking
-         *
-         * @example "true"
-         */
-        allowed: boolean
-      }
-    }
+    conditions: DuffelAPITypes.FlightsConditions
   }
 }
