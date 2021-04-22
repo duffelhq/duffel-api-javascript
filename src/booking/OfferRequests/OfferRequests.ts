@@ -1,6 +1,6 @@
-import { APIResponse } from 'types'
-import { Offers } from './OfferRequestsTypes'
+import { APIResponse, PaginationMeta } from 'types'
 import { Resource } from '../../Resource'
+import { Offers } from './OfferRequestsTypes'
 
 /**
  * To search for flights, you'll need to create an `offer request`.
@@ -19,10 +19,11 @@ export class OfferRequests extends Resource {
     this.request('GET', `air/offer_requests/${id}`)
 
   /**
-   * Retrieves a paginated list of your offer requests. The results may be returned in any order.
-   * @TODO update request with paginatedRequest
+   * Retrieves a paginated list of all aircraft. The results may be returned in any order.
+   * @param {Object} [options] - Pagination options (optional: limit, after, before)
    */
-  public list = async (): Promise<APIResponse<Offers.OfferRequest[]>> => this.request('GET', `air/offer_requests`)
+  public list = (options?: PaginationMeta): AsyncGenerator<APIResponse<Offers.OfferRequest[]>, void, unknown> =>
+    this.paginatedRequest('air/aircraft', options)
 
   /**
    * To search for flights, you'll need to create an `offer request`.
