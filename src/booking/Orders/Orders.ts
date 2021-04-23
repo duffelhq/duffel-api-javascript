@@ -22,6 +22,6 @@ export class Orders extends Resource {
    * @param body
    */
   public create = async (body: CreateOrder): Promise<APIResponse<Order>> => {
-    return this.request('POST', `air/orders/`, body)
+    return this.request('POST', `air/orders`, body)
   }
 }

@@ -17,13 +17,12 @@ describe('OfferRequests', () => {
   })
 
   test('should get all offer requests', async () => {
-    const options = { limit: 50, before: 'test', after: null }
     function* testResponse() {
-      yield { data: [mockOfferRequest], meta: options }
+      yield { data: [mockOfferRequest], meta: { limit: 50, before: 'test', after: null } }
     }
     nock(/(.*)/).get(`/air/offer_requests`).reply(200, testResponse)
 
-    const response = new OfferRequests(new Client({ token: 'mockToken' })).list(options)
+    const response = new OfferRequests(new Client({ token: 'mockToken' })).list()
     for await (const page of response) {
       expect(page.data).toHaveLength(1)
       expect(page.data![0].id).toBe(mockOfferRequest.id)
@@ -38,6 +37,7 @@ describe('OfferRequests', () => {
     })
     expect(response.data?.id).toBe(mockOfferRequest.id)
   })
+
   test('should create an offer request and no offers should return when requested', async () => {
     const mockResponseWithoutOffer = omit(mockOfferRequest, 'offers')
     nock(/(.*)/).post(`/air/offer_requests/`).query(true).reply(200, { data: mockResponseWithoutOffer })
