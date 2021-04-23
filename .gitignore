@@ -32,3 +32,6 @@ node_modules/
 # misc
 .DS_store
 dist
+
+# mock.json helper
+mock.json
