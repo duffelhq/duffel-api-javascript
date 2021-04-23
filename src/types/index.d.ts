@@ -7,7 +7,7 @@ export interface PaginationMeta {
   /** "Before" cursor for pagination */
   before?: string
   /** "After" cursor for pagination */
-  after?: string
+  after?: string | null
 }
 
 export interface ApiResponseMeta {

@@ -57,7 +57,7 @@ export type FlightsConditions = {
      * @example "true"
      */
     allowed: boolean
-  }
+  } | null
   /**
    * Whether the whole order or offer can be changed before the departure of the first slice.
    * If all of the slices on the order or offer can be changed then the `allowed` property will be `true`.
@@ -87,7 +87,7 @@ export type FlightsConditions = {
      * @example "true"
      */
     allowed: boolean
-  }
+  } | null
 }
 
 /**
@@ -118,3 +118,69 @@ export interface City {
    */
   name: string
 }
+
+export interface Slices {
+  /**
+   * Whether this slice can be changed. This can only be true for paid orders.
+   */
+  changeable: boolean | null
+  /**
+   * The conditions associated with this slice, describing the kinds of modifications you can make and any penalties that will apply to those modifications.
+   * This condition is applied only to this slice and to all the passengers associated with this order - for information at the order level (e.g. "what happens if I want to change all the slices?") refer to the `conditions` at the top level. If a particular kind of modification is allowed, you may not always be able to take action through the Duffel API. In some cases, you may need to contact the Duffel support team or the airline directly.
+   */
+  conditions: FlightsConditions
+  /**
+   * The city or airport where this slice ends
+   */
+  destination: DestinationSlice
+  /**
+   * The type of the destination
+   */
+  destinationType: PlaceType
+  /**
+   * The city or airport where this slice begins
+   */
+  origin: OriginOrDestinationSlice
+  /**
+   * The type of the origin
+   */
+  originType: PlaceType
+
+  /**
+   * Duffel's unique identifier for the slice. It identifies the slice of an order (i.e. the same slice across orders will have different ids.
+   */
+  id: string
+
+  /**
+   * The duration of the slice, represented as a ISO 8601 duration
+   */
+  duration: string | null
+}
+
+/**
+ * An object containing metadata about the service, like the designator of the seat.
+ */
+export interface Seat {
+  /**
+   * The designator used to uniquely identify the seat, usually made up of a row number and a column letter
+   * @example "14B"
+   */
+  designator: string
+  /**
+   * Each disclosure is text, in English, provided by the airline that describes the terms and conditions of this seat. We recommend showing this in your user interface to make sure that customers understand any restrictions and limitations.
+   * @example "["Do not seat children in exit row seats","Do not seat passengers with special needs in exit row seats"]"
+   */
+  disclosures: string[]
+  /**
+   * A name which describes the type of seat, which you can display in your user interface to help customers to understand its features
+   * @example "Exit row seat"
+   */
+  name: string
+}
+
+/**
+ * The type of payment you want to apply to the order.
+ * If you are an IATA agent with your own agreements with airlines, in some cases, you can pay using ARC/BSP cash by specifying `arc_bsp_cash`. Otherwise, you must pay using your Duffel account's balance by specifying `balance`.
+ * In test mode, your balance is unlimited. If you're not sure which of these options applies to you, get in touch with the Duffel support team at [help@duffel.com](mailto:help@duffel.com).
+ */
+export type PaymentType = 'arc_bsp_cash' | 'balance'

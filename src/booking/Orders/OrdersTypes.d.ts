@@ -1,4 +1,4 @@
-import { AircraftTypes } from 'resources/Aircraft'
+import { Aircraft, Airline, Airport } from 'types'
 import * as DuffelAPITypes from 'types/shared'
 
 export namespace OrdersType {
@@ -113,7 +113,7 @@ export namespace OrdersType {
     /**
      * An object containing metadata about the service, like the designator of the seat.
      */
-    seat: DuffelAPITypes.Seat
+    seat?: DuffelAPITypes.Seat
   }
 
   export interface OrderPassenger {
@@ -152,14 +152,54 @@ export namespace OrdersType {
      * The id of the infant associated with this passenger
      * @return "adult", "child", or "infant_without_seat"
      */
-    infantPassengerId?: string
+    infantPassengerId?: string | null
+  }
+
+  export interface OrderPassengerIdentityDocument {
+    /**
+     * The type of the identity document. Currently, the only supported type is passport. This must be one of the allowed_passenger_identity_document_types on the offer.
+     */
+    type: Types.PassengerIdentityDocumentType
+
+    /**
+     * The unique identifier of the identity document
+     */
+    uniqueIdentifier: string
+
+    /**
+     * The ISO 3166-1 alpha-2 code of the country that issued this identity document
+     */
+    issuingCountryCode: string
+
+    /**
+     * The date on which the identity document expires
+     */
+    expiresOn: string
+  }
+
+  export interface CreateOrderPassenger extends OrderPassenger {
+    /**
+     * The passenger's identity documents. You may only provide one identity document per passenger. The identity document's type must be included in the offer's allowed_passenger_identity_document_types. If the offer's passenger_identity_documents_required is set to true, then an identity document must be provided.
+     */
+    identityDocuments: OrderPassengerIdentityDocument[]
+
+    /**
+     * The passenger's email address
+     * @example "amelia@duffel.com"
+     */
+    email: string
+  }
+
+  export interface OrderAirportSlice extends Airport {
+    type?: DuffelAPITypes.PlaceType
+    iataCityCode?: string
   }
 
   export interface OrderSliceSegment {
     /**
      * The aircraft that the operating carrier will use to operate this segment
      */
-    aircraft?: AircraftTypes.Aircraft
+    aircraft?: Aircraft
     /**
      * The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) datetime at which the segment is scheduled to arrive, in the destination airport timezone (see destination.timezone)
      */
@@ -168,12 +208,12 @@ export namespace OrdersType {
      * The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) datetime at which the segment is scheduled to depart, in the origin airport timezone
      */
     departingAt: string
-    destination: DuffelAPITypes.Airport
+    destination: OrderAirportSlice
     /**
      * The terminal at the destination airport where the segment is scheduled to arrive
      * @example "5"
      */
-    destinationTerminal?: string
+    destinationTerminal?: string | null
     /**
      * The duration of the segment, represented as a [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601#Durations) duration
      */
@@ -186,7 +226,7 @@ export namespace OrdersType {
     /**
      * The airline selling the tickets for this segment. This may differ from the `operating_carrier` in the case of a "codeshare", where one airline sells flights operated by another airline.
      */
-    marketingCarrier: DuffelAPITypes.Airline
+    marketingCarrier: Airline
     /**
      * The flight number assigned by the marketing carrier
      * @example "1234"
@@ -195,7 +235,7 @@ export namespace OrdersType {
     /**
      * The airline actually operating this segment. This may differ from the `marketing_carrier` in the case of a "codeshare", where one airline sells flights operated by another airline.
      */
-    operatingCarrier: DuffelAPITypes.Airline
+    operatingCarrier: Airline
     /**
      * The flight number assigned by the operating carrier. This may not be present, in which case you should display the `marketing_carrier`'s information and the `marketing_carrier_flight_number`, and simply state the name of the `operating_carrier`.
      * @example "4321"
@@ -204,12 +244,12 @@ export namespace OrdersType {
     /**
      * The airport from which the flight is scheduled to depart
      */
-    origin: Airport
+    origin: OrderAirportSlice
     /**
      * The terminal at the origin airport from which the segment is scheduled to depart
      * @example "B"
      */
-    originTerminal?: string
+    originTerminal?: string | null
     /**
      * Additional segment-specific information about the passengers included in the offer (e.g. their baggage allowance and the cabin class they will be travelling in)
      */
@@ -218,7 +258,7 @@ export namespace OrdersType {
      * The distance of the segment in kilometres
      * @example "424.2"
      */
-    distance?: string
+    distance?: string | null
   }
 
   export interface OrderPaymentStatus {
@@ -323,7 +363,7 @@ export namespace OrdersType {
      * One-way journeys can be expressed using one slice,
      * whereas return trips will need two.
      */
-    slices: DuffelAPITypes.Slices[] & OrderSliceSegment
+    slices: Array<DuffelAPITypes.Slices & { segments: OrderSliceSegment[] }>
 
     /**
      * The services booked along with this order
@@ -372,7 +412,7 @@ export namespace OrdersType {
     /**
      * The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601#Durations) datetime at which the order was cancelled, if it has been cancelled
      */
-    cancelledAt?: string
+    cancelledAt?: string | null
 
     /**
      * The airline's reference for the order, sometimes known as a
@@ -417,12 +457,12 @@ export namespace OrdersType {
     /**
      * The services you want to book along with the first selected offer.
      */
-    services?: OrderService[]
+    services?: Pick<OrderService, 'id', 'quantity'>[]
 
     /**
      * The personal details of the passengers, expanding on the information initially provided when creating the offer request
      */
-    passengers: OrderPassenger[]
+    passengers: CreateOrderPassenger[]
 
     /**
      * The payment details to use to pay for the order
