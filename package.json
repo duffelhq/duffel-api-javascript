@@ -16,6 +16,7 @@
   "license": "MIT",
   "private": true,
   "scripts": {
+    "postinstall": "touch src/helpers/mock.json",
     "build": "tsc",
     "start": "node ./dist/index.js",
     "dev": "ts-node ./src/index.ts",
