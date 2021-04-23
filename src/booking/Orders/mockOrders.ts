@@ -1,6 +1,6 @@
-import { OrdersType } from './OrdersTypes'
+import { Order, CreateOrder } from './OrdersTypes'
 
-export const mockCreateOrderRequest: OrdersType.CreateOrder = {
+export const mockCreateOrderRequest: CreateOrder = {
   type: 'instant',
   services: [{ quantity: 1, id: 'ase_00009hj8USM7Ncg31cB123' }],
   selectedOffers: ['off_00009htyDGjIfajdNBZRlw'],
@@ -23,7 +23,7 @@ export const mockCreateOrderRequest: OrdersType.CreateOrder = {
   ]
 }
 
-export const mockOrders: OrdersType.Order = {
+export const mockOrder: Order = {
   totalCurrency: 'GBP',
   totalAmount: '90.80',
   taxCurrency: 'GBP',
@@ -273,7 +273,7 @@ export const mockOrders: OrdersType.Order = {
   baseAmount: '30.20'
 }
 
-export const mockOnHoldOrders: OrdersType.Order[] = [
+export const mockOnHoldOrders: Order[] = [
   {
     totalCurrency: 'GBP',
     totalAmount: '87.90',
