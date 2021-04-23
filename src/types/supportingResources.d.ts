@@ -1,0 +1,87 @@
+/**
+ * Aircraft are used to describe what passengers will fly in for a given trip
+ * @link https://duffel.com/docs/api/aircraft/schema
+ */
+export interface Aircraft {
+  /**
+   * The name of the aircraft
+   */
+  name: string
+  /**
+   * Duffel's unique identifier for the aircraft
+   */
+  id: string
+  /**
+   * The three-character IATA code for the aircraft
+   */
+  iataCode: string
+}
+
+/**
+ * Airlines are used to identify the air travel companies selling and operating flights
+ * @link https://duffel.com/docs/api/airlines/schema
+ */
+export interface Airline {
+  /**
+   * The three-character IATA code for the airline
+   */
+  name: string
+  /**
+   * Duffel's unique identifier for the airline
+   */
+  id: string
+  /*
+   * The two-character IATA code for the airline. This may be null for non-IATA carriers.
+   */
+  iataCode: string
+}
+
+/**
+ * Airports are used to identify origins and destinations in journey slices
+ * @link https://duffel.com/docs/api/airports/schema
+ */
+export interface Airport {
+  /**
+   * The metropolitan area where the airport is located.
+   * Only present for airports which are registered with IATA as belonging to a metropolitan area.
+   */
+  city?: City
+  /**
+   * The name of the city (or cities separated by a `/`) where the airport is located
+   */
+  cityName: string
+  /**
+   * The three-character IATA code for the airport
+   */
+  iataCode?: string
+  /**
+   * The ISO 3166-1 alpha-2 code for the country where the city is located
+   * @link https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2
+   * @example "GB"
+   */
+  iataCountryCode: string
+  /**
+   * The four-character ICAO code for the airport
+   */
+  icaoCode?: string
+  /**
+   * Duffel's unique identifier for the airport
+   */
+  id: string
+  /**
+   * The latitude position of the airport represented in Decimal degrees with 6 decimal points with a range between -90° and 90°
+   */
+  latitude: number
+  /**
+   * The longitude position of the airport represented in Decimal degrees with 6 decimal points with a range between -180° and 180°
+   */
+  longitude: number
+  /**
+   * The name of the airport
+   */
+  name: string
+  /**
+   * The time zone of the airport, specified by name from the [tz database](https://en.wikipedia.org/wiki/Tz_database)
+   */
+  timeZone: string
+}

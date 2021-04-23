@@ -1,5 +1,6 @@
+import { OfferRequests } from './booking'
 import { Client } from './Client'
-import { Aircraft } from './resources'
+import { Aircraft, Airlines, Airports } from './supportingResources'
 
 interface Config {
   token: string
@@ -8,5 +9,10 @@ interface Config {
 export const DuffelAPI = ({ token }: Config) => {
   const client = new Client({ token })
 
-  return { aircraft: new Aircraft(client) }
+  return {
+    aircraft: new Aircraft(client),
+    airlines: new Airlines(client),
+    airports: new Airports(client),
+    offerRequests: new OfferRequests(client)
+  }
 }

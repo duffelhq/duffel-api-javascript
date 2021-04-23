@@ -1,3 +1,6 @@
+export * from './shared'
+export * from './supportingResources'
+
 export interface PaginationMeta {
   /** The number of results to be returned in a page, between 1 and 200 (optional, default is 50) */
   limit?: number

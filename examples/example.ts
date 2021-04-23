@@ -11,12 +11,11 @@ const example = async () => {
   const aircraft = await duffelAPI.aircraft.get('arc_00009VMF8AhXSSRnQDI6Hi')
   console.log(aircraft)
 
-  const aircraftPages = duffelAPI.aircraft.list({
+  const airlinePages = duffelAPI.airlines.list({
     limit: 5
   })
-  //console.log((await aircraftPages.next()).value)
 
-  for await (const page of aircraftPages) {
+  for await (const page of airlinePages) {
     console.log(page)
   }
 }

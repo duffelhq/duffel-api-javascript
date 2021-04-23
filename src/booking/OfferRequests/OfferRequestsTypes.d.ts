@@ -1,4 +1,4 @@
-import * as DuffelAPITypes from 'types/shared'
+import * as DuffelAPITypes from 'types'
 
 export interface PaymentRequirements {
   /**

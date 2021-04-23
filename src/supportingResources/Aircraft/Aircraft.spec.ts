@@ -12,7 +12,7 @@ describe('aircraft', () => {
     nock(/(.*)/).get(`/air/aircraft/${mockAircraft.id}`).reply(200, { data: mockAircraft })
 
     const response = await new Aircraft(new Client({ token: 'mockToken' })).get(mockAircraft.id)
-    expect(response.data?.name).toBe(mockAircraft.name)
+    expect(response.data?.id).toBe(mockAircraft.id)
   })
 
   test('should get all aircraft', async () => {
@@ -24,7 +24,7 @@ describe('aircraft', () => {
     const response = new Aircraft(new Client({ token: 'mockToken' })).list({ limit: 1, after: 'test' })
     for await (const page of response) {
       expect(page.data).toHaveLength(1)
-      expect(page.data![0].name).toBe(mockAircraft.name)
+      expect(page.data![0].id).toBe(mockAircraft.id)
     }
   })
 })
