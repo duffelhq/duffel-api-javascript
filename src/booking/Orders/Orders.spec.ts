@@ -29,12 +29,13 @@ describe('Orders', () => {
   })
 
   test('should get only on hold orders', async () => {
+    const params = { limit: 50, before: 'test', after: null, awaiting_payment: true }
     function* testResponse() {
-      yield { data: [mockOnHoldOrders], meta: { limit: 50, before: 'test', after: null, awaitingPayment: true } }
+      yield { data: [mockOnHoldOrders], meta: params }
     }
     nock(/(.*)/).get(`/air/orders`).query(true).reply(200, testResponse)
 
-    const response = new Orders(new Client({ token: 'mockToken' })).list()
+    const response = new Orders(new Client({ token: 'mockToken' })).list(params)
     for await (const page of response) {
       expect(page.data).toHaveLength(3)
       expect(page.data![0].id).toBe('ord_0000A6GioOO1UDbjb7nIi8')
@@ -44,7 +45,7 @@ describe('Orders', () => {
   test('should create an order', async () => {
     nock(/(.*)/).post(`/air/orders`).query(true).reply(200, { data: mockOrder })
 
-    const response = await new Orders(new Client({ token: 'mockToken' })).create(mockCreateOrderRequest)
+    const response = await new Orders(new Client({ token: 'mockToken' })).create({ body: mockCreateOrderRequest })
     expect(response.data?.id).toBe(mockOrder.id)
   })
 })

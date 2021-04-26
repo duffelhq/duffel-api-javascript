@@ -12,16 +12,22 @@ export class Orders extends Resource {
   /**
    * Retrieves a paginated list of all orders. The results may be returned in any order.
    * You can optionally filter the results by the `awaiting_payment` state and sort by the `payment_required_by` date.
-   * @param {Object} [options] - Pagination options (optional: limit, after, before, awaiting_payment, sort)
+   * @param {Object} [queryParams] - Pagination options (optional: limit, after, before, awaiting_payment, sort)
    */
-  public list = (options?: PaginationMeta): AsyncGenerator<APIResponse<Order[]>, void, unknown> =>
-    this.paginatedRequest('air/orders', options)
+  public list = (queryParams?: PaginationMeta): AsyncGenerator<APIResponse<Order[]>, void, unknown> =>
+    this.paginatedRequest('air/orders', queryParams)
 
   /**
    * Creates a booking with an airline based on an offer.
    * @param body
    */
-  public create = async (body: CreateOrder): Promise<APIResponse<Order>> => {
-    return this.request('POST', `air/orders`, body)
+  public create = async ({
+    body,
+    queryParams
+  }: {
+    body: CreateOrder
+    queryParams?: Record<string, any>
+  }): Promise<APIResponse<Order>> => {
+    return this.request('POST', `air/orders`, body, queryParams)
   }
 }
