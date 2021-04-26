@@ -2,7 +2,7 @@ import fetch from 'isomorphic-unfetch'
 import camelCase from 'lodash/camelCase'
 import { URL, URLSearchParams } from 'url'
 import { transformDataKeys } from './lib'
-import { APIResponse, Dictionary, PaginationMeta } from './types'
+import { APIResponse, PaginationMeta } from './types'
 
 export interface Config {
   token: string
@@ -22,7 +22,7 @@ export class Client {
   public request = async <T_Response = any>(
     method: string,
     path: string,
-    options?: Record<string, any>,
+    queryParams?: Record<string, any>,
     body?: any
   ): Promise<APIResponse<T_Response>> => {
     const fullPath = new URL(path, this.basePath)
@@ -36,9 +36,13 @@ export class Client {
       Authorization: `Bearer ${this.token}`
     }
 
-    if (options) {
-      // if we want to cache the requests at some point we need to sort options
-      const params = Object.fromEntries(Object.entries(options).sort()) as Dictionary<string>
+    if (queryParams) {
+      // if we want to cache the requests at some point we need to sort queryParams
+      const params = Object.fromEntries(
+        Object.entries(queryParams)
+          .filter((option) => option[1] !== null)
+          .sort()
+      )
       fullPath.search = new URLSearchParams(params).toString()
     }
 
@@ -62,9 +66,9 @@ export class Client {
 
   async *paginatedRequest<T_Response = any>(
     path: string,
-    options?: PaginationMeta
+    queryParams?: PaginationMeta
   ): AsyncGenerator<APIResponse<T_Response>, void, unknown> {
-    let response = await this.request('GET', path, options)
+    let response = await this.request('GET', path, queryParams)
 
     while (response.meta && 'after' in response.meta && response.meta.after) {
       yield response
