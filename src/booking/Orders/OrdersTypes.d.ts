@@ -513,3 +513,7 @@ export interface CreateOrder {
    */
   type: 'instant' | 'pay_later'
 }
+
+export interface ListParamsOrders {
+  awaitingPayment: boolean
+}

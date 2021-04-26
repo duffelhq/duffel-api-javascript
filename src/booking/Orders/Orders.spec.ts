@@ -16,12 +16,13 @@ describe('Orders', () => {
   })
 
   test('should get all orders', async () => {
+    const params = { limit: 50, before: 'test', after: null }
     function* testResponse() {
       yield { data: [mockOrder], meta: { limit: 50, before: 'test', after: null } }
     }
     nock(/(.*)/).get(`/air/orders`).query(true).reply(200, testResponse)
 
-    const response = new Orders(new Client({ token: 'mockToken' })).list()
+    const response = new Orders(new Client({ token: 'mockToken' })).list(params)
     for await (const page of response) {
       expect(page.data).toHaveLength(1)
       expect(page.data![0].id).toBe(mockOrder.id)

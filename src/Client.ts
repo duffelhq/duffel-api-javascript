@@ -1,5 +1,6 @@
 import fetch from 'isomorphic-unfetch'
 import camelCase from 'lodash/camelCase'
+import snakeCase from 'lodash/snakeCase'
 import { URL, URLSearchParams } from 'url'
 import { transformDataKeys } from './lib'
 import { APIResponse, PaginationMeta } from './types'
@@ -22,8 +23,8 @@ export class Client {
   public request = async <T_Response = any>(
     method: string,
     path: string,
-    queryParams?: Record<string, any>,
-    body?: any
+    body?: any,
+    queryParams?: Record<string, any>
   ): Promise<APIResponse<T_Response>> => {
     const fullPath = new URL(path, this.basePath)
     const userAgent = `Duffel/${this.apiVersion} duffel_api_javascript/${process.env.npm_package_version}`
@@ -37,12 +38,14 @@ export class Client {
     }
 
     if (queryParams) {
-      // if we want to cache the requests at some point we need to sort queryParams
-      const params = Object.fromEntries(
-        Object.entries(queryParams)
-          .filter((option) => option[1] !== null)
-          .sort()
-      )
+      const params = Object.entries(queryParams)
+        .sort()
+        .reduce((options, option) => {
+          if (option[1] !== null) {
+            return { ...options, [snakeCase(option[0])]: option[1] }
+          }
+          return options
+        }, {})
       fullPath.search = new URLSearchParams(params).toString()
     }
 
@@ -68,11 +71,11 @@ export class Client {
     path: string,
     queryParams?: PaginationMeta
   ): AsyncGenerator<APIResponse<T_Response>, void, unknown> {
-    let response = await this.request('GET', path, queryParams)
+    let response = await this.request('GET', path, null, queryParams)
 
     while (response.meta && 'after' in response.meta && response.meta.after) {
       yield response
-      response = await this.request('GET', path, response.meta)
+      response = await this.request('GET', path, null, response.meta)
     }
   }
 }

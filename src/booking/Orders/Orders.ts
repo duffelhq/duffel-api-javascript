@@ -1,5 +1,5 @@
 import { APIResponse, PaginationMeta } from 'types'
-import { Order, CreateOrder } from './OrdersTypes'
+import { Order, CreateOrder, ListParamsOrders } from './OrdersTypes'
 import { Resource } from '../../Resource'
 
 export class Orders extends Resource {
@@ -14,8 +14,9 @@ export class Orders extends Resource {
    * You can optionally filter the results by the `awaiting_payment` state and sort by the `payment_required_by` date.
    * @param {Object} [queryParams] - Pagination options (optional: limit, after, before, awaiting_payment, sort)
    */
-  public list = (queryParams?: PaginationMeta): AsyncGenerator<APIResponse<Order[]>, void, unknown> =>
-    this.paginatedRequest('air/orders', queryParams)
+  public list = (
+    queryParams?: PaginationMeta & ListParamsOrders
+  ): AsyncGenerator<APIResponse<Order[]>, void, unknown> => this.paginatedRequest('air/orders', queryParams)
 
   /**
    * Creates a booking with an airline based on an offer.
