@@ -22,7 +22,7 @@ export class Client {
   public request = async <T_Response = any>(
     method: string,
     path: string,
-    options?: any,
+    options?: Record<string, any>,
     body?: any
   ): Promise<APIResponse<T_Response>> => {
     const fullPath = new URL(path, this.basePath)
