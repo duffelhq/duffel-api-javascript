@@ -10,6 +10,10 @@ export interface PaginationMeta {
   after?: string
 }
 
+export interface Dictionary<T> {
+  [key: string]: T
+}
+
 export interface ApiResponseMeta {
   requestId: string
   status: number

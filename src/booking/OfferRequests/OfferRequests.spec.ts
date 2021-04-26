@@ -20,7 +20,7 @@ describe('OfferRequests', () => {
     function* testResponse() {
       yield { data: [mockOfferRequest], meta: { limit: 50, before: 'test', after: null } }
     }
-    nock(/(.*)/).get(`/air/aircraft`).reply(200, testResponse)
+    nock(/(.*)/).get(`/air/offer_requests`).reply(200, testResponse)
 
     const response = new OfferRequests(new Client({ token: 'mockToken' })).list()
     for await (const page of response) {
@@ -40,7 +40,9 @@ describe('OfferRequests', () => {
     const mockResponseWithoutOffer = omit(mockOfferRequest, 'offers')
     nock(/(.*)/).post(`/air/offer_requests/`).query(true).reply(200, { data: mockResponseWithoutOffer })
 
-    const response = await new OfferRequests(new Client({ token: 'mockToken' })).create(mockCreateOfferRequest, false)
+    const response = await new OfferRequests(new Client({ token: 'mockToken' })).create(mockCreateOfferRequest, {
+      returnOffers: false
+    })
     expect(response.data?.offers).toBe(undefined)
     expect(response.data?.id).toBe(mockOfferRequest.id)
   })

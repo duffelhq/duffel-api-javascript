@@ -23,7 +23,7 @@ export class OfferRequests extends Resource {
    * @param {Object} [options] - Pagination options (optional: limit, after, before)
    */
   public list = (options?: PaginationMeta): AsyncGenerator<APIResponse<Offers.OfferRequest[]>, void, unknown> =>
-    this.paginatedRequest('air/aircraft', options)
+    this.paginatedRequest('air/offer_requests', options)
 
   /**
    * To search for flights, you'll need to create an `offer request`.
@@ -35,8 +35,10 @@ export class OfferRequests extends Resource {
    */
   public create = async (
     body: Offers.CreateOfferRequest,
-    returnOffers = true
+    options: any = {
+      returnOffers: true
+    }
   ): Promise<APIResponse<Offers.OfferRequest>> => {
-    return this.request('POST', `air/offer_requests/?return_offers=${returnOffers}`, body)
+    return this.request('POST', `air/offer_requests/`, options, body)
   }
 }
