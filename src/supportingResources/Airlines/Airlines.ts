@@ -15,9 +15,9 @@ export class Airlines extends Resource {
 
   /**
    * Retrieves a paginated list of all airlines. The results may be returned in any order.
-   * @param {Object} [options] - Pagination options (optional: limit, after, before)
+   * @param {Object} [queryParams] - Pagination options (optional: limit, after, before)
    * @link https://duffel.com/docs/api/airlines/get-airlines
    */
-  public list = (queryParams?: PaginationMeta): AsyncGenerator<APIResponse<Airline[]>, void, unknown> =>
-    this.paginatedRequest('air/airlines', queryParams)
+  public list = (options?: { queryParams?: PaginationMeta }): AsyncGenerator<APIResponse<Airline[]>, void, unknown> =>
+    this.paginatedRequest({ path: 'air/airlines', ...options })
 }

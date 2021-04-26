@@ -12,7 +12,7 @@ const example = async () => {
   console.log(aircraft)
 
   const airlinePages = duffelAPI.airlines.list({
-    limit: 5
+    queryParams: { limit: 5 }
   })
 
   for await (const page of airlinePages) {

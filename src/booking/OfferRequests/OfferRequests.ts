@@ -22,8 +22,10 @@ export class OfferRequests extends Resource {
    * Retrieves a paginated list of all aircraft. The results may be returned in any order.
    * @param {Object} [queryParams] - Pagination options (optional: limit, after, before)
    */
-  public list = (queryParams?: PaginationMeta): AsyncGenerator<APIResponse<Offers.OfferRequest[]>, void, unknown> =>
-    this.paginatedRequest('air/offer_requests', queryParams)
+  public list = (options?: {
+    queryParams?: PaginationMeta
+  }): AsyncGenerator<APIResponse<Offers.OfferRequest[]>, void, unknown> =>
+    this.paginatedRequest({ path: 'air/offer_requests', ...options })
 
   /**
    * To search for flights, you'll need to create an `offer request`.

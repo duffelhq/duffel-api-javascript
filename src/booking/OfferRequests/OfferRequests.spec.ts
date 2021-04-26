@@ -17,10 +17,9 @@ describe('OfferRequests', () => {
   })
 
   test('should get all offer requests', async () => {
-    function* testResponse() {
-      yield { data: [mockOfferRequest], meta: { limit: 50, before: 'test', after: null } }
-    }
-    nock(/(.*)/).get(`/air/offer_requests`).reply(200, testResponse)
+    nock(/(.*)/)
+      .get(`/air/offer_requests`)
+      .reply(200, { data: [mockOfferRequest], meta: { limit: 1, before: null, after: null } })
 
     const response = new OfferRequests(new Client({ token: 'mockToken' })).list()
     for await (const page of response) {
