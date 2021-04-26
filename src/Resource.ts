@@ -11,8 +11,9 @@ export class Resource {
   protected request = async <T_Response = any>(
     method: string,
     url: string,
-    body?: any
-  ): Promise<APIResponse<T_Response>> => this.client.request(method, url, body)
+    body?: any,
+    options?: Record<string, any>
+  ): Promise<APIResponse<T_Response>> => this.client.request(method, url, body, options)
 
   protected paginatedRequest = <T_Response = any>(
     url: string,

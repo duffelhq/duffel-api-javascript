@@ -16,10 +16,11 @@ describe('airports', () => {
   })
 
   test('should get all airports', async () => {
+    const param = { limit: 1, after: 'test' }
     function* testResponse() {
       yield { data: [mockAirport], meta: { limit: 1, before: 'test', after: null } }
     }
-    nock(/(.*)/).get(`/air/airports?limit=1&after=test`).reply(200, testResponse)
+    nock(/(.*)/).get('/air/airports').query(param).reply(200, testResponse)
 
     const response = new Airports(new Client({ token: 'mockToken' })).list({ limit: 1, after: 'test' })
     for await (const page of response) {

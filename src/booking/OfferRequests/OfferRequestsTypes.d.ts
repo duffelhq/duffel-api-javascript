@@ -211,4 +211,14 @@ export namespace Offers {
      */
     conditions: DuffelAPITypes.FlightsConditions
   }
+
+  export interface CreateOfferQueryParameters {
+    /**
+     * When set to `true`, the offer request resource returned will include all the offers returned by the airlines.
+     * If set to `false`, the offer request resource won't include any offers.
+     * To retrieve the associated `offers` later, use the [List Offers](https://duffel.com/docs/api/offers/get-offers) endpoint, specifying the `offer_request_id`.
+     * You should use this option if you want to take advantage of the pagination, sorting and filtering that the [List Offers](https://duffel.com/docs/api/offers/get-offers) endpoint provides.
+     */
+    returnOffers: boolean
+  }
 }

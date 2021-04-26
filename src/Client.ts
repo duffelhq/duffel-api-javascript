@@ -1,18 +1,12 @@
 import fetch from 'isomorphic-unfetch'
 import camelCase from 'lodash/camelCase'
+import { URL, URLSearchParams } from 'url'
 import { transformDataKeys } from './lib'
 import { APIResponse, PaginationMeta } from './types'
 
 export interface Config {
   token: string
 }
-
-const getPaginationQuery = (path: string, options?: PaginationMeta) =>
-  options
-    ? `${path}?limit=${options?.limit}${options?.before ? `&before=${options?.before}` : ''}${
-        options?.after ? `&after=${options?.after}` : ''
-      }`
-    : path
 
 export class Client {
   private token: string
@@ -28,9 +22,10 @@ export class Client {
   public request = async <T_Response = any>(
     method: string,
     path: string,
+    queryParams?: Record<string, any>,
     body?: any
   ): Promise<APIResponse<T_Response>> => {
-    const fullPath = `${this.basePath}/${path}`
+    const fullPath = new URL(path, this.basePath)
     const userAgent = `Duffel/${this.apiVersion} duffel_api_javascript/${process.env.npm_package_version}`
     const headers = {
       'User-Agent': userAgent,
@@ -41,7 +36,17 @@ export class Client {
       Authorization: `Bearer ${this.token}`
     }
 
-    const response = await fetch(fullPath, {
+    if (queryParams) {
+      // if we want to cache the requests at some point we need to sort queryParams
+      const params = Object.fromEntries(
+        Object.entries(queryParams)
+          .filter((option) => option[1] !== null)
+          .sort()
+      )
+      fullPath.search = new URLSearchParams(params).toString()
+    }
+
+    const response = await fetch(fullPath.href, {
       method,
       headers,
       body
@@ -61,13 +66,13 @@ export class Client {
 
   async *paginatedRequest<T_Response = any>(
     path: string,
-    options?: PaginationMeta
+    queryParams?: PaginationMeta
   ): AsyncGenerator<APIResponse<T_Response>, void, unknown> {
-    let response = await this.request('GET', getPaginationQuery(path, options))
+    let response = await this.request('GET', path, queryParams)
 
     while (response.meta && 'after' in response.meta && response.meta.after) {
       yield response
-      response = await this.request('GET', getPaginationQuery(path, response.meta))
+      response = await this.request('GET', path, response.meta)
     }
   }
 }
