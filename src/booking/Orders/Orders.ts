@@ -7,7 +7,8 @@ export class Orders extends Resource {
    * Retrieves an order by its ID
    * @param {string} id - Duffel's unique identifier for the order
    */
-  public get = async (id: string): Promise<APIResponse<Order>> => this.request('GET', `air/orders/${id}`)
+  public get = async (id: string): Promise<APIResponse<Order>> =>
+    this.request({ method: 'GET', path: `air/orders/${id}` })
 
   /**
    * Retrieves a paginated list of all orders. The results may be returned in any order.
@@ -29,6 +30,6 @@ export class Orders extends Resource {
     body: CreateOrder
     queryParams?: Record<string, any>
   }): Promise<APIResponse<Order>> => {
-    return this.request('POST', `air/orders`, body, queryParams)
+    return this.request({ method: 'POST', path: `air/orders`, body, queryParams })
   }
 }

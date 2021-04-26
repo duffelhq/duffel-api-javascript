@@ -12,7 +12,8 @@ export class Offers extends Resource {
    * @param {string} id - Duffel's unique identifier for the offer
    * @link https:/duffel.com/docs/api/offers/get-offer-by-id
    */
-  public get = async (id: string): Promise<APIResponse<Offer>> => this.request('GET', `air/offers/${id}`)
+  public get = async (id: string): Promise<APIResponse<Offer>> =>
+    this.request({ method: 'GET', path: `air/offers/${id}` })
 
   /**
    * Retrieves a paginated list of all offers. The results may be returned in any order.

@@ -16,7 +16,7 @@ export class OfferRequests extends Resource {
    * @link https:/duffel.com/docs/api/offer-requests/get-offer-request-by-id
    */
   public get = async (id: string): Promise<APIResponse<Offers.OfferRequest>> =>
-    this.request('GET', `air/offer_requests/${id}`)
+    this.request({ method: 'GET', path: `air/offer_requests/${id}` })
 
   /**
    * Retrieves a paginated list of all aircraft. The results may be returned in any order.
@@ -43,6 +43,6 @@ export class OfferRequests extends Resource {
     body: Offers.CreateOfferRequest
     queryParams?: Offers.CreateOfferQueryParameters
   }): Promise<APIResponse<Offers.OfferRequest>> => {
-    return this.request('POST', `air/offer_requests/`, body, queryParams)
+    return this.request({ method: 'POST', path: `air/offer_requests/`, body, queryParams })
   }
 }
