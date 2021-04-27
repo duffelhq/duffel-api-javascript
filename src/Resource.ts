@@ -15,8 +15,11 @@ export class Resource {
     options?: Record<string, any>
   ): Promise<APIResponse<T_Response>> => this.client.request(method, url, body, options)
 
-  protected paginatedRequest = <T_Response = any>(
-    url: string,
-    options?: PaginationMeta
-  ): AsyncGenerator<APIResponse<T_Response>, void, unknown> => this.client.paginatedRequest(url, options)
+  protected paginatedRequest = <T_Response = any>({
+    path,
+    queryParams
+  }: {
+    path: string
+    queryParams?: PaginationMeta
+  }): AsyncGenerator<APIResponse<T_Response>, void, unknown> => this.client.paginatedRequest({ path, queryParams })
 }

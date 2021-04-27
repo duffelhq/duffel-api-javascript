@@ -16,13 +16,11 @@ describe('airports', () => {
   })
 
   test('should get all airports', async () => {
-    const param = { limit: 1, after: 'test' }
-    function* testResponse() {
-      yield { data: [mockAirport], meta: { limit: 1, before: 'test', after: null } }
-    }
-    nock(/(.*)/).get('/air/airports').query(param).reply(200, testResponse)
+    nock(/(.*)/)
+      .get(`/air/airports?limit=1`)
+      .reply(200, { data: [mockAirport], meta: { limit: 1, before: null, after: null } })
 
-    const response = new Airports(new Client({ token: 'mockToken' })).list({ limit: 1, after: 'test' })
+    const response = new Airports(new Client({ token: 'mockToken' })).list({ queryParams: { limit: 1 } })
     for await (const page of response) {
       expect(page.data).toHaveLength(1)
       expect(page.data![0].id).toBe(mockAirport.id)

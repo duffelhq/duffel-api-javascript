@@ -67,15 +67,19 @@ export class Client {
     }
   }
 
-  async *paginatedRequest<T_Response = any>(
-    path: string,
+  async *paginatedRequest<T_Response = any>({
+    path,
+    queryParams
+  }: {
+    path: string
     queryParams?: PaginationMeta
-  ): AsyncGenerator<APIResponse<T_Response>, void, unknown> {
+  }): AsyncGenerator<APIResponse<T_Response>, void, unknown> {
     let response = await this.request('GET', path, null, queryParams)
+    yield response
 
     while (response.meta && 'after' in response.meta && response.meta.after) {
+      response = await this.request('GET', path, null, { limit: response.meta.limit, after: response.meta.after })
       yield response
-      response = await this.request('GET', path, null, response.meta)
     }
   }
 }
