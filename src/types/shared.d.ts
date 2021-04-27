@@ -57,7 +57,7 @@ export type FlightsConditions = {
      * @example "true"
      */
     allowed: boolean
-  }
+  } | null
   /**
    * Whether the whole order or offer can be changed before the departure of the first slice.
    * If all of the slices on the order or offer can be changed then the `allowed` property will be `true`.
@@ -87,7 +87,7 @@ export type FlightsConditions = {
      * @example "true"
      */
     allowed: boolean
-  }
+  } | null
 }
 
 /**
@@ -118,3 +118,31 @@ export interface City {
    */
   name: string
 }
+
+/**
+ * An object containing metadata about the service, like the designator of the seat.
+ */
+export interface Seat {
+  /**
+   * The designator used to uniquely identify the seat, usually made up of a row number and a column letter
+   * @example "14B"
+   */
+  designator: string
+  /**
+   * Each disclosure is text, in English, provided by the airline that describes the terms and conditions of this seat. We recommend showing this in your user interface to make sure that customers understand any restrictions and limitations.
+   * @example "["Do not seat children in exit row seats","Do not seat passengers with special needs in exit row seats"]"
+   */
+  disclosures: string[]
+  /**
+   * A name which describes the type of seat, which you can display in your user interface to help customers to understand its features
+   * @example "Exit row seat"
+   */
+  name: string
+}
+
+/**
+ * The type of payment you want to apply to the order.
+ * If you are an IATA agent with your own agreements with airlines, in some cases, you can pay using ARC/BSP cash by specifying `arc_bsp_cash`. Otherwise, you must pay using your Duffel account's balance by specifying `balance`.
+ * In test mode, your balance is unlimited. If you're not sure which of these options applies to you, get in touch with the Duffel support team at [help@duffel.com](mailto:help@duffel.com).
+ */
+export type PaymentType = 'arc_bsp_cash' | 'balance'

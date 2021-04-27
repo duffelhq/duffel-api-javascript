@@ -21,6 +21,6 @@
     "forceConsistentCasingInFileNames": true,
     "declaration": true
   },
-  "exclude": ["node_modules", "examples", "jest.config.ts"],
+  "exclude": ["node_modules", "examples", "jest.config.ts", "**/*.spec.ts"],
   "include": ["**/*.ts", "**/*.d.ts", "**/*.tsx"]
 }

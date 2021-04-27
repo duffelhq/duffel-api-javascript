@@ -174,12 +174,12 @@ export namespace Offers {
     /**
      * The amount of tax payable on the offer for all passengers
      */
-    taxAmount: string | null
+    taxAmount?: string | null
 
     /**
      * The currency of the `tax_amount`, as an [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency code
      */
-    taxCurrency: string | null
+    taxCurrency?: string | null
 
     /**
      * The total price of the offer for all passengers, including taxes.

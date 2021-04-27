@@ -16,6 +16,7 @@
   "license": "MIT",
   "private": true,
   "scripts": {
+    "postinstall": "touch src/helpers/mock.json",
     "build": "tsc",
     "start": "node ./dist/index.js",
     "dev": "ts-node ./src/index.ts",
@@ -23,7 +24,8 @@
     "test": "jest",
     "pre-push-check": "yarn lint && yarn test && yarn build --noEmit ",
     "prepare": "husky install",
-    "example": "ts-node ./examples/example.ts"
+    "example": "ts-node ./examples/example.ts",
+    "transformDataKeys": "ts-node src/helpers/transformDataKeys"
   },
   "dependencies": {
     "@types/node": "^14.14.41",
