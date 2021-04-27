@@ -20,7 +20,7 @@ export class OfferRequests extends Resource {
 
   /**
    * Retrieves a paginated list of all aircraft. The results may be returned in any order.
-   * @param {Object} [queryParams] - Pagination options (optional: limit, after, before)
+   * @param {Object} [options] - Pagination query parameters (optional: limit, after, before)
    */
   public list = (options?: {
     queryParams?: PaginationMeta
