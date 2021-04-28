@@ -16,6 +16,6 @@ export class Payments extends Resource {
     body: CreatePayment
     queryParams?: Record<string, any>
   }): Promise<APIResponse<Payment>> => {
-    return this.request('POST', `air/payments`, body, queryParams)
+    return this.request({ method: 'POST', path: `air/payments`, body, queryParams })
   }
 }
