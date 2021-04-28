@@ -1,6 +1,6 @@
 import { APIResponse, PaginationMeta } from 'types'
 import { Resource } from '../../Resource'
-import { CreateOrder, ListParamsOrders, Order, CreateOrderCancellation, OrderCancellationResponse } from './OrdersTypes'
+import { CreateOrder, ListParamsOrders, Order } from './OrdersTypes'
 
 export class Orders extends Resource {
   /**
@@ -32,38 +32,4 @@ export class Orders extends Resource {
   }): Promise<APIResponse<Order>> => {
     return this.request({ method: 'POST', path: `air/orders`, body, queryParams })
   }
-
-  /**
-   * To begin the process of cancelling an order you need to create an order cancellation.
-   * @param body.order_id - Duffel's unique identifier for the order
-   */
-  public createOrderCancellation = async ({
-    body,
-    queryParams
-  }: {
-    body: CreateOrderCancellation
-    queryParams?: Record<string, any>
-  }): Promise<APIResponse<OrderCancellationResponse>> => {
-    return this.request('POST', `air/order_cancellations`, body, queryParams)
-  }
-
-  /**
-   *
-   * Once you've created a pending order cancellation, you'll know the `refund_amount` you're due to get back.
-   * @param {{
-   *     id: string
-   *     queryParams
-   *   }} {
-   *     id,
-   *     queryParams
-   *   }
-   */
-  public confirmOrderCancellation = async ({
-    id,
-    queryParams
-  }: {
-    id: string
-    queryParams?: Record<string, any>
-  }): Promise<APIResponse<OrderCancellationResponse>> =>
-    this.request('POST', `air/order_cancellations/${id}/actions/confirm`, undefined, queryParams)
 }

@@ -1,6 +1,6 @@
 import nock from 'nock'
 import { Client } from '../../Client'
-import { mockCreateOrderRequest, mockOnHoldOrders, mockOrder, mockOrderCancellation } from './mockOrders'
+import { mockCreateOrderRequest, mockOnHoldOrders, mockOrder } from './mockOrders'
 import { Orders } from './Orders'
 
 describe('Orders', () => {
@@ -44,27 +44,5 @@ describe('Orders', () => {
 
     const response = await new Orders(new Client({ token: 'mockToken' })).create({ body: mockCreateOrderRequest })
     expect(response.data?.id).toBe(mockOrder.id)
-  })
-
-  test('should create a order cancellation', async () => {
-    nock(/(.*)/).post(`/air/order_cancellations`).reply(200, { data: mockOrderCancellation })
-
-    const response = await new Orders(new Client({ token: 'mockToken' })).createOrderCancellation({
-      body: {
-        order_id: 'ord_00009hthhsUZ8W4LxQgkjo'
-      }
-    })
-    expect(response.data?.orderId).toBe('ord_00009hthhsUZ8W4LxQgkjo')
-  })
-
-  test('should confirm the order cancellation', async () => {
-    nock(/(.*)/)
-      .post(`/air/order_cancellations/${mockOrderCancellation.id}/actions/confirm`)
-      .reply(200, { data: mockOrderCancellation })
-
-    const response = await new Orders(new Client({ token: 'mockToken' })).confirmOrderCancellation({
-      id: 'ore_00009qzZWzjDipIkqpaUAj'
-    })
-    expect(response.data?.orderId).toBe('ord_00009hthhsUZ8W4LxQgkjo')
   })
 })
