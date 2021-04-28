@@ -9,7 +9,7 @@ export class Payments extends Resource {
    * @param {string} body.orderId
    * @param {string} body.payment
    */
-  public createPayment = async ({
+  public create = async ({
     body,
     queryParams
   }: {
