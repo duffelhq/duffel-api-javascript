@@ -55,7 +55,7 @@ export class Client {
       fullPath.search = new URLSearchParams(params).toString()
     }
 
-    // We need to format body to be sent as { "data": bodyParameters }
+    // We need to format body to be sent as { "data": bodyParams }
     if (bodyParams) {
       body = JSON.stringify({
         data: {
