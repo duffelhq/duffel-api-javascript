@@ -7,25 +7,25 @@ export interface Offer {
    * The types of identity documents that may be provided for the passengers when creating an order based on this offer.
    * Currently, the only supported type is `passport`. If this is `[]`, then you must not provide identity documents.
    */
-  allowedPassengerIdentityDocumentTypes: PassengerIdentityDocumentType[]
+  allowed_passenger_identity_document_types: PassengerIdentityDocumentType[]
 
   /**
    * The services that can be booked along with the offer but are not included by default, for example an additional checked bag.
    * This field is only returned in the Get single offer endpoint.
    * When there are no services available, or we don't support services for the airline, this list will be empty.
    */
-  availableServices: OfferAvailableService[]
+  available_services: OfferAvailableService[]
 
   /**
    * The base price of the offer for all passengers, excluding taxes.
    * It does not include the base amount of any service(s) that might be booked with the offer.
    */
-  baseAmount: string
+  base_amount: string
 
   /**
    * The currency of the `base_amount`, as an [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency code
    */
-  baseCurrency: string
+  base_currency: string
 
   /**
    * The conditions associated with this offer, describing the kinds of modifications you can make post-booking and any penalties that will apply to those modifications.
@@ -38,12 +38,12 @@ export interface Offer {
   /**
    * The ISO 8601 datetime at which the offer was created
    */
-  createdAt: string
+  created_at: string
 
   /**
    * The ISO 8601 datetime at which the offer will expire and no longer be usable to create an order
    */
-  expiresAt: string
+  expires_at: string
 
   /**
    * Duffel's unique identifier for the offer
@@ -54,7 +54,7 @@ export interface Offer {
    * Whether the offer request was created in live mode.
    * This field will be set to `true` if the offer request was created in live mode, or `false` if it was created in test mode.
    */
-  liveMode: boolean
+  live_mode: boolean
 
   /**
    * The airline which provided the offer
@@ -65,7 +65,7 @@ export interface Offer {
    * Whether identity documents must be provided for each of the passengers when creating an order based on this offer.
    * If this is `true`, you must provide an identity document for every passenger.
    */
-  passengerIdentityDocumentsRequired: boolean
+  passenger_identity_documents_required: boolean
 
   /**
    * The passengers included in the offer
@@ -75,7 +75,7 @@ export interface Offer {
   /**
    * The payment requirements for this offer
    */
-  paymentRequirements: PaymentRequirements
+  payment_requirements: PaymentRequirements
 
   /**
    * The slices that make up this offer. Each slice will include one or more segments,
@@ -86,32 +86,32 @@ export interface Offer {
   /**
    * The amount of tax payable on the offer for all passengers
    */
-  taxAmount: string | null
+  tax_amount: string | null
 
   /**
    * The currency of the `tax_amount`, as an [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency code
    */
-  taxCurrency: string | null
+  tax_currency: string | null
 
   /**
    * The total price of the offer for all passengers, including taxes.
    * It does not include the total price of any service(s) that might be booked with the offer.
    */
-  totalAmount: string
+  total_amount: string
 
   /**
    * An estimate of the total carbon dioxide (CO₂) emissions when
    * all of the passengers fly this offer's itinerary, measured in kilograms
    */
-  totalEmissionsKg: string
+  total_emissions_kg: string
 
   /**
    * The currency of the `total_amount`, as an [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency code
    */
-  totalCurrency: string
+  total_currency: string
 
   /**
    * The ISO 8601 datetime at which the offer was last updated
    */
-  updatedAt: string
+  updated_at: string
 }

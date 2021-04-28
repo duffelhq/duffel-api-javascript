@@ -1,33 +1,50 @@
-import { Order, CreateOrder } from './OrdersTypes'
+import { CreateOrder, Order } from './OrdersTypes'
 
 export const mockCreateOrderRequest: CreateOrder = {
   type: 'instant',
-  services: [{ quantity: 1, id: 'ase_00009hj8USM7Ncg31cB123' }],
-  selectedOffers: ['off_00009htyDGjIfajdNBZRlw'],
-  payments: [{ type: 'balance', currency: 'GBP', amount: '30.20' }],
+  services: [
+    {
+      quantity: 1,
+      id: 'ase_00009hj8USM7Ncg31cB123'
+    }
+  ],
+  selected_offers: ['off_00009htyDGjIfajdNBZRlw'],
+  payments: [
+    {
+      type: 'balance',
+      currency: 'GBP',
+      amount: '30.20'
+    }
+  ],
   passengers: [
     {
       type: 'adult',
       title: 'mrs',
-      infantPassengerId: 'pas_00009hj8USM8Ncg32aTGHL',
-      identityDocuments: [
-        { uniqueIdentifier: '19KL56147', type: 'passport', issuingCountryCode: 'GB', expiresOn: '2025-04-25' }
+      phone_number: '+442080160509',
+      infant_passenger_id: 'pas_00009hj8USM8Ncg32aTGHL',
+      identity_documents: [
+        {
+          unique_identifier: '19KL56147',
+          type: 'passport',
+          issuing_country_code: 'GB',
+          expires_on: '2025-04-25'
+        }
       ],
       id: 'pas_00009hj8USM7Ncg31cBCLL',
-      givenName: 'Amelia',
+      given_name: 'Amelia',
       gender: 'f',
-      familyName: 'Earhart',
+      family_name: 'Earhart',
       email: 'amelia@duffel.com',
-      bornOn: '1987-07-24'
+      born_on: '1987-07-24'
     }
   ]
 }
 
 export const mockOrder: Order = {
-  totalCurrency: 'GBP',
-  totalAmount: '90.80',
-  taxCurrency: 'GBP',
-  taxAmount: '30.20',
+  total_currency: 'GBP',
+  total_amount: '90.80',
+  tax_currency: 'GBP',
+  tax_amount: '30.20',
   slices: [
     {
       segments: [
@@ -42,9 +59,9 @@ export const mockOrder: Order = {
                 ],
                 designator: '14B'
               },
-              passengerId: 'passenger_0',
-              cabinClassMarketingName: 'Economy Basic',
-              cabinClass: 'economy',
+              passenger_id: 'passenger_0',
+              cabin_class_marketing_name: 'Economy Basic',
+              cabin_class: 'economy',
               baggages: [
                 {
                   type: 'checked',
@@ -53,150 +70,150 @@ export const mockOrder: Order = {
               ]
             }
           ],
-          originTerminal: 'B',
+          origin_terminal: 'B',
           origin: {
-            timeZone: 'Europe/London',
+            time_zone: 'Europe/London',
             name: 'Heathrow',
             longitude: -141.951519,
             latitude: 64.068865,
             id: 'arp_lhr_gb',
-            icaoCode: 'EGLL',
-            iataCountryCode: 'GB',
-            iataCode: 'LHR',
-            cityName: 'London',
+            icao_code: 'EGLL',
+            iata_country_code: 'GB',
+            iata_code: 'LHR',
+            city_name: 'London',
             city: {
               name: 'London',
               id: 'cit_lon_gb',
-              iataCountryCode: 'GB',
-              iataCode: 'LON'
+              iata_country_code: 'GB',
+              iata_code: 'LON'
             }
           },
-          operatingCarrierFlightNumber: '4321',
-          operatingCarrier: {
+          operating_carrier_flight_number: '4321',
+          operating_carrier: {
             name: 'British Airways',
             id: 'aln_00001876aqC8c5umZmrRds',
-            iataCode: 'BA'
+            iata_code: 'BA'
           },
-          marketingCarrierFlightNumber: '1234',
-          marketingCarrier: {
+          marketing_carrier_flight_number: '1234',
+          marketing_carrier: {
             name: 'British Airways',
             id: 'aln_00001876aqC8c5umZmrRds',
-            iataCode: 'BA'
+            iata_code: 'BA'
           },
           id: 'seg_00009htYpSCXrwaB9Dn456',
           duration: 'PT02H26M',
           distance: '424.2',
-          destinationTerminal: '5',
+          destination_terminal: '5',
           destination: {
-            timeZone: 'Europe/London',
+            time_zone: 'Europe/London',
             name: 'Heathrow',
             longitude: -141.951519,
             latitude: 64.068865,
             id: 'arp_lhr_gb',
-            icaoCode: 'EGLL',
-            iataCountryCode: 'GB',
-            iataCode: 'LHR',
-            cityName: 'London',
+            icao_code: 'EGLL',
+            iata_country_code: 'GB',
+            iata_code: 'LHR',
+            city_name: 'London',
             city: {
               name: 'London',
               id: 'cit_lon_gb',
-              iataCountryCode: 'GB',
-              iataCode: 'LON'
+              iata_country_code: 'GB',
+              iata_code: 'LON'
             }
           },
-          departingAt: '2020-06-13T16:38:02',
-          arrivingAt: '2020-06-13T16:38:02',
+          departing_at: '2020-06-13T16:38:02',
+          arriving_at: '2020-06-13T16:38:02',
           aircraft: {
             name: 'Airbus Industries A380',
             id: 'arc_00009UhD4ongolulWd91Ky',
-            iataCode: '380'
+            iata_code: '380'
           }
         }
       ],
-      originType: 'airport',
+      origin_type: 'airport',
       origin: {
         type: 'airport',
-        timeZone: 'Europe/London',
+        time_zone: 'Europe/London',
         name: 'Heathrow',
         longitude: -141.951519,
         latitude: 64.068865,
         id: 'arp_lhr_gb',
-        icaoCode: 'EGLL',
-        iataCountryCode: 'GB',
-        iataCode: 'LHR',
-        iataCityCode: 'LON',
-        cityName: 'London',
+        icao_code: 'EGLL',
+        iata_country_code: 'GB',
+        iata_code: 'LHR',
+        iata_city_code: 'LON',
+        city_name: 'London',
         city: {
           name: 'London',
           id: 'cit_lon_gb',
-          iataCountryCode: 'GB',
-          iataCode: 'LON'
+          iata_country_code: 'GB',
+          iata_code: 'LON'
         },
         airports: [
           {
-            timeZone: 'Europe/London',
+            time_zone: 'Europe/London',
             name: 'Heathrow',
             longitude: -141.951519,
             latitude: 64.068865,
             id: 'arp_lhr_gb',
-            icaoCode: 'EGLL',
-            iataCountryCode: 'GB',
-            iataCode: 'LHR',
-            cityName: 'London',
+            icao_code: 'EGLL',
+            iata_country_code: 'GB',
+            iata_code: 'LHR',
+            city_name: 'London',
             city: {
               name: 'London',
               id: 'cit_lon_gb',
-              iataCountryCode: 'GB',
-              iataCode: 'LON'
+              iata_country_code: 'GB',
+              iata_code: 'LON'
             }
           }
         ]
       },
       id: 'sli_00009htYpSCXrwaB9Dn123',
       duration: 'PT02H26M',
-      destinationType: 'airport',
+      destination_type: 'airport',
       destination: {
         type: 'airport',
-        timeZone: 'Europe/London',
+        time_zone: 'Europe/London',
         name: 'Heathrow',
         longitude: -141.951519,
         latitude: 64.068865,
         id: 'arp_lhr_gb',
-        icaoCode: 'EGLL',
-        iataCountryCode: 'GB',
-        iataCode: 'LHR',
-        iataCityCode: 'LON',
-        cityName: 'London',
+        icao_code: 'EGLL',
+        iata_country_code: 'GB',
+        iata_code: 'LHR',
+        iata_city_code: 'LON',
+        city_name: 'London',
         city: {
           name: 'London',
           id: 'cit_lon_gb',
-          iataCountryCode: 'GB',
-          iataCode: 'LON'
+          iata_country_code: 'GB',
+          iata_code: 'LON'
         },
         airports: [
           {
-            timeZone: 'Europe/London',
+            time_zone: 'Europe/London',
             name: 'Heathrow',
             longitude: -141.951519,
             latitude: 64.068865,
             id: 'arp_lhr_gb',
-            icaoCode: 'EGLL',
-            iataCountryCode: 'GB',
-            iataCode: 'LHR',
-            cityName: 'London',
+            icao_code: 'EGLL',
+            iata_country_code: 'GB',
+            iata_code: 'LHR',
+            city_name: 'London',
             city: {
               name: 'London',
               id: 'cit_lon_gb',
-              iataCountryCode: 'GB',
-              iataCode: 'LON'
+              iata_country_code: 'GB',
+              iata_code: 'LON'
             }
           }
         ]
       },
       conditions: {
-        changeBeforeDeparture: {
-          penaltyCurrency: 'GBP',
-          penaltyAmount: '100.00',
+        change_before_departure: {
+          penalty_currency: 'GBP',
+          penalty_amount: '100.00',
           allowed: true
         }
       },
@@ -206,88 +223,78 @@ export const mockOrder: Order = {
   services: [
     {
       type: 'baggage',
-      totalCurrency: 'GBP',
-      totalAmount: '15.00',
-      segmentIds: ['seg_00009hj8USM7Ncg31cB456'],
+      total_currency: 'GBP',
+      total_amount: '15.00',
+      segment_ids: ['seg_00009hj8USM7Ncg31cB456'],
       quantity: 1,
-      passengerIds: ['pas_00009hj8USM7Ncg31cBCLL'],
-      id: 'ser_00009UhD4ongolulWd9123',
-      metadata: {
-        type: null,
-        name: 'DEFAULT FREE SEAT',
-        maximumWeightKg: null,
-        maximumLengthCm: null,
-        maximumHeightCm: null,
-        maximumDepthCm: null,
-        disclosures: [],
-        designator: '27A'
-      }
+      passenger_ids: ['pas_00009hj8USM7Ncg31cBCLL'],
+      id: 'ser_00009UhD4ongolulWd9123'
     }
   ],
-  paymentStatus: {
-    priceGuaranteeExpiresAt: '2020-01-17T10:42:14.545Z',
-    paymentRequiredBy: '2020-01-17T10:42:14.545Z',
-    awaitingPayment: true
+  payment_status: {
+    price_guarantee_expires_at: '2020-01-17T10:42:14.545Z',
+    payment_required_by: '2020-01-17T10:42:14.545Z',
+    awaiting_payment: true
   },
   passengers: [
     {
       type: 'adult',
       title: 'mrs',
-      infantPassengerId: 'pas_00009hj8USM8Ncg32aTGHL',
+      infant_passenger_id: 'pas_00009hj8USM8Ncg32aTGHL',
       id: 'pas_00009hj8USM7Ncg31cBCLL',
-      givenName: 'Amelia',
+      given_name: 'Amelia',
       gender: 'f',
-      familyName: 'Earhart',
-      bornOn: '1987-07-24'
+      family_name: 'Earhart',
+      born_on: '1987-07-24'
     }
   ],
   owner: {
     name: 'British Airways',
     id: 'aln_00001876aqC8c5umZmrRds',
-    iataCode: 'BA'
+    iata_code: 'BA'
   },
-  liveMode: false,
+  live_mode: false,
   id: 'ord_00009hthhsUZ8W4LxQgkjo',
   documents: [
     {
-      uniqueIdentifier: '1252106312810',
+      unique_identifier: '1252106312810',
       type: 'electronic_ticket'
     }
   ],
-  createdAt: '2020-04-11T15:48:11.642Z',
+  created_at: '2020-04-11T15:48:11.642Z',
   conditions: {
-    refundBeforeDeparture: {
-      penaltyCurrency: 'GBP',
-      penaltyAmount: '100.00',
+    refund_before_departure: {
+      penalty_currency: 'GBP',
+      penalty_amount: '100.00',
       allowed: true
     },
-    changeBeforeDeparture: {
-      penaltyCurrency: 'GBP',
-      penaltyAmount: '100.00',
+    change_before_departure: {
+      penalty_currency: 'GBP',
+      penalty_amount: '100.00',
       allowed: true
     }
   },
-  cancelledAt: '2020-04-11T15:48:11.642Z',
-  bookingReference: 'RZPNX8',
-  baseCurrency: 'GBP',
-  baseAmount: '30.20'
+  cancelled_at: '2020-04-11T15:48:11.642Z',
+  booking_reference: 'RZPNX8',
+  base_currency: 'GBP',
+  base_amount: '30.20'
 }
 
 export const mockOnHoldOrders: Order[] = [
   {
-    totalCurrency: 'GBP',
-    totalAmount: '87.90',
-    taxCurrency: 'GBP',
-    taxAmount: '15.90',
+    total_currency: 'GBP',
+    total_amount: '87.90',
+    tax_currency: 'GBP',
+    tax_amount: '15.90',
     slices: [
       {
         segments: [
           {
             passengers: [
               {
-                passengerId: 'pas_0000A6GinR7kevnCVS69dy',
-                cabinClassMarketingName: 'Economy',
-                cabinClass: 'economy',
+                passenger_id: 'pas_0000A6GinR7kevnCVS69dy',
+                cabin_class_marketing_name: 'Economy',
+                cabin_class: 'economy',
                 baggages: [
                   { type: 'checked', quantity: 0 },
                   { type: 'carry_on', quantity: 1 },
@@ -296,170 +303,170 @@ export const mockOnHoldOrders: Order[] = [
                 ]
               }
             ],
-            originTerminal: null,
+            origin_terminal: null,
             origin: {
               type: 'airport',
-              timeZone: 'America/Indiana/Indianapolis',
+              time_zone: 'America/Indiana/Indianapolis',
               name: 'Indianapolis International Airport',
               longitude: -86.295526,
               latitude: 39.716605,
               id: 'arp_ind_us',
-              icaoCode: 'KIND',
-              iataCountryCode: 'US',
-              iataCode: 'IND',
-              iataCityCode: 'IND',
-              cityName: 'Indianapolis',
+              icao_code: 'KIND',
+              iata_country_code: 'US',
+              iata_code: 'IND',
+              iata_city_code: 'IND',
+              city_name: 'Indianapolis',
               city: null
             },
-            operatingCarrierFlightNumber: '4721',
-            operatingCarrier: {
+            operating_carrier_flight_number: '4721',
+            operating_carrier: {
               name: 'American Airlines',
               id: 'arl_00009VME7DAGiJjwomhv32',
-              iataCode: 'AA'
+              iata_code: 'AA'
             },
-            marketingCarrierFlightNumber: '4721',
-            marketingCarrier: {
+            marketing_carrier_flight_number: '4721',
+            marketing_carrier: {
               name: 'American Airlines',
               id: 'arl_00009VME7DAGiJjwomhv32',
-              iataCode: 'AA'
+              iata_code: 'AA'
             },
             id: 'seg_0000A6GioOO1UDbjb7nIi9',
             duration: 'PT2H45M',
             distance: null,
-            destinationTerminal: null,
+            destination_terminal: null,
             destination: {
               type: 'airport',
-              timeZone: 'America/New_York',
+              time_zone: 'America/New_York',
               name: 'Miami International Airport',
               longitude: -80.288826,
               latitude: 25.794534,
               id: 'arp_mia_us',
-              icaoCode: 'KMIA',
-              iataCountryCode: 'US',
-              iataCode: 'MIA',
-              iataCityCode: 'MIA',
-              cityName: 'Miami',
+              icao_code: 'KMIA',
+              iata_country_code: 'US',
+              iata_code: 'MIA',
+              iata_city_code: 'MIA',
+              city_name: 'Miami',
               city: {
                 type: 'city',
-                timeZone: null,
+                time_zone: null,
                 name: 'Miami',
                 longitude: null,
                 latitude: null,
                 id: 'cit_mia_us',
-                icaoCode: null,
-                iataCountryCode: 'US',
-                iataCode: 'MIA',
-                iataCityCode: 'MIA',
-                cityName: null
+                icao_code: null,
+                iata_country_code: 'US',
+                iata_code: 'MIA',
+                iata_city_code: 'MIA',
+                city_name: null
               }
             },
-            departingAt: '2021-08-07T17:53:00',
-            arrivingAt: '2021-08-07T20:38:00',
+            departing_at: '2021-08-07T17:53:00',
+            arriving_at: '2021-08-07T20:38:00',
             aircraft: {
               name: 'Embraer 175',
               id: 'arc_00009VMF8AiFPp0xSPcfNz',
-              iataCode: 'E75'
+              iata_code: 'E75'
             }
           }
         ],
-        originType: 'airport',
+        origin_type: 'airport',
         origin: {
           type: 'airport',
-          timeZone: 'America/Indiana/Indianapolis',
+          time_zone: 'America/Indiana/Indianapolis',
           name: 'Indianapolis International Airport',
           longitude: -86.295526,
           latitude: 39.716605,
           id: 'arp_ind_us',
-          icaoCode: 'KIND',
-          iataCountryCode: 'US',
-          iataCode: 'IND',
-          iataCityCode: 'IND',
-          cityName: 'Indianapolis',
+          icao_code: 'KIND',
+          iata_country_code: 'US',
+          iata_code: 'IND',
+          iata_city_code: 'IND',
+          city_name: 'Indianapolis',
           city: null
         },
         id: 'sli_0000A6GioOQrJfsNjv7Z8C',
         duration: 'PT2H45M',
-        destinationType: 'airport',
+        destination_type: 'airport',
         destination: {
           type: 'airport',
-          timeZone: 'America/New_York',
+          time_zone: 'America/New_York',
           name: 'Miami International Airport',
           longitude: -80.288826,
           latitude: 25.794534,
           id: 'arp_mia_us',
-          icaoCode: 'KMIA',
-          iataCountryCode: 'US',
-          iataCode: 'MIA',
-          iataCityCode: 'MIA',
-          cityName: 'Miami',
+          icao_code: 'KMIA',
+          iata_country_code: 'US',
+          iata_code: 'MIA',
+          iata_city_code: 'MIA',
+          city_name: 'Miami',
           city: {
             type: 'city',
-            timeZone: null,
+            time_zone: null,
             name: 'Miami',
             longitude: null,
             latitude: null,
             id: 'cit_mia_us',
-            icaoCode: null,
-            iataCountryCode: 'US',
-            iataCode: 'MIA',
-            iataCityCode: 'MIA',
-            cityName: null
+            icao_code: null,
+            iata_country_code: 'US',
+            iata_code: 'MIA',
+            iata_city_code: 'MIA',
+            city_name: null
           }
         },
-        conditions: { changeBeforeDeparture: null },
+        conditions: { change_before_departure: null },
         changeable: null
       }
     ],
     services: [],
-    paymentStatus: {
-      priceGuaranteeExpiresAt: '2021-04-16T23:59:00Z',
-      paymentRequiredBy: '2021-04-16T23:59:00Z',
-      awaitingPayment: true
+    payment_status: {
+      price_guarantee_expires_at: '2021-04-16T23:59:00Z',
+      payment_required_by: '2021-04-16T23:59:00Z',
+      awaiting_payment: true
     },
     passengers: [
       {
         type: 'adult',
         title: 'mr',
-        infantPassengerId: null,
+        infant_passenger_id: null,
         id: 'pas_0000A6GinR7kevnCVS69dy',
-        givenName: 'JOHN',
+        given_name: 'JOHN',
         gender: 'm',
-        familyName: 'SMITH',
-        bornOn: '1995-05-05'
+        family_name: 'SMITH',
+        born_on: '1995-05-05'
       }
     ],
     owner: {
       name: 'American Airlines',
       id: 'arl_00009VME7DAGiJjwomhv32',
-      iataCode: 'AA'
+      iata_code: 'AA'
     },
-    liveMode: false,
+    live_mode: false,
     id: 'ord_0000A6GioOO1UDbjb7nIi8',
     documents: [],
-    createdAt: '2021-04-15T11:12:53.465121Z',
+    created_at: '2021-04-15T11:12:53.465121Z',
     conditions: {
-      refundBeforeDeparture: null,
-      changeBeforeDeparture: null
+      refund_before_departure: null,
+      change_before_departure: null
     },
-    cancelledAt: null,
-    bookingReference: 'ZVNHEX',
-    baseCurrency: 'GBP',
-    baseAmount: '72.00'
+    cancelled_at: null,
+    booking_reference: 'ZVNHEX',
+    base_currency: 'GBP',
+    base_amount: '72.00'
   },
   {
-    totalCurrency: 'GBP',
-    totalAmount: '110.50',
-    taxCurrency: 'GBP',
-    taxAmount: '17.50',
+    total_currency: 'GBP',
+    total_amount: '110.50',
+    tax_currency: 'GBP',
+    tax_amount: '17.50',
     slices: [
       {
         segments: [
           {
             passengers: [
               {
-                passengerId: 'pas_0000A6GiSkqfID7qtKsE2U',
-                cabinClassMarketingName: 'Economy',
-                cabinClass: 'economy',
+                passenger_id: 'pas_0000A6GiSkqfID7qtKsE2U',
+                cabin_class_marketing_name: 'Economy',
+                cabin_class: 'economy',
                 baggages: [
                   { type: 'checked', quantity: 0 },
                   { type: 'carry_on', quantity: 1 },
@@ -468,154 +475,154 @@ export const mockOnHoldOrders: Order[] = [
                 ]
               }
             ],
-            originTerminal: null,
+            origin_terminal: null,
             origin: {
               type: 'airport',
-              timeZone: 'America/Indiana/Indianapolis',
+              time_zone: 'America/Indiana/Indianapolis',
               name: 'Indianapolis International Airport',
               longitude: -86.295526,
               latitude: 39.716605,
               id: 'arp_ind_us',
-              icaoCode: 'KIND',
-              iataCountryCode: 'US',
-              iataCode: 'IND',
-              iataCityCode: 'IND',
-              cityName: 'Indianapolis',
+              icao_code: 'KIND',
+              iata_country_code: 'US',
+              iata_code: 'IND',
+              iata_city_code: 'IND',
+              city_name: 'Indianapolis',
               city: null
             },
-            operatingCarrierFlightNumber: '4341',
-            operatingCarrier: {
+            operating_carrier_flight_number: '4341',
+            operating_carrier: {
               name: 'American Airlines',
               id: 'arl_00009VME7DAGiJjwomhv32',
-              iataCode: 'AA'
+              iata_code: 'AA'
             },
-            marketingCarrierFlightNumber: '4341',
-            marketingCarrier: {
+            marketing_carrier_flight_number: '4341',
+            marketing_carrier: {
               name: 'American Airlines',
               id: 'arl_00009VME7DAGiJjwomhv32',
-              iataCode: 'AA'
+              iata_code: 'AA'
             },
             id: 'seg_0000A6GiZRU4WXtdZJrivU',
             duration: 'PT2H49M',
             distance: null,
-            destinationTerminal: null,
+            destination_terminal: null,
             destination: {
               type: 'airport',
-              timeZone: 'America/New_York',
+              time_zone: 'America/New_York',
               name: 'Miami International Airport',
               longitude: -80.288826,
               latitude: 25.794534,
               id: 'arp_mia_us',
-              icaoCode: 'KMIA',
-              iataCountryCode: 'US',
-              iataCode: 'MIA',
-              iataCityCode: 'MIA',
-              cityName: 'Miami',
+              icao_code: 'KMIA',
+              iata_country_code: 'US',
+              iata_code: 'MIA',
+              iata_city_code: 'MIA',
+              city_name: 'Miami',
               city: {
                 type: 'city',
-                timeZone: null,
+                time_zone: null,
                 name: 'Miami',
                 longitude: null,
                 latitude: null,
                 id: 'cit_mia_us',
-                icaoCode: null,
-                iataCountryCode: 'US',
-                iataCode: 'MIA',
-                iataCityCode: 'MIA',
-                cityName: null
+                icao_code: null,
+                iata_country_code: 'US',
+                iata_code: 'MIA',
+                iata_city_code: 'MIA',
+                city_name: null
               }
             },
-            departingAt: '2021-08-07T11:55:00',
-            arrivingAt: '2021-08-07T14:44:00',
+            departing_at: '2021-08-07T11:55:00',
+            arriving_at: '2021-08-07T14:44:00',
             aircraft: {
               name: 'Embraer RJ145',
               id: 'arc_00009VMF8AiFPp0xSPcfO7',
-              iataCode: 'ER4'
+              iata_code: 'ER4'
             }
           }
         ],
-        originType: 'airport',
+        origin_type: 'airport',
         origin: {
           type: 'airport',
-          timeZone: 'America/Indiana/Indianapolis',
+          time_zone: 'America/Indiana/Indianapolis',
           name: 'Indianapolis International Airport',
           longitude: -86.295526,
           latitude: 39.716605,
           id: 'arp_ind_us',
-          icaoCode: 'KIND',
-          iataCountryCode: 'US',
-          iataCode: 'IND',
-          iataCityCode: 'IND',
-          cityName: 'Indianapolis',
+          icao_code: 'KIND',
+          iata_country_code: 'US',
+          iata_code: 'IND',
+          iata_city_code: 'IND',
+          city_name: 'Indianapolis',
           city: null
         },
         id: 'sli_0000A6GiZRWYNJshh11hnE',
         duration: 'PT2H49M',
-        destinationType: 'airport',
+        destination_type: 'airport',
         destination: {
           type: 'airport',
-          timeZone: 'America/New_York',
+          time_zone: 'America/New_York',
           name: 'Miami International Airport',
           longitude: -80.288826,
           latitude: 25.794534,
           id: 'arp_mia_us',
-          icaoCode: 'KMIA',
-          iataCountryCode: 'US',
-          iataCode: 'MIA',
-          iataCityCode: 'MIA',
-          cityName: 'Miami',
+          icao_code: 'KMIA',
+          iata_country_code: 'US',
+          iata_code: 'MIA',
+          iata_city_code: 'MIA',
+          city_name: 'Miami',
           city: {
             type: 'city',
-            timeZone: null,
+            time_zone: null,
             name: 'Miami',
             longitude: null,
             latitude: null,
             id: 'cit_mia_us',
-            icaoCode: null,
-            iataCountryCode: 'US',
-            iataCode: 'MIA',
-            iataCityCode: 'MIA',
-            cityName: null
+            icao_code: null,
+            iata_country_code: 'US',
+            iata_code: 'MIA',
+            iata_city_code: 'MIA',
+            city_name: null
           }
         },
-        conditions: { changeBeforeDeparture: null },
+        conditions: { change_before_departure: null },
         changeable: null
       }
     ],
     services: [],
-    paymentStatus: {
-      priceGuaranteeExpiresAt: '2021-04-16T23:59:00Z',
-      paymentRequiredBy: '2021-04-16T23:59:00Z',
-      awaitingPayment: true
+    payment_status: {
+      price_guarantee_expires_at: '2021-04-16T23:59:00Z',
+      payment_required_by: '2021-04-16T23:59:00Z',
+      awaiting_payment: true
     },
     passengers: [
       {
         type: 'adult',
         title: 'mr',
-        infantPassengerId: null,
+        infant_passenger_id: null,
         id: 'pas_0000A6GiSkqfID7qtKsE2U',
-        givenName: 'JOHN',
+        given_name: 'JOHN',
         gender: 'm',
-        familyName: 'SMITH',
-        bornOn: '1995-05-05'
+        family_name: 'SMITH',
+        born_on: '1995-05-05'
       }
     ],
     owner: {
       name: 'American Airlines',
       id: 'arl_00009VME7DAGiJjwomhv32',
-      iataCode: 'AA'
+      iata_code: 'AA'
     },
-    liveMode: false,
+    live_mode: false,
     id: 'ord_0000A6GiZRU4WXtdZJrivT',
     documents: [],
-    createdAt: '2021-04-15T11:10:11.352074Z',
+    created_at: '2021-04-15T11:10:11.352074Z',
     conditions: {
-      refundBeforeDeparture: null,
-      changeBeforeDeparture: null
+      refund_before_departure: null,
+      change_before_departure: null
     },
-    cancelledAt: null,
-    bookingReference: 'RTEMPK',
-    baseCurrency: 'GBP',
-    baseAmount: '93.00'
+    cancelled_at: null,
+    booking_reference: 'RTEMPK',
+    base_currency: 'GBP',
+    base_amount: '93.00'
   }
 ]

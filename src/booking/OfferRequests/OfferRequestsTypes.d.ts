@@ -1,4 +1,4 @@
-import * as DuffelAPITypes from 'types'
+import * as DuffelAPITypes from 'types';
 
 export interface PaymentRequirements {
   /**
@@ -7,18 +7,18 @@ export interface PaymentRequirements {
    * will be released and you will have to create a new order.
    * This will be null only for orders where `awaiting_payment` is `false`.
    */
-  paymentRequiredBy?: string | null
+  payment_required_by?: string | null
   /**
    *  The ISO 8601 datetime at which the price associated
    * with the order will no longer be guaranteed by the airline
    * and the order will need to be repriced before payment.
    * This can be null when there is no price guarantee.
    */
-  priceGuaranteeExpiresAt?: string | null
+  price_guarantee_expires_at?: string | null
   /**
    * Whether immediate payment is required or not
    */
-  requiresInstantPayment: boolean
+  requires_instant_payment: boolean
 }
 
 export namespace Offers {
@@ -29,16 +29,16 @@ export namespace Offers {
      */
     airports?: DuffelAPITypes.Airport[]
     city?: DuffelAPITypes.City
-    cityName?: string
-    iataCityCode?: string
-    iataCode: string
-    iataCountryCode: string
-    icaoCode?: string
+    city_name?: string
+    iata_city_code?: string
+    iata_code: string
+    iata_country_code: string
+    icao_code?: string
     id: string
     latitude?: number
     longitude?: number
     name: string
-    timeZone?: string
+    time_zone?: string
     type: DuffelAPITypes.PlaceType
   }
 
@@ -46,7 +46,7 @@ export namespace Offers {
     /**
      * The ISO 8601 date on which the passengers want to depart
      */
-    departureDate: string
+    departure_date: string
     /**
      * The city or airport the passengers want to travel to
      */
@@ -55,8 +55,8 @@ export namespace Offers {
      * The city or airport the passengers want to depart from
      */
     origin: DestinationOrOriginProp | string
-    originType: DuffelAPITypes.PlaceType
-    destinationType: DuffelAPITypes.PlaceType
+    origin_type: DuffelAPITypes.PlaceType
+    destination_type: DuffelAPITypes.PlaceType
   }
 
   /**
@@ -82,25 +82,24 @@ export namespace Offers {
   }
 
   export interface OfferRequest {
-    cabinClass?: DuffelAPITypes.CabinClass
     /**
      * The slices that make up this offer request.
      * One-way journeys can be expressed using one slice, whereas return trips will need two.
      * @link https://duffel.com/docs/api/overview/key-principles
      */
     slices: OfferRequestSlice[]
-    cabinClass?: DuffelAPITypes.CabinClass
-    createdAt: string
+    cabin_class?: DuffelAPITypes.CabinClass
+    created_at: string
     id: string
-    liveMode: boolean
-    offers?: Omit<Offer, 'availableServices'>[]
+    live_mode: boolean
+    offers?: Omit<Offer, 'available_services'>[]
     passengers: OfferRequestPassenger[]
   }
 
   export interface CreateOfferRequest {
-    cabinClass: DuffelAPITypes.CabinClass
+    cabin_class: DuffelAPITypes.CabinClass
     passengers: Omit<OfferRequestPassenger, 'id'>[]
-    slices: Omit<OfferRequestSlice, 'originType' | 'destinationType'>[]
+    slices: Omit<OfferRequestSlice, 'origin_type' | 'destination_type'>[]
   }
 
   export interface CreateOfferQueryParameters {
@@ -110,6 +109,6 @@ export namespace Offers {
      * To retrieve the associated `offers` later, use the [List Offers](https://duffel.com/docs/api/offers/get-offers) endpoint, specifying the `offer_request_id`.
      * You should use this option if you want to take advantage of the pagination, sorting and filtering that the [List Offers](https://duffel.com/docs/api/offers/get-offers) endpoint provides.
      */
-    returnOffers: boolean
+    return_offers: boolean
   }
 }

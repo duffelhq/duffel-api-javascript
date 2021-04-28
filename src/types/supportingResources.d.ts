@@ -14,7 +14,7 @@ export interface Aircraft {
   /**
    * The three-character IATA code for the aircraft
    */
-  iataCode: string
+  iata_code: string
 }
 
 /**
@@ -33,7 +33,7 @@ export interface Airline {
   /*
    * The two-character IATA code for the airline. This may be null for non-IATA carriers.
    */
-  iataCode: string
+  iata_code: string
 }
 
 /**
@@ -49,21 +49,21 @@ export interface Airport {
   /**
    * The name of the city (or cities separated by a `/`) where the airport is located
    */
-  cityName: string
+  city_name: string
   /**
    * The three-character IATA code for the airport
    */
-  iataCode?: string
+  iata_code?: string
   /**
    * The ISO 3166-1 alpha-2 code for the country where the city is located
    * @link https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2
    * @example "GB"
    */
-  iataCountryCode: string
+  iata_country_code: string
   /**
    * The four-character ICAO code for the airport
    */
-  icaoCode?: string
+  icao_code?: string
   /**
    * Duffel's unique identifier for the airport
    */
@@ -83,5 +83,5 @@ export interface Airport {
   /**
    * The time zone of the airport, specified by name from the [tz database](https://en.wikipedia.org/wiki/Tz_database)
    */
-  timeZone: string
+  time_zone: string
 }

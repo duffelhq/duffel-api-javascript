@@ -36,21 +36,21 @@ export type FlightsConditions = {
    * If any of the slices on the order or offer can't be refunded then the `allowed` property will be `false`.
    * If the airline hasn't provided any information about whether this order or offer can be refunded then this property will be `null`.
    */
-  refundBeforeDeparture?: {
+  refund_before_departure?: {
     /**
      * The currency of the `penalty_amount` as an [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency code.
      * This will be in a currency determined by the airline, which is not necessarily the same as the currency of the order or offer.
      * If this is `null` then `penalty_amount` will also be `null`.
      * @example "GBP"
      */
-    penaltyCurrency: string
+    penalty_currency: string
     /**
      * If the modification is `allowed` then this is the amount payable to apply the modification to all passengers.
      * If there is no penalty, the value will be zero. If the modification isn't `allowed` or the penalty is not known then this field will be `null`.
      * If this is `null` then the `penalty_currency` will also be null.
      * @example "100.00"
      */
-    penaltyAmount?: string
+    penalty_amount?: string
     /**
      * Whether this kind of modification is allowed post-booking
      *
@@ -66,21 +66,21 @@ export type FlightsConditions = {
    * In this case you should refer to the slices conditions to determine if any part of the order or offer is changeable.
    * If the airline hasn't provided any information about whether this order or offer can be changed then this property will be `null`.
    */
-  changeBeforeDeparture?: {
+  change_before_departure?: {
     /**
      * The currency of the `penalty_amount` as an [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency code.
      * This will be in a currency determined by the airline, which is not necessarily the same as the currency of the order or offer.
      * If this is `null` then `penalty_amount` will also be `null`.
      * @example "GBP"
      */
-    penaltyCurrency: string
+    penalty_currency: string
     /**
      * If the modification is `allowed` then this is the amount payable to apply the modification to all passengers.
      * If there is no penalty, the value will be zero. If the modification isn't `allowed` or the penalty is not known then this field will be `null`.
      * If this is `null` then the `penalty_currency` will also be null.
      * @example "100.00"
      */
-    penaltyAmount?: string
+    penalty_amount?: string
     /**
      * Whether this kind of modification is allowed post-booking
      *
@@ -100,13 +100,13 @@ export interface City {
    * The three-character IATA code for the city
    * @example "LON"
    */
-  iataCode: string
+  iata_code: string
   /**
    * The ISO 3166-1 alpha-2 code for the country where the city is located
    * @link https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2
    * @example "GB"
    */
-  iataCountryCode: string
+  iata_country_code: string
   /**
    * Duffel's unique identifier for the city
    * @example "cit_lon_gb"

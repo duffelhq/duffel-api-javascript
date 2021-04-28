@@ -12,13 +12,13 @@ export interface PaginationMeta {
 }
 
 export interface ApiResponseMeta {
-  requestId: string
+  request_id: string
   status: number
 }
 
 export interface ApiResponseError {
   code: string
-  documentationUrl: string
+  documentation_url: string
   message: string
   title: string
   type: string

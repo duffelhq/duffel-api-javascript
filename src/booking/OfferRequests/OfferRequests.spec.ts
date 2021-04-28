@@ -43,7 +43,7 @@ describe('OfferRequests', () => {
 
     const response = await new OfferRequests(new Client({ token: 'mockToken' })).create({
       bodyParams: mockCreateOfferRequest,
-      queryParams: { returnOffers: false }
+      queryParams: { return_offers: false }
     })
     expect(response.data?.offers).toBe(undefined)
     expect(response.data?.id).toBe(mockOfferRequest.id)
