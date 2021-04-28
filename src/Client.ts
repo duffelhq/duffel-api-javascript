@@ -20,12 +20,17 @@ export class Client {
     this.apiVersion = 'beta'
   }
 
-  public request = async <T_Response = any>(
-    method: string,
-    path: string,
-    body?: any,
+  public request = async <T_Response = any>({
+    method,
+    path,
+    body,
+    queryParams
+  }: {
+    method: string
+    path: string
+    body?: any
     queryParams?: Record<string, any>
-  ): Promise<APIResponse<T_Response>> => {
+  }): Promise<APIResponse<T_Response>> => {
     const fullPath = new URL(path, this.basePath)
     const userAgent = `Duffel/${this.apiVersion} duffel_api_javascript/${process.env.npm_package_version}`
     const headers = {
@@ -74,11 +79,15 @@ export class Client {
     path: string
     queryParams?: PaginationMeta
   }): AsyncGenerator<APIResponse<T_Response>, void, unknown> {
-    let response = await this.request('GET', path, null, queryParams)
+    let response = await this.request({ method: 'GET', path, queryParams })
     yield response
 
     while (response.meta && 'after' in response.meta && response.meta.after) {
-      response = await this.request('GET', path, null, { limit: response.meta.limit, after: response.meta.after })
+      response = await this.request({
+        method: 'GET',
+        path,
+        queryParams: { limit: response.meta.limit, after: response.meta.after }
+      })
       yield response
     }
   }

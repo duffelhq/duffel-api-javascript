@@ -11,7 +11,8 @@ export class Airlines extends Resource {
    * @param {string} id - Duffel's unique identifier for the airline
    * @link https://duffel.com/docs/api/airlines/get-airline-by-id
    */
-  public get = async (id: string): Promise<APIResponse<Airline>> => this.request('GET', `air/airlines/${id}`)
+  public get = async (id: string): Promise<APIResponse<Airline>> =>
+    this.request({ method: 'GET', path: `air/airlines/${id}` })
 
   /**
    * Retrieves a paginated list of all airlines. The results may be returned in any order.

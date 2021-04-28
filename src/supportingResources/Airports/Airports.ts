@@ -12,7 +12,8 @@ export class Airports extends Resource {
    * @param {string} id - Duffel's unique identifier for the airport
    * @link https://duffel.com/docs/api/airports/get-airport-by-id
    */
-  public get = async (id: string): Promise<APIResponse<Airport>> => this.request('GET', `air/airports/${id}`)
+  public get = async (id: string): Promise<APIResponse<Airport>> =>
+    this.request({ method: 'GET', path: `air/airports/${id}` })
 
   /**
    * Retrieves a paginated list of all airports. The results may be returned in any order.
