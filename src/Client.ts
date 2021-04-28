@@ -23,14 +23,15 @@ export class Client {
   public request = async <T_Response = any>({
     method,
     path,
-    body,
+    bodyParams,
     queryParams
   }: {
     method: string
     path: string
-    body?: any
+    bodyParams?: any
     queryParams?: Record<string, any>
   }): Promise<APIResponse<T_Response>> => {
+    let body
     const fullPath = new URL(path, this.basePath)
     const userAgent = `Duffel/${this.apiVersion} duffel_api_javascript/${process.env.npm_package_version}`
     const headers = {
@@ -52,6 +53,15 @@ export class Client {
           return options
         }, {})
       fullPath.search = new URLSearchParams(params).toString()
+    }
+
+    // We need to format body to be sent as { "data": bodyParams }
+    if (bodyParams) {
+      body = JSON.stringify({
+        data: {
+          ...bodyParams
+        }
+      })
     }
 
     const response = await fetch(fullPath.href, {

@@ -11,14 +11,14 @@ export class Resource {
   protected request = async <T_Response = any>({
     method,
     path,
-    body,
+    bodyParams,
     queryParams
   }: {
     method: string
     path: string
-    body?: any
+    bodyParams?: any
     queryParams?: Record<string, any>
-  }): Promise<APIResponse<T_Response>> => this.client.request({ method, path, body, queryParams })
+  }): Promise<APIResponse<T_Response>> => this.client.request({ method, path, bodyParams, queryParams })
 
   protected paginatedRequest = <T_Response = any>({
     path,

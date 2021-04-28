@@ -10,12 +10,12 @@ export class Payments extends Resource {
    * @param {string} body.payment
    */
   public create = async ({
-    body,
+    bodyParams,
     queryParams
   }: {
-    body: CreatePayment
+    bodyParams: CreatePayment
     queryParams?: Record<string, any>
   }): Promise<APIResponse<Payment>> => {
-    return this.request({ method: 'POST', path: `air/payments`, body, queryParams })
+    return this.request({ method: 'POST', path: `air/payments`, bodyParams, queryParams })
   }
 }

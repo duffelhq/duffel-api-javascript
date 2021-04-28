@@ -21,15 +21,15 @@ export class Orders extends Resource {
 
   /**
    * Creates a booking with an airline based on an offer.
-   * @param body
+   * @param {{bodyParams, queryParams}} { bodyParams, queryParams }
    */
   public create = async ({
-    body,
+    bodyParams,
     queryParams
   }: {
-    body: CreateOrder
+    bodyParams: CreateOrder
     queryParams?: Record<string, any>
   }): Promise<APIResponse<Order>> => {
-    return this.request({ method: 'POST', path: `air/orders`, body, queryParams })
+    return this.request({ method: 'POST', path: `air/orders`, bodyParams, queryParams })
   }
 }
