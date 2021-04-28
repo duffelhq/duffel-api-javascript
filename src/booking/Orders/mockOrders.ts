@@ -141,33 +141,13 @@ export const mockOrder: Order = {
         icao_code: 'EGLL',
         iata_country_code: 'GB',
         iata_code: 'LHR',
-        iata_city_code: 'LON',
         city_name: 'London',
         city: {
           name: 'London',
           id: 'cit_lon_gb',
           iata_country_code: 'GB',
           iata_code: 'LON'
-        },
-        airports: [
-          {
-            time_zone: 'Europe/London',
-            name: 'Heathrow',
-            longitude: -141.951519,
-            latitude: 64.068865,
-            id: 'arp_lhr_gb',
-            icao_code: 'EGLL',
-            iata_country_code: 'GB',
-            iata_code: 'LHR',
-            city_name: 'London',
-            city: {
-              name: 'London',
-              id: 'cit_lon_gb',
-              iata_country_code: 'GB',
-              iata_code: 'LON'
-            }
-          }
-        ]
+        }
       },
       id: 'sli_00009htYpSCXrwaB9Dn123',
       duration: 'PT02H26M',
@@ -182,33 +162,13 @@ export const mockOrder: Order = {
         icao_code: 'EGLL',
         iata_country_code: 'GB',
         iata_code: 'LHR',
-        iata_city_code: 'LON',
         city_name: 'London',
         city: {
           name: 'London',
           id: 'cit_lon_gb',
           iata_country_code: 'GB',
           iata_code: 'LON'
-        },
-        airports: [
-          {
-            time_zone: 'Europe/London',
-            name: 'Heathrow',
-            longitude: -141.951519,
-            latitude: 64.068865,
-            id: 'arp_lhr_gb',
-            icao_code: 'EGLL',
-            iata_country_code: 'GB',
-            iata_code: 'LHR',
-            city_name: 'London',
-            city: {
-              name: 'London',
-              id: 'cit_lon_gb',
-              iata_country_code: 'GB',
-              iata_code: 'LON'
-            }
-          }
-        ]
+        }
       },
       conditions: {
         change_before_departure: {
@@ -314,7 +274,6 @@ export const mockOnHoldOrders: Order[] = [
               icao_code: 'KIND',
               iata_country_code: 'US',
               iata_code: 'IND',
-              iata_city_code: 'IND',
               city_name: 'Indianapolis',
               city: null
             },
@@ -344,20 +303,13 @@ export const mockOnHoldOrders: Order[] = [
               icao_code: 'KMIA',
               iata_country_code: 'US',
               iata_code: 'MIA',
-              iata_city_code: 'MIA',
               city_name: 'Miami',
               city: {
                 type: 'city',
-                time_zone: null,
                 name: 'Miami',
-                longitude: null,
-                latitude: null,
                 id: 'cit_mia_us',
-                icao_code: null,
                 iata_country_code: 'US',
-                iata_code: 'MIA',
-                iata_city_code: 'MIA',
-                city_name: null
+                iata_code: 'MIA'
               }
             },
             departing_at: '2021-08-07T17:53:00',
@@ -380,7 +332,6 @@ export const mockOnHoldOrders: Order[] = [
           icao_code: 'KIND',
           iata_country_code: 'US',
           iata_code: 'IND',
-          iata_city_code: 'IND',
           city_name: 'Indianapolis',
           city: null
         },
@@ -397,20 +348,13 @@ export const mockOnHoldOrders: Order[] = [
           icao_code: 'KMIA',
           iata_country_code: 'US',
           iata_code: 'MIA',
-          iata_city_code: 'MIA',
           city_name: 'Miami',
           city: {
             type: 'city',
-            time_zone: null,
             name: 'Miami',
-            longitude: null,
-            latitude: null,
             id: 'cit_mia_us',
-            icao_code: null,
             iata_country_code: 'US',
-            iata_code: 'MIA',
-            iata_city_code: 'MIA',
-            city_name: null
+            iata_code: 'MIA'
           }
         },
         conditions: { change_before_departure: null },
@@ -486,7 +430,6 @@ export const mockOnHoldOrders: Order[] = [
               icao_code: 'KIND',
               iata_country_code: 'US',
               iata_code: 'IND',
-              iata_city_code: 'IND',
               city_name: 'Indianapolis',
               city: null
             },
@@ -516,20 +459,13 @@ export const mockOnHoldOrders: Order[] = [
               icao_code: 'KMIA',
               iata_country_code: 'US',
               iata_code: 'MIA',
-              iata_city_code: 'MIA',
               city_name: 'Miami',
               city: {
                 type: 'city',
-                time_zone: null,
                 name: 'Miami',
-                longitude: null,
-                latitude: null,
                 id: 'cit_mia_us',
-                icao_code: null,
                 iata_country_code: 'US',
-                iata_code: 'MIA',
-                iata_city_code: 'MIA',
-                city_name: null
+                iata_code: 'MIA'
               }
             },
             departing_at: '2021-08-07T11:55:00',
@@ -552,7 +488,6 @@ export const mockOnHoldOrders: Order[] = [
           icao_code: 'KIND',
           iata_country_code: 'US',
           iata_code: 'IND',
-          iata_city_code: 'IND',
           city_name: 'Indianapolis',
           city: null
         },
@@ -569,20 +504,13 @@ export const mockOnHoldOrders: Order[] = [
           icao_code: 'KMIA',
           iata_country_code: 'US',
           iata_code: 'MIA',
-          iata_city_code: 'MIA',
           city_name: 'Miami',
           city: {
             type: 'city',
-            time_zone: null,
             name: 'Miami',
-            longitude: null,
-            latitude: null,
             id: 'cit_mia_us',
-            icao_code: null,
             iata_country_code: 'US',
-            iata_code: 'MIA',
-            iata_city_code: 'MIA',
-            city_name: null
+            iata_code: 'MIA'
           }
         },
         conditions: { change_before_departure: null },

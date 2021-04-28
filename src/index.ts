@@ -1,5 +1,4 @@
-import { Payments } from 'booking/Payments'
-import { OfferRequests, Offers, OrderCancellations, Orders } from './booking'
+import { OfferRequests, Offers, OrderCancellations, Orders, Payments } from './booking'
 import { Client } from './Client'
 import { Aircraft, Airlines, Airports } from './supportingResources'
 

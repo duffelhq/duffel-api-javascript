@@ -1,3 +1,5 @@
+import { Airport } from './supportingResources'
+
 /**
  * The cabin class that the passenger will travel in on this segment
  */
@@ -29,6 +31,14 @@ export type PassengerIdentityDocumentType = 'passport'
  */
 export type PlaceType = 'airport' | 'city'
 
+export type Place = (Airport & { type?: 'airport' }) | (City & { type?: 'place' })
+
+/**
+ * The conditions associated with this offer, describing the kinds of modifications you can make post-booking and any penalties that will apply to those modifications.
+ * This information assumes the condition is applied to all of the slices and passengers associated with this offer - for information at the slice level (e.g. "what happens if I just want to change the first slice?") refer to the slices.
+ * If a particular kind of modification is allowed, you may not always be able to take action through the Duffel API.
+ * In some cases, you may need to contact the Duffel support team or the airline directly.
+ */
 export type FlightsConditions = {
   /**
    * Whether the whole order or offer can be refunded before the departure of the first slice.
@@ -58,6 +68,7 @@ export type FlightsConditions = {
      */
     allowed: boolean
   } | null
+
   /**
    * Whether the whole order or offer can be changed before the departure of the first slice.
    * If all of the slices on the order or offer can be changed then the `allowed` property will be `true`.
@@ -96,6 +107,8 @@ export type FlightsConditions = {
  * @link https://portal.iata.org/faq/articles/en_US/FAQ/How-do-I-create-a-new-Metropolitan-Area
  */
 export interface City {
+  type?: 'city'
+
   /**
    * The three-character IATA code for the city
    * @example "LON"

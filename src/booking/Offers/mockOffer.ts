@@ -95,33 +95,13 @@ export const mockOffer: Offer = {
         icao_code: 'EGLL',
         iata_country_code: 'GB',
         iata_code: 'LHR',
-        iata_city_code: 'LON',
         city_name: 'London',
         city: {
           name: 'London',
           id: 'cit_lon_gb',
           iata_country_code: 'GB',
           iata_code: 'LON'
-        },
-        airports: [
-          {
-            time_zone: 'Europe/London',
-            name: 'Heathrow',
-            longitude: -141.951519,
-            latitude: 64.068865,
-            id: 'arp_lhr_gb',
-            icao_code: 'EGLL',
-            iata_country_code: 'GB',
-            iata_code: 'LHR',
-            city_name: 'London',
-            city: {
-              name: 'London',
-              id: 'cit_lon_gb',
-              iata_country_code: 'GB',
-              iata_code: 'LON'
-            }
-          }
-        ]
+        }
       },
       id: 'sli_00009htYpSCXrwaB9Dn123',
       fare_brand_name: 'Basic',
@@ -137,33 +117,13 @@ export const mockOffer: Offer = {
         icao_code: 'EGLL',
         iata_country_code: 'GB',
         iata_code: 'LHR',
-        iata_city_code: 'LON',
         city_name: 'London',
         city: {
           name: 'London',
           id: 'cit_lon_gb',
           iata_country_code: 'GB',
           iata_code: 'LON'
-        },
-        airports: [
-          {
-            time_zone: 'Europe/London',
-            name: 'Heathrow',
-            longitude: -141.951519,
-            latitude: 64.068865,
-            id: 'arp_lhr_gb',
-            icao_code: 'EGLL',
-            iata_country_code: 'GB',
-            iata_code: 'LHR',
-            city_name: 'London',
-            city: {
-              name: 'London',
-              id: 'cit_lon_gb',
-              iata_country_code: 'GB',
-              iata_code: 'LON'
-            }
-          }
-        ]
+        }
       },
       conditions: {
         change_before_departure: {

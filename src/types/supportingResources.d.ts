@@ -1,3 +1,5 @@
+import { City } from './shared'
+
 /**
  * Aircraft are used to describe what passengers will fly in for a given trip
  * @link https://duffel.com/docs/api/aircraft/schema
@@ -45,7 +47,7 @@ export interface Airport {
    * The metropolitan area where the airport is located.
    * Only present for airports which are registered with IATA as belonging to a metropolitan area.
    */
-  city?: City
+  city?: City | null
   /**
    * The name of the city (or cities separated by a `/`) where the airport is located
    */

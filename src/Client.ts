@@ -1,5 +1,4 @@
 import fetch from 'isomorphic-unfetch'
-import snakeCase from 'lodash/snakeCase'
 import { URL, URLSearchParams } from 'url'
 import { APIResponse, PaginationMeta } from './types'
 
@@ -44,12 +43,7 @@ export class Client {
     if (queryParams) {
       const params = Object.entries(queryParams)
         .sort()
-        .reduce((options, option) => {
-          if (option[1] !== null) {
-            return { ...options, [snakeCase(option[0])]: option[1] }
-          }
-          return options
-        }, {})
+        .filter((option) => option[0] !== null)
       fullPath.search = new URLSearchParams(params).toString()
     }
 

@@ -1,7 +1,7 @@
 import { mockOffer } from '../Offers/mockOffer'
-import { Offers } from './OfferRequestsTypes'
+import { CreateOfferRequest, OfferRequest } from './OfferRequestsTypes'
 
-export const mockCreateOfferRequest: Offers.CreateOfferRequest = {
+export const mockCreateOfferRequest: CreateOfferRequest = {
   slices: [
     {
       origin: 'LHR',
@@ -20,7 +20,7 @@ export const mockCreateOfferRequest: Offers.CreateOfferRequest = {
   cabin_class: 'economy'
 }
 
-export const mockOfferRequest: Offers.OfferRequest = {
+export const mockOfferRequest: OfferRequest = {
   slices: [
     {
       origin_type: 'airport',

@@ -1,35 +1,5 @@
-import { Aircraft, Airline, Airport } from 'types'
+import { Aircraft, Airline, OfferAvailableServiceBaggageMetadata } from 'types'
 import * as DuffelAPITypes from 'types/shared'
-
-/**
- * @TODO move to Offers type
- */
-export interface OfferAvailableServiceBaggageMetadata {
-  /**
-   * The maximum weight that the baggage can have in kilograms
-   */
-  maximum_weight_kg: number | null
-
-  /**
-   * The maximum height that the baggage can have in centimetres
-   */
-  maximum_height_cm: number | null
-
-  /**
-   * The maximum length that the baggage can have in centimetres
-   */
-  maximum_length_cm: number | null
-
-  /**
-   * The maximum depth that the baggage can have in centimetres
-   */
-  maximum_depth_cm: number | null
-
-  /**
-   * The type of the baggage
-   */
-  type: BaggageType
-}
 
 /**
  * An object containing metadata about the service, like the maximum weight and dimensions of the baggage.
@@ -47,6 +17,10 @@ export interface OrderSegmentPassengerBaggage {
   type: 'checked' | 'carry_on'
 }
 
+/**
+ * Once you've searched for flights by creating an offer request, and you've chosen which offer you want to book, you'll then want to create an order.
+ * @link https://duffel.com/docs/api/orders/schema
+ */
 export interface OrderService {
   /**
    * Duffel's unique identifier for the booked service
@@ -158,7 +132,7 @@ export interface OrderPassengerIdentityDocument {
   /**
    * The type of the identity document. Currently, the only supported type is passport. This must be one of the allowed_passenger_identity_document_types on the offer.
    */
-  type: Types.PassengerIdentityDocumentType
+  type: DuffelAPITypes.PassengerIdentityDocumentType
 
   /**
    * The unique identifier of the identity document
@@ -195,11 +169,6 @@ export interface CreateOrderPassenger extends OrderPassenger {
   phone_number: string
 }
 
-export interface OrderAirportSlice extends Airport {
-  type?: DuffelAPITypes.PlaceType
-  iata_city_code?: string
-}
-
 export interface OrderSliceSegment {
   /**
    * The aircraft that the operating carrier will use to operate this segment
@@ -213,7 +182,10 @@ export interface OrderSliceSegment {
    * The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) datetime at which the segment is scheduled to depart, in the origin airport timezone
    */
   departing_at: string
-  destination: OrderAirportSlice
+  /**
+   * The city or airport where this slice ends
+   */
+  destination: DuffelAPITypes.Place
   /**
    * The terminal at the destination airport where the segment is scheduled to arrive
    * @example "5"
@@ -247,9 +219,9 @@ export interface OrderSliceSegment {
    */
   operating_carrier_flight_number: string
   /**
-   * The airport from which the flight is scheduled to depart
+   * The city or airport where this slice begins
    */
-  origin: OrderAirportSlice
+  origin: DuffelAPITypes.Place
   /**
    * The terminal at the origin airport from which the segment is scheduled to depart
    * @example "B"
@@ -266,7 +238,7 @@ export interface OrderSliceSegment {
   distance?: string | null
 }
 
-export interface Slices {
+export interface OrderSlice {
   /**
    * Whether this slice can be changed. This can only be true for paid orders.
    */
@@ -275,23 +247,23 @@ export interface Slices {
    * The conditions associated with this slice, describing the kinds of modifications you can make and any penalties that will apply to those modifications.
    * This condition is applied only to this slice and to all the passengers associated with this order - for information at the order level (e.g. "what happens if I want to change all the slices?") refer to the `conditions` at the top level. If a particular kind of modification is allowed, you may not always be able to take action through the Duffel API. In some cases, you may need to contact the Duffel support team or the airline directly.
    */
-  conditions: FlightsConditions
+  conditions: DuffelAPITypes.FlightsConditions
   /**
    * The city or airport where this slice ends
    */
-  destination: DestinationSlice
+  destination: DuffelAPITypes.Place
   /**
    * The type of the destination
    */
-  destination_type: PlaceType
+  destination_type: DuffelAPITypes.PlaceType
   /**
    * The city or airport where this slice begins
    */
-  origin: OriginOrDestinationSlice
+  origin: DuffelAPITypes.Place
   /**
    * The type of the origin
    */
-  origin_type: PlaceType
+  origin_type: DuffelAPITypes.PlaceType
 
   /**
    * Duffel's unique identifier for the slice. It identifies the slice of an order (i.e. the same slice across orders will have different ids.
@@ -303,6 +275,9 @@ export interface Slices {
    */
   duration: string | null
 
+  /**
+   * The segments - that is, specific flights - that the airline is offering to get the passengers from the origin to the destination
+   */
   segments: OrderSliceSegment[]
 }
 
@@ -376,15 +351,6 @@ export interface OrderPayment {
   currency: string
 }
 
-export interface CreateOrderPayment {
-  /**
-   * Duffel's unique identifier for the order
-   * Example: "ord_00009hthhsUZ8W4LxQgkjo"
-   */
-  order_id: string
-  payment: OrderPayment
-}
-
 export interface Order {
   /**
    * The amount of tax payable on the order for all the flights booked
@@ -408,7 +374,7 @@ export interface Order {
    * One-way journeys can be expressed using one slice,
    * whereas return trips will need two.
    */
-  slices: Slices[]
+  slices: OrderSlice[]
 
   /**
    * The services booked along with this order
@@ -429,7 +395,7 @@ export interface Order {
   /**
    * The airline who owns the order
    */
-  owner: DuffelAPI.Types.Airline
+  owner: Airline
 
   /**
    * Whether the order was created in live mode.
@@ -502,7 +468,7 @@ export interface CreateOrder {
   /**
    * The services you want to book along with the first selected offer.
    */
-  services?: Pick<OrderService, 'id', 'quantity'>[]
+  services?: Pick<OrderService, 'id' | 'quantity'>[]
 
   /**
    * The personal details of the passengers, expanding on the information initially provided when creating the offer request
@@ -521,5 +487,8 @@ export interface CreateOrder {
 }
 
 export interface ListParamsOrders {
+  /**
+   * Whether to filter orders that are awaiting payment or not. If not specified, all orders regardless of their payment state will be returned.
+   */
   awaiting_payment: boolean
 }
