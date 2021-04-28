@@ -14,7 +14,7 @@ describe('Payments', () => {
     }
     nock(/(.*)/).post(`/air/payments`).query(true).reply(200, { data: mockPayment })
 
-    const response = await new Payments(new Client({ token: 'mockToken' })).create({ body: bodyParams })
+    const response = await new Payments(new Client({ token: 'mockToken' })).create({ bodyParams: bodyParams })
     expect(response.data?.id).toBe(mockPayment.id)
   })
 })

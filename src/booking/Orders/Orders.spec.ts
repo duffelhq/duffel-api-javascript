@@ -42,7 +42,7 @@ describe('Orders', () => {
   test('should create an order', async () => {
     nock(/(.*)/).post(`/air/orders`).query(true).reply(200, { data: mockOrder })
 
-    const response = await new Orders(new Client({ token: 'mockToken' })).create({ body: mockCreateOrderRequest })
+    const response = await new Orders(new Client({ token: 'mockToken' })).create({ bodyParams: mockCreateOrderRequest })
     expect(response.data?.id).toBe(mockOrder.id)
   })
 })

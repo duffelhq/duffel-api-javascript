@@ -32,7 +32,7 @@ describe('OfferRequests', () => {
     nock(/(.*)/).post(`/air/offer_requests/`).query(true).reply(200, { data: mockOfferRequest })
 
     const response = await new OfferRequests(new Client({ token: 'mockToken' })).create({
-      body: mockCreateOfferRequest
+      bodyParams: mockCreateOfferRequest
     })
     expect(response.data?.id).toBe(mockOfferRequest.id)
   })
@@ -42,7 +42,7 @@ describe('OfferRequests', () => {
     nock(/(.*)/).post(`/air/offer_requests/`).query(true).reply(200, { data: mockResponseWithoutOffer })
 
     const response = await new OfferRequests(new Client({ token: 'mockToken' })).create({
-      body: mockCreateOfferRequest,
+      bodyParams: mockCreateOfferRequest,
       queryParams: { returnOffers: false }
     })
     expect(response.data?.offers).toBe(undefined)
