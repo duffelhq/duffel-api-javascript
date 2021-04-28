@@ -1,6 +1,6 @@
-import { OrderCancellationResponse } from './OrderCancellationTypes'
+import { OrderCancellationsResponse } from './OrderCancellationsTypes'
 
-export const mockOrderCancellation: OrderCancellationResponse = {
+export const mockOrderCancellations: OrderCancellationsResponse = {
   refund_to: 'arc_bsp_cash',
   refund_currency: 'GBP',
   refund_amount: '90.80',

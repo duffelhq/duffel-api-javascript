@@ -1,11 +1,11 @@
-export interface CreateOrderCancellation {
+export interface CreateOrderCancellations {
   /**
    * Duffel's unique identifier for the order
    */
   order_id: string
 }
 
-export interface OrderCancellationResponse {
+export interface OrderCancellationsResponse {
   /**
    * The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) datetime that indicates when the order cancellation was confirmed
    */

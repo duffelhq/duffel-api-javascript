@@ -1,8 +1,8 @@
 import { APIResponse } from 'types'
 import { Resource } from '../../Resource'
-import { CreateOrderCancellation, OrderCancellationResponse } from './OrderCancellationTypes'
+import { CreateOrderCancellations, OrderCancellationsResponse } from './OrderCancellationsTypes'
 
-export class OrderCancellation extends Resource {
+export class OrderCancellations extends Resource {
   /**
    * Create order cancellation
    * @description To begin the process of cancelling an order you need to create an order cancellation.
@@ -12,9 +12,9 @@ export class OrderCancellation extends Resource {
     bodyParams,
     queryParams
   }: {
-    bodyParams: CreateOrderCancellation
+    bodyParams: CreateOrderCancellations
     queryParams?: Record<string, any>
-  }): Promise<APIResponse<OrderCancellationResponse>> => {
+  }): Promise<APIResponse<OrderCancellationsResponse>> => {
     return this.request({ method: 'POST', path: `air/order_cancellations`, bodyParams, queryParams })
   }
 
@@ -35,6 +35,6 @@ export class OrderCancellation extends Resource {
   }: {
     id: string
     queryParams?: Record<string, any>
-  }): Promise<APIResponse<OrderCancellationResponse>> =>
+  }): Promise<APIResponse<OrderCancellationsResponse>> =>
     this.request({ method: 'POST', path: `air/order_cancellations/${id}/actions/confirm`, queryParams })
 }
