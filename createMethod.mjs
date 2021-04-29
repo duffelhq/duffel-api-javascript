@@ -25,7 +25,7 @@ const rl = readline.createInterface({
 })
 
 let methodName = 'MethodName'
-let componentPath = 'src/'
+let methodPath = 'src/'
 let errorMsg = ''
 
 // questions
@@ -51,7 +51,7 @@ const question2 = () => {
   return new Promise((resolve, reject) => {
     rl.question(`Where do you want to create the method? (default: src/): `, (answer) => {
       if (answer) {
-        componentPath = answer
+        methodPath = answer
       }
       resolve(true)
     })
@@ -74,7 +74,7 @@ const print = () => {
   console.log('Method '.green + methodName.green + ' created.'.green)
   console.log('--------------------------------------------------------')
   console.log(`Method Name: `.grey + methodName)
-  console.log(`Folder: `.grey + componentPath)
+  console.log(`Folder: `.grey + methodPath)
   console.log(`Note: `.yellow + `export your component in src/index.ts when done.`.yellow)
   console.log('--------------------------------------------------------')
 }
@@ -134,26 +134,26 @@ describe("${methodName}", () => {
 `
 
 // create methods files
-const createComponent = () => {
+const createMethod = () => {
   // create folder
-  componentPath = `${componentPath}${methodName}/`
-  fs.existsSync(componentPath) || fs.mkdirSync(componentPath)
+  methodPath = `${methodPath}${methodName}/`
+  fs.existsSync(methodPath) || fs.mkdirSync(methodPath)
   // create index.ts
-  createFile(`${componentPath}index.ts`, indexContent())
-  // create method.ts
-  createFile(`${componentPath + methodName}.ts`, methodClass())
-  // create component.test.js
-  createFile(`${componentPath + methodName}.spec.ts`, testContent())
-  // create component.mock.js
-  createFile(`${componentPath + `mock${methodName}`}.ts`, mockContent())
-  createFile(`${componentPath + methodName}Types.d.js`, definitionFileTypes())
+  createFile(`${methodPath}index.ts`, indexContent())
+  // create MethodName.ts
+  createFile(`${methodPath + methodName}.ts`, methodClass())
+  // create MethodName.spec.ts
+  createFile(`${methodPath + methodName}.spec.ts`, testContent())
+  // create mockMethodName.ts
+  createFile(`${methodPath + `mock${methodName}`}.ts`, mockContent())
+  createFile(`${methodPath + methodName}Types.d.ts`, definitionFileTypes())
 }
 
 const main = async () => {
   try {
     await question1()
     await question2()
-    createComponent()
+    createMethod()
     print()
     rl.close()
   } catch (e) {
