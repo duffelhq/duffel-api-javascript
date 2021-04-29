@@ -16,7 +16,7 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "generate:method": "node scripts/createMethod.mjs",
+    "generate:method": "node ./scripts/createMethod.mjs",
     "build": "tsc",
     "start": "node ./dist/index.js",
     "dev": "ts-node ./src/index.ts",
