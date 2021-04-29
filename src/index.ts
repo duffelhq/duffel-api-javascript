@@ -1,4 +1,4 @@
-import { OfferRequests, Offers, OrderCancellations, Orders, Payments } from './booking'
+import { OfferRequests, Offers, OrderCancellations, Orders, Payments, SeatMaps } from './booking'
 import { Client } from './Client'
 import { Aircraft, Airlines, Airports } from './supportingResources'
 
@@ -17,6 +17,7 @@ export const DuffelAPI = ({ token }: Config) => {
     offers: new Offers(client),
     orders: new Orders(client),
     orderCancellations: new OrderCancellations(client),
-    payments: new Payments(client)
+    payments: new Payments(client),
+    seatMaps: new SeatMaps(client)
   }
 }
