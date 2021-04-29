@@ -1,12 +1,12 @@
 import { mockOffer } from '../Offers/mockOffer'
-import { Offers } from './OfferRequestsTypes'
+import { CreateOfferRequest, OfferRequest } from './OfferRequestsTypes'
 
-export const mockCreateOfferRequest: Offers.CreateOfferRequest = {
+export const mockCreateOfferRequest: CreateOfferRequest = {
   slices: [
     {
       origin: 'LHR',
       destination: 'JFK',
-      departureDate: '2020-04-24'
+      departure_date: '2020-04-24'
     }
   ],
   passengers: [
@@ -17,91 +17,91 @@ export const mockCreateOfferRequest: Offers.CreateOfferRequest = {
       age: 14
     }
   ],
-  cabinClass: 'economy'
+  cabin_class: 'economy'
 }
 
-export const mockOfferRequest: Offers.OfferRequest = {
+export const mockOfferRequest: OfferRequest = {
   slices: [
     {
-      originType: 'airport',
+      origin_type: 'airport',
       origin: {
         type: 'airport',
-        timeZone: 'Europe/London',
+        time_zone: 'Europe/London',
         name: 'Heathrow',
         longitude: -141.951519,
         latitude: 64.068865,
         id: 'arp_lhr_gb',
-        icaoCode: 'EGLL',
-        iataCountryCode: 'GB',
-        iataCode: 'LHR',
-        iataCityCode: 'LON',
-        cityName: 'London',
+        icao_code: 'EGLL',
+        iata_country_code: 'GB',
+        iata_code: 'LHR',
+        iata_city_code: 'LON',
+        city_name: 'London',
         city: {
           name: 'London',
           id: 'cit_lon_gb',
-          iataCountryCode: 'GB',
-          iataCode: 'LON'
+          iata_country_code: 'GB',
+          iata_code: 'LON'
         },
         airports: [
           {
-            timeZone: 'Europe/London',
+            time_zone: 'Europe/London',
             name: 'Heathrow',
             longitude: -141.951519,
             latitude: 64.068865,
             id: 'arp_lhr_gb',
-            icaoCode: 'EGLL',
-            iataCountryCode: 'GB',
-            iataCode: 'LHR',
-            cityName: 'London',
+            icao_code: 'EGLL',
+            iata_country_code: 'GB',
+            iata_code: 'LHR',
+            city_name: 'London',
             city: {
               name: 'London',
               id: 'cit_lon_gb',
-              iataCountryCode: 'GB',
-              iataCode: 'LON'
+              iata_country_code: 'GB',
+              iata_code: 'LON'
             }
           }
         ]
       },
-      destinationType: 'airport',
+      destination_type: 'airport',
       destination: {
         type: 'airport',
-        timeZone: 'Europe/London',
+        time_zone: 'Europe/London',
         name: 'Heathrow',
         longitude: -141.951519,
         latitude: 64.068865,
         id: 'arp_lhr_gb',
-        icaoCode: 'EGLL',
-        iataCountryCode: 'GB',
-        iataCode: 'LHR',
-        iataCityCode: 'LON',
-        cityName: 'London',
+        icao_code: 'EGLL',
+        iata_country_code: 'GB',
+        iata_code: 'LHR',
+        iata_city_code: 'LON',
+        city_name: 'London',
         city: {
           name: 'London',
           id: 'cit_lon_gb',
-          iataCountryCode: 'GB',
-          iataCode: 'LON'
+          iata_country_code: 'GB',
+          iata_code: 'LON'
         },
         airports: [
           {
-            timeZone: 'Europe/London',
+            time_zone: 'Europe/London',
             name: 'Heathrow',
             longitude: -141.951519,
             latitude: 64.068865,
             id: 'arp_lhr_gb',
-            icaoCode: 'EGLL',
-            iataCountryCode: 'GB',
-            iataCode: 'LHR',
-            cityName: 'London',
+            icao_code: 'EGLL',
+            iata_country_code: 'GB',
+            iata_code: 'LHR',
+            city_name: 'London',
             city: {
               name: 'London',
               id: 'cit_lon_gb',
-              iataCountryCode: 'GB',
-              iataCode: 'LON'
+              iata_country_code: 'GB',
+              iata_code: 'LON'
             }
           }
         ]
       },
-      departureDate: '2020-04-24'
+      departure_date: '2020-04-24'
     }
   ],
   passengers: [
@@ -112,8 +112,8 @@ export const mockOfferRequest: Offers.OfferRequest = {
     }
   ],
   offers: [mockOffer],
-  liveMode: false,
+  live_mode: false,
   id: 'orq_00009hjdomFOCJyxHG7k7k',
-  createdAt: '2020-02-12T15:21:01.927Z',
-  cabinClass: 'economy'
+  created_at: '2020-02-12T15:21:01.927Z',
+  cabin_class: 'economy'
 }

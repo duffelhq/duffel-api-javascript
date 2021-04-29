@@ -16,7 +16,6 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "postinstall": "touch src/helpers/mock.json",
     "build": "tsc",
     "start": "node ./dist/index.js",
     "dev": "ts-node ./src/index.ts",
@@ -24,8 +23,7 @@
     "test": "jest",
     "pre-push-check": "yarn lint && yarn test && yarn build --noEmit ",
     "prepare": "husky install",
-    "example": "ts-node ./examples/example.ts",
-    "transformDataKeys": "ts-node src/helpers/transformDataKeys"
+    "example": "ts-node ./examples/example.ts"
   },
   "dependencies": {
     "@types/node": "^14.14.41",
@@ -41,6 +39,7 @@
     "@babel/preset-typescript": "^7.13.0",
     "@types/jest": "^26.0.22",
     "@types/lodash": "^4.14.168",
+    "@types/node-fetch": "^2.5.10",
     "@typescript-eslint/eslint-plugin": "^4.22.0",
     "@typescript-eslint/parser": "^4.22.0",
     "babel-jest": "^26.6.3",

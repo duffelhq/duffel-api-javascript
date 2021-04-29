@@ -1,8 +1,5 @@
 import fetch from 'isomorphic-unfetch'
-import camelCase from 'lodash/camelCase'
-import snakeCase from 'lodash/snakeCase'
 import { URL, URLSearchParams } from 'url'
-import { transformDataKeys } from './lib'
 import { APIResponse, PaginationMeta } from './types'
 
 export interface Config {
@@ -46,12 +43,7 @@ export class Client {
     if (queryParams) {
       const params = Object.entries(queryParams)
         .sort()
-        .reduce((options, option) => {
-          if (option[1] !== null) {
-            return { ...options, [snakeCase(option[0])]: option[1] }
-          }
-          return options
-        }, {})
+        .filter((option) => option[0] !== null)
       fullPath.search = new URLSearchParams(params).toString()
     }
 
@@ -74,8 +66,7 @@ export class Client {
 
     if (contentType && contentType.includes('json')) {
       const responseBody = await response.json()
-      const transformedBody = transformDataKeys(responseBody, camelCase)
-      return transformedBody
+      return responseBody
     } else {
       const responseBody = (await response.text()) as any
       return responseBody

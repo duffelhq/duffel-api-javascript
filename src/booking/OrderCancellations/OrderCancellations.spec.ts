@@ -1,7 +1,7 @@
 import nock from 'nock'
 import { Client } from '../../Client'
-import { OrderCancellations } from './OrderCancellations'
 import { mockOrderCancellations } from './mockOrderCancellations'
+import { OrderCancellations } from './OrderCancellations'
 
 describe('OrderCancellations', () => {
   afterEach(() => {
@@ -12,11 +12,11 @@ describe('OrderCancellations', () => {
     nock(/(.*)/).post(`/air/order_cancellations`).reply(200, { data: mockOrderCancellations })
 
     const response = await new OrderCancellations(new Client({ token: 'mockToken' })).create({
-      bodyParam: {
+      bodyParams: {
         order_id: 'ord_00009hthhsUZ8W4LxQgkjo'
       }
     })
-    expect(response.data?.orderId).toBe('ord_00009hthhsUZ8W4LxQgkjo')
+    expect(response.data?.order_id).toBe('ord_00009hthhsUZ8W4LxQgkjo')
   })
 
   test('should confirm the order cancellation', async () => {
@@ -27,6 +27,6 @@ describe('OrderCancellations', () => {
     const response = await new OrderCancellations(new Client({ token: 'mockToken' })).confirm({
       id: 'ore_00009qzZWzjDipIkqpaUAj'
     })
-    expect(response.data?.orderId).toBe('ord_00009hthhsUZ8W4LxQgkjo')
+    expect(response.data?.order_id).toBe('ord_00009hthhsUZ8W4LxQgkjo')
   })
 })

@@ -1,21 +1,21 @@
 import { Offer } from '../../types'
 
 export const mockOffer: Offer = {
-  updatedAt: '2020-01-17T10:12:14.545Z',
-  totalEmissionsKg: '460',
-  totalCurrency: 'GBP',
-  totalAmount: '45.00',
-  taxCurrency: 'GBP',
-  taxAmount: '40.80',
+  updated_at: '2020-01-17T10:12:14.545Z',
+  total_emissions_kg: '460',
+  total_currency: 'GBP',
+  total_amount: '45.00',
+  tax_currency: 'GBP',
+  tax_amount: '40.80',
   slices: [
     {
       segments: [
         {
           passengers: [
             {
-              passengerId: 'passenger_0',
-              cabinClassMarketingName: 'Economy Basic',
-              cabinClass: 'economy',
+              passenger_id: 'passenger_0',
+              cabin_class_marketing_name: 'Economy Basic',
+              cabin_class: 'economy',
               baggages: [
                 {
                   type: 'checked',
@@ -24,55 +24,55 @@ export const mockOffer: Offer = {
               ]
             }
           ],
-          originTerminal: 'B',
+          origin_terminal: 'B',
           origin: {
-            timeZone: 'Europe/London',
+            time_zone: 'Europe/London',
             name: 'Heathrow',
             longitude: -141.951519,
             latitude: 64.068865,
             id: 'arp_lhr_gb',
-            icaoCode: 'EGLL',
-            iataCountryCode: 'GB',
-            iataCode: 'LHR',
-            cityName: 'London',
+            icao_code: 'EGLL',
+            iata_country_code: 'GB',
+            iata_code: 'LHR',
+            city_name: 'London',
             city: {
               name: 'London',
               id: 'cit_lon_gb',
-              iataCountryCode: 'GB',
-              iataCode: 'LON'
+              iata_country_code: 'GB',
+              iata_code: 'LON'
             }
           },
-          operatingCarrierFlightNumber: '4321',
-          operatingCarrier: {
+          operating_carrier_flight_number: '4321',
+          operating_carrier: {
             name: 'British Airways',
             id: 'aln_00001876aqC8c5umZmrRds',
-            iataCode: 'BA'
+            iata_code: 'BA'
           },
-          marketingCarrierFlightNumber: '1234',
-          marketingCarrier: {
+          marketing_carrier_flight_number: '1234',
+          marketing_carrier: {
             name: 'British Airways',
             id: 'aln_00001876aqC8c5umZmrRds',
-            iataCode: 'BA'
+            iata_code: 'BA'
           },
           id: 'seg_00009htYpSCXrwaB9Dn456',
           duration: 'PT02H26M',
           distance: '424.2',
-          destinationTerminal: '5',
+          destination_terminal: '5',
           destination: {
-            timeZone: 'Europe/London',
+            time_zone: 'Europe/London',
             name: 'Heathrow',
             longitude: -141.951519,
             latitude: 64.068865,
             id: 'arp_lhr_gb',
-            icaoCode: 'EGLL',
-            iataCountryCode: 'GB',
-            iataCode: 'LHR',
-            cityName: 'London',
+            icao_code: 'EGLL',
+            iata_country_code: 'GB',
+            iata_code: 'LHR',
+            city_name: 'London',
             city: {
               name: 'London',
               id: 'cit_lon_gb',
-              iataCountryCode: 'GB',
-              iataCode: 'LON'
+              iata_country_code: 'GB',
+              iata_code: 'LON'
             }
           },
           departing_at: '2020-06-13T16:38:02',
@@ -80,104 +80,64 @@ export const mockOffer: Offer = {
           aircraft: {
             name: 'Airbus Industries A380',
             id: 'arc_00009UhD4ongolulWd91Ky',
-            iataCode: '380'
+            iata_code: '380'
           }
         }
       ],
-      originType: 'airport',
+      origin_type: 'airport',
       origin: {
         type: 'airport',
-        timeZone: 'Europe/London',
+        time_zone: 'Europe/London',
         name: 'Heathrow',
         longitude: -141.951519,
         latitude: 64.068865,
         id: 'arp_lhr_gb',
-        icaoCode: 'EGLL',
-        iataCountryCode: 'GB',
-        iataCode: 'LHR',
-        iataCityCode: 'LON',
-        cityName: 'London',
+        icao_code: 'EGLL',
+        iata_country_code: 'GB',
+        iata_code: 'LHR',
+        city_name: 'London',
         city: {
           name: 'London',
           id: 'cit_lon_gb',
-          iataCountryCode: 'GB',
-          iataCode: 'LON'
-        },
-        airports: [
-          {
-            timeZone: 'Europe/London',
-            name: 'Heathrow',
-            longitude: -141.951519,
-            latitude: 64.068865,
-            id: 'arp_lhr_gb',
-            icaoCode: 'EGLL',
-            iataCountryCode: 'GB',
-            iataCode: 'LHR',
-            cityName: 'London',
-            city: {
-              name: 'London',
-              id: 'cit_lon_gb',
-              iataCountryCode: 'GB',
-              iataCode: 'LON'
-            }
-          }
-        ]
+          iata_country_code: 'GB',
+          iata_code: 'LON'
+        }
       },
       id: 'sli_00009htYpSCXrwaB9Dn123',
-      fareBrandName: 'Basic',
+      fare_brand_name: 'Basic',
       duration: 'PT02H26M',
-      destinationType: 'airport',
+      destination_type: 'airport',
       destination: {
         type: 'airport',
-        timeZone: 'Europe/London',
+        time_zone: 'Europe/London',
         name: 'Heathrow',
         longitude: -141.951519,
         latitude: 64.068865,
         id: 'arp_lhr_gb',
-        icaoCode: 'EGLL',
-        iataCountryCode: 'GB',
-        iataCode: 'LHR',
-        iataCityCode: 'LON',
-        cityName: 'London',
+        icao_code: 'EGLL',
+        iata_country_code: 'GB',
+        iata_code: 'LHR',
+        city_name: 'London',
         city: {
           name: 'London',
           id: 'cit_lon_gb',
-          iataCountryCode: 'GB',
-          iataCode: 'LON'
-        },
-        airports: [
-          {
-            timeZone: 'Europe/London',
-            name: 'Heathrow',
-            longitude: -141.951519,
-            latitude: 64.068865,
-            id: 'arp_lhr_gb',
-            icaoCode: 'EGLL',
-            iataCountryCode: 'GB',
-            iataCode: 'LHR',
-            cityName: 'London',
-            city: {
-              name: 'London',
-              id: 'cit_lon_gb',
-              iataCountryCode: 'GB',
-              iataCode: 'LON'
-            }
-          }
-        ]
+          iata_country_code: 'GB',
+          iata_code: 'LON'
+        }
       },
       conditions: {
         change_before_departure: {
-          penaltyCurrency: 'GBP',
+          penalty_currency: 'GBP',
           penalty_amount: '100.00',
           allowed: true
         }
       }
     }
   ],
-  paymentRequirements: {
-    requiresInstantPayment: false,
-    priceGuaranteeExpiresAt: '2020-01-17T10:42:14.545Z',
-    paymentRequiredBy: '2020-01-17T10:42:14.545Z'
+  payment_requirements: {
+    requires_instant_payment: false,
+    price_guarantee_expires_at: '2020-01-17T10:42:14.545Z',
+    payment_required_by: '2020-01-17T10:42:14.545Z'
   },
   passengers: [
     {
@@ -186,40 +146,40 @@ export const mockOffer: Offer = {
       age: 14
     }
   ],
-  passengerIdentityDocumentsRequired: false,
+  passenger_identity_documents_required: false,
   owner: {
     name: 'British Airways',
     id: 'aln_00001876aqC8c5umZmrRds',
-    iataCode: 'BA'
+    iata_code: 'BA'
   },
-  liveMode: true,
+  live_mode: true,
   id: 'off_00009htYpSCXrwaB9DnUm0',
-  expiresAt: '2020-01-17T10:42:14.545Z',
-  createdAt: '2020-01-17T10:12:14.545Z',
+  expires_at: '2020-01-17T10:42:14.545Z',
+  created_at: '2020-01-17T10:12:14.545Z',
   conditions: {
-    refundBeforeDeparture: {
-      penaltyCurrency: 'GBP',
-      penaltyAmount: '100.00',
+    refund_before_departure: {
+      penalty_currency: 'GBP',
+      penalty_amount: '100.00',
       allowed: true
     },
-    changeBeforeDeparture: {
-      penaltyCurrency: 'GBP',
-      penaltyAmount: '100.00',
+    change_before_departure: {
+      penalty_currency: 'GBP',
+      penalty_amount: '100.00',
       allowed: true
     }
   },
-  baseCurrency: 'GBP',
-  baseAmount: '30.20',
-  availableServices: [
+  base_currency: 'GBP',
+  base_amount: '30.20',
+  available_services: [
     {
       type: 'baggage',
-      totalCurrency: 'GBP',
-      totalAmount: '15.00',
-      segmentIds: ['seg_00009hj8USM7Ncg31cB456'],
-      passengerIds: ['pas_00009hj8USM7Ncg31cBCLL'],
-      maximumQuantity: 1,
+      total_currency: 'GBP',
+      total_amount: '15.00',
+      segment_ids: ['seg_00009hj8USM7Ncg31cB456'],
+      passenger_ids: ['pas_00009hj8USM7Ncg31cBCLL'],
+      maximum_quantity: 1,
       id: 'ase_00009UhD4ongolulWd9123'
     }
   ],
-  allowedPassengerIdentityDocumentTypes: ['passport']
+  allowed_passenger_identity_document_types: ['passport']
 }

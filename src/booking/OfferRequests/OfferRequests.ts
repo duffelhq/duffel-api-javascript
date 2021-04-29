@@ -1,6 +1,6 @@
 import { APIResponse, PaginationMeta } from 'types'
 import { Resource } from '../../Resource'
-import { Offers } from './OfferRequestsTypes'
+import { CreateOfferRequest, CreateOfferRequestQueryParameters, OfferRequest } from './OfferRequestsTypes'
 
 /**
  * To search for flights, you'll need to create an `offer request`.
@@ -15,7 +15,7 @@ export class OfferRequests extends Resource {
    * @param {string} id - Duffel's unique identifier for the offer request
    * @link https:/duffel.com/docs/api/offer-requests/get-offer-request-by-id
    */
-  public get = async (id: string): Promise<APIResponse<Offers.OfferRequest>> =>
+  public get = async (id: string): Promise<APIResponse<OfferRequest>> =>
     this.request({ method: 'GET', path: `air/offer_requests/${id}` })
 
   /**
@@ -24,7 +24,7 @@ export class OfferRequests extends Resource {
    */
   public list = (options?: {
     queryParams?: PaginationMeta
-  }): AsyncGenerator<APIResponse<Offers.OfferRequest[]>, void, unknown> =>
+  }): AsyncGenerator<APIResponse<OfferRequest[]>, void, unknown> =>
     this.paginatedRequest({ path: 'air/offer_requests', ...options })
 
   /**
@@ -32,17 +32,17 @@ export class OfferRequests extends Resource {
    * An offer request describes the passengers and where and when they want to travel (in the form of a list of `slices`).
    * It may also include additional filters (e.g. a particular cabin to travel in).
    * @param {object} [bodyParams] - body parameters to create the offer_request
-   * @param {boolean} [queryParams.returnOffers] - When set to `true`, the offer request resource returned will include all the `offers` returned by the airlines.
+   * @param {boolean} [queryParams.return_offers] - When set to `true`, the offer request resource returned will include all the `offers` returned by the airlines.
    * If set to false, the offer request resource won't include any `offers`. To retrieve the associated offers later, use the List Offers endpoint, specifying the `offer_request_id`.
    * @link https://duffel.com/docs/api/offer-requests/create-offer-request
    */
   public create = async ({
     bodyParams,
-    queryParams = { returnOffers: true }
+    queryParams = { return_offers: true }
   }: {
-    bodyParams: Offers.CreateOfferRequest
-    queryParams?: Offers.CreateOfferQueryParameters
-  }): Promise<APIResponse<Offers.OfferRequest>> => {
+    bodyParams: CreateOfferRequest
+    queryParams?: CreateOfferRequestQueryParameters
+  }): Promise<APIResponse<OfferRequest>> => {
     return this.request({ method: 'POST', path: `air/offer_requests/`, bodyParams, queryParams })
   }
 }

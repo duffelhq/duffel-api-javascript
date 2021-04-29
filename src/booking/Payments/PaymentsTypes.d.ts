@@ -1,3 +1,7 @@
+/**
+ * To pay for an unpaid order you've previously created, you'll need to create a payment for it.
+ * @link https:/duffel.com/docs/api/payments/schema
+ */
 export interface Payment {
   /**
    * The amount of the payment.
