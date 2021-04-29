@@ -37,8 +37,8 @@ const methodNameQuestion = () => {
     rl.question(`Name of the method? (example: Offers) (default: "MethodName"): `, (answer) => {
       methodPath = path.join(__dirname, methodName)
       if (answer) {
-        if (/^[a-zA-Z]+$/.test(answer)) {
-          methodName = capitalise(answer.replace(/\s+/g, ''))
+        if (/^[A-z]+$/.test(answer)) {
+          methodName = capitalise(answer)
         } else {
           errorMsg = 'Method name should be letters only and CamelCase.'
           reject()
