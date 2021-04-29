@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 /*
  * Duffel API Javascript - Method Generator
  *
@@ -13,8 +14,8 @@
  * <MethodName>Types.d.ts`: type definitions file
  */
 
-/* eslint-disable */
 import fs from 'fs'
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import colors from 'colors'
 import readline from 'readline'
 
@@ -28,9 +29,8 @@ let methodName = 'MethodName'
 let methodPath = 'src/'
 let errorMsg = ''
 
-// questions
 // method name
-const question1 = () => {
+const methodNameQuestion = () => {
   return new Promise((resolve, reject) => {
     rl.question(`Name of the method? (example: Offers) (default: "MethodName"): `, (answer) => {
       if (answer) {
@@ -46,9 +46,9 @@ const question1 = () => {
   })
 }
 
-// component folder
-const question2 = () => {
-  return new Promise((resolve, reject) => {
+// method folder
+const folderQuestion = () => {
+  return new Promise((resolve) => {
     rl.question(`Where do you want to create the method? (default: src/): `, (answer) => {
       if (answer) {
         methodPath = answer
@@ -75,7 +75,7 @@ const print = () => {
   console.log('--------------------------------------------------------')
   console.log(`Method Name: `.grey + methodName)
   console.log(`Folder: `.grey + methodPath)
-  console.log(`Note: `.yellow + `export your component in src/index.ts when done.`.yellow)
+  console.log(`Note: `.yellow + `export your method in src/index.ts when done.`.yellow)
   console.log('--------------------------------------------------------')
 }
 const makeHeader = () => {
@@ -101,7 +101,9 @@ export class ${methodName} extends Resource {
 const mockContent = () =>
   `/**
 * Create your mock file
-*/`
+*/
+
+export const mock${methodName} = {}`
 
 // mockMethodName.d.ts
 const definitionFileTypes = () =>
@@ -123,8 +125,8 @@ describe("${methodName}", () => {
     nock.cleanAll()
   })
 
-  test("should get a single offer request", async () => {
-    nock(/(.*)/).get('/air/endpoint').reply(200, { data: mock${methodName} })
+  test("should get ${methodName}", async () => {
+    //nock(/(.*)/).get('/air/endpoint').reply(200, { data: mock${methodName} })
 
     // uncomment these lines
     //const response = await new ${methodName}(new Client({ token: 'mockToken' })).get(mockOfferRequest.id)
@@ -134,7 +136,6 @@ describe("${methodName}", () => {
 });
 `
 
-// create methods files
 const createMethodFiles = () => {
   // create folder
   methodPath = `${methodPath}${methodName}/`
@@ -147,14 +148,14 @@ const createMethodFiles = () => {
   createFile(`${methodPath + methodName}.spec.ts`, testContent())
   // create mockMethodName.ts
   createFile(`${methodPath + `mock${methodName}`}.ts`, mockContent())
-  createFile(`${methodPath + methodName}Types.d.ts`, definitionFileTypes())
+  createFile(`${methodPath + methodName}.d.ts`, definitionFileTypes())
 }
 
 const main = async () => {
   try {
-    await question1()
-    await question2()
-    createMethod()
+    await methodNameQuestion()
+    await folderQuestion()
+    createMethodFiles()
     print()
     rl.close()
   } catch (e) {
