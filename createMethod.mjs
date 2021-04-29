@@ -4,13 +4,13 @@
  * Node script that automatically generates a method's folder and files structure.
  * run with "yarn generate:method"
  *
- * The script generates the following files:
+ * The script generates the following files for a given method:
  *
  * index.ts`: module import/export
- * <MethodName>.ts`: method class definition
- * <MethodName>.spec.ts`: method's tests
- * mock<MethodName>.ts`: mock data to use for method's tests
- * <MethodName>Types.d.ts`: method types definition file
+ * <MethodName>.ts`: class definition
+ * <MethodName>.spec.ts`: tests
+ * mock<MethodName>.ts`: mock data to use for tests
+ * <MethodName>Types.d.ts`: type definitions file
  */
 
 /* eslint-disable */
@@ -135,7 +135,7 @@ describe("${methodName}", () => {
 `
 
 // create methods files
-const createMethod = () => {
+const createMethodFiles = () => {
   // create folder
   methodPath = `${methodPath}${methodName}/`
   fs.existsSync(methodPath) || fs.mkdirSync(methodPath)
