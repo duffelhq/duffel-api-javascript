@@ -79,11 +79,10 @@ const print = () => {
   console.log('--------------------------------------------------------')
 }
 const makeHeader = () => {
-  return `
-    import { APIResponse, PaginationMeta } from 'types'
-    import { Resource } from '../../Resource'
-    import { ${methodName} } from './${methodName}Types'
-  `
+  return `import { APIResponse, PaginationMeta } from 'types'
+import { Resource } from '../../Resource'
+import { ${methodName}Types } from './${methodName}Types'
+`
 }
 
 // index.ts
@@ -94,22 +93,22 @@ const indexContent = () =>
 // MethodName.ts
 const methodClass = () =>
   `${makeHeader()}
+export class ${methodName} extends Resource {
 
-  export class ${methodName} extends Resource {
+}`
 
-  }
-  `
 // mockMethodName.ts
 const mockContent = () =>
-  `/** 
-  * Create your mock file
-  */`
+  `/**
+* Create your mock file
+*/`
 
 // mockMethodName.d.ts
 const definitionFileTypes = () =>
-  `/** 
-  * Create your definitions file
-  */`
+  `/**
+* Create your definitions file
+*/
+`
 
 // MethodName.spec.ts
 const testContent = () =>
@@ -125,11 +124,13 @@ describe("${methodName}", () => {
   })
 
   test("should get a single offer request", async () => {
-    nock(/(.*)/).get('air/endpoint').reply(200, { data: mock${methodName} })
+    nock(/(.*)/).get('/air/endpoint').reply(200, { data: mock${methodName} })
 
+    // uncomment these lines
     //const response = await new ${methodName}(new Client({ token: 'mockToken' })).get(mockOfferRequest.id)
     //expect(response.data?.id).toBe(mockOfferRequest.id)
     expect(true).toBe(true)
+  })
 });
 `
 
