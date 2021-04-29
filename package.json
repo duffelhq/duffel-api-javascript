@@ -16,6 +16,7 @@
   "license": "MIT",
   "private": true,
   "scripts": {
+    "generate:method": "node ./scripts/createMethod.mjs",
     "build": "tsc",
     "start": "node ./dist/index.js",
     "dev": "ts-node ./src/index.ts",
@@ -43,6 +44,7 @@
     "@typescript-eslint/eslint-plugin": "^4.22.0",
     "@typescript-eslint/parser": "^4.22.0",
     "babel-jest": "^26.6.3",
+    "colors": "^1.4.0",
     "eslint": "^7.25.0",
     "eslint-plugin-spellcheck": "^0.0.17",
     "husky": "^6.0.0",

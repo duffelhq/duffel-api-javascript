@@ -14,7 +14,7 @@
     "noFallthroughCasesInSwitch": true,
     "moduleResolution": "node",
     "baseUrl": "./src",
-    "typeRoots": ["node_modules/@types", "node_modules/**/types", "lib/types"],
+    "typeRoots": ["node_modules/@types", "node_modules/**/types", "src/types"],
     "types": ["jest", "node"],
     "esModuleInterop": true,
     "skipLibCheck": true,
