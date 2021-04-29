@@ -15,6 +15,7 @@
  */
 
 import fs from 'fs'
+import path from 'path'
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import colors from 'colors'
 import readline from 'readline'
@@ -26,13 +27,15 @@ const rl = readline.createInterface({
 })
 
 let methodName = 'MethodName'
-let methodPath = 'src/'
+const __dirname = 'src'
+let methodPath = path.resolve(__dirname, 'src')
 let errorMsg = ''
 
 // method name
 const methodNameQuestion = () => {
   return new Promise((resolve, reject) => {
     rl.question(`Name of the method? (example: Offers) (default: "MethodName"): `, (answer) => {
+      methodPath = path.join(__dirname, methodName)
       if (answer) {
         if (/^[a-zA-Z]+$/.test(answer)) {
           methodName = capitalise(answer.replace(/\s+/g, ''))
@@ -49,9 +52,9 @@ const methodNameQuestion = () => {
 // method folder
 const folderQuestion = () => {
   return new Promise((resolve) => {
-    rl.question(`Where do you want to create the method? (default: src/): `, (answer) => {
+    rl.question(`Where do you want to create the method? (default/root: src): `, (answer) => {
       if (answer) {
-        methodPath = answer
+        methodPath = path.join(__dirname, answer)
       }
       resolve(true)
     })
@@ -81,7 +84,6 @@ const print = () => {
 const makeHeader = () => {
   return `import { APIResponse, PaginationMeta } from 'types'
 import { Resource } from '../../Resource'
-import { ${methodName}Types } from './${methodName}Types'
 `
 }
 
@@ -138,17 +140,18 @@ describe("${methodName}", () => {
 
 const createMethodFiles = () => {
   // create folder
-  methodPath = `${methodPath}${methodName}/`
-  fs.existsSync(methodPath) || fs.mkdirSync(methodPath)
+  console.log(methodPath)
+  fs.existsSync(methodPath) || fs.mkdirSync(methodPath, { recursive: true })
   // create index.ts
-  createFile(`${methodPath}index.ts`, indexContent())
+  createFile(`${methodPath}/index.ts`, indexContent())
   // create MethodName.ts
-  createFile(`${methodPath + methodName}.ts`, methodClass())
+  createFile(`${methodPath}/${methodName}.ts`, methodClass())
   // create MethodName.spec.ts
-  createFile(`${methodPath + methodName}.spec.ts`, testContent())
+  createFile(`${methodPath}/${methodName}.spec.ts`, testContent())
   // create mockMethodName.ts
-  createFile(`${methodPath + `mock${methodName}`}.ts`, mockContent())
-  createFile(`${methodPath + methodName}.d.ts`, definitionFileTypes())
+  createFile(`${methodPath}/${`mock${methodName}`}.ts`, mockContent())
+  // create src/types/MethodName.d.ts
+  createFile(path.join(__dirname, `types/${methodName}.d.ts`), definitionFileTypes())
 }
 
 const main = async () => {
