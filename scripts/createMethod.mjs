@@ -54,7 +54,7 @@ const folderQuestion = () => {
   return new Promise((resolve) => {
     rl.question(`Where do you want to create the method? (default/root: src): `, (answer) => {
       if (answer) {
-        methodPath = path.join(__dirname, answer)
+        methodPath = path.join(__dirname, answer, methodName)
       }
       resolve(true)
     })
