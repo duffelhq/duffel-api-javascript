@@ -5,7 +5,7 @@ export interface DestinationOrOriginProp {
    * The airports associated to a city.
    * This will only be provided where the `type` is `city`.
    */
-  airports?: Airport[]
+  airports?: Airport[] | null
   city?: City
   city_name?: string
   iata_city_code?: string
@@ -16,7 +16,7 @@ export interface DestinationOrOriginProp {
   latitude?: number
   longitude?: number
   name: string
-  time_zone?: string
+  time_zone?: string | null
   type: PlaceType
 }
 

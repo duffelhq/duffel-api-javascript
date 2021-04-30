@@ -130,6 +130,12 @@ export interface City {
    * @example "London"
    */
   name: string
+
+  time_zone?: string | null
+  longitude?: number | null
+  latitude?: number | null
+  iata_city_code?: string | null
+  city_name?: string | null
 }
 
 /**
