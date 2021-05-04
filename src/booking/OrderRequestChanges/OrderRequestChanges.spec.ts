@@ -2,7 +2,7 @@ import nock from 'nock'
 import { Client } from '../../Client'
 import { OrderRequestChanges } from './OrderRequestChanges'
 import {
-  mockOrderRequestChanges,
+  mockOrderRequestChange,
   mockCreateChangeRequest,
   mockOrderRequestChangesAltered
 } from './mockOrderRequestChanges'
@@ -14,11 +14,11 @@ describe('OrderRequestChanges', () => {
 
   test('should get a single order change request', async () => {
     nock(/(.*)/)
-      .get(`/air/order_change_requests/${mockOrderRequestChanges.id}`)
-      .reply(200, { data: mockOrderRequestChanges })
+      .get(`/air/order_change_requests/${mockOrderRequestChange.id}`)
+      .reply(200, { data: mockOrderRequestChange })
 
-    const response = await new OrderRequestChanges(new Client({ token: 'mockToken' })).get(mockOrderRequestChanges.id)
-    expect(response.data?.id).toBe(mockOrderRequestChanges.id)
+    const response = await new OrderRequestChanges(new Client({ token: 'mockToken' })).get(mockOrderRequestChange.id)
+    expect(response.data?.id).toBe(mockOrderRequestChange.id)
   })
 
   test('should create an order change request', async () => {

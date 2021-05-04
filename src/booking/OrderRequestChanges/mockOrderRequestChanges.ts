@@ -1,10 +1,6 @@
-/**
- * Create your mock file
- */
-
 import { CreateOrderChangeRequest, OrderChangeRequestResponse } from 'types/OrderRequestChanges'
 
-export const mockOrderRequestChanges: OrderChangeRequestResponse = {
+export const mockOrderRequestChange: OrderChangeRequestResponse = {
   slices: {
     remove: {
       slice_id: 'sli_00009htYpSCXrwaB9Dn123'
