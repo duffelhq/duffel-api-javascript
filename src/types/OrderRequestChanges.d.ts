@@ -1,6 +1,5 @@
-import { DestinationOrOriginProp } from 'booking/OfferRequests/OfferRequestsTypes'
 import { OfferSliceSegment } from './Offer'
-import { CabinClass, PlaceType } from './shared'
+import { CabinClass, PlaceType, DestinationOrOriginProp } from './shared'
 
 interface OrderChangeOfferSlice {
   add: {

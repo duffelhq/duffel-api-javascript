@@ -1,24 +1,4 @@
-import { Airport, CabinClass, City, Offer, PlaceType } from 'types'
-
-export interface DestinationOrOriginProp {
-  /**
-   * The airports associated to a city.
-   * This will only be provided where the `type` is `city`.
-   */
-  airports?: Airport[] | null
-  city?: City
-  city_name?: string
-  iata_city_code?: string
-  iata_code: string
-  iata_country_code: string
-  icao_code?: string
-  id: string
-  latitude?: number
-  longitude?: number
-  name: string
-  time_zone?: string | null
-  type: PlaceType
-}
+import { CabinClass, Offer, PlaceType } from 'types'
 
 export interface OfferRequestSlice {
   /**

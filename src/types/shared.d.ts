@@ -1,4 +1,4 @@
-import { Airport } from './supportingResources'
+import { Airport, City } from './supportingResources'
 
 /**
  * The cabin class that the passenger will travel in on this segment
@@ -165,3 +165,23 @@ export interface Seat {
  * In test mode, your balance is unlimited. If you're not sure which of these options applies to you, get in touch with the Duffel support team at [help@duffel.com](mailto:help@duffel.com).
  */
 export type PaymentType = 'arc_bsp_cash' | 'balance'
+
+export interface DestinationOrOriginProp {
+  /**
+   * The airports associated to a city.
+   * This will only be provided where the `type` is `city`.
+   */
+  airports?: Airport[] | null
+  city?: City
+  city_name?: string
+  iata_city_code?: string
+  iata_code: string
+  iata_country_code: string
+  icao_code?: string
+  id: string
+  latitude?: number
+  longitude?: number
+  name: string
+  time_zone?: string | null
+  type: PlaceType
+}
