@@ -1,6 +1,6 @@
-import { CreateOrderChangeRequest, OrderChangeRequestResponse } from 'types/OrderRequestChanges'
+import { CreateOrderChangeRequest, OrderChangeRequestResponse } from 'types/OrderChangeRequests'
 
-export const mockOrderRequestChange: OrderChangeRequestResponse = {
+export const mockOrderChangeRequest: OrderChangeRequestResponse = {
   slices: {
     remove: {
       slice_id: 'sli_00009htYpSCXrwaB9Dn123'
@@ -401,10 +401,10 @@ export const mockOrderRequestChange: OrderChangeRequestResponse = {
   id: 'ocr_0000A3bQP9RLVfNUcdpLpw'
 }
 
-export const mockOrderRequestChangesAltered: OrderChangeRequestResponse = {
-  ...mockOrderRequestChange,
+export const mockOrderChangeRequestAltered: OrderChangeRequestResponse = {
+  ...mockOrderChangeRequest,
   slices: {
-    ...mockOrderRequestChange.slices,
+    ...mockOrderChangeRequest.slices,
     add: {
       origin: {
         type: 'airport',
@@ -477,12 +477,12 @@ export const mockOrderRequestChangesAltered: OrderChangeRequestResponse = {
 }
 
 export const mockCreateChangeRequest: CreateOrderChangeRequest = {
-  order_id: mockOrderRequestChange.id,
+  order_id: mockOrderChangeRequest.id,
   changes: {
     slices: {
       remove: [
         {
-          slice_id: mockOrderRequestChange.slices.remove.slice_id
+          slice_id: mockOrderChangeRequest.slices.remove.slice_id
         }
       ],
       add: [
