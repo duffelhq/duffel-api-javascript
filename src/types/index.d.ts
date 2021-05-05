@@ -1,6 +1,7 @@
 export * from './Offer'
 export * from './OrderChangeOffer'
 export * from './OrderChangeRequests'
+export * from './OrderChanges'
 export * from './shared'
 export * from './supportingResources'
 
