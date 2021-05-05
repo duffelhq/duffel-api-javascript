@@ -1,13 +1,21 @@
 import { OfferRequests, Offers, OrderCancellations, Orders, Payments, SeatMaps } from './booking'
-import { Client } from './Client'
+import { Client, Config } from './Client'
 import { Aircraft, Airlines, Airports } from './supportingResources'
 
-interface Config {
-  token: string
+export interface DuffelAPIClient {
+  aircraft: Aircraft
+  airlines: Airlines
+  airports: Airports
+  offers: Offers
+  offerRequests: OfferRequests
+  orders: Orders
+  orderCancellations: OrderCancellations
+  payments: Payments
+  seatMaps: SeatMaps
 }
 
-export const DuffelAPI = ({ token }: Config) => {
-  const client = new Client({ token })
+export const DuffelAPI = (config: Config): DuffelAPIClient => {
+  const client = new Client(config)
 
   return {
     aircraft: new Aircraft(client),
