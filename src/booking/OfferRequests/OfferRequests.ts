@@ -19,7 +19,7 @@ export class OfferRequests extends Resource {
     this.request({ method: 'GET', path: `air/offer_requests/${id}` })
 
   /**
-   * Retrieves a paginated list of all aircraft. The results may be returned in any order.
+   * Retrieves a paginated list of all offer requests. The results may be returned in any order.
    * @param {Object} [options] - Pagination query parameters (optional: limit, after, before)
    */
   public list = (options?: {
