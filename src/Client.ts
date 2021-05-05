@@ -4,6 +4,8 @@ import { APIResponse, PaginationMeta } from './types'
 
 export interface Config {
   token: string
+  basePath?: string
+  apiVersion?: string
 }
 
 export class Client {
@@ -11,10 +13,10 @@ export class Client {
   private basePath: string
   private apiVersion: string
 
-  constructor({ token }: Config) {
+  constructor({ token, basePath, apiVersion }: Config) {
     this.token = token
-    this.basePath = 'https://api.duffel.com'
-    this.apiVersion = 'beta'
+    this.basePath = basePath || 'https://api.duffel.com'
+    this.apiVersion = apiVersion || 'beta'
   }
 
   public request = async <T_Response = any>({

@@ -1,6 +1,6 @@
 {
-  "name": "duffel-api",
-  "version": "0.0.1",
+  "name": "@duffel/duffel-api",
+  "version": "0.0.3",
   "description": "Javascript client library for the Duffel API",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -12,9 +12,11 @@
   "bugs": {
     "url": "https://github.com/duffelhq/duffel-api-javascript/issues"
   },
-  "author": "Duffel <help@duffel.com> (http://duffel.com)",
+  "files": [
+    "dist"
+  ],
+  "author": "Duffel Technology Limited <help@duffel.com> (http://duffel.com)",
   "license": "MIT",
-  "private": true,
   "scripts": {
     "generate:method": "node ./scripts/createMethod.mjs",
     "build": "tsc",
@@ -53,5 +55,8 @@
   },
   "engines": {
     "node": "~14.*"
+  },
+  "publishConfig": {
+    "access": "restricted"
   }
 }
