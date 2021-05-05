@@ -401,7 +401,7 @@ export const mockOrderChangeRequest: OrderChangeRequestResponse = {
   id: 'ocr_0000A3bQP9RLVfNUcdpLpw'
 }
 
-export const mockOrderChangeRequestsAltered: OrderChangeRequestResponse = {
+export const mockOrderChangeRequestAltered: OrderChangeRequestResponse = {
   ...mockOrderChangeRequest,
   slices: {
     ...mockOrderChangeRequest.slices,

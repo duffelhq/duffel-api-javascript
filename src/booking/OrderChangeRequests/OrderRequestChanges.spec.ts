@@ -4,7 +4,7 @@ import { OrderChangeRequests } from './OrderChangeRequests'
 import {
   mockOrderChangeRequest,
   mockCreateChangeRequest,
-  mockOrderChangeRequestsAltered
+  mockOrderChangeRequestAltered
 } from './mockOrderChangeRequests'
 
 describe('OrderChangeRequests', () => {
@@ -22,7 +22,7 @@ describe('OrderChangeRequests', () => {
   })
 
   test('should create an order change request', async () => {
-    nock(/(.*)/).post(`/air/order_change_requests`).reply(200, { data: mockOrderChangeRequestsAltered })
+    nock(/(.*)/).post(`/air/order_change_requests`).reply(200, { data: mockOrderChangeRequestAltered })
 
     const response = await new OrderChangeRequests(new Client({ token: 'mockToken' })).create({
       bodyParams: mockCreateChangeRequest
