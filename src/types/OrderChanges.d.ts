@@ -1,7 +1,7 @@
 import { OrderChangeOfferSlice } from './OrderRequestChanges'
 import { PaymentType } from './shared'
 
-export interface OrderChange {
+interface OrderChange {
   /**
    * The price of this offer as a change to your existing order, excluding taxes
    */
@@ -93,7 +93,7 @@ export interface OrderChange {
   available_payment_types?: PaymentType[] | null
 }
 
-export interface CreateOrderChangeParameters {
+interface CreateOrderChangeParameters {
   /**
    * Duffel's unique identifier for the order change offer
    */

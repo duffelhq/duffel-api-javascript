@@ -1,6 +1,5 @@
-import { APIResponse, OrderChangeOfferSlice } from 'types'
+import { APIResponse, OrderChangeOfferSlice, CreateOrderChangeParameters } from 'types'
 import { Resource } from '../../Resource'
-import { CreateOrderChangeParameters } from 'types/OrderChanges'
 
 /**
  * Once you've created an order change request, and you've chosen which slices to add and remove, you'll then want to create an order change.

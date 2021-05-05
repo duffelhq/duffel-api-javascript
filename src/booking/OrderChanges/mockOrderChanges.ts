@@ -1,4 +1,4 @@
-import { OrderChange } from 'types/OrderChanges'
+import { OrderChange } from 'types'
 
 export const mockOrderChange: OrderChange = {
   slices: {
