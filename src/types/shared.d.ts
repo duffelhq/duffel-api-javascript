@@ -1,4 +1,4 @@
-import { Airport } from './supportingResources'
+import { Airport, City } from './supportingResources'
 
 /**
  * The cabin class that the passenger will travel in on this segment
@@ -107,8 +107,10 @@ export type FlightsConditions = {
  * @link https://portal.iata.org/faq/articles/en_US/FAQ/How-do-I-create-a-new-Metropolitan-Area
  */
 export interface City {
+  /**
+   * The type of the place
+   */
   type?: 'city'
-
   /**
    * The three-character IATA code for the city
    * @example "LON"
@@ -130,6 +132,27 @@ export interface City {
    * @example "London"
    */
   name: string
+  /**
+   * The time zone of the airport, specified by name from the [tz database](https://en.wikipedia.org/wiki/Tz_database)
+   */
+  time_zone?: string | null
+  /**
+   * The longitude position of the airport represented in [Decimal degrees](https://en.wikipedia.org/wiki/Decimal_degrees) with 6 decimal points with a range between -180° and 180°
+   */
+  longitude?: number | null
+  /**
+   * The latitude position of the airport represented in [Decimal degrees](https://en.wikipedia.org/wiki/Decimal_degrees) with 6 decimal points with a range between -90° and 90°
+   */
+  latitude?: number | null
+  /**
+   * The 3-letter IATA code for the city where the place is located.
+   * Only present for airports which are registered with IATA as belonging to a [metropolitan area](https://portal.iata.org/faq/articles/en_US/FAQ/How-do-I-create-a-new-Metropolitan-Area).
+   */
+  iata_city_code?: string | null
+  /**
+   * The name of the city (or cities separated by a `/`) where the airport is located
+   */
+  city_name?: string | null
 }
 
 /**
@@ -159,3 +182,57 @@ export interface Seat {
  * In test mode, your balance is unlimited. If you're not sure which of these options applies to you, get in touch with the Duffel support team at [help@duffel.com](mailto:help@duffel.com).
  */
 export type PaymentType = 'arc_bsp_cash' | 'balance'
+
+export interface DestinationOrOriginProp {
+  /**
+   * The airports associated to a city.
+   * This will only be provided where the `type` is `city`.
+   */
+  airports?: Airport[] | null
+  city?: City
+  /**
+   * The name of the city (or cities separated by a `/`) where the airport is located
+   */
+  city_name?: string
+  /**
+   * The 3-letter IATA code for the city where the place is located.
+   * Only present for airports which are registered with IATA as belonging to a [metropolitan area](https://portal.iata.org/faq/articles/en_US/FAQ/How-do-I-create-a-new-Metropolitan-Area).
+   */
+  iata_city_code?: string
+  /**
+   * The three-character IATA code for the city
+   * @example "LON"
+   */
+  iata_code: string
+  /**
+   * The ISO 3166-1 alpha-2 code for the country where the city is located
+   * @link https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2
+   * @example "GB"
+   */
+  iata_country_code: string
+  /**
+   * The four-character ICAO code for the airport
+   */
+  icao_code?: string
+  /**
+   * Duffel's unique identifier for the airport
+   */
+  id: string
+  /**
+   * The latitude position of the airport represented in [Decimal degrees](https://en.wikipedia.org/wiki/Decimal_degrees) with 6 decimal points with a range between -90° and 90°
+   */
+  latitude?: number | null
+  /**
+   * The longitude position of the airport represented in [Decimal degrees](https://en.wikipedia.org/wiki/Decimal_degrees) with 6 decimal points with a range between -180° and 180°
+   */
+  longitude?: number | null
+  name: string
+  /**
+   * The time zone of the airport, specified by name from the [tz database](https://en.wikipedia.org/wiki/Tz_database)
+   */
+  time_zone?: string | null
+  /**
+   * The type of the place
+   */
+  type: PlaceType
+}
