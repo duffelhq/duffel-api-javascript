@@ -1,4 +1,4 @@
-import { CabinClass, Offer, PlaceType } from 'types'
+import { CabinClass, Offer, Place, PlaceType } from 'types'
 
 export interface OfferRequestSlice {
   /**
@@ -8,11 +8,11 @@ export interface OfferRequestSlice {
   /**
    * The city or airport the passengers want to travel to
    */
-  destination: DestinationOrOriginProp | string
+  destination: Place | string
   /**
    * The city or airport the passengers want to depart from
    */
-  origin: DestinationOrOriginProp | string
+  origin: Place | string
   origin_type: PlaceType
   destination_type: PlaceType
 }

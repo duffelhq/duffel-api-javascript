@@ -1,68 +1,4 @@
-import { OfferSliceSegment } from './Offer'
-import { CabinClass, PlaceType, DestinationOrOriginProp } from './shared'
-
-interface OrderChangeOfferSlice {
-  add: {
-    /**
-     * The city or airport where this slice ends
-     */
-    destination: DestinationOrOriginProp
-    /**
-     * The type of the destination
-     */
-    destination_type: PlaceType
-    /**
-     * The duration of the slice, represented as a [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601#Durations) duration
-     */
-    duration?: string | null
-    /**
-     * Duffel's unique identifier for the slice. It identifies the slice of an order (i.e. the same slice across orders will have different `id`s.
-     */
-    id: string
-    /**
-     * The city or airport where this slice begins
-     */
-    origin: DestinationOrOriginProp
-    /**
-     * The type of the origin
-     */
-    origin_type: PlaceType
-    /**
-     * The segments - that is, specific flights - that the airline is offering to get the passengers from the `origin` to the `destination`
-     */
-    segments: Array<Omit<OfferSliceSegment, 'passengers'>>
-  }[]
-  remove: {
-    /**
-     * The city or airport where this slice ends
-     */
-    destination: DestinationOrOriginProp
-    /**
-     * The type of the destination
-     */
-    destination_type: PlaceType
-    /**
-     * The duration of the slice, represented as a [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601#Durations) duration
-     */
-    duration?: string | null
-    /**
-     * Duffel's unique identifier for the slice. It identifies the slice of an order (i.e. the same slice across orders will have different `id`s.
-     */
-    id: string
-    /**
-     * The city or airport where this slice begins
-     */
-    origin: DestinationOrOriginProp
-    /**
-     * The type of the origin
-     */
-    origin_type: PlaceType
-    /**
-     * The segments - that is, specific flights - that the airline is offering to get the passengers from the `origin` to the `destination`
-     */
-    segments: Array<Omit<OfferSliceSegment, 'passengers'>>
-  }[]
-}
+import { CabinClass, Place } from './shared'
 
 interface OrderChangeSliceResponse {
   remove: {
@@ -76,11 +12,11 @@ interface OrderChangeSliceResponse {
     /**
      * The city or airport where this slice ends
      */
-    destination: DestinationOrOriginProp
+    destination: Place
     /**
      * The city or airport where this slice begins
      */
-    origin: DestinationOrOriginProp
+    origin: Place
     /**
      * The cabin that the passengers want to travel in
      */

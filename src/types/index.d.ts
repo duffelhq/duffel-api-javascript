@@ -1,4 +1,6 @@
 export * from './Offer'
+export * from './OrderChangeOffer'
+export * from './OrderChangeRequests'
 export * from './shared'
 export * from './supportingResources'
 
