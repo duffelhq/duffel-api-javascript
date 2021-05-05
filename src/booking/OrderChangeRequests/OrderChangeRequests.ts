@@ -1,15 +1,15 @@
 import { APIResponse } from 'types'
-import { CreateOrderChangeRequest, OrderChangeRequestResponse } from 'types/OrderRequestChanges'
+import { CreateOrderChangeRequest, OrderChangeRequestResponse } from 'types/OrderChangeRequests'
 import { Resource } from '../../Resource'
 /**
  *
  * To change an order, you'll need to create an order change request.
  * This is still in PREVIEW mode
  * @export
- * @class OrderRequestChanges
+ * @class OrderChangeRequests
  * @extends {Resource}
  */
-export class OrderRequestChanges extends Resource {
+export class OrderChangeRequests extends Resource {
   /**
    * Endpoint path
    */
@@ -29,7 +29,7 @@ export class OrderRequestChanges extends Resource {
   /**
    *
    * To change flights on an existing paid order, you'll need to create an order change request.
-   * @memberof OrderRequestChanges
+   * @memberof OrderChangeRequests
    */
   public create = async ({
     bodyParams
