@@ -8,12 +8,22 @@ import { Aircraft as AircraftType } from '../../types'
  */
 export class Aircraft extends Resource {
   /**
+   * Endpoint path
+   */
+  path: string
+
+  constructor(args: any) {
+    super(args)
+    this.path = 'air/aircraft'
+  }
+
+  /**
    * Retrieves an aircraft by its ID
    * @param {string} id - Duffel's unique identifier for the aircraft
    * @link https://duffel.com/docs/api/aircraft/get-aircraft-by-id
    */
   public get = async (id: string): Promise<APIResponse<AircraftType>> =>
-    this.request({ method: 'GET', path: `air/aircraft/${id}` })
+    this.request({ method: 'GET', path: `${this.path}/${id}` })
 
   /**
    * Retrieves a paginated list of all aircraft. The results may be returned in any order.
@@ -23,5 +33,5 @@ export class Aircraft extends Resource {
   public list = (options?: {
     queryParams?: PaginationMeta
   }): AsyncGenerator<APIResponse<AircraftType[]>, void, unknown> =>
-    this.paginatedRequest({ path: 'air/aircraft', ...options })
+    this.paginatedRequest({ path: this.path, ...options })
 }

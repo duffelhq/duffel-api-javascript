@@ -11,12 +11,22 @@ import { CreateOfferRequest, CreateOfferRequestQueryParameters, OfferRequest } f
  */
 export class OfferRequests extends Resource {
   /**
+   * Endpoint path
+   */
+  path: string
+
+  constructor(args: any) {
+    super(args)
+    this.path = 'air/offer_requests'
+  }
+
+  /**
    * Retrieves an offer request by its ID
    * @param {string} id - Duffel's unique identifier for the offer request
    * @link https:/duffel.com/docs/api/offer-requests/get-offer-request-by-id
    */
   public get = async (id: string): Promise<APIResponse<OfferRequest>> =>
-    this.request({ method: 'GET', path: `air/offer_requests/${id}` })
+    this.request({ method: 'GET', path: `${this.path}/${id}` })
 
   /**
    * Retrieves a paginated list of all offer requests. The results may be returned in any order.
@@ -25,7 +35,7 @@ export class OfferRequests extends Resource {
   public list = (options?: {
     queryParams?: PaginationMeta
   }): AsyncGenerator<APIResponse<OfferRequest[]>, void, unknown> =>
-    this.paginatedRequest({ path: 'air/offer_requests', ...options })
+    this.paginatedRequest({ path: this.path, ...options })
 
   /**
    * To search for flights, you'll need to create an `offer request`.
@@ -43,6 +53,6 @@ export class OfferRequests extends Resource {
     bodyParams: CreateOfferRequest
     queryParams?: CreateOfferRequestQueryParameters
   }): Promise<APIResponse<OfferRequest>> => {
-    return this.request({ method: 'POST', path: `air/offer_requests/`, bodyParams, queryParams })
+    return this.request({ method: 'POST', path: `${this.path}/`, bodyParams, queryParams })
   }
 }

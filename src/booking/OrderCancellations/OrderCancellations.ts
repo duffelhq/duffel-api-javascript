@@ -4,6 +4,16 @@ import { CreateOrderCancellations, OrderCancellationsResponse } from './OrderCan
 
 export class OrderCancellations extends Resource {
   /**
+   * Endpoint path
+   */
+  path: string
+
+  constructor(args: any) {
+    super(args)
+    this.path = 'air/order_cancellations'
+  }
+
+  /**
    * Create order cancellation
    * @description To begin the process of cancelling an order you need to create an order cancellation.
    * @param bodyParams.order_id - Duffel's unique identifier for the order
@@ -15,7 +25,7 @@ export class OrderCancellations extends Resource {
     bodyParams: CreateOrderCancellations
     queryParams?: Record<string, any>
   }): Promise<APIResponse<OrderCancellationsResponse>> => {
-    return this.request({ method: 'POST', path: `air/order_cancellations`, bodyParams, queryParams })
+    return this.request({ method: 'POST', path: this.path, bodyParams, queryParams })
   }
 
   /**
@@ -36,5 +46,5 @@ export class OrderCancellations extends Resource {
     id: string
     queryParams?: Record<string, any>
   }): Promise<APIResponse<OrderCancellationsResponse>> =>
-    this.request({ method: 'POST', path: `air/order_cancellations/${id}/actions/confirm`, queryParams })
+    this.request({ method: 'POST', path: `${this.path}/${id}/actions/confirm`, queryParams })
 }

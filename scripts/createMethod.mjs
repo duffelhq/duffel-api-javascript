@@ -97,6 +97,16 @@ const methodClass = () =>
   `${makeHeader()}
 export class ${methodName} extends Resource {
 
+  /**
+   * Endpoint path
+   */
+  path: string
+
+  constructor(args: any) {
+    super(args)
+    this.path = 'air/endpoint'
+  }
+
 }`
 
 // mockMethodName.ts
