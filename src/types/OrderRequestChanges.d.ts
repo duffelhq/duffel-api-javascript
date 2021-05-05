@@ -7,14 +7,29 @@ interface OrderChangeOfferSlice {
      * The city or airport where this slice ends
      */
     destination: DestinationOrOriginProp
+    /**
+     * The type of the destination
+     */
     destination_type: PlaceType
+    /**
+     * The duration of the slice, represented as a [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601#Durations) duration
+     */
     duration?: string | null
+    /**
+     * Duffel's unique identifier for the slice. It identifies the slice of an order (i.e. the same slice across orders will have different `id`s.
+     */
     id: string
     /**
      * The city or airport where this slice begins
      */
     origin: DestinationOrOriginProp
+    /**
+     * The type of the origin
+     */
     origin_type: PlaceType
+    /**
+     * The segments - that is, specific flights - that the airline is offering to get the passengers from the `origin` to the `destination`
+     */
     segments: Array<Omit<OfferSliceSegment, 'passengers'>>
   }[]
   remove: {
@@ -22,14 +37,29 @@ interface OrderChangeOfferSlice {
      * The city or airport where this slice ends
      */
     destination: DestinationOrOriginProp
+    /**
+     * The type of the destination
+     */
     destination_type: PlaceType
+    /**
+     * The duration of the slice, represented as a [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601#Durations) duration
+     */
     duration?: string | null
+    /**
+     * Duffel's unique identifier for the slice. It identifies the slice of an order (i.e. the same slice across orders will have different `id`s.
+     */
     id: string
     /**
      * The city or airport where this slice begins
      */
     origin: DestinationOrOriginProp
+    /**
+     * The type of the origin
+     */
     origin_type: PlaceType
+    /**
+     * The segments - that is, specific flights - that the airline is offering to get the passengers from the `origin` to the `destination`
+     */
     segments: Array<Omit<OfferSliceSegment, 'passengers'>>
   }[]
 }
@@ -51,6 +81,9 @@ interface OrderChangeSliceResponse {
      * The city or airport where this slice begins
      */
     origin: DestinationOrOriginProp
+    /**
+     * The cabin that the passengers want to travel in
+     */
     cabin_class: CabinClass
   }
 }
@@ -140,7 +173,13 @@ export interface CreateOrderChangeRequest {
    * The changes you wish to make to your order
    */
   changes: {
+    /**
+     * The [slices](https://duffel.com/docs/api/overview/key-principles) that make up this offer request. One-way journeys can be expressed using one slice, whereas return trips will need two.
+     */
     slices: {
+      /**
+       * The search criteria for slices which you wish to add to your order
+       */
       add: {
         /**
          * The cabin that the passengers want to travel in
