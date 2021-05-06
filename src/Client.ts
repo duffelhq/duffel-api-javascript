@@ -4,21 +4,7 @@ import { APIResponse, PaginationMeta } from './types'
 import { performance, PerformanceObserver } from 'perf_hooks'
 
 export interface SDKOptions {
-  /**
-   * If `true` it will output the path and the method called
-   */
-  verbose?: boolean
-  /**
-   * If `true` it will output the API timing response
-   */
-  apiTiming?: boolean
-}
-
-export interface Config {
-  token: string
-  basePath?: string
-  apiVersion?: string
-  options?: {
+  debug?: {
     /**
      * If `true` it will output the path and the method called
      */
@@ -30,17 +16,24 @@ export interface Config {
   }
 }
 
+export interface Config {
+  token: string
+  basePath?: string
+  apiVersion?: string
+  options?: SDKOptions
+}
+
 export class Client {
   private token: string
   private basePath: string
   private apiVersion: string
-  private options: SDKOptions
+  private options: SDKOptions | undefined
 
   constructor({ token, basePath, apiVersion, options }: Config) {
     this.token = token
     this.basePath = basePath || 'https://api.duffel.com'
     this.apiVersion = apiVersion || 'beta'
-    this.options = options || {}
+    this.options = options
   }
 
   private performanceTracking = () => {
@@ -99,21 +92,19 @@ export class Client {
       })
     }
 
-    if (this.options) {
-      if (this.options.verbose) {
-        console.info('Endpoint: ', fullPath.href)
-        console.info('Method: ', method)
-        if (bodyParams) console.info('Body Parameters: ', bodyParams)
-        if (queryParams) console.info('Query Parameters: ', queryParams)
-      }
-      if (this.options.apiTiming) {
-        performanceObserver = new PerformanceObserver((list) => {
-          const entry = list.getEntries()[0]
-          console.info(`Time for ('${entry.name}')`, entry.duration)
-        })
-        performanceObserver.observe({ entryTypes: ['measure'] })
-        this.performanceTracking().start(fullPath.pathname)
-      }
+    if (this.options?.debug?.verbose) {
+      console.info('Endpoint: ', fullPath.href)
+      console.info('Method: ', method)
+      if (bodyParams) console.info('Body Parameters: ', bodyParams)
+      if (queryParams) console.info('Query Parameters: ', queryParams)
+    }
+    if (this.options?.debug?.apiTiming) {
+      performanceObserver = new PerformanceObserver((list) => {
+        const entry = list.getEntries()[0]
+        console.info(`Time for ('${entry.name}')`, entry.duration)
+      })
+      performanceObserver.observe({ entryTypes: ['measure'] })
+      this.performanceTracking().start(fullPath.pathname)
     }
 
     const response = await fetch(fullPath.href, {
@@ -126,14 +117,14 @@ export class Client {
 
     if (contentType && contentType.includes('json')) {
       const responseBody = await response.json()
-      if (this.options.apiTiming && performanceObserver) {
+      if (this.options?.debug?.apiTiming && performanceObserver) {
         this.performanceTracking().stop(fullPath.pathname)
         performanceObserver.disconnect()
       }
       return responseBody
     } else {
       const responseBody = (await response.text()) as any
-      if (this.options.apiTiming && performanceObserver) {
+      if (this.options?.debug?.apiTiming && performanceObserver) {
         this.performanceTracking().stop(fullPath.pathname)
         performanceObserver.disconnect()
       }
