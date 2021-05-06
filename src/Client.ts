@@ -65,6 +65,7 @@ export class Client {
   }): Promise<APIResponse<T_Response>> => {
     let body
     let performanceObserver
+    let responseBody
     const fullPath = new URL(path, this.basePath)
     const userAgent = `Duffel/${this.apiVersion} duffel_api_javascript/${process.env.npm_package_version}`
     const headers = {
@@ -116,20 +117,17 @@ export class Client {
     const contentType = response.headers.get('content-type')
 
     if (contentType && contentType.includes('json')) {
-      const responseBody = await response.json()
-      if (this.options?.debug?.apiTiming && performanceObserver) {
-        this.performanceTracking().stop(fullPath.pathname)
-        performanceObserver.disconnect()
-      }
-      return responseBody
+      responseBody = await response.json()
     } else {
-      const responseBody = (await response.text()) as any
-      if (this.options?.debug?.apiTiming && performanceObserver) {
-        this.performanceTracking().stop(fullPath.pathname)
-        performanceObserver.disconnect()
-      }
-      return responseBody
+      responseBody = (await response.text()) as any
     }
+
+    if (this.options?.debug?.apiTiming && performanceObserver) {
+      this.performanceTracking().stop(fullPath.pathname)
+      performanceObserver.disconnect()
+    }
+
+    return responseBody
   }
 
   async *paginatedRequest<T_Response = any>({
