@@ -4,11 +4,21 @@ import { CreateOrder, ListParamsOrders, Order } from './OrdersTypes'
 
 export class Orders extends Resource {
   /**
+   * Endpoint path
+   */
+  path: string
+
+  constructor(args: any) {
+    super(args)
+    this.path = 'air/orders'
+  }
+
+  /**
    * Retrieves an order by its ID
    * @param {string} id - Duffel's unique identifier for the order
    */
   public get = async (id: string): Promise<APIResponse<Order>> =>
-    this.request({ method: 'GET', path: `air/orders/${id}` })
+    this.request({ method: 'GET', path: `${this.path}/${id}` })
 
   /**
    * Retrieves a paginated list of all orders. The results may be returned in any order.
@@ -30,6 +40,6 @@ export class Orders extends Resource {
     bodyParams: CreateOrder
     queryParams?: Record<string, any>
   }): Promise<APIResponse<Order>> => {
-    return this.request({ method: 'POST', path: `air/orders`, bodyParams, queryParams })
+    return this.request({ method: 'POST', path: this.path, bodyParams, queryParams })
   }
 }

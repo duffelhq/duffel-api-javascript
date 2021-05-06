@@ -8,12 +8,22 @@ import { Airport } from '../../types'
  */
 export class Airports extends Resource {
   /**
+   * Endpoint path
+   */
+  path: string
+
+  constructor(args: any) {
+    super(args)
+    this.path = 'air/airports'
+  }
+
+  /**
    * Retrieves an airport by its ID
    * @param {string} id - Duffel's unique identifier for the airport
    * @link https://duffel.com/docs/api/airports/get-airport-by-id
    */
   public get = async (id: string): Promise<APIResponse<Airport>> =>
-    this.request({ method: 'GET', path: `air/airports/${id}` })
+    this.request({ method: 'GET', path: `${this.path}/${id}` })
 
   /**
    * Retrieves a paginated list of all airports. The results may be returned in any order.
@@ -21,5 +31,5 @@ export class Airports extends Resource {
    * @link https://duffel.com/docs/api/airports/get-airports
    */
   public list = (options?: { queryParams?: PaginationMeta }): AsyncGenerator<APIResponse<Airport[]>, void, unknown> =>
-    this.paginatedRequest({ path: 'air/airports', ...options })
+    this.paginatedRequest({ path: this.path, ...options })
 }

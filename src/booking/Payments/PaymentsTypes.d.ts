@@ -1,3 +1,5 @@
+import { PaymentType } from 'types/shared'
+
 /**
  * To pay for an unpaid order you've previously created, you'll need to create a payment for it.
  * @link https:/duffel.com/docs/api/payments/schema
@@ -28,14 +30,14 @@ export interface Payment {
    * Otherwise, you must pay using your Duffel account's balance by specifying `balance`. In [test mode](https://duffel.com/docs/api/overview/test-mode), your balance is unlimited.
    * If you're not sure which of these options applies to you, get in touch with the Duffel support team at [help@duffel.com](mailto:help@duffel.com).
    */
-  type: 'arc_bsp_cash' | 'balance'
+  type: PaymentType
 }
 
 export interface CreatePayment {
   /**
    * The `id` of the order you want to pay for.
    */
-  orderId: string
+  order_id: string
   /**
    * The payment details to use to pay for the order
    */

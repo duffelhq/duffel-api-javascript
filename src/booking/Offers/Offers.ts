@@ -8,12 +8,22 @@ import { Resource } from '../../Resource'
  */
 export class Offers extends Resource {
   /**
+   * Endpoint path
+   */
+  path: string
+
+  constructor(args: any) {
+    super(args)
+    this.path = 'air/offers'
+  }
+
+  /**
    * Retrieves an offer by its ID
    * @param {string} id - Duffel's unique identifier for the offer
    * @link https:/duffel.com/docs/api/offers/get-offer-by-id
    */
   public get = async (id: string): Promise<APIResponse<Offer>> =>
-    this.request({ method: 'GET', path: `air/offers/${id}` })
+    this.request({ method: 'GET', path: `${this.path}/${id}` })
 
   /**
    * Retrieves a paginated list of all offers. The results may be returned in any order.
@@ -21,5 +31,5 @@ export class Offers extends Resource {
    * @link https://duffel.com/docs/api/offers/get-offers
    */
   public list = (options?: PaginationMeta): AsyncGenerator<APIResponse<Offer[]>, void, unknown> =>
-    this.paginatedRequest({ path: 'air/offers', ...options })
+    this.paginatedRequest({ path: this.path, ...options })
 }
