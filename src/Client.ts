@@ -10,7 +10,7 @@ export interface SDKOptions {
      */
     verbose?: boolean
     /**
-     * If `true` it will output the API timing response
+     * If `true` it will output timing information for the API response
      */
     apiTiming?: boolean
   }
