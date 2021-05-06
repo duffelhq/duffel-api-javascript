@@ -1,22 +1,62 @@
 import fetch from 'isomorphic-unfetch'
 import { URL, URLSearchParams } from 'url'
 import { APIResponse, PaginationMeta } from './types'
+import { performance, PerformanceObserver } from 'perf_hooks'
+
+export interface SDKOptions {
+  /**
+   * If `true` it will output the path and the method called
+   */
+  verbose?: boolean
+  /**
+   * If `true` it will output the API timing response
+   */
+  apiTiming?: boolean
+}
 
 export interface Config {
   token: string
   basePath?: string
   apiVersion?: string
+  options?: {
+    /**
+     * If `true` it will output the path and the method called
+     */
+    verbose?: boolean
+    /**
+     * If `true` it will output the API timing response
+     */
+    apiTiming?: boolean
+  }
 }
 
 export class Client {
   private token: string
   private basePath: string
   private apiVersion: string
+  private options: SDKOptions
 
-  constructor({ token, basePath, apiVersion }: Config) {
+  constructor({ token, basePath, apiVersion, options }: Config) {
     this.token = token
     this.basePath = basePath || 'https://api.duffel.com'
     this.apiVersion = apiVersion || 'beta'
+    this.options = options || {}
+  }
+
+  private performanceTracking = () => {
+    const start = (path: string) => {
+      performance.mark(`${path}-start`)
+    }
+
+    const stop = (path: string) => {
+      performance.mark(`${path}-end`)
+      performance.measure(path, `${path}-start`, `${path}-end`)
+    }
+
+    return {
+      start,
+      stop
+    }
   }
 
   public request = async <T_Response = any>({
@@ -31,6 +71,7 @@ export class Client {
     queryParams?: Record<string, any>
   }): Promise<APIResponse<T_Response>> => {
     let body
+    let performanceObserver
     const fullPath = new URL(path, this.basePath)
     const userAgent = `Duffel/${this.apiVersion} duffel_api_javascript/${process.env.npm_package_version}`
     const headers = {
@@ -58,6 +99,23 @@ export class Client {
       })
     }
 
+    if (this.options) {
+      if (this.options.verbose) {
+        console.info('Endpoint: ', fullPath.href)
+        console.info('Method: ', method)
+        if (bodyParams) console.info('Body Parameters: ', bodyParams)
+        if (queryParams) console.info('Query Parameters: ', queryParams)
+      }
+      if (this.options.apiTiming) {
+        performanceObserver = new PerformanceObserver((list) => {
+          const entry = list.getEntries()[0]
+          console.info(`Time for ('${entry.name}')`, entry.duration)
+        })
+        performanceObserver.observe({ entryTypes: ['measure'] })
+        this.performanceTracking().start(fullPath.pathname)
+      }
+    }
+
     const response = await fetch(fullPath.href, {
       method,
       headers,
@@ -68,9 +126,17 @@ export class Client {
 
     if (contentType && contentType.includes('json')) {
       const responseBody = await response.json()
+      if (this.options.apiTiming && performanceObserver) {
+        this.performanceTracking().stop(fullPath.pathname)
+        performanceObserver.disconnect()
+      }
       return responseBody
     } else {
       const responseBody = (await response.text()) as any
+      if (this.options.apiTiming && performanceObserver) {
+        this.performanceTracking().stop(fullPath.pathname)
+        performanceObserver.disconnect()
+      }
       return responseBody
     }
   }
