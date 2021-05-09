@@ -30,7 +30,7 @@
   },
   "dependencies": {
     "@types/node": "^15.0.1",
-    "dotenv": "^8.2.0",
+    "dotenv": "^9.0.1",
     "isomorphic-unfetch": "^3.1.0",
     "lodash": "^4.17.21",
     "nock": "^13.0.11",
