@@ -1,4 +1,4 @@
-import { Payment } from './PaymentsTypes'
+import { Payment } from 'types'
 
 export const mockPayment: Payment = {
   type: 'balance',

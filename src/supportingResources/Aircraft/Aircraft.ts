@@ -1,6 +1,5 @@
-import { APIResponse, PaginationMeta } from 'types'
+import { APIResponse, PaginationMeta, Aircraft as AircraftType } from 'types'
 import { Resource } from '../../Resource'
-import { Aircraft as AircraftType } from '../../types'
 
 /** Aircraft are used to describe what passengers will fly in for a given trip
  * @class

@@ -63,6 +63,11 @@ export interface Airport {
    */
   iata_country_code: string
   /**
+   * The 3-letter IATA code for the city where the place is located.
+   * Only present for airports which are registered with IATA as belonging to a [metropolitan area](https://portal.iata.org/faq/articles/en_US/FAQ/How-do-I-create-a-new-Metropolitan-Area).
+   */
+  iata_city_code?: string | null
+  /**
    * The four-character ICAO code for the airport
    */
   icao_code?: string

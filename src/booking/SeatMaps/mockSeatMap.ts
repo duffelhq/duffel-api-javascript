@@ -1,4 +1,4 @@
-import { SeatMap } from './SeatMap'
+import { SeatMap } from 'types'
 
 export const mockSeatMap: SeatMap = {
   cabins: [

@@ -1,6 +1,5 @@
-import { APIResponse } from 'types'
+import { APIResponse, CreateOrderCancellations, OrderCancellationsResponse } from 'types'
 import { Resource } from '../../Resource'
-import { CreateOrderCancellations, OrderCancellationsResponse } from './OrderCancellationsTypes'
 
 export class OrderCancellations extends Resource {
   /**

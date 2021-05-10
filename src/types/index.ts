@@ -1,7 +1,12 @@
 export * from './Offer'
+export * from './OfferRequests'
+export * from './OrderCancellations'
 export * from './OrderChangeOffer'
 export * from './OrderChangeRequests'
 export * from './OrderChanges'
+export * from './Orders'
+export * from './Payments'
+export * from './SeatMap'
 export * from './shared'
 export * from './supportingResources'
 

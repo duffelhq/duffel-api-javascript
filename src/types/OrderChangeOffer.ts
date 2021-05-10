@@ -1,10 +1,10 @@
 import { OfferSliceSegment } from './Offer'
-import { PlaceType } from './shared'
+import { PlaceType, Place } from './shared'
 
 /**
  * @link https://duffel.com/docs/api/order-change-offers/schema
  */
-interface OrderChangeOffer {
+export interface OrderChangeOffer {
   /**
    * The price of this offer as a change to your existing order, excluding taxes
    */
@@ -85,7 +85,7 @@ interface OrderChangeOffer {
   updated_at: string
 }
 
-interface OrderChangeOfferSlices {
+export interface OrderChangeOfferSlices {
   /**
    * The slices that will be added to the order
    */
@@ -97,7 +97,7 @@ interface OrderChangeOfferSlices {
   remove: OrderChangeOfferSlice[]
 }
 
-interface OrderChangeOfferSlice {
+export interface OrderChangeOfferSlice {
   /**
    * The city or airport where this slice ends
    */
