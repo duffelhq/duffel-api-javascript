@@ -1,7 +1,38 @@
-import { Aircraft } from '../../supportingResources/Aircraft/AircraftTypes'
-import { Airline } from '../../supportingResources/Airlines/AirlinesType'
-import { OfferAvailableServiceBaggageMetadata } from '../Offers/OfferTypes'
-import * as DuffelAPITypes from '../../types/shared'
+import {
+  Aircraft,
+  Airline,
+  OfferAvailableServiceBaggageMetadata,
+  CabinClass,
+  DuffelPassengerGender,
+  DuffelPassengerTitle,
+  DuffelPassengerType,
+  PassengerIdentityDocumentType,
+  Place,
+  PlaceType,
+  FlightsConditions,
+  PaymentType
+} from '../../types'
+
+/**
+ * An object containing metadata about the service, like the designator of the seat.
+ */
+export interface Seat {
+  /**
+   * The designator used to uniquely identify the seat, usually made up of a row number and a column letter
+   * @example "14B"
+   */
+  designator: string
+  /**
+   * Each disclosure is text, in English, provided by the airline that describes the terms and conditions of this seat. We recommend showing this in your user interface to make sure that customers understand any restrictions and limitations.
+   * @example "["Do not seat children in exit row seats","Do not seat passengers with special needs in exit row seats"]"
+   */
+  disclosures: string[]
+  /**
+   * A name which describes the type of seat, which you can display in your user interface to help customers to understand its features
+   * @example "Exit row seat"
+   */
+  name: string
+}
 
 /**
  * An object containing metadata about the service, like the maximum weight and dimensions of the baggage.
@@ -33,7 +64,7 @@ export interface OrderService {
    * The metadata varies by the type of service. It includes further data about the service.
    * For example, for baggages, it may have data about size and weight restrictions.
    */
-  metadata?: OrderServiceBaggageMetadata | DuffelAPITypes.Seat
+  metadata?: OrderServiceBaggageMetadata | Seat
   /**
    * List of passenger ids the service applies to. The service applies to all the passengers in this list.
    * @example ["pas_00009hj8USM7Ncg31cBCLL"]
@@ -76,7 +107,7 @@ export interface OrderSegmentPassenger {
   /**
    * The cabin class that the passenger will travel in on this segment
    */
-  cabin_class: DuffelAPITypes.CabinClass
+  cabin_class: CabinClass
   /**
    * The name that the marketing carrier uses to market this cabin class
    */
@@ -88,7 +119,7 @@ export interface OrderSegmentPassenger {
   /**
    * An object containing metadata about the service, like the designator of the seat.
    */
-  seat?: DuffelAPITypes.Seat
+  seat?: Seat
 }
 
 export interface OrderPassenger {
@@ -112,17 +143,17 @@ export interface OrderPassenger {
    * The passenger's gender
    * @return "m" or "f"
    */
-  gender: DuffelAPITypes.DuffelPassengerGender
+  gender: DuffelPassengerGender
   /**
    * The passenger's title
    * @returns "mr", "ms", "mrs", or "miss"
    */
-  title: DuffelAPITypes.DuffelPassengerTitle
+  title: DuffelPassengerTitle
   /**
    * The type of the passenger
    * @return "adult", "child", or "infant_without_seat"
    */
-  type: DuffelAPITypes.DuffelPassengerType
+  type: DuffelPassengerType
   /**
    * The id of the infant associated with this passenger
    * @return "adult", "child", or "infant_without_seat"
@@ -134,7 +165,7 @@ export interface OrderPassengerIdentityDocument {
   /**
    * The type of the identity document. Currently, the only supported type is passport. This must be one of the allowed_passenger_identity_document_types on the offer.
    */
-  type: DuffelAPITypes.PassengerIdentityDocumentType
+  type: PassengerIdentityDocumentType
 
   /**
    * The unique identifier of the identity document
@@ -187,7 +218,7 @@ export interface OrderSliceSegment {
   /**
    * The city or airport where this slice ends
    */
-  destination: DuffelAPITypes.Place
+  destination: Place
   /**
    * The terminal at the destination airport where the segment is scheduled to arrive
    * @example "5"
@@ -223,7 +254,7 @@ export interface OrderSliceSegment {
   /**
    * The city or airport where this slice begins
    */
-  origin: DuffelAPITypes.Place
+  origin: Place
   /**
    * The terminal at the origin airport from which the segment is scheduled to depart
    * @example "B"
@@ -249,23 +280,23 @@ export interface OrderSlice {
    * The conditions associated with this slice, describing the kinds of modifications you can make and any penalties that will apply to those modifications.
    * This condition is applied only to this slice and to all the passengers associated with this order - for information at the order level (e.g. "what happens if I want to change all the slices?") refer to the `conditions` at the top level. If a particular kind of modification is allowed, you may not always be able to take action through the Duffel API. In some cases, you may need to contact the Duffel support team or the airline directly.
    */
-  conditions: DuffelAPITypes.FlightsConditions
+  conditions: FlightsConditions
   /**
    * The city or airport where this slice ends
    */
-  destination: DuffelAPITypes.Place
+  destination: Place
   /**
    * The type of the destination
    */
-  destination_type: DuffelAPITypes.PlaceType
+  destination_type: PlaceType
   /**
    * The city or airport where this slice begins
    */
-  origin: DuffelAPITypes.Place
+  origin: Place
   /**
    * The type of the origin
    */
-  origin_type: DuffelAPITypes.PlaceType
+  origin_type: PlaceType
 
   /**
    * Duffel's unique identifier for the slice. It identifies the slice of an order (i.e. the same slice across orders will have different ids.
@@ -338,7 +369,7 @@ export interface OrderPayment {
    * Otherwise, you must pay using your Duffel account's `balance` by specifying balance. In test mode, your balance is unlimited.
    * If you're not sure which of these options applies to you, get in touch with the Duffel support team at help@duffel.com.
    */
-  type: DuffelAPITypes.PaymentType
+  type: PaymentType
 
   /**
    * The amount of the payment. This should be the same as the `total_amount` of the offer specified in `selected_offers` for an instant order or the `total_amount` of the previously created pay later order specified in `order_id`, plus the `total_amount` of all the services specified in `services`.
@@ -458,7 +489,7 @@ export interface Order {
    *
    * In some cases, you may need to contact the Duffel support team or the airline directly.
    */
-  conditions: DuffelAPITypes.FlightsConditions
+  conditions: FlightsConditions
 }
 
 export interface CreateOrder {

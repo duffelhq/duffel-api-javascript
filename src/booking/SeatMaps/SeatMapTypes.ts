@@ -3,7 +3,6 @@
  * A seat map includes the data for rendering seats in the relevant cabins, along with their total cost and other information such as disclosures.
  * @link https://duffel.com/docs/api/seat-maps/schema
  */
-
 export interface SeatMap {
   /**
    * Duffel's unique identifier for the seat map

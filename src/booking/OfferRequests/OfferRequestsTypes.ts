@@ -1,4 +1,4 @@
-import { CabinClass, Place, PlaceType } from '../../types/shared'
+import { CabinClass, Place, PlaceType } from '../../types'
 import { Offer } from '../Offers/OfferTypes'
 
 export interface OfferRequestSlice {

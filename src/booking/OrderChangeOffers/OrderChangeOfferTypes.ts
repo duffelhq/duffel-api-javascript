@@ -1,5 +1,5 @@
 import { OfferSliceSegment } from '../Offers/OfferTypes'
-import { PlaceType, Place } from '../../types/shared'
+import { PlaceType, Place } from '../../types'
 
 /**
  * @link https://duffel.com/docs/api/order-change-offers/schema

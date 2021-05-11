@@ -1,4 +1,4 @@
-import { CabinClass, Place } from '../../types/shared'
+import { CabinClass, Place } from '../../types'
 import { OrderChangeOfferSlices } from '../OrderChangeOffers/OrderChangeOfferTypes'
 
 export interface OrderChangeSliceResponse {

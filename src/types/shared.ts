@@ -1,4 +1,4 @@
-import { Airport } from '../supportingResources/Airports/AirportsType'
+import { Airport } from '../supportingResources/Airports/AirportsTypes'
 
 /**
  * The metropolitan area where the airport is located.
@@ -153,27 +153,6 @@ export type FlightsConditions = {
      */
     allowed: boolean
   } | null
-}
-
-/**
- * An object containing metadata about the service, like the designator of the seat.
- */
-export interface Seat {
-  /**
-   * The designator used to uniquely identify the seat, usually made up of a row number and a column letter
-   * @example "14B"
-   */
-  designator: string
-  /**
-   * Each disclosure is text, in English, provided by the airline that describes the terms and conditions of this seat. We recommend showing this in your user interface to make sure that customers understand any restrictions and limitations.
-   * @example "["Do not seat children in exit row seats","Do not seat passengers with special needs in exit row seats"]"
-   */
-  disclosures: string[]
-  /**
-   * A name which describes the type of seat, which you can display in your user interface to help customers to understand its features
-   * @example "Exit row seat"
-   */
-  name: string
 }
 
 /**

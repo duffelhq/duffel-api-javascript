@@ -1,2 +1,2 @@
 export * from './Airports'
-export * as AirportType from './AirportsType'
+export * as AirportType from './AirportsTypes'

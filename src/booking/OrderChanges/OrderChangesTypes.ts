@@ -1,5 +1,5 @@
 import { OrderChangeOfferSlices } from '../OrderChangeOffers/OrderChangeOfferTypes'
-import { PaymentType } from '../../types/shared'
+import { PaymentType } from '../../types'
 
 export interface OrderChange {
   /**

@@ -1,4 +1,4 @@
-import { City } from '../../types/shared'
+import { City } from '../../types'
 
 /**
  * Airports are used to identify origins and destinations in journey slices
