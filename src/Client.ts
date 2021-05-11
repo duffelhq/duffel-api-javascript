@@ -43,12 +43,14 @@ export class Client {
     method,
     path,
     bodyParams,
-    queryParams
+    queryParams,
+    compress = true
   }: {
     method: string
     path: string
     bodyParams?: any
     queryParams?: Record<string, any>
+    compress?: boolean
   }): Promise<APIResponse<T_Response>> => {
     let body
     let performanceObserver
@@ -98,7 +100,8 @@ export class Client {
     const response = await fetch(fullPath.href, {
       method,
       headers,
-      body
+      body,
+      compress
     })
 
     const contentType = response.headers.get('content-type')
