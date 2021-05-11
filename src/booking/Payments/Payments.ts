@@ -1,4 +1,4 @@
-import { APIResponse, Payment, CreatePayment } from 'types'
+import { APIResponse, Payment, CreatePayment } from '../../types'
 import { Resource } from '../../Resource'
 
 export class Payments extends Resource {

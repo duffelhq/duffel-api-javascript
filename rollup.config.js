@@ -1,3 +1,4 @@
+import { terser } from 'rollup-plugin-terser'
 import peerDepsExternal from 'rollup-plugin-peer-deps-external'
 import resolve from '@rollup/plugin-node-resolve'
 import commonjs from '@rollup/plugin-commonjs'
@@ -35,7 +36,8 @@ export default [
       commonjs({
         exclude: 'node_modules',
         ignoreGlobal: true
-      })
+      }),
+      terser()
     ],
     external: Object.keys(globals)
   },

@@ -1,5 +1,5 @@
 import { mockOffer } from '../Offers/mockOffer'
-import { CreateOfferRequest, OfferRequest } from 'types'
+import { CreateOfferRequest, OfferRequest } from '../../types'
 
 export const mockCreateOfferRequest: CreateOfferRequest = {
   slices: [

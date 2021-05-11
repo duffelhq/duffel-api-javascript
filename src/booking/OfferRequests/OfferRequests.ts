@@ -1,4 +1,10 @@
-import { APIResponse, PaginationMeta, CreateOfferRequest, CreateOfferRequestQueryParameters, OfferRequest } from 'types'
+import {
+  APIResponse,
+  PaginationMeta,
+  CreateOfferRequest,
+  CreateOfferRequestQueryParameters,
+  OfferRequest
+} from '../../types'
 import { Resource } from '../../Resource'
 
 /**

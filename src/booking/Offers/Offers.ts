@@ -1,4 +1,4 @@
-import { APIResponse, Offer, PaginationMeta } from 'types'
+import { APIResponse, Offer, PaginationMeta } from '../../types'
 import { Resource } from '../../Resource'
 
 /**

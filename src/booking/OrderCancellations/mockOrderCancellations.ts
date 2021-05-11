@@ -1,4 +1,4 @@
-import { OrderCancellationsResponse } from 'types'
+import { OrderCancellationsResponse } from '../../types'
 
 export const mockOrderCancellations: OrderCancellationsResponse = {
   refund_to: 'arc_bsp_cash',

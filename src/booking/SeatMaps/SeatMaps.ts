@@ -1,4 +1,4 @@
-import { APIResponse, SeatMap } from 'types'
+import { APIResponse, SeatMap } from '../../types'
 import { Resource } from '../../Resource'
 
 export class SeatMaps extends Resource {

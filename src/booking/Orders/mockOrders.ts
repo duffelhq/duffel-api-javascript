@@ -1,4 +1,4 @@
-import { CreateOrder, Order } from 'types'
+import { CreateOrder, Order } from '../../types'
 
 export const mockCreateOrderRequest: CreateOrder = {
   type: 'instant',

@@ -1,5 +1,7 @@
-import { Aircraft, Airline, OfferAvailableServiceBaggageMetadata } from 'types'
-import * as DuffelAPITypes from 'types/shared'
+import { Aircraft } from '../../supportingResources/Aircraft/AircraftTypes'
+import { Airline } from '../../supportingResources/Airlines/AirlinesType'
+import { OfferAvailableServiceBaggageMetadata } from '../Offers/OfferTypes'
+import * as DuffelAPITypes from '../../types/shared'
 
 /**
  * An object containing metadata about the service, like the maximum weight and dimensions of the baggage.

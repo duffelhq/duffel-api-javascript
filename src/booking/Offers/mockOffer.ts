@@ -1,4 +1,4 @@
-import { Offer } from 'types'
+import { Offer } from '../../types'
 
 export const mockOffer: Offer = {
   updated_at: '2020-01-17T10:12:14.545Z',

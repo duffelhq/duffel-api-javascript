@@ -1,5 +1,7 @@
-import { CabinClass, FlightsConditions, PassengerIdentityDocumentType, Place, PlaceType } from './shared'
-import { Aircraft, Airline, Airport } from './supportingResources'
+import { CabinClass, FlightsConditions, PassengerIdentityDocumentType, Place, PlaceType } from '../../types/shared'
+import { Aircraft } from '../../supportingResources/Aircraft/AircraftTypes'
+import { Airline } from '../../supportingResources/Airlines/AirlinesType'
+import { Airport } from '../../supportingResources/Airports/AirportsType'
 
 /**
  * Each offer represents flights you can buy from an airline at a particular price that meet your search criteria.

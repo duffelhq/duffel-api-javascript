@@ -1,6 +1,5 @@
-import { APIResponse, PaginationMeta } from 'types'
+import { APIResponse, PaginationMeta, Airline } from '../../types'
 import { Resource } from '../../Resource'
-import { Airline } from '../../types'
 
 /** Airlines are used to identify the air travel companies selling and operating flights
  * @class

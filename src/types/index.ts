@@ -1,75 +1,14 @@
-export * from './Offer'
-export * from './OfferRequests'
-export * from './OrderCancellations'
-export * from './OrderChangeOffer'
-export * from './OrderChangeRequests'
-export * from './OrderChanges'
-export * from './Orders'
-export * from './Payments'
-export * from './SeatMap'
+export * from '../booking/Offers/OfferTypes'
+export * from '../booking/OfferRequests/OfferRequestsTypes'
+export * from '../booking/OrderCancellations/OrderCancellationsTypes'
+export * from '../booking/OrderChangeOffers/OrderChangeOfferTypes'
+export * from '../booking/OrderChangeRequests/OrderChangeRequestsTypes'
+export * from '../booking/OrderChanges/OrderChangesTypes'
+export * from '../booking/Orders/OrdersTypes'
+export * from '../booking/Payments/PaymentsTypes'
+export * from '../booking/SeatMaps/SeatMapTypes'
+export * from '../supportingResources/Aircraft/AircraftTypes'
+export * from '../supportingResources/Airlines/AirlinesType'
+export * from '../supportingResources/Airports/AirportsType'
 export * from './shared'
-export * from './supportingResources'
-
-/**
- * Our list APIs will only return a limited number of results at a time.
- * By default, we'll return 50 results per page, but you can set this to any number between 1 and 200.
- * @link https://duffel.com/docs/api/overview/pagination
- */
-export interface PaginationMeta {
-  /**
-   * The number of results to be returned in a page, between 1 and 200 (optional, default is 50)
-   */
-  limit?: number
-
-  /**
-   * "Before" cursor for pagination
-   */
-  before?: string
-
-  /**
-   * "After" cursor for pagination
-   */
-  after?: string | null
-}
-
-export interface ApiResponseMeta {
-  request_id: string
-  status: number
-}
-
-/**
- * Duffel uses standard [HTTP response codes](https://httpstatuses.com/) to indicate the success or failure of API requests.
- * @link https://duffel.com/docs/api/overview/errors
- */
-export interface ApiResponseError {
-  /**
-   * A machine-readable identifier for this specific error
-   */
-  code: string
-
-  /**
-   * A URL pointing to a place in our documentation where you can read about the error
-   */
-  documentation_url: string
-
-  /**
-   * A more detailed human-readable description of what went wrong
-   */
-  message: string
-
-  /**
-   * A quick and simple description of what went wrong
-   */
-  title: string
-
-  /**
-   * A machine-readable identifier for the general category of error
-   */
-  type: string
-}
-
-export interface APIResponse<T> {
-  data?: T
-  meta?: ApiResponseMeta | PaginationMeta
-  errors?: ApiResponseError[]
-}
+export * from './ClientType'

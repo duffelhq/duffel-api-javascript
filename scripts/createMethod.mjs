@@ -82,7 +82,7 @@ const print = () => {
   console.log('--------------------------------------------------------')
 }
 const makeHeader = () => {
-  return `import { APIResponse, PaginationMeta } from 'types'
+  return `import { APIResponse } from '../../types'
 import { Resource } from '../../Resource'
 `
 }
@@ -117,7 +117,7 @@ const mockContent = () =>
 
 export const mock${methodName} = {}`
 
-// mockMethodName.d.ts
+// mockMethodNameType.ts
 const definitionFileTypes = () =>
   `/**
 * Create your definitions file
@@ -161,7 +161,7 @@ const createMethodFiles = () => {
   // create mockMethodName.ts
   createFile(`${methodPath}/${`mock${methodName}`}.ts`, mockContent())
   // create src/types/MethodName.d.ts
-  createFile(path.join(__dirname, `types/${methodName}.d.ts`), definitionFileTypes())
+  createFile(`${methodPath}/${methodName}Type.ts`, definitionFileTypes())
 }
 
 const main = async () => {

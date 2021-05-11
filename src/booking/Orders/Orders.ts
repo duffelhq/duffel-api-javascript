@@ -1,4 +1,4 @@
-import { APIResponse, PaginationMeta, CreateOrder, ListParamsOrders, Order } from 'types'
+import { APIResponse, PaginationMeta, CreateOrder, ListParamsOrders, Order } from '../../types'
 import { Resource } from '../../Resource'
 
 export class Orders extends Resource {

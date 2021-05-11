@@ -1,7 +1,10 @@
-import { OrderChangeOfferSlice } from './OrderRequestChanges'
-import { PaymentType } from './shared'
+import { OfferSliceSegment } from '../Offers/OfferTypes'
+import { PlaceType, Place } from '../../types/shared'
 
-interface OrderChange {
+/**
+ * @link https://duffel.com/docs/api/order-change-offers/schema
+ */
+export interface OrderChangeOffer {
   /**
    * The price of this offer as a change to your existing order, excluding taxes
    */
@@ -17,23 +20,12 @@ interface OrderChange {
   change_total_currency: string | null
 
   /**
-   * Whether the order was created in live mode. This field will be set to `true`
-   * if the order was created in live mode, or `false` if it was created in test mode.
-   */
-  live_mode: boolean
-
-  /**
-   * The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) datetime at which the offer was created
+   * The ISO 8601 datetime at which the offer was created
    */
   created_at: string
 
   /**
-   * The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) datetime that indicates when the order change was confirmed
-   */
-  confirmed_at: string
-
-  /**
-   * The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) datetime at which the offer will expire
+   * The ISO 8601 datetime at which the offer will expire
    * and no longer be usable to create an order
    */
   expires_at: string
@@ -58,14 +50,14 @@ interface OrderChange {
   new_total_currency: string
 
   /**
-   * Duffel's unique identifier for the order which is being changed
+   * The ID for an order change if one has already been created from this order change offer
    */
-  order_id: string
+  order_change_id: string
 
   /**
    * The penalty price imposed by the airline for making this change
    */
-  penalty_amount: string | null
+  penalty_amount: string
 
   /**
    * The currency of the penalty_amount, as an ISO 4217 currency code.
@@ -74,7 +66,7 @@ interface OrderChange {
    * currency provided by the airline (which will usually be based on
    * the country where your IATA agency is registered).
    */
-  penalty_currency: string | null
+  penalty_currency: string
 
   /**
    * Where the refund, once confirmed, will be sent. card is currently a restricted feature.
@@ -85,17 +77,59 @@ interface OrderChange {
   /**
    * The slices to be added and/or removed
    */
-  slices: OrderChangeOfferSlice
+  slices: OrderChangeOfferSlices
 
   /**
-   * The available payment types to complete the order change.
+   *  The ISO 8601 datetime at which the offer was last updated
    */
-  available_payment_types?: PaymentType[] | null
+  updated_at: string
 }
 
-interface CreateOrderChangeParameters {
+export interface OrderChangeOfferSlices {
   /**
-   * Duffel's unique identifier for the order change offer
+   * The slices that will be added to the order
    */
-  selected_order_change_offer: string
+  add: OrderChangeOfferSlice[]
+
+  /**
+   * The slices that will be removed from the order
+   */
+  remove: OrderChangeOfferSlice[]
+}
+
+export interface OrderChangeOfferSlice {
+  /**
+   * The city or airport where this slice ends
+   */
+  destination: Place
+
+  /**
+   * The type of the destination
+   */
+  destination_type: PlaceType
+
+  /**
+   * The duration of the slice, represented as a [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601#Durations) duration
+   */
+  duration?: string | null
+
+  /**
+   * Duffel's unique identifier for the slice. It identifies the slice of an order (i.e. the same slice across orders will have different `id`s.
+   */
+  id: string
+
+  /**
+   * The city or airport where this slice begins
+   */
+  origin: Place
+
+  /**
+   * The type of the origin
+   */
+  origin_type: PlaceType
+
+  /**
+   * The segments - that is, specific flights - that the airline is offering to get the passengers from the `origin` to the `destination`
+   */
+  segments: Array<Omit<OfferSliceSegment, 'passengers'>>
 }
