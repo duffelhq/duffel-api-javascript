@@ -85,7 +85,7 @@ export type PassengerIdentityDocumentType = 'passport'
  */
 export type PlaceType = 'airport' | 'city'
 
-export type Place = (Airport & { type?: 'airport'; airports?: Airport[] | null }) | (City & { type?: 'place' })
+export type Place = (Airport & { type?: 'airport'; airports?: Airport[] | null }) | (City & { type?: 'city' })
 
 /**
  * The conditions associated with this offer, describing the kinds of modifications you can make post-booking and any penalties that will apply to those modifications.
