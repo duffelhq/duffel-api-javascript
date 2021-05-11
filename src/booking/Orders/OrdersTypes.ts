@@ -1,16 +1,16 @@
 import {
   Aircraft,
   Airline,
-  OfferAvailableServiceBaggageMetadata,
   CabinClass,
   DuffelPassengerGender,
   DuffelPassengerTitle,
   DuffelPassengerType,
-  PassengerIdentityDocumentType,
-  Place,
-  PlaceType,
   FlightsConditions,
-  PaymentType
+  OfferAvailableServiceBaggageMetadata,
+  PassengerIdentityDocumentType,
+  PaymentType,
+  Place,
+  PlaceType
 } from '../../types'
 
 /**
@@ -367,7 +367,7 @@ export interface OrderPayment {
    * The type of payment you want to apply to the order.
    * If you are an IATA agent with your own agreements with airlines, in some cases, you can pay using ARC/BSP cash by specifying `arc_bsp_cash`.
    * Otherwise, you must pay using your Duffel account's `balance` by specifying balance. In test mode, your balance is unlimited.
-   * If you're not sure which of these options applies to you, get in touch with the Duffel support team at help@duffel.com.
+   * If you're not sure which of these options applies to you, get in touch with the Duffel support team at [help@duffel.com](mailto:help@duffel.com).
    */
   type: PaymentType
 
