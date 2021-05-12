@@ -523,5 +523,5 @@ export interface ListParamsOrders {
   /**
    * Whether to filter orders that are awaiting payment or not. If not specified, all orders regardless of their payment state will be returned.
    */
-  awaiting_payment: boolean
+  awaiting_payment?: boolean
 }
