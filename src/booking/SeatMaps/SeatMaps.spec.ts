@@ -9,9 +9,12 @@ describe('SeatMaps', () => {
   })
 
   test('should get SeatMaps', async () => {
-    nock(/(.*)/).get(`/air/seat_maps/${mockSeatMap.id}`).reply(200, { data: mockSeatMap })
+    const mockOfferId = 'off_123'
+    nock(/(.*)/).get(`/air/seat_maps?offer_id=${mockOfferId}`).reply(200, { data: mockSeatMap })
 
-    const response = await new SeatMaps(new Client({ token: 'mockToken' })).get(mockSeatMap.id)
+    const response = await new SeatMaps(new Client({ token: 'mockToken' })).get({
+      queryParams: { offer_id: mockOfferId }
+    })
     expect(response.data?.id).toBe(mockSeatMap.id)
   })
 })

@@ -1,10 +1,10 @@
 {
   "name": "@duffel/duffel-api",
-  "version": "0.0.3",
+  "version": "0.0.6",
   "description": "Javascript client library for the Duffel API",
   "main": "dist/index.js",
   "module": "dist/index.es.js",
-  "types": "dist/types/index.d.ts",
+  "types": "dist/index.d.ts",
   "repository": {
     "type": "git",
     "url": "https://github.com/duffelhq/duffel-api-javascript.git"
@@ -14,8 +14,7 @@
     "url": "https://github.com/duffelhq/duffel-api-javascript/issues"
   },
   "files": [
-    "index.js",
-    "index.d.ts"
+    "dist"
   ],
   "author": "Duffel Technology Limited <help@duffel.com> (http://duffel.com)",
   "license": "MIT",
