@@ -1,4 +1,4 @@
-import { APIResponse, CreateOrderChangeRequest, OrderChangeRequestResponse } from 'types'
+import { APIResponse, CreateOrderChangeRequest, OrderChangeRequestResponse } from '../../types'
 import { Resource } from '../../Resource'
 /**
  *

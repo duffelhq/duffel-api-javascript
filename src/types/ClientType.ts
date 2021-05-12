@@ -1,10 +1,3 @@
-export * from './Offer'
-export * from './OrderChangeOffer'
-export * from './OrderChangeRequests'
-export * from './OrderChanges'
-export * from './shared'
-export * from './supportingResources'
-
 /**
  * Our list APIs will only return a limited number of results at a time.
  * By default, we'll return 50 results per page, but you can set this to any number between 1 and 200.
@@ -67,4 +60,17 @@ export interface APIResponse<T> {
   data?: T
   meta?: ApiResponseMeta | PaginationMeta
   errors?: ApiResponseError[]
+}
+
+export interface SDKOptions {
+  debug?: {
+    /**
+     * If `true` it will output the path and the method called
+     */
+    verbose?: boolean
+    /**
+     * If `true` it will output timing information for the API response
+     */
+    apiTiming?: boolean
+  }
 }

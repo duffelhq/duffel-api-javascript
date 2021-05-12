@@ -1,6 +1,5 @@
-import { APIResponse, PaginationMeta } from 'types'
+import { APIResponse, PaginationMeta, Airport } from '../../types'
 import { Resource } from '../../Resource'
-import { Airport } from '../../types'
 
 /** Airports are used to identify origins and destinations in journey slices
  * @class

@@ -1,20 +1,7 @@
 import fetch from 'isomorphic-unfetch'
 import { URL, URLSearchParams } from 'url'
-import { APIResponse, PaginationMeta } from './types'
+import { APIResponse, PaginationMeta, SDKOptions } from './types'
 import { performance, PerformanceObserver } from 'perf_hooks'
-
-export interface SDKOptions {
-  debug?: {
-    /**
-     * If `true` it will output the path and the method called
-     */
-    verbose?: boolean
-    /**
-     * If `true` it will output timing information for the API response
-     */
-    apiTiming?: boolean
-  }
-}
 
 export interface Config {
   token: string

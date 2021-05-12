@@ -1,10 +1,6 @@
-import { OfferSliceSegment } from './Offer'
-import { PlaceType } from './shared'
+import { OrderChangeOfferSlices, PaymentType } from '../../types'
 
-/**
- * @link https://duffel.com/docs/api/order-change-offers/schema
- */
-interface OrderChangeOffer {
+export interface OrderChange {
   /**
    * The price of this offer as a change to your existing order, excluding taxes
    */
@@ -20,12 +16,23 @@ interface OrderChangeOffer {
   change_total_currency: string | null
 
   /**
-   * The ISO 8601 datetime at which the offer was created
+   * Whether the order was created in live mode. This field will be set to `true`
+   * if the order was created in live mode, or `false` if it was created in test mode.
+   */
+  live_mode: boolean
+
+  /**
+   * The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) datetime at which the offer was created
    */
   created_at: string
 
   /**
-   * The ISO 8601 datetime at which the offer will expire
+   * The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) datetime that indicates when the order change was confirmed
+   */
+  confirmed_at: string
+
+  /**
+   * The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) datetime at which the offer will expire
    * and no longer be usable to create an order
    */
   expires_at: string
@@ -50,14 +57,14 @@ interface OrderChangeOffer {
   new_total_currency: string
 
   /**
-   * The ID for an order change if one has already been created from this order change offer
+   * Duffel's unique identifier for the order which is being changed
    */
-  order_change_id: string
+  order_id: string
 
   /**
    * The penalty price imposed by the airline for making this change
    */
-  penalty_amount: string
+  penalty_amount: string | null
 
   /**
    * The currency of the penalty_amount, as an ISO 4217 currency code.
@@ -66,7 +73,7 @@ interface OrderChangeOffer {
    * currency provided by the airline (which will usually be based on
    * the country where your IATA agency is registered).
    */
-  penalty_currency: string
+  penalty_currency: string | null
 
   /**
    * Where the refund, once confirmed, will be sent. card is currently a restricted feature.
@@ -80,56 +87,35 @@ interface OrderChangeOffer {
   slices: OrderChangeOfferSlices
 
   /**
-   *  The ISO 8601 datetime at which the offer was last updated
+   * The available payment types to complete the order change.
    */
-  updated_at: string
+  available_payment_types?: PaymentType[] | null
 }
 
-interface OrderChangeOfferSlices {
+export interface CreateOrderChangeParameters {
   /**
-   * The slices that will be added to the order
+   * Duffel's unique identifier for the order change offer
    */
-  add: OrderChangeOfferSlice[]
-
-  /**
-   * The slices that will be removed from the order
-   */
-  remove: OrderChangeOfferSlice[]
+  selected_order_change_offer: string
 }
 
-interface OrderChangeOfferSlice {
+export interface ConfirmOrderChangePayment {
   /**
-   * The city or airport where this slice ends
+   * The amount of the payment. This should be the same as the change_total_amount of the order change.
    */
-  destination: Place
+
+  amount: string
+  /**
+   * The currency of the change_total_amount, as an [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency code.
+   */
+  currency: string
 
   /**
-   * The type of the destination
+   * The type of payment you want to use for the Order Change.
+   * If you are an IATA agent with your own agreements with airlines, in some cases, you can pay using ARC/BSP cash by specifying arc_bsp_cash.
+   * Otherwise, you must pay using your Duffel account's balance by specifying balance.
+   * In test mode, your balance is unlimited.
+   * If you're not sure which of these options applies to you, get in touch with the Duffel support team at [help@duffel.com](mailto:help@duffel.com).
    */
-  destination_type: PlaceType
-
-  /**
-   * The duration of the slice, represented as a [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601#Durations) duration
-   */
-  duration?: string | null
-
-  /**
-   * Duffel's unique identifier for the slice. It identifies the slice of an order (i.e. the same slice across orders will have different `id`s.
-   */
-  id: string
-
-  /**
-   * The city or airport where this slice begins
-   */
-  origin: Place
-
-  /**
-   * The type of the origin
-   */
-  origin_type: PlaceType
-
-  /**
-   * The segments - that is, specific flights - that the airline is offering to get the passengers from the `origin` to the `destination`
-   */
-  segments: Array<Omit<OfferSliceSegment, 'passengers'>>
+  type: PaymentType
 }

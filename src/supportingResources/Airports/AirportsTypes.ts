@@ -1,42 +1,4 @@
-import { City } from './shared'
-
-/**
- * Aircraft are used to describe what passengers will fly in for a given trip
- * @link https://duffel.com/docs/api/aircraft/schema
- */
-export interface Aircraft {
-  /**
-   * The name of the aircraft
-   */
-  name: string
-  /**
-   * Duffel's unique identifier for the aircraft
-   */
-  id: string
-  /**
-   * The three-character IATA code for the aircraft
-   */
-  iata_code: string
-}
-
-/**
- * Airlines are used to identify the air travel companies selling and operating flights
- * @link https://duffel.com/docs/api/airlines/schema
- */
-export interface Airline {
-  /**
-   * The three-character IATA code for the airline
-   */
-  name: string
-  /**
-   * Duffel's unique identifier for the airline
-   */
-  id: string
-  /*
-   * The two-character IATA code for the airline. This may be null for non-IATA carriers.
-   */
-  iata_code: string
-}
+import { City } from '../../types'
 
 /**
  * Airports are used to identify origins and destinations in journey slices
@@ -62,6 +24,11 @@ export interface Airport {
    * @example "GB"
    */
   iata_country_code: string
+  /**
+   * The 3-letter IATA code for the city where the place is located.
+   * Only present for airports which are registered with IATA as belonging to a [metropolitan area](https://portal.iata.org/faq/articles/en_US/FAQ/How-do-I-create-a-new-Metropolitan-Area).
+   */
+  iata_city_code?: string | null
   /**
    * The four-character ICAO code for the airport
    */

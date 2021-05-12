@@ -1,4 +1,4 @@
-import { OrderChangeOffer } from 'types'
+import { OrderChangeOffer } from '../../types'
 
 export const mockOrderChangeOffer: OrderChangeOffer = {
   updated_at: '2020-01-17T10:12:14.545Z',

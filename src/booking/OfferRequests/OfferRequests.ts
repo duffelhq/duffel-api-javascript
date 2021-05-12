@@ -1,6 +1,11 @@
-import { APIResponse, PaginationMeta } from 'types'
+import {
+  APIResponse,
+  PaginationMeta,
+  CreateOfferRequest,
+  CreateOfferRequestQueryParameters,
+  OfferRequest
+} from '../../types'
 import { Resource } from '../../Resource'
-import { CreateOfferRequest, CreateOfferRequestQueryParameters, OfferRequest } from './OfferRequestsTypes'
 
 /**
  * To search for flights, you'll need to create an `offer request`.

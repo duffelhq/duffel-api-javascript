@@ -1,4 +1,4 @@
-import { CreateOrderChangeRequest, OrderChangeRequestResponse } from 'types'
+import { CreateOrderChangeRequest, OrderChangeRequestResponse } from '../../types'
 
 export const mockOrderChangeRequest: OrderChangeRequestResponse = {
   slices: {

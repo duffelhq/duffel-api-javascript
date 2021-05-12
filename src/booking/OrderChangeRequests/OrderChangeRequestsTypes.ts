@@ -1,6 +1,7 @@
-import { CabinClass, Place } from './shared'
+import { CabinClass, Place } from '../../types'
+import { OrderChangeOfferSlices } from '../OrderChangeOffers/OrderChangeOfferTypes'
 
-interface OrderChangeSliceResponse {
+export interface OrderChangeSliceResponse {
   remove: {
     slice_id: string
   }
@@ -24,7 +25,7 @@ interface OrderChangeSliceResponse {
   }
 }
 
-interface OrderChangeOffers {
+export interface OrderChangeOffers {
   /**
    * The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) datetime at which the offer was last updated
    */
@@ -78,7 +79,7 @@ interface OrderChangeOffers {
   /**
    * The slices within an order change that are being added to and/or removed from the order
    */
-  slices: OrderChangeOfferSlice
+  slices: OrderChangeOfferSlices
 }
 
 export interface OrderChangeRequestResponse {

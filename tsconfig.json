@@ -1,8 +1,10 @@
 {
   "compilerOptions": {
     "target": "esnext",
-    "module": "commonjs",
-    "lib": ["es2020"],
+    "module": "ESNext",
+    "lib": [
+      "es2020"
+    ],
     "allowJs": true,
     "outDir": "dist",
     "rootDir": "src",
@@ -14,13 +16,36 @@
     "noFallthroughCasesInSwitch": true,
     "moduleResolution": "node",
     "baseUrl": "./src",
-    "typeRoots": ["node_modules/@types", "node_modules/**/types", "src/types"],
-    "types": ["jest", "node"],
+    "typeRoots": [
+      "node_modules/@types",
+      "node_modules/**/types",
+      "src/types"
+    ],
+    "types": [
+      "jest",
+      "node"
+    ],
     "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-    "declaration": true
+    "declaration": true,
+    "declarationDir": "dist",
+    "paths": {
+      "types": [
+        "./types/"
+      ]
+    }
   },
-  "exclude": ["node_modules", "examples", "jest.config.ts", "**/*.spec.ts"],
-  "include": ["**/*.ts", "**/*.d.ts", "**/*.tsx"]
+  "exclude": [
+    "node_modules",
+    "examples",
+    "jest.config.ts",
+    "**/*.spec.ts",
+    "**/mock*.ts"
+  ],
+  "include": [
+    "**/*.ts",
+    "**/*.d.ts",
+    "**/*.tsx"
+  ]
 }

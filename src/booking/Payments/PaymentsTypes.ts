@@ -1,4 +1,4 @@
-import { PaymentType } from 'types/shared'
+import { PaymentType } from '../../types'
 
 /**
  * To pay for an unpaid order you've previously created, you'll need to create a payment for it.

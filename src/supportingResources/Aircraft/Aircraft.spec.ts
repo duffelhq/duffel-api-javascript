@@ -1,5 +1,5 @@
 import nock from 'nock'
-import { PaginationMeta } from 'types'
+import { PaginationMeta } from '../../types'
 import { Client } from '../../Client'
 import { Aircraft } from './Aircraft'
 import { mockAircraft } from './mockAircraft'
