@@ -1,7 +1,7 @@
 import nock from 'nock'
 import { Client } from '../../Client'
-import { OrderChanges } from './OrderChanges'
 import { mockOrderChange } from './mockOrderChanges'
+import { OrderChanges } from './OrderChanges'
 
 describe('OrderChanges', () => {
   afterEach(() => {
@@ -27,7 +27,9 @@ describe('OrderChanges', () => {
   test('should confirm a pending order change', async () => {
     nock(/(.*)/).post(`/air/order_changes/${mockOrderChange.id}`).reply(200, { data: mockOrderChange })
 
-    const response = await new OrderChanges(new Client({ token: 'mockToken' })).confirm(mockOrderChange.id)
+    const response = await new OrderChanges(new Client({ token: 'mockToken' })).confirm(mockOrderChange.id, {
+      bodyParams: { payment: {} }
+    })
     expect(response.data?.id).toBe(mockOrderChange.id)
   })
 })
