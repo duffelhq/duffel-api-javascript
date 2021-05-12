@@ -1,5 +1,5 @@
-import { APIResponse, Offer, PaginationMeta } from '../../types'
 import { Resource } from '../../Resource'
+import { APIResponse, Offer, PaginationMeta } from '../../types'
 
 /**
  * Each offer represents flights you can buy from an airline at a particular price that meet your search criteria.
@@ -20,10 +20,14 @@ export class Offers extends Resource {
   /**
    * Retrieves an offer by its ID
    * @param {string} id - Duffel's unique identifier for the offer
+   * @param {string} queryParams.return_available_services - When set to true, the offer resource returned will include all the available_services returned by the airline. If set to false, the offer resource won't include any available_services.
    * @link https:/duffel.com/docs/api/offers/get-offer-by-id
    */
-  public get = async (id: string): Promise<APIResponse<Offer>> =>
-    this.request({ method: 'GET', path: `${this.path}/${id}` })
+  public get = async (
+    id: string,
+    options?: { queryParams: { return_available_services: boolean } }
+  ): Promise<APIResponse<Offer>> =>
+    this.request({ method: 'GET', path: `${this.path}/${id}`, queryParams: options?.queryParams })
 
   /**
    * Retrieves a paginated list of all offers. The results may be returned in any order.
