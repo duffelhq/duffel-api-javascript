@@ -46,7 +46,8 @@ module.exports = {
           'seg_00009hj8USM7Ncg31cB456',
           'Earhart',
           'Embraer',
-          'errorMsg'
+          'errorMsg',
+          'perf'
         ],
         skipWordIfMatch: ['.*vh$', '.*vw$', '.*px$', '.*%$', '^[a-f0-9]{6}$', '^[a-z]{3,4}_*'],
         minLength: 3
