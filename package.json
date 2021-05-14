@@ -19,7 +19,7 @@
   "author": "Duffel Technology Limited <help@duffel.com> (http://duffel.com)",
   "license": "MIT",
   "scripts": {
-    "generate:method": "node ./scripts/createMethod.mjs",
+    "generate:operation": "node ./scripts/createOperation.mjs",
     "build": "rm -rf dist && rollup -c",
     "build:test": "rm -rf dist && tsc --noEmit && rollup -c",
     "start": "node ./dist/index.js",
