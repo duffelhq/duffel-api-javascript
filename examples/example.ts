@@ -14,6 +14,13 @@ const example = async () => {
   const aircraft = await duffel.aircraft.get('arc_00009VMF8AhXSSRnQDI6Hi')
   console.log(aircraft)
 
+  try {
+    const fail = await duffel.aircraft.get('nonexistent_id')
+    console.log(fail)
+  } catch (error) {
+    console.log('Caught', error)
+  }
+
   const airlinePages = duffel.airlines.list({
     queryParams: { limit: 5 }
   })

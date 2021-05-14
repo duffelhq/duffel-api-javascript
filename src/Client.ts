@@ -1,6 +1,6 @@
 import fetch from 'isomorphic-unfetch'
 import { URL, URLSearchParams } from 'url'
-import { APIResponse, PaginationMeta, SDKOptions } from './types'
+import { APIResponse, DuffelError, PaginationMeta, SDKOptions } from './types'
 
 export interface Config {
   token: string
@@ -22,7 +22,7 @@ export class Client {
     this.debug = debug
   }
 
-  public request = async <T_Response = any>({
+  public request = async <T = any>({
     method,
     path,
     bodyParams,
@@ -34,7 +34,7 @@ export class Client {
     bodyParams?: any
     queryParams?: Record<string, any>
     compress?: boolean
-  }): Promise<APIResponse<T_Response>> => {
+  }): Promise<APIResponse<T>> => {
     let body
     let responseBody
     const fullPath = new URL(path, this.basePath)
@@ -84,6 +84,10 @@ export class Client {
       responseBody = await response.json()
     } else {
       responseBody = (await response.text()) as any
+    }
+
+    if (responseBody.errors) {
+      throw new DuffelError(responseBody)
     }
 
     return responseBody
