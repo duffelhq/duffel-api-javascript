@@ -56,7 +56,7 @@ export interface ApiResponseError {
   type: string
 }
 
-export interface APIResponse<T> {
+export interface DuffelResponse<T> {
   data: T
   meta?: PaginationMeta
 }

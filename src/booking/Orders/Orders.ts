@@ -1,5 +1,5 @@
-import { APIResponse, PaginationMeta, CreateOrder, ListParamsOrders, Order } from '../../types'
 import { Resource } from '../../Resource'
+import { CreateOrder, DuffelResponse, ListParamsOrders, Order, PaginationMeta } from '../../types'
 
 export class Orders extends Resource {
   /**
@@ -16,7 +16,7 @@ export class Orders extends Resource {
    * Retrieves an order by its ID
    * @param {string} id - Duffel's unique identifier for the order
    */
-  public get = async (id: string): Promise<APIResponse<Order>> =>
+  public get = async (id: string): Promise<DuffelResponse<Order>> =>
     this.request({ method: 'GET', path: `${this.path}/${id}` })
 
   /**
@@ -26,7 +26,8 @@ export class Orders extends Resource {
    */
   public list = (options?: {
     queryParams?: PaginationMeta & ListParamsOrders
-  }): AsyncGenerator<APIResponse<Order[]>, void, unknown> => this.paginatedRequest({ path: 'air/orders', ...options })
+  }): AsyncGenerator<DuffelResponse<Order[]>, void, unknown> =>
+    this.paginatedRequest({ path: 'air/orders', ...options })
 
   /**
    * Creates a booking with an airline based on an offer.
@@ -38,7 +39,7 @@ export class Orders extends Resource {
   }: {
     bodyParams: CreateOrder
     queryParams?: Record<string, any>
-  }): Promise<APIResponse<Order>> => {
+  }): Promise<DuffelResponse<Order>> => {
     return this.request({ method: 'POST', path: this.path, bodyParams, queryParams })
   }
 }

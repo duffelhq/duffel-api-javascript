@@ -1,5 +1,5 @@
 import { Resource } from '../../Resource'
-import { APIResponse, SeatMap } from '../../types'
+import { DuffelResponse, SeatMap } from '../../types'
 
 export class SeatMaps extends Resource {
   /**
@@ -17,6 +17,6 @@ export class SeatMaps extends Resource {
    * @param {string} options.queryParams.offer_id - Duffel's unique identifier for the offer
    * @link https://duffel.com/docs/api/seat-maps/get-seat-maps
    */
-  public get = async (options: { queryParams: { offer_id: string } }): Promise<APIResponse<SeatMap>> =>
+  public get = async (options: { queryParams: { offer_id: string } }): Promise<DuffelResponse<SeatMap>> =>
     this.request({ method: 'GET', path: `${this.path}`, queryParams: options.queryParams })
 }

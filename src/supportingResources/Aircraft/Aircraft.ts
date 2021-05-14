@@ -1,5 +1,5 @@
-import { APIResponse, PaginationMeta, Aircraft as AircraftType } from '../../types'
 import { Resource } from '../../Resource'
+import { Aircraft as AircraftType, DuffelResponse, PaginationMeta } from '../../types'
 
 /** Aircraft are used to describe what passengers will fly in for a given trip
  * @class
@@ -21,7 +21,7 @@ export class Aircraft extends Resource {
    * @param {string} id - Duffel's unique identifier for the aircraft
    * @link https://duffel.com/docs/api/aircraft/get-aircraft-by-id
    */
-  public get = async (id: string): Promise<APIResponse<AircraftType>> =>
+  public get = async (id: string): Promise<DuffelResponse<AircraftType>> =>
     this.request({ method: 'GET', path: `${this.path}/${id}` })
 
   /**
@@ -31,6 +31,6 @@ export class Aircraft extends Resource {
    */
   public list = (options?: {
     queryParams?: PaginationMeta
-  }): AsyncGenerator<APIResponse<AircraftType[]>, void, unknown> =>
+  }): AsyncGenerator<DuffelResponse<AircraftType[]>, void, unknown> =>
     this.paginatedRequest({ path: this.path, ...options })
 }

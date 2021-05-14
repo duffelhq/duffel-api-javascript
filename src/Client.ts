@@ -1,6 +1,6 @@
 import fetch from 'isomorphic-unfetch'
 import { URL, URLSearchParams } from 'url'
-import { APIResponse, DuffelError, PaginationMeta, SDKOptions } from './types'
+import { DuffelError, DuffelResponse, PaginationMeta, SDKOptions } from './types'
 
 export interface Config {
   token: string
@@ -34,7 +34,7 @@ export class Client {
     bodyParams?: any
     queryParams?: Record<string, any>
     compress?: boolean
-  }): Promise<APIResponse<T>> => {
+  }): Promise<DuffelResponse<T>> => {
     let body
     let responseBody
     const fullPath = new URL(path, this.basePath)
@@ -99,7 +99,7 @@ export class Client {
   }: {
     path: string
     queryParams?: PaginationMeta
-  }): AsyncGenerator<APIResponse<T_Response>, void, unknown> {
+  }): AsyncGenerator<DuffelResponse<T_Response>, void, unknown> {
     let response = await this.request({ method: 'GET', path, queryParams })
     yield response
 

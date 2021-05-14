@@ -1,5 +1,5 @@
 import { Client } from './Client'
-import { APIResponse, PaginationMeta } from './types'
+import { DuffelResponse, PaginationMeta } from './types'
 
 export class Resource {
   private client: Client
@@ -18,7 +18,7 @@ export class Resource {
     path: string
     bodyParams?: any
     queryParams?: Record<string, any>
-  }): Promise<APIResponse<T_Response>> => this.client.request({ method, path, bodyParams, queryParams })
+  }): Promise<DuffelResponse<T_Response>> => this.client.request({ method, path, bodyParams, queryParams })
 
   protected paginatedRequest = <T_Response = any>({
     path,
@@ -26,5 +26,5 @@ export class Resource {
   }: {
     path: string
     queryParams?: PaginationMeta
-  }): AsyncGenerator<APIResponse<T_Response>, void, unknown> => this.client.paginatedRequest({ path, queryParams })
+  }): AsyncGenerator<DuffelResponse<T_Response>, void, unknown> => this.client.paginatedRequest({ path, queryParams })
 }

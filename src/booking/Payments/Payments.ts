@@ -1,5 +1,5 @@
-import { APIResponse, Payment, CreatePayment } from '../../types'
 import { Resource } from '../../Resource'
+import { CreatePayment, DuffelResponse, Payment } from '../../types'
 
 export class Payments extends Resource {
   /**
@@ -24,7 +24,7 @@ export class Payments extends Resource {
   }: {
     bodyParams: CreatePayment
     queryParams?: Record<string, any>
-  }): Promise<APIResponse<Payment>> => {
+  }): Promise<DuffelResponse<Payment>> => {
     return this.request({ method: 'POST', path: this.path, bodyParams, queryParams })
   }
 }
