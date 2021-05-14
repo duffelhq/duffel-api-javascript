@@ -1,20 +1,20 @@
 /* eslint-disable no-console */
 
 import dotenv from 'dotenv'
-import { DuffelAPI } from '../src/index'
+import { Duffel } from '../src/index'
 
 dotenv.config()
 
-const duffelAPI = DuffelAPI({
-  token: process.env.DUFFEL_API_TOKEN || '',
+const duffel = new Duffel({
+  token: process.env.DUFFEL_ACCESS_TOKEN || '',
   options: { debug: { verbose: true } }
 })
 
 const example = async () => {
-  const aircraft = await duffelAPI.aircraft.get('arc_00009VMF8AhXSSRnQDI6Hi')
+  const aircraft = await duffel.aircraft.get('arc_00009VMF8AhXSSRnQDI6Hi')
   console.log(aircraft)
 
-  const airlinePages = duffelAPI.airlines.list({
+  const airlinePages = duffel.airlines.list({
     queryParams: { limit: 5 }
   })
 
