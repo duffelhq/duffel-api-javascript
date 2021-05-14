@@ -1,7 +1,6 @@
 import fetch from 'isomorphic-unfetch'
 import { URL, URLSearchParams } from 'url'
 import { APIResponse, PaginationMeta, SDKOptions } from './types'
-import { performance, PerformanceObserver } from 'perf_hooks'
 
 export interface Config {
   token: string
@@ -23,22 +22,6 @@ export class Client {
     this.options = options
   }
 
-  private performanceTracking = () => {
-    const start = (path: string) => {
-      performance.mark(`${path}-start`)
-    }
-
-    const stop = (path: string) => {
-      performance.mark(`${path}-end`)
-      performance.measure(path, `${path}-start`, `${path}-end`)
-    }
-
-    return {
-      start,
-      stop
-    }
-  }
-
   public request = async <T_Response = any>({
     method,
     path,
@@ -53,7 +36,6 @@ export class Client {
     compress?: boolean
   }): Promise<APIResponse<T_Response>> => {
     let body
-    let performanceObserver
     let responseBody
     const fullPath = new URL(path, this.basePath)
     const userAgent = `Duffel/${this.apiVersion} duffel_api_javascript/${process.env.npm_package_version}`
@@ -88,14 +70,6 @@ export class Client {
       if (bodyParams) console.info('Body Parameters: ', bodyParams)
       if (queryParams) console.info('Query Parameters: ', queryParams)
     }
-    if (this.options?.debug?.apiTiming) {
-      performanceObserver = new PerformanceObserver((list) => {
-        const entry = list.getEntries()[0]
-        console.info(`Time for ('${entry.name}')`, entry.duration)
-      })
-      performanceObserver.observe({ entryTypes: ['measure'] })
-      this.performanceTracking().start(fullPath.pathname)
-    }
 
     const response = await fetch(fullPath.href, {
       method,
@@ -110,11 +84,6 @@ export class Client {
       responseBody = await response.json()
     } else {
       responseBody = (await response.text()) as any
-    }
-
-    if (this.options?.debug?.apiTiming && performanceObserver) {
-      this.performanceTracking().stop(fullPath.pathname)
-      performanceObserver.disconnect()
     }
 
     return responseBody

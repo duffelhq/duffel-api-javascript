@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
-    "target": "esnext",
-    "module": "ESNext",
+    "target": "ES6",
+    "module": "esnext",
     "lib": [
       "es2020"
     ],
@@ -29,23 +29,15 @@
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "declaration": true,
-    "declarationDir": "dist",
-    "paths": {
-      "types": [
-        "./types/"
-      ]
-    }
   },
   "exclude": [
     "node_modules",
     "examples",
     "jest.config.ts",
     "**/*.spec.ts",
-    "**/mock*.ts"
+    "**/mock*.ts",
   ],
   "include": [
     "**/*.ts",
-    "**/*.d.ts",
-    "**/*.tsx"
   ]
 }

@@ -68,9 +68,5 @@ export interface SDKOptions {
      * If `true` it will output the path and the method called
      */
     verbose?: boolean
-    /**
-     * If `true` it will output timing information for the API response
-     */
-    apiTiming?: boolean
   }
 }

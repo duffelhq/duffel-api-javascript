@@ -7,7 +7,7 @@ dotenv.config()
 
 const duffelAPI = DuffelAPI({
   token: process.env.DUFFEL_API_TOKEN || '',
-  options: { debug: { verbose: true, apiTiming: false } }
+  options: { debug: { verbose: true } }
 })
 
 const example = async () => {

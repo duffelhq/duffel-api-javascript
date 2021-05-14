@@ -4,6 +4,7 @@ import resolve from '@rollup/plugin-node-resolve'
 import commonjs from '@rollup/plugin-commonjs'
 import typescript from 'rollup-plugin-typescript2'
 import dts from 'rollup-plugin-dts'
+import multi from '@rollup/plugin-multi-entry'
 
 // this override is needed because Module format cjs does not support top-level await
 // eslint-disable-next-line @typescript-eslint/no-var-requires
@@ -32,7 +33,9 @@ export default [
       peerDepsExternal(),
       resolve(),
       commonjs(),
-      typescript(),
+      typescript({
+        clean: true
+      }),
       commonjs({
         exclude: 'node_modules',
         ignoreGlobal: true
@@ -42,11 +45,11 @@ export default [
     external: Object.keys(globals)
   },
   {
-    input: packageJson.types,
+    input: ['dist/index.d.ts', 'dist/types/index.d.ts'],
     output: {
       format: 'es',
-      file: 'index.d.ts'
+      file: packageJson.types
     },
-    plugins: [dts()]
+    plugins: [multi(), dts()]
   }
 ]

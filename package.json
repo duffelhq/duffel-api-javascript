@@ -1,10 +1,10 @@
 {
   "name": "@duffel/duffel-api",
-  "version": "0.0.6",
+  "version": "0.0.57-beta",
   "description": "Javascript client library for the Duffel API",
   "main": "dist/index.js",
   "module": "dist/index.es.js",
-  "types": "dist/index.d.ts",
+  "types": "dist/types/index.d.ts",
   "repository": {
     "type": "git",
     "url": "https://github.com/duffelhq/duffel-api-javascript.git"
@@ -20,7 +20,7 @@
   "license": "MIT",
   "scripts": {
     "generate:method": "node ./scripts/createMethod.mjs",
-    "build": "rm -rf dist && tsc && rollup -c",
+    "build": "rm -rf dist && rollup -c",
     "build:test": "rm -rf dist && tsc --noEmit && rollup -c",
     "start": "node ./dist/index.js",
     "dev": "ts-node ./src/index.ts",
@@ -43,6 +43,7 @@
     "@babel/preset-env": "^7.14.1",
     "@babel/preset-typescript": "^7.13.0",
     "@rollup/plugin-commonjs": "^19.0.0",
+    "@rollup/plugin-multi-entry": "^4.0.0",
     "@rollup/plugin-node-resolve": "^13.0.0",
     "@types/jest": "^26.0.23",
     "@types/lodash": "^4.14.168",
