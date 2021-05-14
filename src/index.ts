@@ -14,18 +14,29 @@ export interface DuffelAPIClient {
   seatMaps: SeatMaps
 }
 
-export const DuffelAPI = (config: Config): DuffelAPIClient => {
-  const client = new Client(config)
+export class Duffel {
+  private client: Client
+  public aircraft: Aircraft
+  public airlines: Airlines
+  public airports: Airports
+  public offerRequests: OfferRequests
+  public offers: Offers
+  public orders: Orders
+  public orderCancellations: OrderCancellations
+  public payments: Payments
+  public seatMaps: SeatMaps
 
-  return {
-    aircraft: new Aircraft(client),
-    airlines: new Airlines(client),
-    airports: new Airports(client),
-    offerRequests: new OfferRequests(client),
-    offers: new Offers(client),
-    orders: new Orders(client),
-    orderCancellations: new OrderCancellations(client),
-    payments: new Payments(client),
-    seatMaps: new SeatMaps(client)
+  constructor(config: Config) {
+    this.client = new Client(config)
+
+    this.aircraft = new Aircraft(this.client)
+    this.airlines = new Airlines(this.client)
+    this.airports = new Airports(this.client)
+    this.offerRequests = new OfferRequests(this.client)
+    this.offers = new Offers(this.client)
+    this.orders = new Orders(this.client)
+    this.orderCancellations = new OrderCancellations(this.client)
+    this.payments = new Payments(this.client)
+    this.seatMaps = new SeatMaps(this.client)
   }
 }
