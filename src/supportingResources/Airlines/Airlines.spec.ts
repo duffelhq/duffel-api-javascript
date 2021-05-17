@@ -15,7 +15,17 @@ describe('airlines', () => {
     expect(response.data?.id).toBe(mockAirline.id)
   })
 
-  test('should get all airlines', async () => {
+  test('should get a page of airlines', async () => {
+    nock(/(.*)/)
+      .get(`/air/airlines?limit=1`)
+      .reply(200, { data: [mockAirline], meta: { limit: 1, before: null, after: null } })
+
+    const response = await new Airlines(new Client({ token: 'mockToken' })).list({ queryParams: { limit: 1 } })
+    expect(response.data).toHaveLength(1)
+    expect(response.data[0].id).toBe(mockAirline.id)
+  })
+
+  test('should get all airlines paginated', async () => {
     nock(/(.*)/)
       .get(`/air/airlines?limit=1`)
       .reply(200, { data: [mockAirline], meta: { limit: 1, before: null, after: null } })

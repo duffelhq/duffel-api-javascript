@@ -25,6 +25,14 @@ export class Airports extends Resource {
     this.request({ method: 'GET', path: `${this.path}/${id}` })
 
   /**
+   * Retrieves a page of airports. The results may be returned in any order.
+   * @param {Object} [options] - Pagination options (optional: limit, after, before)
+   * @link https://duffel.com/docs/api/airports/get-airports
+   */
+  public list = (options?: { queryParams?: PaginationMeta }): Promise<DuffelResponse<Airport[]>> =>
+    this.request({ method: 'GET', path: this.path, ...options })
+
+  /**
    * Retrieves a paginated list of all airports. The results may be returned in any order.
    * @param {Object} [options] - Pagination query parameters (optional: limit, after, before)
    * @link https://duffel.com/docs/api/airports/get-airports

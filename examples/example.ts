@@ -21,6 +21,11 @@ const example = async () => {
     console.log('Caught', error)
   }
 
+  const airlinePage = await duffel.airlines.list({
+    queryParams: { limit: 5 }
+  })
+  console.log(airlinePage)
+
   const airlinePages = duffel.airlines.listWithPagination({
     queryParams: { limit: 5 }
   })

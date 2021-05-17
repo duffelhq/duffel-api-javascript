@@ -28,12 +28,22 @@ describe('offers', () => {
     expect(response.data?.available_services).toHaveLength(1)
   })
 
-  test('should get all offers', async () => {
+  test('should get a page of offers', async () => {
     nock(/(.*)/)
-      .get(`/air/offers`)
+      .get(`/air/offers?limit=1`)
       .reply(200, { data: [mockOffer], meta: { limit: 1, before: null, after: null } })
 
-    const response = new Offers(new Client({ token: 'mockToken' })).listWithPagination()
+    const response = await new Offers(new Client({ token: 'mockToken' })).list({ queryParams: { limit: 1 } })
+    expect(response.data).toHaveLength(1)
+    expect(response.data[0].id).toBe(mockOffer.id)
+  })
+
+  test('should get all offers paginated', async () => {
+    nock(/(.*)/)
+      .get(`/air/offers?limit=1`)
+      .reply(200, { data: [mockOffer], meta: { limit: 1, before: null, after: null } })
+
+    const response = new Offers(new Client({ token: 'mockToken' })).listWithPagination({ queryParams: { limit: 1 } })
     for await (const page of response) {
       expect(page.data).toHaveLength(1)
       expect(page.data![0].id).toBe(mockOffer.id)

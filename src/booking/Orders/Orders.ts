@@ -20,9 +20,18 @@ export class Orders extends Resource {
     this.request({ method: 'GET', path: `${this.path}/${id}` })
 
   /**
+   * Retrieves a page of orders. The results may be returned in any order.
+   * @param {Object} [options] - Pagination options (optional: limit, after, before)
+   * @link https://duffel.com/docs/api/orders/get-orders
+   */
+  public list = (options?: { queryParams?: PaginationMeta & ListParamsOrders }): Promise<DuffelResponse<Order[]>> =>
+    this.request({ method: 'GET', path: this.path, ...options })
+
+  /**
    * Retrieves a paginated list of all orders. The results may be returned in any order.
    * You can optionally filter the results by the `awaiting_payment` state and sort by the `payment_required_by` date.
    * @param {Object} [options] - Pagination query parameters (optional: limit, after, before) and other optional query parameters (awaiting_payment, sort)
+   * @link https://duffel.com/docs/api/orders/get-orders
    */
   public listWithPagination = (options?: {
     queryParams?: PaginationMeta & ListParamsOrders

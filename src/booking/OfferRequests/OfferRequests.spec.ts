@@ -16,7 +16,17 @@ describe('OfferRequests', () => {
     expect(response.data?.id).toBe(mockOfferRequest.id)
   })
 
-  test('should get all offer requests', async () => {
+  test('should get a page of offer requests', async () => {
+    nock(/(.*)/)
+      .get(`/air/offer_requests?limit=1`)
+      .reply(200, { data: [mockOfferRequest], meta: { limit: 1, before: null, after: null } })
+
+    const response = await new OfferRequests(new Client({ token: 'mockToken' })).list({ queryParams: { limit: 1 } })
+    expect(response.data).toHaveLength(1)
+    expect(response.data[0].id).toBe(mockOfferRequest.id)
+  })
+
+  test('should get all offer requests paginated', async () => {
     nock(/(.*)/)
       .get(`/air/offer_requests`)
       .reply(200, { data: [mockOfferRequest], meta: { limit: 1, before: null, after: null } })

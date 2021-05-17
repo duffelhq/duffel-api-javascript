@@ -16,7 +16,17 @@ describe('aircraft', () => {
     expect(response.data?.id).toBe(mockAircraft.id)
   })
 
-  test('should get all aircraft', async () => {
+  test('should get a page of aircraft', async () => {
+    nock(/(.*)/)
+      .get(`/air/aircraft?limit=1`)
+      .reply(200, { data: [mockAircraft], meta: { limit: 1, before: null, after: null } })
+
+    const response = await new Aircraft(new Client({ token: 'mockToken' })).list({ queryParams: { limit: 1 } })
+    expect(response.data).toHaveLength(1)
+    expect(response.data[0].id).toBe(mockAircraft.id)
+  })
+
+  test('should get all aircraft paginated', async () => {
     const nextId = 'next_id'
     nock(/(.*)/)
       .get(`/air/aircraft?limit=1`)

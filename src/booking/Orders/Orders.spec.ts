@@ -15,7 +15,17 @@ describe('Orders', () => {
     expect(response.data?.id).toBe(mockOrder.id)
   })
 
-  test('should get all orders', async () => {
+  test('should get a page of orders', async () => {
+    nock(/(.*)/)
+      .get(`/air/orders?limit=1`)
+      .reply(200, { data: [mockOrder], meta: { limit: 1, before: null, after: null } })
+
+    const response = await new Orders(new Client({ token: 'mockToken' })).list({ queryParams: { limit: 1 } })
+    expect(response.data).toHaveLength(1)
+    expect(response.data[0].id).toBe(mockOrder.id)
+  })
+
+  test('should get all orders paginated', async () => {
     nock(/(.*)/)
       .get(`/air/orders`)
       .reply(200, { data: [mockOrder], meta: { limit: 1, before: null, after: null } })
@@ -32,13 +42,12 @@ describe('Orders', () => {
       .get(`/air/orders?awaiting_payment=true`)
       .reply(200, { data: mockOnHoldOrders, meta: { limit: 1, before: null, after: null } })
 
-    const response = new Orders(new Client({ token: 'mockToken' })).listWithPagination({
+    const response = await new Orders(new Client({ token: 'mockToken' })).list({
       queryParams: { awaiting_payment: true }
     })
-    for await (const page of response) {
-      expect(page.data).toHaveLength(2)
-      expect(page.data![0].id).toBe('ord_0000A6GioOO1UDbjb7nIi8')
-    }
+    expect(response.data).toHaveLength(2)
+    expect(response.data[0].payment_status.awaiting_payment).toBe(true)
+    expect(response.data[1].payment_status.awaiting_payment).toBe(true)
   })
 
   test('should create an order', async () => {
