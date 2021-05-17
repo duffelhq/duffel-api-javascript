@@ -63,10 +63,8 @@ export interface APIResponse<T> {
 }
 
 export interface SDKOptions {
-  debug?: {
-    /**
-     * If `true` it will output the path and the method called
-     */
-    verbose?: boolean
-  }
+  /**
+   * If `true` it will output the path and the method called
+   */
+  verbose?: boolean
 }
