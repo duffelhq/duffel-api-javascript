@@ -15,8 +15,8 @@ const example = async () => {
   console.log(aircraft)
 
   try {
-    const fail = await duffel.aircraft.get('nonexistent_id')
-    console.log(fail)
+    const airline = await duffel.airlines.get('nonexistent_id')
+    console.log(airline)
   } catch (error) {
     console.log('Caught', error)
   }

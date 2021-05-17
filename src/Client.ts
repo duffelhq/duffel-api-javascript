@@ -22,7 +22,7 @@ export class Client {
     this.debug = debug
   }
 
-  public request = async <T = any>({
+  public request = async <T_Data = any>({
     method,
     path,
     bodyParams,
@@ -34,7 +34,7 @@ export class Client {
     bodyParams?: any
     queryParams?: Record<string, any>
     compress?: boolean
-  }): Promise<DuffelResponse<T>> => {
+  }): Promise<DuffelResponse<T_Data>> => {
     let body
     let responseBody
     const fullPath = new URL(path, this.basePath)
@@ -86,20 +86,20 @@ export class Client {
       responseBody = (await response.text()) as any
     }
 
-    if (responseBody.errors) {
+    if (!response.ok || ('errors' in responseBody && responseBody.errors)) {
       throw new DuffelError(responseBody)
     }
 
     return responseBody
   }
 
-  async *paginatedRequest<T_Response = any>({
+  async *paginatedRequest<T_Data = any>({
     path,
     queryParams
   }: {
     path: string
     queryParams?: PaginationMeta
-  }): AsyncGenerator<DuffelResponse<T_Response>, void, unknown> {
+  }): AsyncGenerator<DuffelResponse<T_Data>, void, unknown> {
     let response = await this.request({ method: 'GET', path, queryParams })
     yield response
 
