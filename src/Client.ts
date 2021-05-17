@@ -6,20 +6,20 @@ export interface Config {
   token: string
   basePath?: string
   apiVersion?: string
-  options?: SDKOptions
+  debug?: SDKOptions
 }
 
 export class Client {
   private token: string
   private basePath: string
   private apiVersion: string
-  private options: SDKOptions | undefined
+  private debug: SDKOptions | undefined
 
-  constructor({ token, basePath, apiVersion, options }: Config) {
+  constructor({ token, basePath, apiVersion, debug }: Config) {
     this.token = token
     this.basePath = basePath || 'https://api.duffel.com'
     this.apiVersion = apiVersion || 'beta'
-    this.options = options
+    this.debug = debug
   }
 
   public request = async <T_Response = any>({
@@ -64,7 +64,7 @@ export class Client {
       })
     }
 
-    if (this.options?.debug?.verbose) {
+    if (this.debug?.verbose) {
       console.info('Endpoint: ', fullPath.href)
       console.info('Method: ', method)
       if (bodyParams) console.info('Body Parameters: ', bodyParams)
