@@ -56,10 +56,20 @@ export interface ApiResponseError {
   type: string
 }
 
-export interface APIResponse<T> {
-  data?: T
-  meta?: ApiResponseMeta | PaginationMeta
-  errors?: ApiResponseError[]
+export interface DuffelResponse<T_Data> {
+  data: T_Data
+  meta?: PaginationMeta
+}
+
+export class DuffelError extends Error {
+  public meta: ApiResponseMeta
+  public errors: ApiResponseError[]
+
+  constructor({ meta, errors }: { meta: ApiResponseMeta; errors: ApiResponseError[] }) {
+    super()
+    this.meta = meta
+    this.errors = errors
+  }
 }
 
 export interface SDKOptions {

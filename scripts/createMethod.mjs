@@ -16,8 +16,6 @@
 
 import fs from 'fs'
 import path from 'path'
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import colors from 'colors'
 import readline from 'readline'
 
 // init io
@@ -82,7 +80,7 @@ const print = () => {
   console.log('--------------------------------------------------------')
 }
 const makeHeader = () => {
-  return `import { APIResponse } from '../../types'
+  return `import { DuffelResponse } from '../../types'
 import { Resource } from '../../Resource'
 `
 }

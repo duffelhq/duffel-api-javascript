@@ -1,5 +1,5 @@
 import { Resource } from '../../Resource'
-import { APIResponse, Offer, PaginationMeta } from '../../types'
+import { DuffelResponse, Offer, PaginationMeta } from '../../types'
 
 /**
  * Each offer represents flights you can buy from an airline at a particular price that meet your search criteria.
@@ -26,7 +26,7 @@ export class Offers extends Resource {
   public get = async (
     id: string,
     options?: { queryParams: { return_available_services: boolean } }
-  ): Promise<APIResponse<Offer>> =>
+  ): Promise<DuffelResponse<Offer>> =>
     this.request({ method: 'GET', path: `${this.path}/${id}`, queryParams: options?.queryParams })
 
   /**
@@ -34,6 +34,6 @@ export class Offers extends Resource {
    * @param {Object} [options] - Pagination options (optional: limit, after, before)
    * @link https://duffel.com/docs/api/offers/get-offers
    */
-  public list = (options?: PaginationMeta): AsyncGenerator<APIResponse<Offer[]>, void, unknown> =>
+  public list = (options?: PaginationMeta): AsyncGenerator<DuffelResponse<Offer[]>, void, unknown> =>
     this.paginatedRequest({ path: this.path, ...options })
 }

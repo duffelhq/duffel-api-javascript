@@ -1,5 +1,10 @@
 import { Resource } from '../../Resource'
-import { APIResponse, ConfirmOrderChangePayment, CreateOrderChangeParameters, OrderChangeOfferSlice } from '../../types'
+import {
+  ConfirmOrderChangePayment,
+  CreateOrderChangeParameters,
+  DuffelResponse,
+  OrderChangeOfferSlice
+} from '../../types'
 
 /**
  * Once you've created an order change request, and you've chosen which slices to add and remove, you'll then want to create an order change.
@@ -24,14 +29,14 @@ export class OrderChanges extends Resource {
     bodyParams
   }: {
     bodyParams: CreateOrderChangeParameters
-  }): Promise<APIResponse<OrderChangeOfferSlice>> => this.request({ method: 'POST', path: this.path, bodyParams })
+  }): Promise<DuffelResponse<OrderChangeOfferSlice>> => this.request({ method: 'POST', path: this.path, bodyParams })
 
   /**
    * Retrieves an order change by its ID
    * @param {string} id - Duffel's unique identifier for the order change
    * @link https://duffel.com/docs/api/order-changes/get-order-change-by-id
    */
-  public get = async (id: string): Promise<APIResponse<OrderChangeOfferSlice>> =>
+  public get = async (id: string): Promise<DuffelResponse<OrderChangeOfferSlice>> =>
     this.request({ method: 'GET', path: `${this.path}/${id}` })
 
   /**
@@ -43,6 +48,6 @@ export class OrderChanges extends Resource {
   public confirm = async (
     id: string,
     options: { bodyParams: { payment: Partial<ConfirmOrderChangePayment> } }
-  ): Promise<APIResponse<OrderChangeOfferSlice>> =>
+  ): Promise<DuffelResponse<OrderChangeOfferSlice>> =>
     this.request({ method: 'POST', path: `${this.path}/${id}`, bodyParams: options.bodyParams })
 }

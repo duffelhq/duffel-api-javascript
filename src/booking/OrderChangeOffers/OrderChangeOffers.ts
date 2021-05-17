@@ -1,5 +1,5 @@
-import { APIResponse, OrderChangeOffer, PaginationMeta } from '../../types'
 import { Resource } from '../../Resource'
+import { DuffelResponse, OrderChangeOffer, PaginationMeta } from '../../types'
 
 /**
  * After you've searched for flights to add to your order by creating an order change request, we'll send your search to a range of airlines, which may return order change offers.
@@ -24,7 +24,7 @@ export class OrderChangeOffers extends Resource {
    * @param {string} id - The ID of your order change offer
    * @link https://duffel.com/docs/api/order-change-offers/get-order-change-offer-by-id
    */
-  public get = async (id: string): Promise<APIResponse<OrderChangeOffer>> =>
+  public get = async (id: string): Promise<DuffelResponse<OrderChangeOffer>> =>
     this.request({ method: 'GET', path: `${this.path}/${id}` })
 
   /**
@@ -33,6 +33,6 @@ export class OrderChangeOffers extends Resource {
    */
   public list = (options?: {
     queryParams?: PaginationMeta
-  }): AsyncGenerator<APIResponse<OrderChangeOffer[]>, void, unknown> =>
+  }): AsyncGenerator<DuffelResponse<OrderChangeOffer[]>, void, unknown> =>
     this.paginatedRequest({ path: this.path, ...options })
 }

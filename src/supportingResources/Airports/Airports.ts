@@ -1,5 +1,5 @@
-import { APIResponse, PaginationMeta, Airport } from '../../types'
 import { Resource } from '../../Resource'
+import { Airport, DuffelResponse, PaginationMeta } from '../../types'
 
 /** Airports are used to identify origins and destinations in journey slices
  * @class
@@ -21,7 +21,7 @@ export class Airports extends Resource {
    * @param {string} id - Duffel's unique identifier for the airport
    * @link https://duffel.com/docs/api/airports/get-airport-by-id
    */
-  public get = async (id: string): Promise<APIResponse<Airport>> =>
+  public get = async (id: string): Promise<DuffelResponse<Airport>> =>
     this.request({ method: 'GET', path: `${this.path}/${id}` })
 
   /**
@@ -29,6 +29,7 @@ export class Airports extends Resource {
    * @param {Object} [options] - Pagination query parameters (optional: limit, after, before)
    * @link https://duffel.com/docs/api/airports/get-airports
    */
-  public list = (options?: { queryParams?: PaginationMeta }): AsyncGenerator<APIResponse<Airport[]>, void, unknown> =>
-    this.paginatedRequest({ path: this.path, ...options })
+  public list = (options?: {
+    queryParams?: PaginationMeta
+  }): AsyncGenerator<DuffelResponse<Airport[]>, void, unknown> => this.paginatedRequest({ path: this.path, ...options })
 }

@@ -1,11 +1,11 @@
+import { Resource } from '../../Resource'
 import {
-  APIResponse,
-  PaginationMeta,
   CreateOfferRequest,
   CreateOfferRequestQueryParameters,
-  OfferRequest
+  DuffelResponse,
+  OfferRequest,
+  PaginationMeta
 } from '../../types'
-import { Resource } from '../../Resource'
 
 /**
  * To search for flights, you'll need to create an `offer request`.
@@ -30,7 +30,7 @@ export class OfferRequests extends Resource {
    * @param {string} id - Duffel's unique identifier for the offer request
    * @link https:/duffel.com/docs/api/offer-requests/get-offer-request-by-id
    */
-  public get = async (id: string): Promise<APIResponse<OfferRequest>> =>
+  public get = async (id: string): Promise<DuffelResponse<OfferRequest>> =>
     this.request({ method: 'GET', path: `${this.path}/${id}` })
 
   /**
@@ -39,7 +39,7 @@ export class OfferRequests extends Resource {
    */
   public list = (options?: {
     queryParams?: PaginationMeta
-  }): AsyncGenerator<APIResponse<OfferRequest[]>, void, unknown> =>
+  }): AsyncGenerator<DuffelResponse<OfferRequest[]>, void, unknown> =>
     this.paginatedRequest({ path: this.path, ...options })
 
   /**
@@ -57,7 +57,7 @@ export class OfferRequests extends Resource {
   }: {
     bodyParams: CreateOfferRequest
     queryParams?: CreateOfferRequestQueryParameters
-  }): Promise<APIResponse<OfferRequest>> => {
+  }): Promise<DuffelResponse<OfferRequest>> => {
     return this.request({ method: 'POST', path: `${this.path}/`, bodyParams, queryParams })
   }
 }

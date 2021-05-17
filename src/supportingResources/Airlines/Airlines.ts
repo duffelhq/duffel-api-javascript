@@ -1,5 +1,5 @@
-import { APIResponse, PaginationMeta, Airline } from '../../types'
 import { Resource } from '../../Resource'
+import { Airline, DuffelResponse, PaginationMeta } from '../../types'
 
 /** Airlines are used to identify the air travel companies selling and operating flights
  * @class
@@ -20,7 +20,7 @@ export class Airlines extends Resource {
    * @param {string} id - Duffel's unique identifier for the airline
    * @link https://duffel.com/docs/api/airlines/get-airline-by-id
    */
-  public get = async (id: string): Promise<APIResponse<Airline>> =>
+  public get = async (id: string): Promise<DuffelResponse<Airline>> =>
     this.request({ method: 'GET', path: `${this.path}/${id}` })
 
   /**
@@ -28,6 +28,7 @@ export class Airlines extends Resource {
    * @param {Object} [options] - Pagination query parameters (optional: limit, after, before)
    * @link https://duffel.com/docs/api/airlines/get-airlines
    */
-  public list = (options?: { queryParams?: PaginationMeta }): AsyncGenerator<APIResponse<Airline[]>, void, unknown> =>
-    this.paginatedRequest({ path: this.path, ...options })
+  public list = (options?: {
+    queryParams?: PaginationMeta
+  }): AsyncGenerator<DuffelResponse<Airline[]>, void, unknown> => this.paginatedRequest({ path: this.path, ...options })
 }
