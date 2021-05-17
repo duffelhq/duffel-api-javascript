@@ -29,7 +29,7 @@ export class Airports extends Resource {
    * @param {Object} [options] - Pagination query parameters (optional: limit, after, before)
    * @link https://duffel.com/docs/api/airports/get-airports
    */
-  public list = (options?: {
+  public listWithPagination = (options?: {
     queryParams?: PaginationMeta
   }): AsyncGenerator<DuffelResponse<Airport[]>, void, unknown> => this.paginatedRequest({ path: this.path, ...options })
 }

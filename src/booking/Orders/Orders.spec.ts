@@ -20,7 +20,7 @@ describe('Orders', () => {
       .get(`/air/orders`)
       .reply(200, { data: [mockOrder], meta: { limit: 1, before: null, after: null } })
 
-    const response = new Orders(new Client({ token: 'mockToken' })).list()
+    const response = new Orders(new Client({ token: 'mockToken' })).listWithPagination()
     for await (const page of response) {
       expect(page.data).toHaveLength(1)
       expect(page.data![0].id).toBe(mockOrder.id)
@@ -32,7 +32,9 @@ describe('Orders', () => {
       .get(`/air/orders?awaiting_payment=true`)
       .reply(200, { data: mockOnHoldOrders, meta: { limit: 1, before: null, after: null } })
 
-    const response = new Orders(new Client({ token: 'mockToken' })).list({ queryParams: { awaiting_payment: true } })
+    const response = new Orders(new Client({ token: 'mockToken' })).listWithPagination({
+      queryParams: { awaiting_payment: true }
+    })
     for await (const page of response) {
       expect(page.data).toHaveLength(2)
       expect(page.data![0].id).toBe('ord_0000A6GioOO1UDbjb7nIi8')

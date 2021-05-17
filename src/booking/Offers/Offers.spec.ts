@@ -33,7 +33,7 @@ describe('offers', () => {
       .get(`/air/offers`)
       .reply(200, { data: [mockOffer], meta: { limit: 1, before: null, after: null } })
 
-    const response = new Offers(new Client({ token: 'mockToken' })).list()
+    const response = new Offers(new Client({ token: 'mockToken' })).listWithPagination()
     for await (const page of response) {
       expect(page.data).toHaveLength(1)
       expect(page.data![0].id).toBe(mockOffer.id)

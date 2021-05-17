@@ -37,7 +37,7 @@ export class OfferRequests extends Resource {
    * Retrieves a paginated list of all offer requests. The results may be returned in any order.
    * @param {Object} [options] - Pagination query parameters (optional: limit, after, before)
    */
-  public list = (options?: {
+  public listWithPagination = (options?: {
     queryParams?: PaginationMeta
   }): AsyncGenerator<DuffelResponse<OfferRequest[]>, void, unknown> =>
     this.paginatedRequest({ path: this.path, ...options })

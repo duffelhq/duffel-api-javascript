@@ -34,6 +34,6 @@ export class Offers extends Resource {
    * @param {Object} [options] - Pagination options (optional: limit, after, before)
    * @link https://duffel.com/docs/api/offers/get-offers
    */
-  public list = (options?: PaginationMeta): AsyncGenerator<DuffelResponse<Offer[]>, void, unknown> =>
+  public listWithPagination = (options?: PaginationMeta): AsyncGenerator<DuffelResponse<Offer[]>, void, unknown> =>
     this.paginatedRequest({ path: this.path, ...options })
 }

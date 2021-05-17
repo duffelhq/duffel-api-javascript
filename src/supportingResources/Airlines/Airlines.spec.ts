@@ -20,7 +20,7 @@ describe('airlines', () => {
       .get(`/air/airlines?limit=1`)
       .reply(200, { data: [mockAirline], meta: { limit: 1, before: null, after: null } })
 
-    const response = new Airlines(new Client({ token: 'mockToken' })).list({ queryParams: { limit: 1 } })
+    const response = new Airlines(new Client({ token: 'mockToken' })).listWithPagination({ queryParams: { limit: 1 } })
     for await (const page of response) {
       expect(page.data).toHaveLength(1)
       expect(page.data![0].id).toBe(mockAirline.id)

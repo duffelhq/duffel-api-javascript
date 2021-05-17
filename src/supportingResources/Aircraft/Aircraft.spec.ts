@@ -1,6 +1,6 @@
 import nock from 'nock'
-import { PaginationMeta } from '../../types'
 import { Client } from '../../Client'
+import { PaginationMeta } from '../../types'
 import { Aircraft } from './Aircraft'
 import { mockAircraft } from './mockAircraft'
 
@@ -25,7 +25,7 @@ describe('aircraft', () => {
       .get(`/air/aircraft?limit=1&after=test`)
       .reply(200, { data: [{ ...mockAircraft, id: nextId }], meta: { limit: 1, before: 'test', after: null } })
 
-    const response = new Aircraft(new Client({ token: 'mockToken' })).list({ queryParams: { limit: 1 } })
+    const response = new Aircraft(new Client({ token: 'mockToken' })).listWithPagination({ queryParams: { limit: 1 } })
     for await (const page of response) {
       expect(page.data).toHaveLength(1)
       const expectedId = (page.meta as PaginationMeta)?.after ? mockAircraft.id : nextId

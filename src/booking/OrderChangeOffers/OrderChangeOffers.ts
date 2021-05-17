@@ -31,7 +31,7 @@ export class OrderChangeOffers extends Resource {
    * Retrieves a paginated list of all order change offers. The results may be returned in any order.
    * @param {Object} [options] - Pagination query parameters (optional: limit, after, before)
    */
-  public list = (options?: {
+  public listWithPagination = (options?: {
     queryParams?: PaginationMeta
   }): AsyncGenerator<DuffelResponse<OrderChangeOffer[]>, void, unknown> =>
     this.paginatedRequest({ path: this.path, ...options })

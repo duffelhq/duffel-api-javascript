@@ -24,7 +24,7 @@ export class Orders extends Resource {
    * You can optionally filter the results by the `awaiting_payment` state and sort by the `payment_required_by` date.
    * @param {Object} [options] - Pagination query parameters (optional: limit, after, before) and other optional query parameters (awaiting_payment, sort)
    */
-  public list = (options?: {
+  public listWithPagination = (options?: {
     queryParams?: PaginationMeta & ListParamsOrders
   }): AsyncGenerator<DuffelResponse<Order[]>, void, unknown> =>
     this.paginatedRequest({ path: 'air/orders', ...options })
