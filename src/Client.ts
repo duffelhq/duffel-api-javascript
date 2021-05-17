@@ -1,6 +1,6 @@
 import fetch from 'isomorphic-unfetch'
 import { URL, URLSearchParams } from 'url'
-import { DuffelError, DuffelResponse, PaginationMeta, SDKOptions } from './types'
+import { DuffelError, DuffelResponse, SDKOptions } from './types'
 
 export interface Config {
   token: string
@@ -98,10 +98,12 @@ export class Client {
     queryParams
   }: {
     path: string
-    queryParams?: PaginationMeta
+    queryParams: any
   }): AsyncGenerator<DuffelResponse<T_Data>, void, unknown> {
-    let response = await this.request({ method: 'GET', path, queryParams })
-    yield response
+    let response: DuffelResponse<T_Data[]> = await this.request({ method: 'GET', path, queryParams })
+    for (const item of response.data) {
+      yield { data: item }
+    }
 
     while (response.meta && 'after' in response.meta && response.meta.after) {
       response = await this.request({
@@ -109,7 +111,9 @@ export class Client {
         path,
         queryParams: { limit: response.meta.limit, after: response.meta.after }
       })
-      yield response
+      for (const item of response.data) {
+        yield { data: item }
+      }
     }
   }
 }

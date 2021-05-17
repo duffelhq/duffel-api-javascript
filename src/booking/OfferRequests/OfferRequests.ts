@@ -42,14 +42,11 @@ export class OfferRequests extends Resource {
     this.request({ method: 'GET', path: this.path, ...options })
 
   /**
-   * Retrieves a paginated list of all offer requests. The results may be returned in any order.
-   * @param {Object} [options] - Pagination query parameters (optional: limit, after, before)
+   * Retrieves a generator of all offer requests. The results may be returned in any order.
    * @link https://duffel.com/docs/api/offer-requests/get-offer-requests
    */
-  public listWithPagination = (options?: {
-    queryParams?: PaginationMeta
-  }): AsyncGenerator<DuffelResponse<OfferRequest[]>, void, unknown> =>
-    this.paginatedRequest({ path: this.path, ...options })
+  public listWithGenerator = (): AsyncGenerator<DuffelResponse<OfferRequest>, void, unknown> =>
+    this.paginatedRequest({ path: this.path })
 
   /**
    * To search for flights, you'll need to create an `offer request`.

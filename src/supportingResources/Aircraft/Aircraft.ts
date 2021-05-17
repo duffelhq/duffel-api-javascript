@@ -33,12 +33,9 @@ export class Aircraft extends Resource {
     this.request({ method: 'GET', path: this.path, ...options })
 
   /**
-   * Retrieves a paginated list of all aircraft. The results may be returned in any order.
-   * @param {Object} [options] - Pagination query parameters (optional: limit, after, before)
+   * Retrieves a generator of all aircraft. The results may be returned in any order.
    * @link https://duffel.com/docs/api/aircraft/get-aircraft
    */
-  public listWithPagination = (options?: {
-    queryParams?: PaginationMeta
-  }): AsyncGenerator<DuffelResponse<AircraftType[]>, void, unknown> =>
-    this.paginatedRequest({ path: this.path, ...options })
+  public listWithGenerator = (): AsyncGenerator<DuffelResponse<AircraftType>, void, unknown> =>
+    this.paginatedRequest({ path: this.path })
 }

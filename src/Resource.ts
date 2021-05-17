@@ -1,5 +1,5 @@
 import { Client } from './Client'
-import { DuffelResponse, PaginationMeta } from './types'
+import { DuffelResponse } from './types'
 
 export class Resource {
   private client: Client
@@ -25,6 +25,6 @@ export class Resource {
     queryParams
   }: {
     path: string
-    queryParams?: PaginationMeta
+    queryParams?: any
   }): AsyncGenerator<DuffelResponse<T_Data>, void, unknown> => this.client.paginatedRequest({ path, queryParams })
 }

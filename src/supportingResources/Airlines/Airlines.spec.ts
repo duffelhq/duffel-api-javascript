@@ -27,13 +27,12 @@ describe('airlines', () => {
 
   test('should get all airlines paginated', async () => {
     nock(/(.*)/)
-      .get(`/air/airlines?limit=1`)
+      .get(`/air/airlines`)
       .reply(200, { data: [mockAirline], meta: { limit: 1, before: null, after: null } })
 
-    const response = new Airlines(new Client({ token: 'mockToken' })).listWithPagination({ queryParams: { limit: 1 } })
+    const response = new Airlines(new Client({ token: 'mockToken' })).listWithGenerator()
     for await (const page of response) {
-      expect(page.data).toHaveLength(1)
-      expect(page.data![0].id).toBe(mockAirline.id)
+      expect(page.data.id).toBe(mockAirline.id)
     }
   })
 })

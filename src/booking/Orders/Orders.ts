@@ -28,15 +28,14 @@ export class Orders extends Resource {
     this.request({ method: 'GET', path: this.path, ...options })
 
   /**
-   * Retrieves a paginated list of all orders. The results may be returned in any order.
+   * Retrieves a generator of all orders. The results may be returned in any order.
    * You can optionally filter the results by the `awaiting_payment` state and sort by the `payment_required_by` date.
-   * @param {Object} [options] - Pagination query parameters (optional: limit, after, before) and other optional query parameters (awaiting_payment, sort)
+   * @param {Object} [options] - Optional query parameters: awaiting_payment, sort
    * @link https://duffel.com/docs/api/orders/get-orders
    */
-  public listWithPagination = (options?: {
-    queryParams?: PaginationMeta & ListParamsOrders
-  }): AsyncGenerator<DuffelResponse<Order[]>, void, unknown> =>
-    this.paginatedRequest({ path: 'air/orders', ...options })
+  public listWithGenerator = (options?: {
+    queryParams?: ListParamsOrders
+  }): AsyncGenerator<DuffelResponse<Order>, void, unknown> => this.paginatedRequest({ path: 'air/orders', ...options })
 
   /**
    * Creates a booking with an airline based on an offer.

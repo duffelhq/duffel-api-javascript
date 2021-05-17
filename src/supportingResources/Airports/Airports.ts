@@ -33,11 +33,9 @@ export class Airports extends Resource {
     this.request({ method: 'GET', path: this.path, ...options })
 
   /**
-   * Retrieves a paginated list of all airports. The results may be returned in any order.
-   * @param {Object} [options] - Pagination query parameters (optional: limit, after, before)
+   * Retrieves a generator of all airports. The results may be returned in any order.
    * @link https://duffel.com/docs/api/airports/get-airports
    */
-  public listWithPagination = (options?: {
-    queryParams?: PaginationMeta
-  }): AsyncGenerator<DuffelResponse<Airport[]>, void, unknown> => this.paginatedRequest({ path: this.path, ...options })
+  public listWithGenerator = (): AsyncGenerator<DuffelResponse<Airport>, void, unknown> =>
+    this.paginatedRequest({ path: this.path })
 }

@@ -30,10 +30,9 @@ describe('OrderChangeOffers', () => {
       .get(`/air/order_change_offers`)
       .reply(200, { data: [mockOrderChangeOffer], meta: { limit: 1, before: null, after: null } })
 
-    const response = new OrderChangeOffers(new Client({ token: 'mockToken' })).listWithPagination()
+    const response = new OrderChangeOffers(new Client({ token: 'mockToken' })).listWithGenerator()
     for await (const page of response) {
-      expect(page.data).toHaveLength(1)
-      expect(page.data![0].id).toBe(mockOrderChangeOffer.id)
+      expect(page.data.id).toBe(mockOrderChangeOffer.id)
     }
   })
 })
