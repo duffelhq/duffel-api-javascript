@@ -20,7 +20,7 @@ describe('Orders', () => {
       .get(`/air/orders?limit=1`)
       .reply(200, { data: [mockOrder], meta: { limit: 1, before: null, after: null } })
 
-    const response = await new Orders(new Client({ token: 'mockToken' })).list({ queryParams: { limit: 1 } })
+    const response = await new Orders(new Client({ token: 'mockToken' })).list({ limit: 1 })
     expect(response.data).toHaveLength(1)
     expect(response.data[0].id).toBe(mockOrder.id)
   })
@@ -41,9 +41,7 @@ describe('Orders', () => {
       .get(`/air/orders?awaiting_payment=true`)
       .reply(200, { data: mockOnHoldOrders, meta: { limit: 1, before: null, after: null } })
 
-    const response = await new Orders(new Client({ token: 'mockToken' })).list({
-      queryParams: { awaiting_payment: true }
-    })
+    const response = await new Orders(new Client({ token: 'mockToken' })).list({ awaiting_payment: true })
     expect(response.data).toHaveLength(2)
     expect(response.data[0].payment_status.awaiting_payment).toBe(true)
     expect(response.data[1].payment_status.awaiting_payment).toBe(true)
@@ -52,7 +50,7 @@ describe('Orders', () => {
   test('should create an order', async () => {
     nock(/(.*)/).post(`/air/orders`).query(true).reply(200, { data: mockOrder })
 
-    const response = await new Orders(new Client({ token: 'mockToken' })).create({ bodyParams: mockCreateOrderRequest })
+    const response = await new Orders(new Client({ token: 'mockToken' })).create(mockCreateOrderRequest)
     expect(response.data?.id).toBe(mockOrder.id)
   })
 })

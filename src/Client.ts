@@ -25,14 +25,14 @@ export class Client {
   public request = async <T_Data = any>({
     method,
     path,
-    bodyParams,
-    queryParams,
+    data,
+    params,
     compress = true
   }: {
     method: string
     path: string
-    bodyParams?: any
-    queryParams?: Record<string, any>
+    data?: Record<string, any>
+    params?: Record<string, any>
     compress?: boolean
   }): Promise<DuffelResponse<T_Data>> => {
     let body
@@ -48,18 +48,18 @@ export class Client {
       Authorization: `Bearer ${this.token}`
     }
 
-    if (queryParams) {
-      const params = Object.entries(queryParams)
+    if (params) {
+      const sortedParams = Object.entries(params)
         .sort()
         .filter((option) => option[0] !== null)
-      fullPath.search = new URLSearchParams(params).toString()
+      fullPath.search = new URLSearchParams(sortedParams).toString()
     }
 
-    // We need to format body to be sent as { "data": bodyParams }
-    if (bodyParams) {
+    // We need to format body to be sent as { "data": data }
+    if (data) {
       body = JSON.stringify({
         data: {
-          ...bodyParams
+          ...data
         }
       })
     }
@@ -67,8 +67,8 @@ export class Client {
     if (this.debug?.verbose) {
       console.info('Endpoint: ', fullPath.href)
       console.info('Method: ', method)
-      if (bodyParams) console.info('Body Parameters: ', bodyParams)
-      if (queryParams) console.info('Query Parameters: ', queryParams)
+      if (data) console.info('Body Parameters: ', data)
+      if (params) console.info('Query Parameters: ', params)
     }
 
     const response = await fetch(fullPath.href, {
@@ -95,12 +95,12 @@ export class Client {
 
   async *paginatedRequest<T_Data = any>({
     path,
-    queryParams
+    params
   }: {
     path: string
-    queryParams: any
+    params?: Record<string, any>
   }): AsyncGenerator<DuffelResponse<T_Data>, void, unknown> {
-    let response: DuffelResponse<T_Data[]> = await this.request({ method: 'GET', path, queryParams })
+    let response: DuffelResponse<T_Data[]> = await this.request({ method: 'GET', path, params })
     for (const item of response.data) {
       yield { data: item }
     }
@@ -109,7 +109,7 @@ export class Client {
       response = await this.request({
         method: 'GET',
         path,
-        queryParams: { limit: response.meta.limit, after: response.meta.after }
+        params: { limit: response.meta.limit, after: response.meta.after }
       })
       for (const item of response.data) {
         yield { data: item }

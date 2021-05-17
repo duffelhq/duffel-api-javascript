@@ -29,8 +29,8 @@ export class Aircraft extends Resource {
    * @param {Object} [options] - Pagination options (optional: limit, after, before)
    * @link https://duffel.com/docs/api/aircraft/get-aircraft
    */
-  public list = (options?: { queryParams?: PaginationMeta }): Promise<DuffelResponse<AircraftType[]>> =>
-    this.request({ method: 'GET', path: this.path, ...options })
+  public list = (options?: PaginationMeta): Promise<DuffelResponse<AircraftType[]>> =>
+    this.request({ method: 'GET', path: this.path, params: options })
 
   /**
    * Retrieves a generator of all aircraft. The results may be returned in any order.

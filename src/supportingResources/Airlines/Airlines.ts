@@ -28,8 +28,8 @@ export class Airlines extends Resource {
    * @param {Object} [options] - Pagination options (optional: limit, after, before)
    * @link https://duffel.com/docs/api/airlines/get-airlines
    */
-  public list = (options?: { queryParams?: PaginationMeta }): Promise<DuffelResponse<Airline[]>> =>
-    this.request({ method: 'GET', path: this.path, ...options })
+  public list = (options?: PaginationMeta): Promise<DuffelResponse<Airline[]>> =>
+    this.request({ method: 'GET', path: this.path, params: options })
 
   /**
    * Retrieves a generator of all airlines. The results may be returned in any order.

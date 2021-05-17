@@ -23,17 +23,11 @@ export class OrderCancellations extends Resource {
   /**
    * Create order cancellation
    * @description To begin the process of cancelling an order you need to create an order cancellation.
-   * @param bodyParams.order_id - Duffel's unique identifier for the order
+   * @param order_id - Duffel's unique identifier for the order
    * @link https://duffel.com/docs/api/order-cancellations/create-order-cancellation
    */
-  public create = async ({
-    bodyParams,
-    queryParams
-  }: {
-    bodyParams: CreateOrderCancellation
-    queryParams?: Record<string, any>
-  }): Promise<DuffelResponse<OrderCancellation>> => {
-    return this.request({ method: 'POST', path: this.path, bodyParams, queryParams })
+  public create = async (options: CreateOrderCancellation): Promise<DuffelResponse<OrderCancellation>> => {
+    return this.request({ method: 'POST', path: this.path, data: options })
   }
 
   /**

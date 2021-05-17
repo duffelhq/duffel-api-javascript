@@ -1,11 +1,11 @@
 import nock from 'nock'
 import { Client } from '../../Client'
-import { OrderChangeRequests } from './OrderChangeRequests'
 import {
-  mockOrderChangeRequest,
   mockCreateChangeRequest,
+  mockOrderChangeRequest,
   mockOrderChangeRequestAltered
 } from './mockOrderChangeRequests'
+import { OrderChangeRequests } from './OrderChangeRequests'
 
 describe('OrderChangeRequests', () => {
   afterEach(() => {
@@ -24,9 +24,7 @@ describe('OrderChangeRequests', () => {
   test('should create an order change request', async () => {
     nock(/(.*)/).post(`/air/order_change_requests`).reply(200, { data: mockOrderChangeRequestAltered })
 
-    const response = await new OrderChangeRequests(new Client({ token: 'mockToken' })).create({
-      bodyParams: mockCreateChangeRequest
-    })
+    const response = await new OrderChangeRequests(new Client({ token: 'mockToken' })).create(mockCreateChangeRequest)
     expect(response.data?.slices.remove.slice_id).toBe(mockCreateChangeRequest.changes.slices.remove[0].slice_id)
     expect(response.data?.slices.add.destination.iata_code).toBe(
       mockCreateChangeRequest.changes.slices.add[0].destination

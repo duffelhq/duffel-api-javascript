@@ -22,7 +22,7 @@ describe('offers', () => {
     nock(/(.*)/).get(`/air/offers/${mockOffer.id}?return_available_services=true`).reply(200, { data: mockOffer })
 
     const response = await new Offers(new Client({ token: 'mockToken' })).get(mockOffer.id, {
-      queryParams: { return_available_services: true }
+      return_available_services: true
     })
     expect(response.data?.id).toBe(mockOffer.id)
     expect(response.data?.available_services).toHaveLength(1)
@@ -33,7 +33,7 @@ describe('offers', () => {
       .get(`/air/offers?limit=1`)
       .reply(200, { data: [mockOffer], meta: { limit: 1, before: null, after: null } })
 
-    const response = await new Offers(new Client({ token: 'mockToken' })).list({ queryParams: { limit: 1 } })
+    const response = await new Offers(new Client({ token: 'mockToken' })).list({ limit: 1 })
     expect(response.data).toHaveLength(1)
     expect(response.data[0].id).toBe(mockOffer.id)
   })

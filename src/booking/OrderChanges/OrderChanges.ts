@@ -25,11 +25,8 @@ export class OrderChanges extends Resource {
    * The OrderChange will contain the `selected_order_change_offer` reference of the change you wish to make to your order.
    * @link https://duffel.com/docs/api/order-changes/create-order-change
    */
-  public create = async ({
-    bodyParams
-  }: {
-    bodyParams: CreateOrderChangeParameters
-  }): Promise<DuffelResponse<OrderChangeOfferSlice>> => this.request({ method: 'POST', path: this.path, bodyParams })
+  public create = async (options: CreateOrderChangeParameters): Promise<DuffelResponse<OrderChangeOfferSlice>> =>
+    this.request({ method: 'POST', path: this.path, data: options })
 
   /**
    * Retrieves an order change by its ID
@@ -42,12 +39,12 @@ export class OrderChanges extends Resource {
   /**
    * Once you've created a pending order change, you'll know the change_total_amount due for the change.
    * @param {string} id - Duffel's unique identifier for the order change
-   * @param {options.bodyParams.payment} Object - The payment details to use to pay for the order change, if there is an amount to be paid. Some order changes may not need this if they instead refund an amount. In those cases, you can pass any empty object.
+   * @param {payment} Object - The payment details to use to pay for the order change, if there is an amount to be paid. Some order changes may not need this if they instead refund an amount. In those cases, you can pass any empty object.
    * @link https://duffel.com/docs/api/order-changes/confirm-order-change
    */
   public confirm = async (
     id: string,
-    options: { bodyParams: { payment: Partial<ConfirmOrderChangePayment> } }
+    options: Partial<ConfirmOrderChangePayment>
   ): Promise<DuffelResponse<OrderChangeOfferSlice>> =>
-    this.request({ method: 'POST', path: `${this.path}/${id}`, bodyParams: options.bodyParams })
+    this.request({ method: 'POST', path: `${this.path}/${id}`, data: options })
 }
