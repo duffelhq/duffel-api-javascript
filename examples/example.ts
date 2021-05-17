@@ -21,12 +21,18 @@ const example = async () => {
     console.log('Caught', error)
   }
 
-  const airlinePages = duffel.airlines.list({
+  const airlinePage = await duffel.airlines.list({
     queryParams: { limit: 5 }
   })
+  console.log(airlinePage)
 
-  for await (const page of airlinePages) {
-    console.log(page)
+  try {
+    const airlines = duffel.airlines.listWithGenerator()
+    for await (const airline of airlines) {
+      console.log(airline)
+    }
+  } catch (error) {
+    console.log('Caught while generating', error)
   }
 }
 

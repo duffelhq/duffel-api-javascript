@@ -28,11 +28,15 @@ export class OrderChangeOffers extends Resource {
     this.request({ method: 'GET', path: `${this.path}/${id}` })
 
   /**
-   * Retrieves a paginated list of all order change offers. The results may be returned in any order.
-   * @param {Object} [options] - Pagination query parameters (optional: limit, after, before)
+   * Retrieves a page of order change offers. The results may be returned in any order.
+   * @param {Object} [options] - Pagination options (optional: limit, after, before)
    */
-  public list = (options?: {
-    queryParams?: PaginationMeta
-  }): AsyncGenerator<DuffelResponse<OrderChangeOffer[]>, void, unknown> =>
-    this.paginatedRequest({ path: this.path, ...options })
+  public list = (options?: { queryParams?: PaginationMeta }): Promise<DuffelResponse<OrderChangeOffer[]>> =>
+    this.request({ method: 'GET', path: this.path, ...options })
+
+  /**
+   * Retrieves a generator of all order change offers. The results may be returned in any order.
+   */
+  public listWithGenerator = (): AsyncGenerator<DuffelResponse<OrderChangeOffer>, void, unknown> =>
+    this.paginatedRequest({ path: this.path })
 }

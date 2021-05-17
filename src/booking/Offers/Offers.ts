@@ -30,10 +30,17 @@ export class Offers extends Resource {
     this.request({ method: 'GET', path: `${this.path}/${id}`, queryParams: options?.queryParams })
 
   /**
-   * Retrieves a paginated list of all offers. The results may be returned in any order.
+   * Retrieves a page of offers. The results may be returned in any order.
    * @param {Object} [options] - Pagination options (optional: limit, after, before)
    * @link https://duffel.com/docs/api/offers/get-offers
    */
-  public list = (options?: PaginationMeta): AsyncGenerator<DuffelResponse<Offer[]>, void, unknown> =>
-    this.paginatedRequest({ path: this.path, ...options })
+  public list = (options?: { queryParams?: PaginationMeta }): Promise<DuffelResponse<Offer[]>> =>
+    this.request({ method: 'GET', path: this.path, ...options })
+
+  /**
+   * Retrieves a generator of all offers. The results may be returned in any order.
+   * @link https://duffel.com/docs/api/offers/get-offers
+   */
+  public listWithGenerator = (): AsyncGenerator<DuffelResponse<Offer>, void, unknown> =>
+    this.paginatedRequest({ path: this.path })
 }

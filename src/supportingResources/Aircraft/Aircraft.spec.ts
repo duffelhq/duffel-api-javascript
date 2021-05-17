@@ -1,5 +1,4 @@
 import nock from 'nock'
-import { PaginationMeta } from '../../types'
 import { Client } from '../../Client'
 import { Aircraft } from './Aircraft'
 import { mockAircraft } from './mockAircraft'
@@ -16,20 +15,24 @@ describe('aircraft', () => {
     expect(response.data?.id).toBe(mockAircraft.id)
   })
 
-  test('should get all aircraft', async () => {
-    const nextId = 'next_id'
+  test('should get a page of aircraft', async () => {
     nock(/(.*)/)
       .get(`/air/aircraft?limit=1`)
-      .reply(200, { data: [mockAircraft], meta: { limit: 1, before: null, after: 'test' } })
-    nock(/(.*)/)
-      .get(`/air/aircraft?limit=1&after=test`)
-      .reply(200, { data: [{ ...mockAircraft, id: nextId }], meta: { limit: 1, before: 'test', after: null } })
+      .reply(200, { data: [mockAircraft], meta: { limit: 1, before: null, after: null } })
 
-    const response = new Aircraft(new Client({ token: 'mockToken' })).list({ queryParams: { limit: 1 } })
+    const response = await new Aircraft(new Client({ token: 'mockToken' })).list({ queryParams: { limit: 1 } })
+    expect(response.data).toHaveLength(1)
+    expect(response.data[0].id).toBe(mockAircraft.id)
+  })
+
+  test('should get all aircraft paginated', async () => {
+    nock(/(.*)/)
+      .get(`/air/aircraft`)
+      .reply(200, { data: [mockAircraft], meta: { limit: 1, before: null, after: null } })
+
+    const response = new Aircraft(new Client({ token: 'mockToken' })).listWithGenerator()
     for await (const page of response) {
-      expect(page.data).toHaveLength(1)
-      const expectedId = (page.meta as PaginationMeta)?.after ? mockAircraft.id : nextId
-      expect(page.data![0].id).toBe(expectedId)
+      expect(page.data.id).toBe(mockAircraft.id)
     }
   })
 })

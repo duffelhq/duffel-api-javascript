@@ -24,11 +24,17 @@ export class Airlines extends Resource {
     this.request({ method: 'GET', path: `${this.path}/${id}` })
 
   /**
-   * Retrieves a paginated list of all airlines. The results may be returned in any order.
-   * @param {Object} [options] - Pagination query parameters (optional: limit, after, before)
+   * Retrieves a page of airlines. The results may be returned in any order.
+   * @param {Object} [options] - Pagination options (optional: limit, after, before)
    * @link https://duffel.com/docs/api/airlines/get-airlines
    */
-  public list = (options?: {
-    queryParams?: PaginationMeta
-  }): AsyncGenerator<DuffelResponse<Airline[]>, void, unknown> => this.paginatedRequest({ path: this.path, ...options })
+  public list = (options?: { queryParams?: PaginationMeta }): Promise<DuffelResponse<Airline[]>> =>
+    this.request({ method: 'GET', path: this.path, ...options })
+
+  /**
+   * Retrieves a generator of all airlines. The results may be returned in any order.
+   * @link https://duffel.com/docs/api/airlines/get-airlines
+   */
+  public listWithGenerator = (): AsyncGenerator<DuffelResponse<Airline>, void, unknown> =>
+    this.paginatedRequest({ path: this.path })
 }
