@@ -39,7 +39,3 @@ If you need to create a new API operation class just type `yarn generate:operati
 ## Documentation
 
 If you want to know more about the project make sure to read our [Notion doc](https://www.notion.so/duffel/JS-Client-Library-Guides-c168653f674f4d768f08e8ba392702e5)
-
-## Contributing
-
-TBD
