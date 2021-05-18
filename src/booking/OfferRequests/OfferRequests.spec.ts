@@ -1,4 +1,3 @@
-import omit from 'lodash/omit'
 import nock from 'nock'
 import { Client } from '../../Client'
 import { mockCreateOfferRequest, mockOfferRequest } from './mockOfferRequest'
@@ -47,7 +46,9 @@ describe('OfferRequests', () => {
   })
 
   test('should create an offer request and no offers should return when requested', async () => {
-    const mockResponseWithoutOffer = omit(mockOfferRequest, 'offers')
+    // const mockResponseWithoutOffer = omit(mockOfferRequest, 'offers')
+    const mockResponseWithoutOffer = { ...mockOfferRequest }
+    delete mockResponseWithoutOffer.offers
     nock(/(.*)/).post(`/air/offer_requests/`).query(true).reply(200, { data: mockResponseWithoutOffer })
 
     const response = await new OfferRequests(new Client({ token: 'mockToken' })).create({
