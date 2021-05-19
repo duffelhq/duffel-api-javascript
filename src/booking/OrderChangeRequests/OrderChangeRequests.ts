@@ -28,12 +28,9 @@ export class OrderChangeRequests extends Resource {
   /**
    *
    * To change flights on an existing paid order, you'll need to create an order change request.
+   * @link https://duffel.com/docs/api/order-change-requests/create-order-change-request
    * @memberof OrderChangeRequests
    */
-  public create = async ({
-    bodyParams
-  }: {
-    bodyParams: CreateOrderChangeRequest
-  }): Promise<DuffelResponse<OrderChangeRequestResponse>> =>
-    this.request({ method: 'POST', path: this.path, bodyParams })
+  public create = async (options: CreateOrderChangeRequest): Promise<DuffelResponse<OrderChangeRequestResponse>> =>
+    this.request({ method: 'POST', path: this.path, data: options })
 }

@@ -20,22 +20,19 @@ export class Offers extends Resource {
   /**
    * Retrieves an offer by its ID
    * @param {string} id - Duffel's unique identifier for the offer
-   * @param {string} queryParams.return_available_services - When set to true, the offer resource returned will include all the available_services returned by the airline. If set to false, the offer resource won't include any available_services.
+   * @param {string} return_available_services - When set to true, the offer resource returned will include all the available_services returned by the airline. If set to false, the offer resource won't include any available_services.
    * @link https:/duffel.com/docs/api/offers/get-offer-by-id
    */
-  public get = async (
-    id: string,
-    options?: { queryParams: { return_available_services: boolean } }
-  ): Promise<DuffelResponse<Offer>> =>
-    this.request({ method: 'GET', path: `${this.path}/${id}`, queryParams: options?.queryParams })
+  public get = async (id: string, params?: { return_available_services: boolean }): Promise<DuffelResponse<Offer>> =>
+    this.request({ method: 'GET', path: `${this.path}/${id}`, params })
 
   /**
    * Retrieves a page of offers. The results may be returned in any order.
    * @param {Object} [options] - Pagination options (optional: limit, after, before)
    * @link https://duffel.com/docs/api/offers/get-offers
    */
-  public list = (options?: { queryParams?: PaginationMeta }): Promise<DuffelResponse<Offer[]>> =>
-    this.request({ method: 'GET', path: this.path, ...options })
+  public list = (options?: PaginationMeta): Promise<DuffelResponse<Offer[]>> =>
+    this.request({ method: 'GET', path: this.path, params: options })
 
   /**
    * Retrieves a generator of all offers. The results may be returned in any order.

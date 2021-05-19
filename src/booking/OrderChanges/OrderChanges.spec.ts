@@ -19,7 +19,7 @@ describe('OrderChanges', () => {
     nock(/(.*)/).post(`/air/order_changes`).reply(200, { data: mockOrderChange })
 
     const response = await new OrderChanges(new Client({ token: 'mockToken' })).create({
-      bodyParams: { selected_order_change_offer: mockOrderChange.id }
+      selected_order_change_offer: mockOrderChange.id
     })
     expect(response.data?.id).toBe(mockOrderChange.id)
   })
@@ -27,9 +27,7 @@ describe('OrderChanges', () => {
   test('should confirm a pending order change', async () => {
     nock(/(.*)/).post(`/air/order_changes/${mockOrderChange.id}`).reply(200, { data: mockOrderChange })
 
-    const response = await new OrderChanges(new Client({ token: 'mockToken' })).confirm(mockOrderChange.id, {
-      bodyParams: { payment: {} }
-    })
+    const response = await new OrderChanges(new Client({ token: 'mockToken' })).confirm(mockOrderChange.id, {})
     expect(response.data?.id).toBe(mockOrderChange.id)
   })
 })

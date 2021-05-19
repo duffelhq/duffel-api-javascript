@@ -24,8 +24,8 @@ export class Orders extends Resource {
    * @param {Object} [options] - Pagination options (optional: limit, after, before)
    * @link https://duffel.com/docs/api/orders/get-orders
    */
-  public list = (options?: { queryParams?: PaginationMeta & ListParamsOrders }): Promise<DuffelResponse<Order[]>> =>
-    this.request({ method: 'GET', path: this.path, ...options })
+  public list = async (options?: PaginationMeta & ListParamsOrders): Promise<DuffelResponse<Order[]>> =>
+    this.request({ method: 'GET', path: this.path, params: options })
 
   /**
    * Retrieves a generator of all orders. The results may be returned in any order.
@@ -33,21 +33,13 @@ export class Orders extends Resource {
    * @param {Object} [options] - Optional query parameters: awaiting_payment, sort
    * @link https://duffel.com/docs/api/orders/get-orders
    */
-  public listWithGenerator = (options?: {
-    queryParams?: ListParamsOrders
-  }): AsyncGenerator<DuffelResponse<Order>, void, unknown> => this.paginatedRequest({ path: 'air/orders', ...options })
+  public listWithGenerator = (options?: ListParamsOrders): AsyncGenerator<DuffelResponse<Order>, void, unknown> =>
+    this.paginatedRequest({ path: 'air/orders', params: options })
 
   /**
    * Creates a booking with an airline based on an offer.
-   * @param {{bodyParams, queryParams}} { bodyParams, queryParams }
    */
-  public create = async ({
-    bodyParams,
-    queryParams
-  }: {
-    bodyParams: CreateOrder
-    queryParams?: Record<string, any>
-  }): Promise<DuffelResponse<Order>> => {
-    return this.request({ method: 'POST', path: this.path, bodyParams, queryParams })
+  public create = async (options: CreateOrder): Promise<DuffelResponse<Order>> => {
+    return this.request({ method: 'POST', path: this.path, data: options })
   }
 }

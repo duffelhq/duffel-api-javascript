@@ -21,9 +21,7 @@ const example = async () => {
     console.log('Caught', error)
   }
 
-  const airlinePage = await duffel.airlines.list({
-    queryParams: { limit: 5 }
-  })
+  const airlinePage = await duffel.airlines.list({ limit: 5 })
   console.log(airlinePage)
 
   try {

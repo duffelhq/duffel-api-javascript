@@ -11,20 +11,20 @@ export class Resource {
   protected request = async <T_Data = any>({
     method,
     path,
-    bodyParams,
-    queryParams
+    data,
+    params
   }: {
     method: string
     path: string
-    bodyParams?: any
-    queryParams?: Record<string, any>
-  }): Promise<DuffelResponse<T_Data>> => this.client.request({ method, path, bodyParams, queryParams })
+    data?: Record<string, any>
+    params?: Record<string, any>
+  }): Promise<DuffelResponse<T_Data>> => this.client.request({ method, path, data, params })
 
   protected paginatedRequest = <T_Data = any>({
     path,
-    queryParams
+    params
   }: {
     path: string
-    queryParams?: any
-  }): AsyncGenerator<DuffelResponse<T_Data>, void, unknown> => this.client.paginatedRequest({ path, queryParams })
+    params?: Record<string, any>
+  }): AsyncGenerator<DuffelResponse<T_Data>, void, unknown> => this.client.paginatedRequest({ path, params })
 }

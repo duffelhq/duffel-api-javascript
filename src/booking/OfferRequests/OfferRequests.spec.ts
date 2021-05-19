@@ -20,7 +20,7 @@ describe('OfferRequests', () => {
       .get(`/air/offer_requests?limit=1`)
       .reply(200, { data: [mockOfferRequest], meta: { limit: 1, before: null, after: null } })
 
-    const response = await new OfferRequests(new Client({ token: 'mockToken' })).list({ queryParams: { limit: 1 } })
+    const response = await new OfferRequests(new Client({ token: 'mockToken' })).list({ limit: 1 })
     expect(response.data).toHaveLength(1)
     expect(response.data[0].id).toBe(mockOfferRequest.id)
   })
@@ -39,9 +39,7 @@ describe('OfferRequests', () => {
   test('should create an offer request and return offers by default', async () => {
     nock(/(.*)/).post(`/air/offer_requests/`).query(true).reply(200, { data: mockOfferRequest })
 
-    const response = await new OfferRequests(new Client({ token: 'mockToken' })).create({
-      bodyParams: mockCreateOfferRequest
-    })
+    const response = await new OfferRequests(new Client({ token: 'mockToken' })).create(mockCreateOfferRequest)
     expect(response.data?.id).toBe(mockOfferRequest.id)
   })
 
@@ -52,8 +50,8 @@ describe('OfferRequests', () => {
     nock(/(.*)/).post(`/air/offer_requests/`).query(true).reply(200, { data: mockResponseWithoutOffer })
 
     const response = await new OfferRequests(new Client({ token: 'mockToken' })).create({
-      bodyParams: mockCreateOfferRequest,
-      queryParams: { return_offers: false }
+      ...mockCreateOfferRequest,
+      return_offers: false
     })
     expect(response.data?.offers).toBe(undefined)
     expect(response.data?.id).toBe(mockOfferRequest.id)

@@ -20,7 +20,7 @@ describe('OrderChangeOffers', () => {
       .get(`/air/order_change_offers?limit=1`)
       .reply(200, { data: [mockOrderChangeOffer], meta: { limit: 1, before: null, after: null } })
 
-    const response = await new OrderChangeOffers(new Client({ token: 'mockToken' })).list({ queryParams: { limit: 1 } })
+    const response = await new OrderChangeOffers(new Client({ token: 'mockToken' })).list({ limit: 1 })
     expect(response.data).toHaveLength(1)
     expect(response.data[0].id).toBe(mockOrderChangeOffer.id)
   })

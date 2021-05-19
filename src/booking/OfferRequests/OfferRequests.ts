@@ -38,8 +38,8 @@ export class OfferRequests extends Resource {
    * @param {Object} [options] - Pagination options (optional: limit, after, before)
    * @link https://duffel.com/docs/api/offer-requests/get-offer-requests
    */
-  public list = (options?: { queryParams?: PaginationMeta }): Promise<DuffelResponse<OfferRequest[]>> =>
-    this.request({ method: 'GET', path: this.path, ...options })
+  public list = (options?: PaginationMeta): Promise<DuffelResponse<OfferRequest[]>> =>
+    this.request({ method: 'GET', path: this.path, params: options })
 
   /**
    * Retrieves a generator of all offer requests. The results may be returned in any order.
@@ -52,18 +52,14 @@ export class OfferRequests extends Resource {
    * To search for flights, you'll need to create an `offer request`.
    * An offer request describes the passengers and where and when they want to travel (in the form of a list of `slices`).
    * It may also include additional filters (e.g. a particular cabin to travel in).
-   * @param {object} [bodyParams] - body parameters to create the offer_request
-   * @param {boolean} [queryParams.return_offers] - When set to `true`, the offer request resource returned will include all the `offers` returned by the airlines.
+   * @param {boolean} [return_offers] - When set to `true`, the offer request resource returned will include all the `offers` returned by the airlines.
    * If set to false, the offer request resource won't include any `offers`. To retrieve the associated offers later, use the List Offers endpoint, specifying the `offer_request_id`.
    * @link https://duffel.com/docs/api/offer-requests/create-offer-request
    */
-  public create = async ({
-    bodyParams,
-    queryParams = { return_offers: true }
-  }: {
-    bodyParams: CreateOfferRequest
-    queryParams?: CreateOfferRequestQueryParameters
-  }): Promise<DuffelResponse<OfferRequest>> => {
-    return this.request({ method: 'POST', path: `${this.path}/`, bodyParams, queryParams })
+  public create = async (
+    options: Partial<CreateOfferRequest & CreateOfferRequestQueryParameters>
+  ): Promise<DuffelResponse<OfferRequest>> => {
+    const { return_offers, ...data } = options
+    return this.request({ method: 'POST', path: `${this.path}/`, data, params: { return_offers } })
   }
 }

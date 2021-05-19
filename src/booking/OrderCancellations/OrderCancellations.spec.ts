@@ -12,9 +12,7 @@ describe('OrderCancellations', () => {
     nock(/(.*)/).post(`/air/order_cancellations`).reply(200, { data: mockOrderCancellations })
 
     const response = await new OrderCancellations(new Client({ token: 'mockToken' })).create({
-      bodyParams: {
-        order_id: 'ord_00009hthhsUZ8W4LxQgkjo'
-      }
+      order_id: 'ord_00009hthhsUZ8W4LxQgkjo'
     })
     expect(response.data?.order_id).toBe('ord_00009hthhsUZ8W4LxQgkjo')
   })

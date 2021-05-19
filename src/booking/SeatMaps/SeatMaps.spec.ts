@@ -12,9 +12,7 @@ describe('SeatMaps', () => {
     const mockOfferId = 'off_123'
     nock(/(.*)/).get(`/air/seat_maps?offer_id=${mockOfferId}`).reply(200, { data: mockSeatMap })
 
-    const response = await new SeatMaps(new Client({ token: 'mockToken' })).get({
-      queryParams: { offer_id: mockOfferId }
-    })
+    const response = await new SeatMaps(new Client({ token: 'mockToken' })).get({ offer_id: mockOfferId })
     expect(response.data?.id).toBe(mockSeatMap.id)
   })
 })

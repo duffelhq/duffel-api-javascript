@@ -14,9 +14,9 @@ export class SeatMaps extends Resource {
 
   /**
    * Gets seat maps by specific parameters. At the moment we only support querying by an offer ID.
-   * @param {string} options.queryParams.offer_id - Duffel's unique identifier for the offer
+   * @param {string} offer_id - Duffel's unique identifier for the offer
    * @link https://duffel.com/docs/api/seat-maps/get-seat-maps
    */
-  public get = async (options: { queryParams: { offer_id: string } }): Promise<DuffelResponse<SeatMap>> =>
-    this.request({ method: 'GET', path: `${this.path}`, queryParams: options.queryParams })
+  public get = async (params: { offer_id: string }): Promise<DuffelResponse<SeatMap>> =>
+    this.request({ method: 'GET', path: `${this.path}`, params })
 }
