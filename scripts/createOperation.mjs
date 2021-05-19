@@ -1,17 +1,17 @@
 /* eslint-disable no-console */
 /*
- * Duffel API Javascript - Method Generator
+ * Duffel API Javascript - Operation Generator
  *
- * Node script that automatically generates a method's folder and files structure.
- * run with "yarn generate:method"
+ * Node script that automatically generates a operation's folder and files structure.
+ * run with "yarn generate:operation"
  *
- * The script generates the following files for a given method:
+ * The script generates the following files for a given operation:
  *
  * index.ts`: module import/export
- * <MethodName>.ts`: class definition
- * <MethodName>.spec.ts`: tests
- * mock<MethodName>.ts`: mock data to use for tests
- * <MethodName>Types.d.ts`: type definitions file
+ * <OperationName>.ts`: class definition
+ * <OperationName>.spec.ts`: tests
+ * mock<OperationName>.ts`: mock data to use for tests
+ * <OperationName>Types.d.ts`: type definitions file
  */
 
 import fs from 'fs'
@@ -24,19 +24,19 @@ const rl = readline.createInterface({
   output: process.stdout
 })
 
-let methodName = 'MethodName'
+let operationName = 'OperationName'
 const __dirname = 'src'
-let methodPath = path.resolve(__dirname, 'src')
+let operationPath = path.resolve(__dirname, 'src')
 let errorMsg = ''
 
-// method name
+// operation name
 const methodNameQuestion = () => {
   return new Promise((resolve, reject) => {
-    rl.question(`Name of the method? (example: Offers) (default: "MethodName"): `, (answer) => {
-      methodPath = path.join(__dirname, methodName)
+    rl.question(`Name of the operation? (example: Offers) (default: "OperationName"): `, (answer) => {
+      operationPath = path.join(__dirname, operationName)
       if (answer) {
         if (/^[A-z]+$/.test(answer)) {
-          methodName = capitalise(answer)
+          operationName = capitalise(answer)
         } else {
           errorMsg = 'Method name should be letters only and CamelCase.'
           reject()
@@ -47,12 +47,12 @@ const methodNameQuestion = () => {
   })
 }
 
-// method folder
+// operation folder
 const folderQuestion = () => {
   return new Promise((resolve) => {
-    rl.question(`Where do you want to create the method? (default/root: src): `, (answer) => {
+    rl.question(`Where do you want to create the operation? (default/root: src): `, (answer) => {
       if (answer) {
-        methodPath = path.join(__dirname, answer, methodName)
+        operationPath = path.join(__dirname, answer, operationName)
       }
       resolve(true)
     })
@@ -72,11 +72,11 @@ const createFile = (fileName, contents) =>
   })
 const print = () => {
   console.log('\n--------------------------------------------------------')
-  console.log('Method '.green + methodName.green + ' created.'.green)
+  console.log('Method '.green + operationName.green + ' created.'.green)
   console.log('--------------------------------------------------------')
-  console.log(`Method Name: `.grey + methodName)
-  console.log(`Folder: `.grey + methodPath)
-  console.log(`Note: `.yellow + `export your method in src/index.ts when done.`.yellow)
+  console.log(`Method Name: `.grey + operationName)
+  console.log(`Folder: `.grey + operationPath)
+  console.log(`Note: `.yellow + `export your operation in src/index.ts when done.`.yellow)
   console.log('--------------------------------------------------------')
 }
 const makeHeader = () => {
@@ -87,13 +87,13 @@ import { Resource } from '../../Resource'
 
 // index.ts
 const indexContent = () =>
-  `export * from "./${methodName}";
+  `export * from "./${operationName}";
 `
 
-// MethodName.ts
+// OperationName.ts
 const methodClass = () =>
   `${makeHeader()}
-export class ${methodName} extends Resource {
+export class ${operationName} extends Resource {
 
   /**
    * Endpoint path
@@ -113,7 +113,7 @@ const mockContent = () =>
 * Create your mock file
 */
 
-export const mock${methodName} = {}`
+export const mock${operationName} = {}`
 
 // mockMethodNameType.ts
 const definitionFileTypes = () =>
@@ -122,24 +122,24 @@ const definitionFileTypes = () =>
 */
 `
 
-// MethodName.spec.ts
+// OperationName.spec.ts
 const testContent = () =>
   `
 import nock from 'nock'
 import { Client } from '../../Client'
-import ${methodName} from "./${methodName}";
-import * as mock${methodName} from './mock${methodName}'
+import ${operationName} from "./${operationName}";
+import * as mock${operationName} from './mock${operationName}'
 
-describe("${methodName}", () => {
+describe("${operationName}", () => {
   afterEach(() => {
     nock.cleanAll()
   })
 
-  test("should get ${methodName}", async () => {
-    //nock(/(.*)/).get('/air/endpoint').reply(200, { data: mock${methodName} })
+  test("should get ${operationName}", async () => {
+    //nock(/(.*)/).get('/air/endpoint').reply(200, { data: mock${operationName} })
 
     // uncomment these lines
-    //const response = await new ${methodName}(new Client({ token: 'mockToken' })).get(mockOfferRequest.id)
+    //const response = await new ${operationName}(new Client({ token: 'mockToken' })).get(mockOfferRequest.id)
     //expect(response.data?.id).toBe(mockOfferRequest.id)
     expect(true).toBe(true)
   })
@@ -148,18 +148,18 @@ describe("${methodName}", () => {
 
 const createMethodFiles = () => {
   // create folder
-  console.log(methodPath)
-  fs.existsSync(methodPath) || fs.mkdirSync(methodPath, { recursive: true })
+  console.log(operationPath)
+  fs.existsSync(operationPath) || fs.mkdirSync(operationPath, { recursive: true })
   // create index.ts
-  createFile(`${methodPath}/index.ts`, indexContent())
-  // create MethodName.ts
-  createFile(`${methodPath}/${methodName}.ts`, methodClass())
-  // create MethodName.spec.ts
-  createFile(`${methodPath}/${methodName}.spec.ts`, testContent())
+  createFile(`${operationPath}/index.ts`, indexContent())
+  // create OperationName.ts
+  createFile(`${operationPath}/${operationName}.ts`, methodClass())
+  // create OperationName.spec.ts
+  createFile(`${operationPath}/${operationName}.spec.ts`, testContent())
   // create mockMethodName.ts
-  createFile(`${methodPath}/${`mock${methodName}`}.ts`, mockContent())
-  // create src/types/MethodName.d.ts
-  createFile(`${methodPath}/${methodName}Type.ts`, definitionFileTypes())
+  createFile(`${operationPath}/${`mock${operationName}`}.ts`, mockContent())
+  // create src/types/OperationName.d.ts
+  createFile(`${operationPath}/${operationName}Type.ts`, definitionFileTypes())
 }
 
 const main = async () => {
