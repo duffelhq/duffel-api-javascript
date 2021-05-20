@@ -14,7 +14,7 @@ Javascript client library for the Duffel API.
 ## Prerequisites
 
 - Be part of @duffel organisation in NPM
-- Node >= 14.16.0
+- Node >= 12.22.0
 
 ## Install
 
