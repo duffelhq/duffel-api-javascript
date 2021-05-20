@@ -21,7 +21,14 @@ export interface PaginationMeta {
 }
 
 export interface ApiResponseMeta {
+  /**
+   * The identifier of the request
+   */
   request_id: string
+
+  /**
+   * The [HTTP status](https://httpstatuses.com/) of the request
+   */
   status: number
 }
 
@@ -57,7 +64,14 @@ export interface ApiResponseError {
 }
 
 export interface DuffelResponse<T_Data> {
+  /**
+   * The body of the response
+   */
   data: T_Data
+
+  /**
+   * Optional metadata for the request
+   */
   meta?: PaginationMeta
 }
 
