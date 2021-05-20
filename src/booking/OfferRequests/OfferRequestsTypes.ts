@@ -3,18 +3,28 @@ import { Offer } from '../Offers/OfferTypes'
 
 export interface OfferRequestSlice {
   /**
-   * The ISO 8601 date on which the passengers want to depart
+   * The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date on which the passengers want to depart
    */
   departure_date: string
+
   /**
    * The city or airport the passengers want to travel to
    */
   destination: Place | string
+
   /**
    * The city or airport the passengers want to depart from
    */
   origin: Place | string
+
+  /**
+   * The type of the origin
+   */
   origin_type: PlaceType
+
+  /**
+   * The type of the destination
+   */
   destination_type: PlaceType
 }
 
@@ -53,17 +63,54 @@ export interface OfferRequest {
    * @link https://duffel.com/docs/api/overview/key-principles
    */
   slices: OfferRequestSlice[]
+
+  /**
+   * The cabin that the passengers want to travel in
+   */
   cabin_class?: CabinClass
+
+  /**
+   * The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) datetime at which the offer request was created
+   */
   created_at: string
+
+  /**
+   * Duffel's unique identifier for the offer request
+   */
   id: string
+
+  /**
+   * Whether the offer request was created in live mode. This field will be set to true if the offer request was created in live mode, or false if it was created in test mode.
+   */
   live_mode: boolean
+
+  /**
+   * The offers returned by the airlines
+   */
   offers?: Omit<Offer, 'available_services'>[]
+
+  /**
+   * The passengers who want to travel. A passenger will have only a type or an age.
+   */
   passengers: OfferRequestPassenger[]
 }
 
 export interface CreateOfferRequest {
+  /**
+   * The cabin that the passengers want to travel in
+   */
   cabin_class: CabinClass
+
+  /**
+   * The passengers who want to travel.
+   * If you specify an age for a passenger, the type may differ for the same passenger in different offers due to airline's different rules. e.g. one airline may treat a 14 year old as an adult, and another as a young adult.
+   */
   passengers: Omit<OfferRequestPassenger, 'id'>[]
+
+  /**
+   * The [slices](https://duffel.com/docs/api/overview/key-principles) that make up this offer request.
+   * One-way journeys can be expressed using one slice, whereas return trips will need two.
+   */
   slices: Omit<OfferRequestSlice, 'origin_type' | 'destination_type'>[]
 }
 
