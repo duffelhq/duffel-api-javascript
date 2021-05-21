@@ -1,18 +1,14 @@
 {
-  "name": "@duffel/duffel-api",
-  "version": "0.0.57-beta",
+  "name": "@duffel/api",
+  "version": "1.0.0",
   "description": "Javascript client library for the Duffel API",
   "main": "dist/index.js",
   "module": "dist/index.es.js",
   "types": "dist/types/index.d.ts",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/duffelhq/duffel-api-javascript.git"
-  },
   "homepage": "https://duffel.com",
-  "bugs": {
-    "url": "https://github.com/duffelhq/duffel-api-javascript/issues"
-  },
+  "keywords": [
+    "duffel"
+  ],
   "files": [
     "dist"
   ],
@@ -63,8 +59,5 @@
   },
   "engines": {
     "node": ">=12.*"
-  },
-  "publishConfig": {
-    "access": "restricted"
   }
 }
