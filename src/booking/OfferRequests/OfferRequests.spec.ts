@@ -37,7 +37,13 @@ describe('OfferRequests', () => {
   })
 
   test('should create an offer request and return offers by default', async () => {
-    nock(/(.*)/).post(`/air/offer_requests/`).query({ return_offers: true }).reply(200, { data: mockOfferRequest })
+    nock(/(.*)/)
+      .post(`/air/offer_requests/`)
+      .query((queryObject) => {
+        expect(queryObject?.return_offers).toBe(undefined)
+        return true
+      })
+      .reply(200, { data: mockOfferRequest })
 
     const response = await new OfferRequests(new Client({ token: 'mockToken' })).create(mockCreateOfferRequest)
     expect(response.data?.id).toBe(mockOfferRequest.id)
