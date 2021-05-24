@@ -406,6 +406,12 @@ export interface OfferSliceSegmentPassenger {
    * You may have specified this ID yourself when creating the offer request, or otherwise, Duffel will have generated its own random ID.
    */
   passenger_id: string
+
+  /**
+   * The airline's alphanumeric code for the fare that the passenger is using to travel. Where this is `null`, it means that either the
+   * fare basis code is not available or the airline does not use fare basis codes.
+   */
+  fare_basis_code: string
 }
 
 export type BaggageType = 'carry_on' | 'checked'

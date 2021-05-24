@@ -21,7 +21,8 @@ export const mockOffer: Offer = {
                   type: 'checked',
                   quantity: 1
                 }
-              ]
+              ],
+              fare_basis_code: 'KLWC10A'
             }
           ],
           origin_terminal: 'B',
