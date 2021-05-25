@@ -30,10 +30,18 @@ describe('offers', () => {
 
   test('should get a page of offers', async () => {
     nock(/(.*)/)
-      .get(`/air/offers?limit=1`)
+      .get(`/air/offers`)
+      .query((queryObject) => {
+        expect(queryObject?.offer_request_id).toBe(mockOffer.id)
+        expect(queryObject?.limit).toEqual('1')
+        return true
+      })
       .reply(200, { data: [mockOffer], meta: { limit: 1, before: null, after: null } })
 
-    const response = await new Offers(new Client({ token: 'mockToken' })).list({ limit: 1 })
+    const response = await new Offers(new Client({ token: 'mockToken' })).list({
+      offer_request_id: mockOffer.id,
+      limit: 1
+    })
     expect(response.data).toHaveLength(1)
     expect(response.data[0].id).toBe(mockOffer.id)
   })
@@ -41,9 +49,15 @@ describe('offers', () => {
   test('should get all offers paginated', async () => {
     nock(/(.*)/)
       .get(`/air/offers`)
+      .query((queryObject) => {
+        expect(queryObject?.offer_request_id).toBe(mockOffer.id)
+        return true
+      })
       .reply(200, { data: [mockOffer], meta: { limit: 1, before: null, after: null } })
 
-    const response = new Offers(new Client({ token: 'mockToken' })).listWithGenerator()
+    const response = new Offers(new Client({ token: 'mockToken' })).listWithGenerator({
+      offer_request_id: mockOffer.id
+    })
     for await (const page of response) {
       expect(page.data.id).toBe(mockOffer.id)
     }
