@@ -47,7 +47,7 @@ yarn build
 yarn publish
 ```
 
-The `yarn publish` task will ask you which version should be deployed. We follow [https://semver.org/](semantic versioning) for this package, so bump the correct version for the changes to be published. Once this new version is deployed, make sure to commit the updated `package.json` and raise a new pull request with it.
+The `yarn publish` task will ask you which version should be deployed. We follow [semantic versioning](https://www.semver.org) for this package, so bump the correct version for the changes to be published. Once this new version is deployed, make sure to commit the updated `package.json` and raise a new pull request with it.
 
 ## Documentation
 
