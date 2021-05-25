@@ -1,6 +1,6 @@
-# Duffel API Javascript Client
+# Duffel API JavaScript Client
 
-Javascript client library for the Duffel API.
+A JavaScript client library for the Duffel API.
 
 **Content**
 
@@ -13,36 +13,41 @@ Javascript client library for the Duffel API.
 
 ## Prerequisites
 
-- Be part of @duffel organisation in NPM
+- Member of the [@duffel organisation in npm](https://www.npmjs.com/org/duffel)
 - Node >= 12.22.0
 
 ## Install
-
-`yarn install`
+```
+yarn install
+```
 
 ## Test
-
-`yarn test`
+```
+yarn test
+```
 
 ## Lint
+```
+yarn lint
+```
 
-`yarn lint`
-
-## How to use?
+## Installation
 
 ```
 yarn add duffel-api@latest
 ```
 
-If you need to create a new API operation class just type `yarn generate:operation` and you will be prompted with a few questions. The script will create the operation folder for you with the required files.
+If you need to create a new API operation class, just type `yarn generate:operation` and you will be prompted with a few questions. This script will create the relevant operation folder and files for you.
 
-## How to publish?
+## Publishing
 
-Make sure you are logged in to npm (`npm login`). After getting merged to `main` do the following:
-`yarn build`
-`yarn publish`
+Make sure you are logged in to npm (`npm login`). After all changes have been merged to `main` run the following commands:
+```
+yarn build
+yarn publish
+```
 
-It will ask what version are deploying. We follow [https://semver.org/](semantic versioning), so bump the correct version. Once it's deployed, make sure to raise a new PR with the updated package.json.
+The `yarn publish` task will ask you which version should be deployed. We follow [https://semver.org/](semantic versioning) for this package, so bump the correct version for the changes to be published. Once this new version is deployed, make sure to commit the updated `package.json` and raise a new pull request with it.
 
 ## Documentation
 
