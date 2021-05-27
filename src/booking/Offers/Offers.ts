@@ -28,7 +28,7 @@ export class Offers extends Resource {
 
   /**
    * Retrieves a page of offers. The results may be returned in any order.
-   * @param {Object.<ListOffersParams>} params - Pagination options (optional: limit, after, before)
+   * @param {Object.<ListOffersParams>} params - Endpoint options (optional: limit, after, before, max_connections, sort)
    * @param {string} params.offer_request_id - Duffel's unique identifier for the offer request, returned when it was created
    * @link https://duffel.com/docs/api/offers/get-offers
    */
@@ -44,7 +44,7 @@ export class Offers extends Resource {
 
   /**
    * Retrieves a generator of all offers. The results may be returned in any order.
-   * @param {Object.<ListOffersParams>} params - Pagination options (optional: limit, after, before)
+   * @param {Object.<ListOffersParams>} params - Endpoint options (optional: limit, after, before, max_connections, sort)
    * @param {string} params.offer_request_id - Duffel's unique identifier for the offer request, returned when it was created
    * @link https://duffel.com/docs/api/offers/get-offers
    */
