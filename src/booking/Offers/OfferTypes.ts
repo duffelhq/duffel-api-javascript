@@ -6,7 +6,8 @@ import {
   PlaceType,
   Aircraft,
   Airline,
-  Airport
+  Airport,
+  PaginationMeta
 } from '../../types'
 
 /**
@@ -426,4 +427,23 @@ export interface OfferSliceSegmentPassengerBaggage {
    * The number of this type of bag allowed on the segment. Note that this can currently be 0 in some cases.
    */
   quantity: number
+}
+
+export interface ListOffersParams extends PaginationMeta {
+  /**
+   * Duffel's unique identifier for the offer request, returned when it was created
+   */
+  offer_request_id: string
+
+  /**
+   * Allows to filter the offers list by the maximum number of connections in a given offer. e.g. a return flight with three flights outbound and a direct inbound flight would be filtered out if `max_connections=1` was passed.
+   */
+  max_connections?: number
+
+  /**
+   * By default, the offers will be returned sorted by ID in ascending order.
+   * This parameter allows you to sort the list of offers by `total_amount` or `total_duration`.
+   * By default the sorting order will be ascending, if you wish to sort in descending order a - will need to be prepended to the sorting attribute (i.e: `-total_amount`).
+   */
+  sort?: 'total_amount' | 'total_duration'
 }
