@@ -36,7 +36,7 @@ jobs:
           GIT_AUTHOR_EMAIL: duffel-bot-read-write@duffel.com
           GIT_COMMITTER_NAME: duffel-bot
           GIT_COMMITTER_EMAIL: duffel-bot-read-write@duffel.com
-        run: yarn release --dry-run
+        run: yarn release
 
       - name: Get version from package.json after release step
         id: extractver

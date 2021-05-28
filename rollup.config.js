@@ -5,6 +5,7 @@ import commonjs from '@rollup/plugin-commonjs'
 import typescript from 'rollup-plugin-typescript2'
 import dts from 'rollup-plugin-dts'
 import multi from '@rollup/plugin-multi-entry'
+import injectProcessEnv from 'rollup-plugin-inject-process-env'
 
 // this override is needed because Module format cjs does not support top-level await
 // eslint-disable-next-line @typescript-eslint/no-var-requires
@@ -39,6 +40,9 @@ export default [
       commonjs({
         exclude: 'node_modules',
         ignoreGlobal: true
+      }),
+      injectProcessEnv({
+        npm_package_version: packageJson.version
       }),
       terser()
     ],
