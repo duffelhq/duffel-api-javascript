@@ -24,7 +24,9 @@
     "test": "jest",
     "pre-push-check": "yarn lint && yarn test && yarn build:test",
     "prepare": "husky install",
-    "example": "ts-node ./examples/example.ts"
+    "example": "ts-node ./examples/example.ts",
+    "get-version": "echo $npm_package_version",
+    "release": "npx semantic-release"
   },
   "dependencies": {
     "@types/node": "^15.6.1",
@@ -59,5 +61,26 @@
   },
   "engines": {
     "node": ">=12.*"
+  },
+  "plugins": [
+    [
+      "@semantic-release/commit-analyzer",
+      {
+        "preset": "conventionalcommits"
+      }
+    ],
+    [
+      "@semantic-release/release-notes-generator",
+      {
+        "preset": "conventionalcommits"
+      }
+    ],
+    "@semantic-release/npm",
+    "@semantic-release/github"
+  ],
+  "release": {
+    "branches": [
+      "feat/UXP-849"
+    ]
   }
 }
