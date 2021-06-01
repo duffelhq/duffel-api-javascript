@@ -2,7 +2,7 @@ name: Release to NPM
 on:
   push:
     branches:
-      - feat/UXP-849
+      - main
 jobs:
   Release:
     runs-on: ubuntu-latest
