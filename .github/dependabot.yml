@@ -8,3 +8,4 @@ updates:
     day: sunday
     time: "09:00"
   open-pull-requests-limit: 10
+  versioning-strategy: increase-if-necessary
