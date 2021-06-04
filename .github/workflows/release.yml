@@ -17,12 +17,20 @@ jobs:
         with:
           node-version: 12
 
+      - name: Cache Node Modules
+        id: cache-node-modules
+        uses: actions/cache@v2
+        with:
+          path: node_modules
+          key: node-modules-${{ hashFiles('yarn-lock.json') }}
+
       - name: Install dependencies
+        if: steps.cache.outputs.cache-hit != 'true'
         run: yarn install --frozen-lock-file
       
       - name: Get version from package.json before release step
         id: initversion
-        run: echo "::set-output name=version::$(yarn get-version)"
+        run: echo "::set-output name=version::$(npm run get-version --silent)"
 
       - name: Build NPM package
         run: yarn build
@@ -40,16 +48,38 @@ jobs:
 
       - name: Get version from package.json after release step
         id: extractver
-        run: echo "::set-output name=version::$(yarn get-version)"
+        run: echo "::set-output name=extractver::$(npm run get-version --silent)"
+      
+      - name: Check if package versions are different
+        run: |
+          echo "Init Version - ${{ steps.initversion.outputs.version }}"
+          echo "extract version - ${{ steps.extractver.outputs.extractver }}"
+          echo "extract version - ${{ steps.initversion.outputs.version != steps.extractver.outputs.extractver }}"
 
       - name: Create Pull Request with updated package files
-        if: steps.initversion.outputs.version != steps.extractver.outputs.version
+        id: cpr
+        if: steps.initversion.outputs.version != steps.extractver.outputs.extractver
         uses: peter-evans/create-pull-request@v3.10.0
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          commit-message: 'chore(release): ${{ steps.extractver.outputs.version }}'
+          token: ${{ secrets.PAT }}
+          commit-message: 'chore(release): ${{ steps.extractver.outputs.extractver }}'
           committer: duffel-bot <duffel-bot-read-write@duffel.com>
           author: duffel-bot <duffel-bot-read-write@duffel.com>
-          title: 'chore(release): ${{ steps.extractver.outputs.version }}'
-          body: 'Version bump in package.json and package-lock.json for release [${{ steps.extractver.outputs.version }}](https://github.com/${{github.repository}}/releases/tag/v${{ steps.extractver.outputs.version }})'
-          branch: version-bump/${{ steps.extractver.outputs.version }}
+          title: 'chore(release): ${{ steps.extractver.outputs.extractver }}'
+          body: 'Version bump in package.json and package-lock.json for release [${{ steps.extractver.outputs.extractver }}](https://github.com/${{github.repository}}/releases/tag/v${{ steps.extractver.outputs.extractver }})'
+          branch: version-bump/${{ steps.extractver.outputs.extractver }}
+          labels: |
+            automated pr
+
+      - name: Check outputs
+        run: |
+          echo "Pull Request Number - ${{ steps.cpr.outputs.pull-request-number }}"
+          echo "Pull Request URL - ${{ steps.cpr.outputs.pull-request-url }}"
+      
+      - name: Enable Pull Request Automerge
+        if: steps.cpr.outputs.pull-request-operation == 'created'
+        uses: peter-evans/enable-pull-request-automerge@v1
+        with:
+          token: ${{ secrets.PAT }}
+          pull-request-number: ${{ steps.cpr.outputs.pull-request-number }}
+          merge-method: squash
