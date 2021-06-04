@@ -43,15 +43,15 @@ If you need to create a new API operation class, just type `yarn generate:operat
 
 ## Commiting to the repository
 
-Make sure you are following the [conventional commits standard](https://www.conventionalcommits.org/en/v1.0.0/), otherwise it won't trigger the CI. We are current following [Angular conventional commit](https://github.com/angular/angular/blob/22b96b9/CONTRIBUTING.md#type) convention since it includes more commit types.
+To be able to publish the correct version to NPM, we are currently following [Angular conventional commit message guidelines](https://github.com/angular/angular/blob/22b96b9/CONTRIBUTING.md#type) which is based on [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/). The previous commit message guideline allow us to trigger [semantic-release GitHub action](##client-ci).
 
 ### CommitLint to the rescue
 
-Before creating a commit we will run a husky hook which will check if the commit structure is valid or not. If you don't want to create the commit manually, you can use `yarn commit` which will use commitzen to help you out creating the message.
+Before creating a commit we will run a husky hook which will check if the commit structure is valid or not. If you don't want to create the commit manually, you can use `yarn commit` which will use `commitzen` to help you out creating the message.
 
 ## Client CI
 
-Every time we merge to main, GH will run the action by checking the commit messages with [semantic-release](https://github.com/semantic-release/semantic-release) and automatically bump the correct version to be deployed by following semver. When the deployment is done it will create a bump in our package version, using our duffel-bot, and will be auto-approved by the GH action via our auto approve workflow (`autoapprove.yml`)
+Every time we merge to main, GH will run the action by checking the commit messages with [semantic-release](https://github.com/semantic-release/semantic-release) and automatically bump the correct version to be deployed by following semver. When the deployment is done it will create a bump in our package version, using our `duffel-bot`, and will be auto-approved by the GH action via our auto approve workflow (`autoapprove.yml`).
 
 ### CI Flow
 
