@@ -26,7 +26,13 @@
     "prepare": "husky install",
     "example": "ts-node ./examples/example.ts",
     "get-version": "echo $npm_package_version",
-    "release": "npx semantic-release"
+    "release": "npx semantic-release",
+    "commit": "git-cz"
+  },
+  "config": {
+    "commitizen": {
+      "path": "@commitlint/cz-commitlint"
+    }
   },
   "dependencies": {
     "@types/node": "^15.6.1",
@@ -36,6 +42,9 @@
     "@babel/core": "^7.14.0",
     "@babel/preset-env": "^7.14.1",
     "@babel/preset-typescript": "^7.13.0",
+    "@commitlint/cli": "^12.1.4",
+    "@commitlint/config-angular": "^12.1.4",
+    "@commitlint/cz-commitlint": "^12.1.4",
     "@rollup/plugin-commonjs": "^19.0.0",
     "@rollup/plugin-multi-entry": "^4.0.0",
     "@rollup/plugin-node-resolve": "^13.0.0",
@@ -44,6 +53,7 @@
     "@typescript-eslint/eslint-plugin": "^4.26.0",
     "@typescript-eslint/parser": "^4.26.0",
     "colors": "^1.4.0",
+    "commitizen": "^4.2.4",
     "dotenv": "^10.0.0",
     "eslint": "^7.26.0",
     "eslint-plugin-spellcheck": "^0.0.17",
