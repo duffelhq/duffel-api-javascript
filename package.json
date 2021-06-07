@@ -27,7 +27,8 @@
     "example": "ts-node ./examples/example.ts",
     "get-version": "echo $npm_package_version",
     "release": "npx semantic-release",
-    "commit": "git-cz"
+    "commit": "git-cz",
+    "commitlint": "commitlint"
   },
   "config": {
     "commitizen": {
