@@ -17,7 +17,11 @@ describe('Orders', () => {
 
   test('should get a page of orders', async () => {
     nock(/(.*)/)
-      .get(`/air/orders?limit=1`)
+      .get(`/air/orders`)
+      .query((queryObject) => {
+        expect(queryObject.limit).toEqual('1')
+        return true
+      })
       .reply(200, { data: [mockOrder], meta: { limit: 1, before: null, after: null } })
 
     const response = await new Orders(new Client({ token: 'mockToken' })).list({ limit: 1 })
@@ -38,7 +42,11 @@ describe('Orders', () => {
 
   test('should get only on hold orders', async () => {
     nock(/(.*)/)
-      .get(`/air/orders?awaiting_payment=true`)
+      .get(`/air/orders`)
+      .query((queryObject) => {
+        expect(queryObject['awaiting_payment']).toEqual('true')
+        return true
+      })
       .reply(200, { data: mockOnHoldOrders, meta: { limit: 1, before: null, after: null } })
 
     const response = await new Orders(new Client({ token: 'mockToken' })).list({ awaiting_payment: true })
@@ -48,7 +56,12 @@ describe('Orders', () => {
   })
 
   test('should create an order', async () => {
-    nock(/(.*)/).post(`/air/orders`).query(true).reply(200, { data: mockOrder })
+    nock(/(.*)/)
+      .post(`/air/orders`, (body) => {
+        expect(body.data).toEqual(mockCreateOrderRequest)
+        return true
+      })
+      .reply(200, { data: mockOrder })
 
     const response = await new Orders(new Client({ token: 'mockToken' })).create(mockCreateOrderRequest)
     expect(response.data?.id).toBe(mockOrder.id)
@@ -72,5 +85,31 @@ describe('Orders', () => {
     const response = await new Orders(new Client({ token: 'mockToken' })).list({ booking_reference: 'RZPNX8' })
     expect(response.data).toHaveLength(1)
     expect(response.data[0].booking_reference).toBe('RZPNX8')
+  })
+
+  test('should update a single order', async () => {
+    const metadata = { payment_intent_id: 'pit_00009htYpSCXrwaB9DnUm2' }
+    nock(/(.*)/)
+      .patch(`/air/orders/${mockOrder.id}`, (body) => {
+        expect(body.data.options.metadata['payment_intent_id']).toEqual(metadata['payment_intent_id'])
+        return true
+      })
+      .reply(200, { data: mockOrder })
+
+    const response = await new Orders(new Client({ token: 'mockToken' })).update(mockOrder.id, { metadata })
+    expect(response.data?.id).toBe(mockOrder.id)
+  })
+
+  test('should update a single order and clear metadata', async () => {
+    const metadata = {}
+    nock(/(.*)/)
+      .patch(`/air/orders/${mockOrder.id}`, (body) => {
+        expect(body.data.options.metadata).toEqual(metadata)
+        return true
+      })
+      .reply(200, { data: mockOrder })
+
+    const response = await new Orders(new Client({ token: 'mockToken' })).update(mockOrder.id, { metadata })
+    expect(response.data?.id).toBe(mockOrder.id)
   })
 })

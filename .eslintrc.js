@@ -44,6 +44,7 @@ module.exports = {
           'ord_00009hthhsUZ8W4LxQgkjo',
           'ser_00009UhD4ongolulWd9123',
           'seg_00009hj8USM7Ncg31cB456',
+          'pit_00009htYpSCXrwaB9DnUm2',
           'Earhart',
           'Embraer',
           'errorMsg',

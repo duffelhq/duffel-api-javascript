@@ -1,5 +1,5 @@
 import { Resource } from '../../Resource'
-import { CreateOrder, DuffelResponse, ListParamsOrders, Order, PaginationMeta } from '../../types'
+import { CreateOrder, DuffelResponse, ListParamsOrders, Order, PaginationMeta, UpdateSingleOrder } from '../../types'
 
 export class Orders extends Resource {
   /**
@@ -41,5 +41,17 @@ export class Orders extends Resource {
    */
   public create = async (options: CreateOrder): Promise<DuffelResponse<Order>> => {
     return this.request({ method: 'POST', path: this.path, data: options })
+  }
+
+  /**
+   * Updates a single order
+   * @description Some order fields are updateable. Each field that can be updated is detailed in the request object.
+   * @param {string} id - Duffel's unique identifier for the order
+   * @param {Object.UpdateSingleOrder} options
+   * @example (id: 'ord_00009hthhsUZ8W4LxQgkjo', { metadata: { 'payment_intent_id': 'pit_00009htYpSCXrwaB9DnUm2' } } )
+   * @link https://duffel.com/docs/api/orders/update-order-by-id
+   */
+  public update = async (id: string, options: UpdateSingleOrder): Promise<DuffelResponse<Order>> => {
+    return this.request({ method: 'PATCH', path: `${this.path}/${id}`, data: { options } })
   }
 }
