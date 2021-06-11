@@ -524,4 +524,14 @@ export interface ListParamsOrders {
    * Whether to filter orders that are awaiting payment or not. If not specified, all orders regardless of their payment state will be returned.
    */
   awaiting_payment?: boolean
+
+  /**
+   * Whether to filter orders matching a passenger name. Partial and exact matches in given and family names will be returned.
+   */
+  'passenger_name[]'?: string[]
+
+  /**
+   * Whether to filter orders matching a given passenger name record (PNR)
+   */
+  booking_reference?: string
 }

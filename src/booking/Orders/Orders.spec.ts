@@ -53,4 +53,24 @@ describe('Orders', () => {
     const response = await new Orders(new Client({ token: 'mockToken' })).create(mockCreateOrderRequest)
     expect(response.data?.id).toBe(mockOrder.id)
   })
+
+  test('should get orders matching a passenger name', async () => {
+    nock(/(.*)/)
+      .get(`/air/orders?passenger_name[]=Earhart`)
+      .reply(200, { data: [mockOrder], meta: { limit: 1, before: null, after: null } })
+
+    const response = await new Orders(new Client({ token: 'mockToken' })).list({ 'passenger_name[]': ['Earhart'] })
+    expect(response.data).toHaveLength(1)
+    expect(response.data[0].passengers[0].family_name).toContain('Earhart')
+  })
+
+  test('should get orders matching a given PNR / booking reference', async () => {
+    nock(/(.*)/)
+      .get(`/air/orders?booking_reference=RZPNX8`)
+      .reply(200, { data: [mockOrder], meta: { limit: 1, before: null, after: null } })
+
+    const response = await new Orders(new Client({ token: 'mockToken' })).list({ booking_reference: 'RZPNX8' })
+    expect(response.data).toHaveLength(1)
+    expect(response.data[0].booking_reference).toBe('RZPNX8')
+  })
 })
