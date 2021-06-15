@@ -217,6 +217,30 @@ const orderCancellationResponse = await duffel.orderCancellations.confirm(order_
 console.log(orderCancellationResponse.data.id)
 ```
 
+### Update
+
+On certain endpoints you can perform updates, such as updating an order. Usually you'll do that by passing the object ID with the object data changes.
+
+```javascript
+const orderUpdateResponse = await duffel.orders.update('ord_00009hthhsUZ8W4LxQgkjo', {
+  metadata: {
+    payment_intent_id: 'pit_00009htYpSCXrwaB9DnUm2'
+  }
+})
+
+console.log(orderUpdateResponse.data.id)
+```
+
+And if you want to clear metadata:
+
+```javascript
+const orderUpdateResponse = await duffel.orders.update('ord_00009hthhsUZ8W4LxQgkjo', {
+  metadata: {}
+})
+
+console.log(orderUpdateResponse.data.id)
+```
+
 ## Configuration
 
 ### Test and live modes

@@ -213,6 +213,9 @@ export const mockOrder: Order = {
     id: 'aln_00001876aqC8c5umZmrRds',
     iata_code: 'BA'
   },
+  metadata: {
+    customer_prefs: 'window seat'
+  },
   live_mode: false,
   id: 'ord_00009hthhsUZ8W4LxQgkjo',
   documents: [
@@ -384,6 +387,9 @@ export const mockOnHoldOrders: Order[] = [
       id: 'arl_00009VME7DAGiJjwomhv32',
       iata_code: 'AA'
     },
+    metadata: {
+      customer_prefs: 'window seat'
+    },
     live_mode: false,
     id: 'ord_0000A6GioOO1UDbjb7nIi8',
     documents: [],
@@ -539,6 +545,9 @@ export const mockOnHoldOrders: Order[] = [
       name: 'American Airlines',
       id: 'arl_00009VME7DAGiJjwomhv32',
       iata_code: 'AA'
+    },
+    metadata: {
+      customer_prefs: 'window seat'
     },
     live_mode: false,
     id: 'ord_0000A6GiZRU4WXtdZJrivT',

@@ -490,6 +490,14 @@ export interface Order {
    * In some cases, you may need to contact the Duffel support team or the airline directly.
    */
   conditions: FlightsConditions
+
+  /**
+   * Metadata contains a set of key-value pairs that you can attach to an object.
+   * It can be useful for storing additional information about the object, in a structured format.
+   * Duffel does not use this information.
+   * You should not store sensitive information in this field.
+   */
+  metadata: Record<string, string>
 }
 
 export interface CreateOrder {
@@ -534,4 +542,8 @@ export interface ListParamsOrders {
    * Whether to filter orders matching a given passenger name record (PNR)
    */
   booking_reference?: string
+}
+
+export interface UpdateSingleOrder {
+  metadata: Order['metadata']
 }
