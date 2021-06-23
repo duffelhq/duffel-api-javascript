@@ -25,7 +25,7 @@ describe('OrderChanges', () => {
   })
 
   test('should confirm a pending order change', async () => {
-    nock(/(.*)/).post(`/air/order_changes/${mockOrderChange.id}`).reply(200, { data: mockOrderChange })
+    nock(/(.*)/).post(`/air/order_changes/${mockOrderChange.id}/actions/confirm`).reply(200, { data: mockOrderChange })
 
     const response = await new OrderChanges(new Client({ token: 'mockToken' })).confirm(mockOrderChange.id, {})
     expect(response.data?.id).toBe(mockOrderChange.id)

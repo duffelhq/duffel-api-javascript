@@ -1,4 +1,4 @@
-import { OfferRequests, Offers, OrderCancellations, Orders, Payments, SeatMaps } from './booking'
+import { OfferRequests, Offers, OrderCancellations, Orders, OrderChangeRequests, OrderChangeOffers, OrderChanges, Payments, SeatMaps } from './booking'
 import { Client, Config } from './Client'
 import { Aircraft, Airlines, Airports } from './supportingResources'
 
@@ -9,6 +9,9 @@ export interface DuffelAPIClient {
   offers: Offers
   offerRequests: OfferRequests
   orders: Orders
+  orderChangeRequests: OrderChangeRequests
+  orderChangeOffers: OrderChangeOffers
+  orderChanges: OrderChanges
   orderCancellations: OrderCancellations
   payments: Payments
   seatMaps: SeatMaps
@@ -22,6 +25,9 @@ export class Duffel {
   public offerRequests: OfferRequests
   public offers: Offers
   public orders: Orders
+  public orderChangeRequests: OrderChangeRequests
+  public orderChangeOffers: OrderChangeOffers
+  public orderChanges: OrderChanges
   public orderCancellations: OrderCancellations
   public payments: Payments
   public seatMaps: SeatMaps
@@ -35,6 +41,9 @@ export class Duffel {
     this.offerRequests = new OfferRequests(this.client)
     this.offers = new Offers(this.client)
     this.orders = new Orders(this.client)
+    this.orderChangeRequests = new OrderChangeRequests(this.client)
+    this.orderChangeOffers = new OrderChangeOffers(this.client)
+    this.orderChanges = new OrderChanges(this.client)
     this.orderCancellations = new OrderCancellations(this.client)
     this.payments = new Payments(this.client)
     this.seatMaps = new SeatMaps(this.client)
