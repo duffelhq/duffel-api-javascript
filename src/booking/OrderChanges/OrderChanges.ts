@@ -46,5 +46,5 @@ export class OrderChanges extends Resource {
     id: string,
     options: Partial<ConfirmOrderChangePayment>
   ): Promise<DuffelResponse<OrderChangeOfferSlice>> =>
-    this.request({ method: 'POST', path: `${this.path}/${id}`, data: options })
+    this.request({ method: 'POST', path: `${this.path}/${id}/actions/confirm`, data: options })
 }
