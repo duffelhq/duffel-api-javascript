@@ -8,6 +8,7 @@ The Duffel JavaScript client library - sometimes known as an SDK - makes it easy
 - [Installation](##installation)
 - [Usage](##usage)
 - [Configuration](##configuration)
+- [Contributing](docs/CONTRIBUTING.md)
 - [Documentation](##documentation)
 
 ## Requirements

@@ -7,12 +7,12 @@ A JavaScript client library for the Duffel API.
 - [Prerequisites](##prerequisites)
 - [Install](##install)
 - [CI](##client-ci)
+- [Contributing](../docs/CONTRIBUTING.md)
 - [How to test](##test)
 - [Documentation](##documentation)
 
 ## Prerequisites
 
-- Member of the [@duffel organisation in npm](https://www.npmjs.com/org/duffel)
 - Node >= 12.22.0
 
 ## Install
@@ -36,12 +36,12 @@ yarn lint
 ## Installation
 
 ```
-yarn add @duffel/api@latest
+yarn add @duffel/api
 ```
 
 If you need to create a new API operation class, just type `yarn generate:operation` and you will be prompted with a few questions. This script will create the relevant operation folder and files for you.
 
-## Commiting to the repository
+## Committing to the repository
 
 To be able to publish the correct version to NPM, we are currently following [Angular conventional commit message guidelines](https://github.com/angular/angular/blob/22b96b9/CONTRIBUTING.md#type) which is based on [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/). The previous commit message guideline allow us to trigger [semantic-release GitHub action](##client-ci).
 
@@ -68,17 +68,6 @@ Every time we merge to main, GH will run the action by checking the commit messa
 6. Ideally we want to auto-merge this PR since it's just a chore bumping our version inside package.json
    a. If PR is from duffel-bot, then auto approve/auto-merge
 
-## Manually Publishing
-
-Make sure you are logged in to npm (`npm login`). After all changes have been merged to `main` run the following commands:
-
-```
-yarn build
-yarn publish
-```
-
-The `yarn publish` task will ask you which version should be deployed. We follow [semantic versioning](https://www.semver.org) for this package, so bump the correct version for the changes to be published. Once this new version is deployed, make sure to commit the updated `package.json` and raise a new pull request with it.
-
 ## Documentation
 
-If you want to know more about the project make sure to read our [Notion doc](https://www.notion.so/duffel/JS-Client-Library-Guides-c168653f674f4d768f08e8ba392702e5)
+You can learn more about the Duffel API and the library in our [documentation](https://duffel.com/docs).
