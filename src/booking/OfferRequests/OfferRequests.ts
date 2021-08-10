@@ -57,14 +57,14 @@ export class OfferRequests extends Resource {
    * @link https://duffel.com/docs/api/offer-requests/create-offer-request
    */
   public create = async (
-    options: Partial<CreateOfferRequest & CreateOfferRequestQueryParameters>
+    data: CreateOfferRequest,
+    params?: CreateOfferRequestQueryParameters
   ): Promise<DuffelResponse<OfferRequest>> => {
-    const { return_offers, ...data } = options
     return this.request({
       method: 'POST',
       path: `${this.path}/`,
       data,
-      params: { ...(return_offers !== undefined && return_offers !== null && { return_offers }) }
+      params
     })
   }
 }

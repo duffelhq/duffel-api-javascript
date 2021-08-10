@@ -57,8 +57,7 @@ describe('OfferRequests', () => {
       .query({ return_offers: false })
       .reply(200, { data: mockResponseWithoutOffer })
 
-    const response = await new OfferRequests(new Client({ token: 'mockToken' })).create({
-      ...mockCreateOfferRequest,
+    const response = await new OfferRequests(new Client({ token: 'mockToken' })).create(mockCreateOfferRequest, {
       return_offers: false
     })
     expect(response.data?.offers).toBe(undefined)
