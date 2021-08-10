@@ -41,7 +41,7 @@ yarn add @duffel/api
 
 If you need to create a new API operation class, just type `yarn generate:operation` and you will be prompted with a few questions. This script will create the relevant operation folder and files for you.
 
-## Commiting to the repository
+## Committing to the repository
 
 To be able to publish the correct version to NPM, we are currently following [Angular conventional commit message guidelines](https://github.com/angular/angular/blob/22b96b9/CONTRIBUTING.md#type) which is based on [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/). The previous commit message guideline allow us to trigger [semantic-release GitHub action](##client-ci).
 
