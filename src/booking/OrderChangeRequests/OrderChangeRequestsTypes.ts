@@ -36,7 +36,7 @@ export interface OrderChangeOffers {
   change_total_amount: string | null
   /**
    * The currency of the `change_total_amount`, as an [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency code.
-   * It will match your organisation's billing currency unless you’re using Duffel as an accredited IATA agent, in which case it will be in the currency provided by the airline (which will usually be based on the country where your IATA agency is registered).
+   * It will match your organisation's billing currency unless you're using Duffel as an accredited IATA agent, in which case it will be in the currency provided by the airline (which will usually be based on the country where your IATA agency is registered).
    */
   change_total_currency: string | null
   /**
@@ -56,7 +56,7 @@ export interface OrderChangeOffers {
    */
   new_total_amount: string | null
   /**
-   * The currency of the `new_total_amount`, as an [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency code. It will match your organisation's billing currency unless you’re using Duffel as an accredited IATA agent, in which case it will be in the currency provided by the airline (which will usually be based on the country where your IATA agency is registered).
+   * The currency of the `new_total_amount`, as an [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency code. It will match your organisation's billing currency unless you're using Duffel as an accredited IATA agent, in which case it will be in the currency provided by the airline (which will usually be based on the country where your IATA agency is registered).
    */
   new_total_currency: string
   /**
@@ -69,7 +69,7 @@ export interface OrderChangeOffers {
   penalty_amount: string | null
   /**
    * The currency of the `penalty_amount`, as an [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency code.
-   * It will match your organisation's billing currency unless you’re using Duffel as an accredited IATA agent, in which case it will be in the currency provided by the airline (which will usually be based on the country where your IATA agency is registered).
+   * It will match your organisation's billing currency unless you're using Duffel as an accredited IATA agent, in which case it will be in the currency provided by the airline (which will usually be based on the country where your IATA agency is registered).
    */
   penalty_currency: string | null
   /**

@@ -87,7 +87,7 @@ export interface OrderService {
   total_amount: string
   /**
    * The currency of the `total_amount`, as an [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency code.
-   * It will match your organisation's billing currency unless you’re using Duffel as an accredited IATA agent, in which case it will be in the currency provided by the airline (which will usually be based on the country where your IATA agency is registered).
+   * It will match your organisation's billing currency unless you're using Duffel as an accredited IATA agent, in which case it will be in the currency provided by the airline (which will usually be based on the country where your IATA agency is registered).
    * @example "GBP"
    */
   total_currency: string
@@ -468,7 +468,7 @@ export interface Order {
 
   /**
    * The currency of the base_amount, as an [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency code.
-   * It will match your organisation's billing currency unless you’re
+   * It will match your organisation's billing currency unless you're
    * using Duffel as an accredited IATA agent, in which case it will
    * be in the currency provided by the airline (which will usually
    * be based on the country where your IATA agency is registered).
