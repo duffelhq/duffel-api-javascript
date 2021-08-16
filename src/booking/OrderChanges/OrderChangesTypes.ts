@@ -8,7 +8,7 @@ export interface OrderChange {
 
   /**
    * The currency of the change_total_amount, as an ISO 4217 currency code.
-   * It will match your organisation's billing currency unless you’re using Duffel
+   * It will match your organisation's billing currency unless you're using Duffel
    * as an accredited IATA agent, in which case it will be in the currency provided
    * by the airline (which will usually be based on the country where your
    * IATA agency is registered).
@@ -49,7 +49,7 @@ export interface OrderChange {
 
   /**
    * The currency of the new_total_amount, as an ISO 4217 currency code.
-   * It will match your organisation's billing currency unless you’re using
+   * It will match your organisation's billing currency unless you're using
    * Duffel as an accredited IATA agent, in which case it will be in the
    * currency provided by the airline (which will usually be based on the
    * country where your IATA agency is registered).
@@ -68,7 +68,7 @@ export interface OrderChange {
 
   /**
    * The currency of the penalty_amount, as an ISO 4217 currency code.
-   * It will match your organisation's billing currency unless you’re using
+   * It will match your organisation's billing currency unless you're using
    * Duffel as an accredited IATA agent, in which case it will be in the
    * currency provided by the airline (which will usually be based on
    * the country where your IATA agency is registered).

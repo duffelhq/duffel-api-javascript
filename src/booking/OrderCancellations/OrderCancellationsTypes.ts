@@ -36,7 +36,7 @@ export interface OrderCancellation {
   refund_amount: string
   /**
    * The currency of the `refund_amount`, as an [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency code.
-   * It will match your organisation's billing currency unless you’re using Duffel as an accredited IATA agent, in which case it will be in the currency provided by the airline (which will usually be based on the country where your IATA agency is registered).
+   * It will match your organisation's billing currency unless you're using Duffel as an accredited IATA agent, in which case it will be in the currency provided by the airline (which will usually be based on the country where your IATA agency is registered).
    * For pay later orders that are awaiting payment, the refund amount will always be 0.00.
    */
   refund_currency: string
