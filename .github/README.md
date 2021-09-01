@@ -6,7 +6,7 @@ A JavaScript client library for the Duffel API.
 
 - [Prerequisites](##prerequisites)
 - [Install](##install)
-- [CI](##client-ci)
+- [Continuous Integration](##client-ci)
 - [Contributing](../docs/CONTRIBUTING.md)
 - [How to test](##test)
 - [Documentation](##documentation)
@@ -17,24 +17,28 @@ A JavaScript client library for the Duffel API.
 
 ## Install
 
+You can install the dependencies for this library by executing the following command:
 ```
 yarn install
 ```
 
 ## Test
 
+You can run the test suite for this library by executing the following command:
 ```
 yarn test
 ```
 
 ## Lint
 
+You can run the linters configured for this library by executing the following command:
 ```
 yarn lint
 ```
 
 ## Installation
 
+You can install this library into your current project by executing the following command:
 ```
 yarn add @duffel/api
 ```
@@ -43,31 +47,30 @@ If you need to create a new API operation class, just type `yarn generate:operat
 
 ## Committing to the repository
 
-To be able to publish the correct version to NPM, we are currently following [Angular conventional commit message guidelines](https://github.com/angular/angular/blob/22b96b9/CONTRIBUTING.md#type) which is based on [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/). The previous commit message guideline allow us to trigger [semantic-release GitHub action](##client-ci).
+To be able to publish the correct version to [npm](https://www.npmjs.com), this project is currently following [Angular conventional commit message guidelines](https://github.com/angular/angular/blob/22b96b9/CONTRIBUTING.md#type) which is based on [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/). This commit message guideline allows the [semantic-release GitHub action](##client-ci) to be triggered.
 
 ### CommitLint to the rescue
 
-Before creating a commit we will run a husky hook which will check if the commit structure is valid or not. If you don't want to create the commit manually, you can use `yarn commit` which will use `commitzen` to help you out creating the message.
+Before creating a commit you should run a [husky hook](https://www.npmjs.com/package/husky) which will check if the commit structure is valid or not. If you don't want to create the commit manually, you can use `yarn commit` which will use `commitzen` to help you out creating the message.
 
 ## Client CI
 
-Every time we merge to main, GH will run the action by checking the commit messages with [semantic-release](https://github.com/semantic-release/semantic-release) and automatically bump the correct version to be deployed by following semver. When the deployment is done it will create a bump in our package version, using our `duffel-bot`, and will be auto-approved by the GH action via our auto approve workflow (`autoapprove.yml`).
+Every time a commit is merged to main, a GitHub Action is run to analyse the commit messages with [`semantic-release`](https://github.com/semantic-release/semantic-release) and automatically update the current version to be deployed by following semantic versioning. When the deployment is complete, the action updates the package version, using Duffel's machine user (`@duffel-bot`) as the author, and this change will be automatically approved by the GitHub Action via the [`autoapprove` workflow] (../.github/workflows/autoapprove.yml).
 
-### CI Flow
+### Continuous Integration
 
-1. Developer opens PR to main
-2. PR is merged to main
-3. Our github action triggers and we analyse the commits
-   a. if there's a breaking change bump major
-   b. if there's a feat commit bump minor version
-   c. if there's a fix only bump patch version
-4. Deployment is done
-   a. Publish to NPM
-   b. Publish Git Tag release with relevant commits and descriptions
-5. After it's published we raise a PR using a github action to create a PR with duffel-bot via personal token bumping the version inside package.json
-6. Ideally we want to auto-merge this PR since it's just a chore bumping our version inside package.json
-   a. If PR is from duffel-bot, then auto approve/auto-merge
+1. Developer opens pull request to main
+2. Pull request is merged
+3. GitHub Actions are triggered and the commits are analysed
+   * if there's a breaking change, bump the major version
+   * if there's a feature commit, bump the minor version
+   * if there's a fix, bump the patch version
+4. Deploy the new version
+   a. Publish to npm
+   b. Create and push a git tag
+   c. Publish a GitHub release with the relevant commits and descriptions
+5. After the releasen is published then a pull request is automatically created and approved via a GitHub Action to bump the package version
 
 ## Documentation
 
-You can learn more about the Duffel API and the library in our [documentation](https://duffel.com/docs).
+You can learn more about the Duffel API and this library in our [documentation](https://duffel.com/docs).
