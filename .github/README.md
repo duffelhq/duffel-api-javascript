@@ -13,11 +13,12 @@ A JavaScript client library for the Duffel API.
 
 ## Prerequisites
 
-- Node >= 12.22.0
+- Node >= 14.17.6
 
 ## Install
 
 You can install the dependencies for this library by executing the following command:
+
 ```
 yarn install
 ```
@@ -25,6 +26,7 @@ yarn install
 ## Test
 
 You can run the test suite for this library by executing the following command:
+
 ```
 yarn test
 ```
@@ -32,6 +34,7 @@ yarn test
 ## Lint
 
 You can run the linters configured for this library by executing the following command:
+
 ```
 yarn lint
 ```
@@ -39,6 +42,7 @@ yarn lint
 ## Installation
 
 You can install this library into your current project by executing the following command:
+
 ```
 yarn add @duffel/api
 ```
@@ -62,9 +66,9 @@ Every time a commit is merged to main, a GitHub Action is run to analyse the com
 1. Developer opens pull request to main
 2. Pull request is merged
 3. GitHub Actions are triggered and the commits are analysed
-   * if there's a breaking change, bump the major version
-   * if there's a feature commit, bump the minor version
-   * if there's a fix, bump the patch version
+   - if there's a breaking change, bump the major version
+   - if there's a feature commit, bump the minor version
+   - if there's a fix, bump the patch version
 4. Deploy the new version
    a. Publish to npm
    b. Create and push a git tag
