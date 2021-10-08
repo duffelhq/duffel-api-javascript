@@ -46,7 +46,7 @@
     "@commitlint/cli": "^13.1.0",
     "@commitlint/config-angular": "^13.1.0",
     "@commitlint/cz-commitlint": "^13.1.0",
-    "@rollup/plugin-commonjs": "^20.0.0",
+    "@rollup/plugin-commonjs": "^21.0.0",
     "@rollup/plugin-multi-entry": "^4.0.0",
     "@rollup/plugin-node-resolve": "^13.0.0",
     "@types/jest": "^27.0.1",
