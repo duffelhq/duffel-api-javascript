@@ -4,12 +4,12 @@ The Duffel JavaScript client library - sometimes known as an SDK - makes it easy
 
 ## Content
 
-- [Requirements](##requirements)
-- [Installation](##installation)
-- [Usage](##usage)
-- [Configuration](##configuration)
+- [Requirements](#requirements)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Configuration](#configuration)
 - [Contributing](docs/CONTRIBUTING.md)
-- [Documentation](##documentation)
+- [Documentation](#documentation)
 
 ## Requirements
 
