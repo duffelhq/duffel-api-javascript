@@ -4,12 +4,12 @@ A JavaScript client library for the Duffel API.
 
 **Content**
 
-- [Prerequisites](##prerequisites)
-- [Install](##install)
-- [Continuous Integration](##client-ci)
+- [Prerequisites](#prerequisites)
+- [Install](#install)
+- [Continuous Integration](#client-ci)
 - [Contributing](../docs/CONTRIBUTING.md)
-- [How to test](##test)
-- [Documentation](##documentation)
+- [How to test](#test)
+- [Documentation](#documentation)
 
 ## Prerequisites
 
@@ -73,7 +73,7 @@ Every time a commit is merged to main, a GitHub Action is run to analyse the com
    a. Publish to npm
    b. Create and push a git tag
    c. Publish a GitHub release with the relevant commits and descriptions
-5. After the releasen is published then a pull request is automatically created and approved via a GitHub Action to bump the package version
+5. After the release is published then a pull request is automatically created and approved via a GitHub Action to bump the package version
 
 ## Documentation
 
