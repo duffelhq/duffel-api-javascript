@@ -86,6 +86,13 @@ export class DuffelError extends Error {
   }
 }
 
+export class ValidationError extends Error {
+  constructor(message: string) {
+    super('Invalid data: ' + message)
+    this.name = "ValidationError";
+  }
+}
+
 export interface SDKOptions {
   /**
    * If `true` it will output the path and the method called

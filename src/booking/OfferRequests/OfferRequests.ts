@@ -4,7 +4,8 @@ import {
   CreateOfferRequestQueryParameters,
   DuffelResponse,
   OfferRequest,
-  PaginationMeta
+  PaginationMeta,
+  ValidationError
 } from '../../types'
 
 /**
@@ -60,6 +61,18 @@ export class OfferRequests extends Resource {
     options: Partial<CreateOfferRequest & CreateOfferRequestQueryParameters>
   ): Promise<DuffelResponse<OfferRequest>> => {
     const { return_offers, ...data } = options
+
+    data.passengers && data.passengers.forEach(passenger => {
+      if (
+        passenger.loyalty_programme_accounts
+        && passenger.loyalty_programme_accounts.length > 0
+        && !passenger.given_name
+        && !passenger.family_name
+      ) {
+        throw new ValidationError('loyalty programme requires family_name and given_name parameters')
+      }
+    })
+
     return this.request({
       method: 'POST',
       path: `${this.path}/`,
