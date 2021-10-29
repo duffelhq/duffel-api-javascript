@@ -66,8 +66,7 @@ export class OfferRequests extends Resource {
       if (
         passenger.loyalty_programme_accounts
         && passenger.loyalty_programme_accounts.length > 0
-        && !passenger.given_name
-        && !passenger.family_name
+        && (!passenger.given_name || !passenger.family_name)
       ) {
         throw new ValidationError('loyalty programme requires family_name and given_name parameters')
       }
