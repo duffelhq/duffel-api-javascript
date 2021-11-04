@@ -15,17 +15,6 @@ export const mockCreateOfferRequest: CreateOfferRequest = {
     },
     {
       age: 14
-    },
-    {
-      type: 'adult',
-      given_name: 'Tony',
-      family_name: 'Stark',
-      loyalty_programme_accounts: [
-        {
-          account_number: '12901014',
-          airline_iata_code: 'BA'
-        }
-      ]
     }
   ],
   cabin_class: 'economy'

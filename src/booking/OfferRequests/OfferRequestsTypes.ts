@@ -1,4 +1,4 @@
-import { CabinClass, Place, PlaceType } from '../../types'
+import { Airline, CabinClass, Place, PlaceType } from '../../types'
 import { Offer } from '../Offers/OfferTypes'
 
 export interface OfferRequestSlice {
@@ -87,7 +87,7 @@ export interface LoyaltyProgrammeAccount {
   /**
    * The IATA code for the airline that this **Loyalty Programme Account** belongs to.
    */
-  airline_iata_code: string
+  airline_iata_code: Airline['iata_code']
 }
 
 /**
