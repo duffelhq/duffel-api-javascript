@@ -1,5 +1,6 @@
 import nock from 'nock'
 import { Client } from '../../Client'
+import { CreateOfferRequest } from './OfferRequestsTypes'
 import { mockCreateOfferRequest, mockOfferRequest } from './mockOfferRequest'
 import { OfferRequests } from './OfferRequests'
 
@@ -47,6 +48,42 @@ describe('OfferRequests', () => {
 
     const response = await new OfferRequests(new Client({ token: 'mockToken' })).create(mockCreateOfferRequest)
     expect(response.data?.id).toBe(mockOfferRequest.id)
+  })
+
+  test('should create an offer request and return an offer with passenger loyalty programme details', async () => {
+    const passengersWithLoyaltyProgrammes: CreateOfferRequest['passengers'] = [
+      {
+        type: 'adult',
+        given_name: 'Tony',
+        family_name: 'Stark',
+        loyalty_programme_accounts: [
+          {
+            account_number: '12901014',
+            airline_iata_code: 'BA'
+          }
+        ],
+      },
+    ]
+
+    const mockResponseWithLoyaltyProgrammes = {
+      ...mockOfferRequest,
+      passengers: [
+        {
+          ...passengersWithLoyaltyProgrammes[0],
+          id: 'pas_0000AD3shfu6ubXmZr5R1H'
+        },
+      ]
+    }
+
+    nock(/(.*)/)
+      .post('/air/offer_requests/')
+      .reply(200, { data: mockResponseWithLoyaltyProgrammes })
+
+    const response = await new OfferRequests(new Client({ token: 'mockToken' })).create({
+      ...mockCreateOfferRequest,
+      passengers: passengersWithLoyaltyProgrammes
+    })
+    expect(response.data?.passengers[0].loyalty_programme_accounts).toHaveLength(1)
   })
 
   test('should create an offer request and no offers should return when requested', async () => {
