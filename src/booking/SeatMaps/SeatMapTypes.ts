@@ -223,5 +223,9 @@ export type SeatMapCabinRowSectionElement =
   | SeatMapCabinRowSectionElementCloset
   | SeatMapCabinRowSectionElementStairs
 
-export type SeatMapCabinRowSectionElementType = SeatMapCabinRowSectionElement['type']
-export type SeatMapCabinRowSectionElementAmenity = Exclude<SeatMapCabinRowSectionElementType, 'empty' | 'seat'>
+export type SeatMapCabinRowSectionElementType =
+  SeatMapCabinRowSectionElement['type']
+export type SeatMapCabinRowSectionElementAmenity = Exclude<
+  SeatMapCabinRowSectionElementType,
+  'empty' | 'seat'
+>

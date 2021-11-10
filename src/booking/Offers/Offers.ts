@@ -23,7 +23,10 @@ export class Offers extends Resource {
    * @param {string} return_available_services - When set to true, the offer resource returned will include all the available_services returned by the airline. If set to false, the offer resource won't include any available_services.
    * @link https:/duffel.com/docs/api/offers/get-offer-by-id
    */
-  public get = async (id: string, params?: { return_available_services: boolean }): Promise<DuffelResponse<Offer>> =>
+  public get = async (
+    id: string,
+    params?: { return_available_services: boolean }
+  ): Promise<DuffelResponse<Offer>> =>
     this.request({ method: 'GET', path: `${this.path}/${id}`, params })
 
   /**
@@ -32,14 +35,17 @@ export class Offers extends Resource {
    * @param {string} params.offer_request_id - Duffel's unique identifier for the offer request, returned when it was created
    * @link https://duffel.com/docs/api/offers/get-offers
    */
-  public list = ({ offer_request_id, ...params }: ListOffersParams): Promise<DuffelResponse<Offer[]>> =>
+  public list = ({
+    offer_request_id,
+    ...params
+  }: ListOffersParams): Promise<DuffelResponse<Offer[]>> =>
     this.request({
       method: 'GET',
       path: this.path,
       params: {
         ...params,
-        offer_request_id
-      }
+        offer_request_id,
+      },
     })
 
   /**
@@ -56,7 +62,7 @@ export class Offers extends Resource {
       path: this.path,
       params: {
         ...params,
-        offer_request_id
-      }
+        offer_request_id,
+      },
     })
 }

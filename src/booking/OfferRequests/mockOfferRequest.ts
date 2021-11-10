@@ -6,18 +6,18 @@ export const mockCreateOfferRequest: CreateOfferRequest = {
     {
       origin: 'LHR',
       destination: 'JFK',
-      departure_date: '2020-04-24'
-    }
+      departure_date: '2020-04-24',
+    },
   ],
   passengers: [
     {
-      type: 'adult'
+      type: 'adult',
     },
     {
-      age: 14
-    }
+      age: 14,
+    },
   ],
-  cabin_class: 'economy'
+  cabin_class: 'economy',
 }
 
 export const mockOfferRequest: OfferRequest = {
@@ -40,7 +40,7 @@ export const mockOfferRequest: OfferRequest = {
           name: 'London',
           id: 'cit_lon_gb',
           iata_country_code: 'GB',
-          iata_code: 'LON'
+          iata_code: 'LON',
         },
         airports: [
           {
@@ -57,10 +57,10 @@ export const mockOfferRequest: OfferRequest = {
               name: 'London',
               id: 'cit_lon_gb',
               iata_country_code: 'GB',
-              iata_code: 'LON'
-            }
-          }
-        ]
+              iata_code: 'LON',
+            },
+          },
+        ],
       },
       destination_type: 'airport',
       destination: {
@@ -79,7 +79,7 @@ export const mockOfferRequest: OfferRequest = {
           name: 'London',
           id: 'cit_lon_gb',
           iata_country_code: 'GB',
-          iata_code: 'LON'
+          iata_code: 'LON',
         },
         airports: [
           {
@@ -96,24 +96,24 @@ export const mockOfferRequest: OfferRequest = {
               name: 'London',
               id: 'cit_lon_gb',
               iata_country_code: 'GB',
-              iata_code: 'LON'
-            }
-          }
-        ]
+              iata_code: 'LON',
+            },
+          },
+        ],
       },
-      departure_date: '2020-04-24'
-    }
+      departure_date: '2020-04-24',
+    },
   ],
   passengers: [
     {
       type: 'adult',
       id: 'pas_00009hj8USM7Ncg31cBCL',
-      age: 14
-    }
+      age: 14,
+    },
   ],
   offers: [mockOffer],
   live_mode: false,
   id: 'orq_00009hjdomFOCJyxHG7k7k',
   created_at: '2020-02-12T15:21:01.927Z',
-  cabin_class: 'economy'
+  cabin_class: 'economy',
 }

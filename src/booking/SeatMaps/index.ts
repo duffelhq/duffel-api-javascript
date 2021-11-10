@@ -1,1 +1,1 @@
-export * from "./SeatMaps";
+export * from './SeatMaps'

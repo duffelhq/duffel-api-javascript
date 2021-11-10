@@ -31,7 +31,7 @@ jobs:
 
       - name: Install dependencies
         run: yarn install --frozen-lock-file --prefer-offline
-      
+
       - name: Get version from package.json before release step
         id: initversion
         run: echo "::set-output name=version::$(npm run get-version --silent)"
@@ -53,7 +53,7 @@ jobs:
       - name: Get version from package.json after release step
         id: extractver
         run: echo "::set-output name=extractver::$(npm run get-version --silent)"
-      
+
       - name: Check if package versions are different
         run: |
           echo "Init Version - ${{ steps.initversion.outputs.version }}"
@@ -79,7 +79,7 @@ jobs:
         run: |
           echo "Pull Request Number - ${{ steps.cpr.outputs.pull-request-number }}"
           echo "Pull Request URL - ${{ steps.cpr.outputs.pull-request-url }}"
-      
+
       - name: Enable Pull Request Automerge
         if: steps.cpr.outputs.pull-request-operation == 'created'
         uses: peter-evans/enable-pull-request-automerge@v1

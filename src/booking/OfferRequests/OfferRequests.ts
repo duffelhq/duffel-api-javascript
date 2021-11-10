@@ -5,7 +5,7 @@ import {
   DuffelResponse,
   OfferRequest,
   PaginationMeta,
-  ValidationError
+  ValidationError,
 } from '../../types'
 
 /**
@@ -39,15 +39,20 @@ export class OfferRequests extends Resource {
    * @param {Object} [options] - Pagination options (optional: limit, after, before)
    * @link https://duffel.com/docs/api/offer-requests/get-offer-requests
    */
-  public list = (options?: PaginationMeta): Promise<DuffelResponse<OfferRequest[]>> =>
+  public list = (
+    options?: PaginationMeta
+  ): Promise<DuffelResponse<OfferRequest[]>> =>
     this.request({ method: 'GET', path: this.path, params: options })
 
   /**
    * Retrieves a generator of all offer requests. The results may be returned in any order.
    * @link https://duffel.com/docs/api/offer-requests/get-offer-requests
    */
-  public listWithGenerator = (): AsyncGenerator<DuffelResponse<OfferRequest>, void, unknown> =>
-    this.paginatedRequest({ path: this.path })
+  public listWithGenerator = (): AsyncGenerator<
+    DuffelResponse<OfferRequest>,
+    void,
+    unknown
+  > => this.paginatedRequest({ path: this.path })
 
   /**
    * To search for flights, you'll need to create an `offer request`.
@@ -62,21 +67,27 @@ export class OfferRequests extends Resource {
   ): Promise<DuffelResponse<OfferRequest>> => {
     const { return_offers, ...data } = options
 
-    data.passengers && data.passengers.forEach(passenger => {
-      if (
-        passenger.loyalty_programme_accounts
-        && passenger.loyalty_programme_accounts.length > 0
-        && (!passenger.given_name || !passenger.family_name)
-      ) {
-        throw new ValidationError('loyalty programme requires family_name and given_name parameters')
-      }
-    })
+    data.passengers &&
+      data.passengers.forEach((passenger) => {
+        if (
+          passenger.loyalty_programme_accounts &&
+          passenger.loyalty_programme_accounts.length > 0 &&
+          (!passenger.given_name || !passenger.family_name)
+        ) {
+          throw new ValidationError(
+            'loyalty programme requires family_name and given_name parameters'
+          )
+        }
+      })
 
     return this.request({
       method: 'POST',
       path: `${this.path}/`,
       data,
-      params: { ...(return_offers !== undefined && return_offers !== null && { return_offers }) }
+      params: {
+        ...(return_offers !== undefined &&
+          return_offers !== null && { return_offers }),
+      },
     })
   }
 }

@@ -27,7 +27,7 @@ export class Client {
     path,
     data,
     params,
-    compress = true
+    compress = true,
   }: {
     method: string
     path: string
@@ -45,7 +45,7 @@ export class Client {
       'Accept-Encoding': 'gzip',
       'Content-Type': 'application/json',
       'Duffel-Version': this.apiVersion,
-      Authorization: `Bearer ${this.token}`
+      Authorization: `Bearer ${this.token}`,
     }
 
     if (params) {
@@ -59,8 +59,8 @@ export class Client {
     if (data) {
       body = JSON.stringify({
         data: {
-          ...data
-        }
+          ...data,
+        },
       })
     }
 
@@ -75,7 +75,7 @@ export class Client {
       method,
       headers,
       body,
-      compress
+      compress,
     })
 
     const contentType = response.headers.get('content-type')
@@ -95,12 +95,16 @@ export class Client {
 
   async *paginatedRequest<T_Data = any>({
     path,
-    params
+    params,
   }: {
     path: string
     params?: Record<string, any>
   }): AsyncGenerator<DuffelResponse<T_Data>, void, unknown> {
-    let response: DuffelResponse<T_Data[]> = await this.request({ method: 'GET', path, params })
+    let response: DuffelResponse<T_Data[]> = await this.request({
+      method: 'GET',
+      path,
+      params,
+    })
     for (const item of response.data) {
       yield { data: item }
     }
@@ -109,7 +113,7 @@ export class Client {
       response = await this.request({
         method: 'GET',
         path,
-        params: { limit: response.meta.limit, after: response.meta.after }
+        params: { limit: response.meta.limit, after: response.meta.after },
       })
       for (const item of response.data) {
         yield { data: item }

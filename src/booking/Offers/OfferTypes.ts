@@ -7,7 +7,7 @@ import {
   Aircraft,
   Airline,
   Airport,
-  PaginationMeta
+  PaginationMeta,
 } from '../../types'
 
 /**
@@ -182,7 +182,9 @@ export interface OfferAvailableServiceMetadataMap {
 
 export type OfferAvailableServiceType = keyof OfferAvailableServiceMetadataMap
 
-export interface OfferAvailableService<T_ServiceType extends OfferAvailableServiceType = 'baggage'> {
+export interface OfferAvailableService<
+  T_ServiceType extends OfferAvailableServiceType = 'baggage'
+> {
   /**
    * Duffel's unique identifier for the service
    */

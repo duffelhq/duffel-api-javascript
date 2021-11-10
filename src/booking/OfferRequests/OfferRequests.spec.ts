@@ -10,18 +10,27 @@ describe('OfferRequests', () => {
   })
 
   test('should get a single offer request', async () => {
-    nock(/(.*)/).get(`/air/offer_requests/${mockOfferRequest.id}`).reply(200, { data: mockOfferRequest })
+    nock(/(.*)/)
+      .get(`/air/offer_requests/${mockOfferRequest.id}`)
+      .reply(200, { data: mockOfferRequest })
 
-    const response = await new OfferRequests(new Client({ token: 'mockToken' })).get(mockOfferRequest.id)
+    const response = await new OfferRequests(
+      new Client({ token: 'mockToken' })
+    ).get(mockOfferRequest.id)
     expect(response.data?.id).toBe(mockOfferRequest.id)
   })
 
   test('should get a page of offer requests', async () => {
     nock(/(.*)/)
       .get(`/air/offer_requests?limit=1`)
-      .reply(200, { data: [mockOfferRequest], meta: { limit: 1, before: null, after: null } })
+      .reply(200, {
+        data: [mockOfferRequest],
+        meta: { limit: 1, before: null, after: null },
+      })
 
-    const response = await new OfferRequests(new Client({ token: 'mockToken' })).list({ limit: 1 })
+    const response = await new OfferRequests(
+      new Client({ token: 'mockToken' })
+    ).list({ limit: 1 })
     expect(response.data).toHaveLength(1)
     expect(response.data[0].id).toBe(mockOfferRequest.id)
   })
@@ -29,9 +38,14 @@ describe('OfferRequests', () => {
   test('should get all offer requests paginated', async () => {
     nock(/(.*)/)
       .get(`/air/offer_requests`)
-      .reply(200, { data: [mockOfferRequest], meta: { limit: 1, before: null, after: null } })
+      .reply(200, {
+        data: [mockOfferRequest],
+        meta: { limit: 1, before: null, after: null },
+      })
 
-    const response = new OfferRequests(new Client({ token: 'mockToken' })).listWithGenerator()
+    const response = new OfferRequests(
+      new Client({ token: 'mockToken' })
+    ).listWithGenerator()
     for await (const page of response) {
       expect(page.data!.id).toBe(mockOfferRequest.id)
     }
@@ -46,7 +60,9 @@ describe('OfferRequests', () => {
       })
       .reply(200, { data: mockOfferRequest })
 
-    const response = await new OfferRequests(new Client({ token: 'mockToken' })).create(mockCreateOfferRequest)
+    const response = await new OfferRequests(
+      new Client({ token: 'mockToken' })
+    ).create(mockCreateOfferRequest)
     expect(response.data?.id).toBe(mockOfferRequest.id)
   })
 
@@ -59,8 +75,8 @@ describe('OfferRequests', () => {
         loyalty_programme_accounts: [
           {
             account_number: '12901014',
-            airline_iata_code: 'BA'
-          }
+            airline_iata_code: 'BA',
+          },
         ],
       },
     ]
@@ -70,20 +86,24 @@ describe('OfferRequests', () => {
       passengers: [
         {
           ...passengersWithLoyaltyProgrammes[0],
-          id: 'pas_0000AD3shfu6ubXmZr5R1H'
+          id: 'pas_0000AD3shfu6ubXmZr5R1H',
         },
-      ]
+      ],
     }
 
     nock(/(.*)/)
       .post('/air/offer_requests/')
       .reply(200, { data: mockResponseWithLoyaltyProgrammes })
 
-    const response = await new OfferRequests(new Client({ token: 'mockToken' })).create({
+    const response = await new OfferRequests(
+      new Client({ token: 'mockToken' })
+    ).create({
       ...mockCreateOfferRequest,
-      passengers: passengersWithLoyaltyProgrammes
+      passengers: passengersWithLoyaltyProgrammes,
     })
-    expect(response.data?.passengers[0].loyalty_programme_accounts).toHaveLength(1)
+    expect(
+      response.data?.passengers[0].loyalty_programme_accounts
+    ).toHaveLength(1)
   })
 
   test('should create an offer request and no offers should return when requested', async () => {
@@ -94,9 +114,11 @@ describe('OfferRequests', () => {
       .query({ return_offers: false })
       .reply(200, { data: mockResponseWithoutOffer })
 
-    const response = await new OfferRequests(new Client({ token: 'mockToken' })).create({
+    const response = await new OfferRequests(
+      new Client({ token: 'mockToken' })
+    ).create({
       ...mockCreateOfferRequest,
-      return_offers: false
+      return_offers: false,
     })
     expect(response.data?.offers).toBe(undefined)
     expect(response.data?.id).toBe(mockOfferRequest.id)

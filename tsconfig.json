@@ -2,9 +2,7 @@
   "compilerOptions": {
     "target": "ES6",
     "module": "esnext",
-    "lib": [
-      "es2020"
-    ],
+    "lib": ["es2020"],
     "allowJs": true,
     "outDir": "dist",
     "rootDir": "src",
@@ -16,28 +14,19 @@
     "noFallthroughCasesInSwitch": true,
     "moduleResolution": "node",
     "baseUrl": "./src",
-    "typeRoots": [
-      "node_modules/@types",
-      "node_modules/**/types",
-      "src/types"
-    ],
-    "types": [
-      "jest",
-      "node"
-    ],
+    "typeRoots": ["node_modules/@types", "node_modules/**/types", "src/types"],
+    "types": ["jest", "node"],
     "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-    "declaration": true,
+    "declaration": true
   },
   "exclude": [
     "node_modules",
     "examples",
     "jest.config.ts",
     "**/*.spec.ts",
-    "**/mock*.ts",
+    "**/mock*.ts"
   ],
-  "include": [
-    "**/*.ts",
-  ]
+  "include": ["**/*.ts"]
 }

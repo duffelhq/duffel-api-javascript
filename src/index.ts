@@ -1,4 +1,14 @@
-import { OfferRequests, Offers, OrderCancellations, Orders, OrderChangeRequests, OrderChangeOffers, OrderChanges, Payments, SeatMaps } from './booking'
+import {
+  OfferRequests,
+  Offers,
+  OrderCancellations,
+  Orders,
+  OrderChangeRequests,
+  OrderChangeOffers,
+  OrderChanges,
+  Payments,
+  SeatMaps,
+} from './booking'
 import { Client, Config } from './Client'
 import { Aircraft, Airlines, Airports } from './supportingResources'
 

@@ -10,7 +10,7 @@ import {
   PassengerIdentityDocumentType,
   PaymentType,
   Place,
-  PlaceType
+  PlaceType,
 } from '../../types'
 
 /**

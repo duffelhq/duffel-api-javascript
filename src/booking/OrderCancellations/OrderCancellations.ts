@@ -1,5 +1,9 @@
 import { Resource } from '../../Resource'
-import { CreateOrderCancellation, DuffelResponse, OrderCancellation } from '../../types'
+import {
+  CreateOrderCancellation,
+  DuffelResponse,
+  OrderCancellation,
+} from '../../types'
 
 export class OrderCancellations extends Resource {
   /**
@@ -26,7 +30,9 @@ export class OrderCancellations extends Resource {
    * @param order_id - Duffel's unique identifier for the order
    * @link https://duffel.com/docs/api/order-cancellations/create-order-cancellation
    */
-  public create = async (options: CreateOrderCancellation): Promise<DuffelResponse<OrderCancellation>> => {
+  public create = async (
+    options: CreateOrderCancellation
+  ): Promise<DuffelResponse<OrderCancellation>> => {
     return this.request({ method: 'POST', path: this.path, data: options })
   }
 
@@ -36,6 +42,8 @@ export class OrderCancellations extends Resource {
    * @param {string} id - Duffel's unique identifier for the order to cancel
    * @link https://duffel.com/docs/api/order-cancellations/confirm-order-cancellation
    */
-  public confirm = async (id: string): Promise<DuffelResponse<OrderCancellation>> =>
+  public confirm = async (
+    id: string
+  ): Promise<DuffelResponse<OrderCancellation>> =>
     this.request({ method: 'POST', path: `${this.path}/${id}/actions/confirm` })
 }

@@ -1,4 +1,4 @@
 export default {
   clearMocks: true,
-  testEnvironment: 'node'
+  testEnvironment: 'node',
 }

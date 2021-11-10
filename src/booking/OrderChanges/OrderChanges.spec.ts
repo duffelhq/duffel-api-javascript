@@ -9,25 +9,37 @@ describe('OrderChanges', () => {
   })
 
   test('should get a single order change', async () => {
-    nock(/(.*)/).get(`/air/order_changes/${mockOrderChange.id}`).reply(200, { data: mockOrderChange })
+    nock(/(.*)/)
+      .get(`/air/order_changes/${mockOrderChange.id}`)
+      .reply(200, { data: mockOrderChange })
 
-    const response = await new OrderChanges(new Client({ token: 'mockToken' })).get(mockOrderChange.id)
+    const response = await new OrderChanges(
+      new Client({ token: 'mockToken' })
+    ).get(mockOrderChange.id)
     expect(response.data?.id).toBe(mockOrderChange.id)
   })
 
   test('should create a pending order change', async () => {
-    nock(/(.*)/).post(`/air/order_changes`).reply(200, { data: mockOrderChange })
+    nock(/(.*)/)
+      .post(`/air/order_changes`)
+      .reply(200, { data: mockOrderChange })
 
-    const response = await new OrderChanges(new Client({ token: 'mockToken' })).create({
-      selected_order_change_offer: mockOrderChange.id
+    const response = await new OrderChanges(
+      new Client({ token: 'mockToken' })
+    ).create({
+      selected_order_change_offer: mockOrderChange.id,
     })
     expect(response.data?.id).toBe(mockOrderChange.id)
   })
 
   test('should confirm a pending order change', async () => {
-    nock(/(.*)/).post(`/air/order_changes/${mockOrderChange.id}/actions/confirm`).reply(200, { data: mockOrderChange })
+    nock(/(.*)/)
+      .post(`/air/order_changes/${mockOrderChange.id}/actions/confirm`)
+      .reply(200, { data: mockOrderChange })
 
-    const response = await new OrderChanges(new Client({ token: 'mockToken' })).confirm(mockOrderChange.id, {})
+    const response = await new OrderChanges(
+      new Client({ token: 'mockToken' })
+    ).confirm(mockOrderChange.id, {})
     expect(response.data?.id).toBe(mockOrderChange.id)
   })
 })

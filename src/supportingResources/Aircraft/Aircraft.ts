@@ -1,5 +1,9 @@
 import { Resource } from '../../Resource'
-import { Aircraft as AircraftType, DuffelResponse, PaginationMeta } from '../../types'
+import {
+  Aircraft as AircraftType,
+  DuffelResponse,
+  PaginationMeta,
+} from '../../types'
 
 /** Aircraft are used to describe what passengers will fly in for a given trip
  * @class
@@ -29,13 +33,18 @@ export class Aircraft extends Resource {
    * @param {Object} [options] - Pagination options (optional: limit, after, before)
    * @link https://duffel.com/docs/api/aircraft/get-aircraft
    */
-  public list = (options?: PaginationMeta): Promise<DuffelResponse<AircraftType[]>> =>
+  public list = (
+    options?: PaginationMeta
+  ): Promise<DuffelResponse<AircraftType[]>> =>
     this.request({ method: 'GET', path: this.path, params: options })
 
   /**
    * Retrieves a generator of all aircraft. The results may be returned in any order.
    * @link https://duffel.com/docs/api/aircraft/get-aircraft
    */
-  public listWithGenerator = (): AsyncGenerator<DuffelResponse<AircraftType>, void, unknown> =>
-    this.paginatedRequest({ path: this.path })
+  public listWithGenerator = (): AsyncGenerator<
+    DuffelResponse<AircraftType>,
+    void,
+    unknown
+  > => this.paginatedRequest({ path: this.path })
 }
