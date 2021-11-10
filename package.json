@@ -22,18 +22,29 @@
     "dev": "ts-node ./src/index.ts",
     "lint": "eslint . --ext .ts,.tsx",
     "test": "jest",
-    "pre-push-check": "yarn lint && yarn test && yarn build:test",
+    "pre-commit-check": "yarn lint-staged && yarn test && yarn build:test",
     "prepare": "husky install",
     "example": "ts-node ./examples/example.ts",
     "get-version": "echo $npm_package_version",
     "release": "npx semantic-release",
     "commit": "git-cz",
-    "commitlint": "commitlint"
+    "commitlint": "commitlint",
+    "prettier": "prettier --write --loglevel=warn .",
+    "prettier-check": "prettier --check ."
   },
   "config": {
     "commitizen": {
       "path": "@commitlint/cz-commitlint"
     }
+  },
+  "lint-staged": {
+    "*.{ts,tsx}": [
+      "eslint",
+      "prettier --write"
+    ],
+    "*.{js,jsx,md,yml,yaml}": [
+      "prettier --write"
+    ]
   },
   "dependencies": {
     "@types/node": "^16.0.0",
@@ -59,7 +70,9 @@
     "eslint-plugin-spellcheck": "^0.0.19",
     "husky": "^7.0.0",
     "jest": "^26.6.3",
+    "lint-staged": "^11.2.6",
     "nock": "^13.1.0",
+    "prettier": "^2.4.1",
     "rollup": "^2.51.2",
     "rollup-plugin-dts": "^4.0.0",
     "rollup-plugin-inject-process-env": "^1.3.1",

@@ -15,7 +15,7 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: '14.x'
-      
+
       - name: Cache Node Modules
         id: cache-node-modules
         uses: actions/cache@v2
@@ -28,6 +28,9 @@ jobs:
 
       - name: Run linter
         run: yarn lint
+
+      - name: Run Prettier
+        run: yarn prettier-check
 
       - name: Run commit linter
         run: yarn commitlint --from HEAD~${{ github.event.pull_request.commits }}
