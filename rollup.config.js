@@ -12,7 +12,7 @@ import injectProcessEnv from 'rollup-plugin-inject-process-env'
 const packageJson = require('./package.json')
 
 const globals = {
-  ...packageJson.devDependencies
+  ...packageJson.devDependencies,
 }
 
 export default [
@@ -22,38 +22,38 @@ export default [
       {
         file: packageJson.main,
         format: 'cjs', // commonJS
-        sourcemap: true
+        sourcemap: true,
       },
       {
         file: packageJson.module,
         format: 'esm', // ES Modules
-        sourcemap: true
-      }
+        sourcemap: true,
+      },
     ],
     plugins: [
       peerDepsExternal(),
       resolve(),
       commonjs(),
       typescript({
-        clean: true
+        clean: true,
       }),
       commonjs({
         exclude: 'node_modules',
-        ignoreGlobal: true
+        ignoreGlobal: true,
       }),
       injectProcessEnv({
-        npm_package_version: packageJson.version
+        npm_package_version: packageJson.version,
       }),
-      terser()
+      terser(),
     ],
-    external: Object.keys(globals)
+    external: Object.keys(globals),
   },
   {
     input: ['dist/index.d.ts', 'dist/types/index.d.ts'],
     output: {
       format: 'es',
-      file: packageJson.types
+      file: packageJson.types,
     },
-    plugins: [multi(), dts()]
-  }
+    plugins: [multi(), dts()],
+  },
 ]

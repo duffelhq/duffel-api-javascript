@@ -75,7 +75,12 @@ export interface OrderChangeOffers {
   /**
    * Where the refund, once confirmed, will be sent. `card` is currently a restricted feature. `awaiting_payment` is for pay later orders where no payment has been made yet.
    */
-  refund_to: 'arc_bsp_cash' | 'balance' | 'card' | 'voucher' | 'awaiting_payment'
+  refund_to:
+    | 'arc_bsp_cash'
+    | 'balance'
+    | 'card'
+    | 'voucher'
+    | 'awaiting_payment'
   /**
    * The slices within an order change that are being added to and/or removed from the order
    */

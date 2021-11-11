@@ -1,6 +1,10 @@
 import nock from 'nock'
 import { Client } from '../../Client'
-import { mockCreateOrderRequest, mockOnHoldOrders, mockOrder } from './mockOrders'
+import {
+  mockCreateOrderRequest,
+  mockOnHoldOrders,
+  mockOrder,
+} from './mockOrders'
 import { Orders } from './Orders'
 
 describe('Orders', () => {
@@ -9,9 +13,13 @@ describe('Orders', () => {
   })
 
   test('should get a single order', async () => {
-    nock(/(.*)/).get(`/air/orders/${mockOrder.id}`).reply(200, { data: mockOrder })
+    nock(/(.*)/)
+      .get(`/air/orders/${mockOrder.id}`)
+      .reply(200, { data: mockOrder })
 
-    const response = await new Orders(new Client({ token: 'mockToken' })).get(mockOrder.id)
+    const response = await new Orders(new Client({ token: 'mockToken' })).get(
+      mockOrder.id
+    )
     expect(response.data?.id).toBe(mockOrder.id)
   })
 
@@ -22,9 +30,14 @@ describe('Orders', () => {
         expect(queryObject.limit).toEqual('1')
         return true
       })
-      .reply(200, { data: [mockOrder], meta: { limit: 1, before: null, after: null } })
+      .reply(200, {
+        data: [mockOrder],
+        meta: { limit: 1, before: null, after: null },
+      })
 
-    const response = await new Orders(new Client({ token: 'mockToken' })).list({ limit: 1 })
+    const response = await new Orders(new Client({ token: 'mockToken' })).list({
+      limit: 1,
+    })
     expect(response.data).toHaveLength(1)
     expect(response.data[0].id).toBe(mockOrder.id)
   })
@@ -32,9 +45,14 @@ describe('Orders', () => {
   test('should get all orders paginated', async () => {
     nock(/(.*)/)
       .get(`/air/orders`)
-      .reply(200, { data: [mockOrder], meta: { limit: 1, before: null, after: null } })
+      .reply(200, {
+        data: [mockOrder],
+        meta: { limit: 1, before: null, after: null },
+      })
 
-    const response = new Orders(new Client({ token: 'mockToken' })).listWithGenerator()
+    const response = new Orders(
+      new Client({ token: 'mockToken' })
+    ).listWithGenerator()
     for await (const page of response) {
       expect(page.data.id).toBe(mockOrder.id)
     }
@@ -47,9 +65,14 @@ describe('Orders', () => {
         expect(queryObject['awaiting_payment']).toEqual('true')
         return true
       })
-      .reply(200, { data: mockOnHoldOrders, meta: { limit: 1, before: null, after: null } })
+      .reply(200, {
+        data: mockOnHoldOrders,
+        meta: { limit: 1, before: null, after: null },
+      })
 
-    const response = await new Orders(new Client({ token: 'mockToken' })).list({ awaiting_payment: true })
+    const response = await new Orders(new Client({ token: 'mockToken' })).list({
+      awaiting_payment: true,
+    })
     expect(response.data).toHaveLength(2)
     expect(response.data[0].payment_status.awaiting_payment).toBe(true)
     expect(response.data[1].payment_status.awaiting_payment).toBe(true)
@@ -63,16 +86,23 @@ describe('Orders', () => {
       })
       .reply(200, { data: mockOrder })
 
-    const response = await new Orders(new Client({ token: 'mockToken' })).create(mockCreateOrderRequest)
+    const response = await new Orders(
+      new Client({ token: 'mockToken' })
+    ).create(mockCreateOrderRequest)
     expect(response.data?.id).toBe(mockOrder.id)
   })
 
   test('should get orders matching a passenger name', async () => {
     nock(/(.*)/)
       .get(`/air/orders?passenger_name[]=Earhart`)
-      .reply(200, { data: [mockOrder], meta: { limit: 1, before: null, after: null } })
+      .reply(200, {
+        data: [mockOrder],
+        meta: { limit: 1, before: null, after: null },
+      })
 
-    const response = await new Orders(new Client({ token: 'mockToken' })).list({ 'passenger_name[]': ['Earhart'] })
+    const response = await new Orders(new Client({ token: 'mockToken' })).list({
+      'passenger_name[]': ['Earhart'],
+    })
     expect(response.data).toHaveLength(1)
     expect(response.data[0].passengers[0].family_name).toContain('Earhart')
   })
@@ -80,9 +110,14 @@ describe('Orders', () => {
   test('should get orders matching a given PNR / booking reference', async () => {
     nock(/(.*)/)
       .get(`/air/orders?booking_reference=RZPNX8`)
-      .reply(200, { data: [mockOrder], meta: { limit: 1, before: null, after: null } })
+      .reply(200, {
+        data: [mockOrder],
+        meta: { limit: 1, before: null, after: null },
+      })
 
-    const response = await new Orders(new Client({ token: 'mockToken' })).list({ booking_reference: 'RZPNX8' })
+    const response = await new Orders(new Client({ token: 'mockToken' })).list({
+      booking_reference: 'RZPNX8',
+    })
     expect(response.data).toHaveLength(1)
     expect(response.data[0].booking_reference).toBe('RZPNX8')
   })
@@ -91,12 +126,16 @@ describe('Orders', () => {
     const metadata = { payment_intent_id: 'pit_00009htYpSCXrwaB9DnUm2' }
     nock(/(.*)/)
       .patch(`/air/orders/${mockOrder.id}`, (body) => {
-        expect(body.data.options.metadata['payment_intent_id']).toEqual(metadata['payment_intent_id'])
+        expect(body.data.options.metadata['payment_intent_id']).toEqual(
+          metadata['payment_intent_id']
+        )
         return true
       })
       .reply(200, { data: mockOrder })
 
-    const response = await new Orders(new Client({ token: 'mockToken' })).update(mockOrder.id, { metadata })
+    const response = await new Orders(
+      new Client({ token: 'mockToken' })
+    ).update(mockOrder.id, { metadata })
     expect(response.data?.id).toBe(mockOrder.id)
   })
 
@@ -109,7 +148,9 @@ describe('Orders', () => {
       })
       .reply(200, { data: mockOrder })
 
-    const response = await new Orders(new Client({ token: 'mockToken' })).update(mockOrder.id, { metadata })
+    const response = await new Orders(
+      new Client({ token: 'mockToken' })
+    ).update(mockOrder.id, { metadata })
     expect(response.data?.id).toBe(mockOrder.id)
   })
 })

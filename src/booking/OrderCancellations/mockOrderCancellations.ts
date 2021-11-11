@@ -9,5 +9,5 @@ export const mockOrderCancellations: OrderCancellation = {
   id: 'ore_00009qzZWzjDipIkqpaUAj',
   expires_at: '2020-01-17T10:42:14.545052Z',
   created_at: '2020-04-11T15:48:11.642Z',
-  confirmed_at: '2020-01-17T11:51:43.114803Z'
+  confirmed_at: '2020-01-17T11:51:43.114803Z',
 }

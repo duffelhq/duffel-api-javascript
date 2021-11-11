@@ -3,13 +3,17 @@ module.exports = {
     browser: true,
     es2021: true,
     jest: true,
-    node: true
+    node: true,
   },
-  extends: ['eslint:recommended', 'plugin:@typescript-eslint/recommended'],
+  extends: [
+    'eslint:recommended',
+    'plugin:@typescript-eslint/recommended',
+    'prettier',
+  ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaVersion: 12,
-    sourceType: 'module'
+    sourceType: 'module',
   },
   plugins: ['@typescript-eslint', 'spellcheck'],
   rules: {
@@ -21,7 +25,10 @@ module.exports = {
     '@typescript-eslint/member-delimiter-style': 0,
     '@typescript-eslint/camelcase': 0,
     '@typescript-eslint/no-namespace': 0,
-    '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_', varsIgnorePattern: '^_' }],
+    '@typescript-eslint/no-unused-vars': [
+      'error',
+      { argsIgnorePattern: '^_', varsIgnorePattern: '^_' },
+    ],
     'no-unsafe-finally': 0,
     'no-useless-escape': 0,
     'no-console': ['error', { allow: ['info', 'warn', 'error'] }],
@@ -32,7 +39,14 @@ module.exports = {
         strings: true,
         identifiers: true,
         lang: 'en_GB',
-        skipWords: ['duffel', 'Datetime', 'arrivalDatetime', 'departure_datetime', 'Earheart', 'es2021'],
+        skipWords: [
+          'duffel',
+          'Datetime',
+          'arrivalDatetime',
+          'departure_datetime',
+          'Earheart',
+          'es2021',
+        ],
         skipIfMatch: [
           'http://[^s]*',
           'https://[^s]*',
@@ -48,11 +62,18 @@ module.exports = {
           'Earhart',
           'Embraer',
           'errorMsg',
-          'perf'
+          'perf',
         ],
-        skipWordIfMatch: ['.*vh$', '.*vw$', '.*px$', '.*%$', '^[a-f0-9]{6}$', '^[a-z]{3,4}_*'],
-        minLength: 3
-      }
-    ]
-  }
+        skipWordIfMatch: [
+          '.*vh$',
+          '.*vw$',
+          '.*px$',
+          '.*%$',
+          '^[a-f0-9]{6}$',
+          '^[a-z]{3,4}_*',
+        ],
+        minLength: 3,
+      },
+    ],
+  },
 }

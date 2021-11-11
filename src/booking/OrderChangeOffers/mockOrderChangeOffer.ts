@@ -22,20 +22,20 @@ export const mockOrderChangeOffer: OrderChangeOffer = {
                 name: 'London',
                 id: 'cit_lon_gb',
                 iata_country_code: 'GB',
-                iata_code: 'LON'
-              }
+                iata_code: 'LON',
+              },
             },
             operating_carrier_flight_number: '4321',
             operating_carrier: {
               name: 'British Airways',
               id: 'aln_00001876aqC8c5umZmrRds',
-              iata_code: 'BA'
+              iata_code: 'BA',
             },
             marketing_carrier_flight_number: '1234',
             marketing_carrier: {
               name: 'British Airways',
               id: 'aln_00001876aqC8c5umZmrRds',
-              iata_code: 'BA'
+              iata_code: 'BA',
             },
             id: 'seg_00009htYpSCXrwaB9Dn456',
             duration: 'PT02H26M',
@@ -55,17 +55,17 @@ export const mockOrderChangeOffer: OrderChangeOffer = {
                 name: 'London',
                 id: 'cit_lon_gb',
                 iata_country_code: 'GB',
-                iata_code: 'LON'
-              }
+                iata_code: 'LON',
+              },
             },
             departing_at: '2020-06-13T16:38:02',
             arriving_at: '2020-06-13T16:38:02',
             aircraft: {
               name: 'Airbus Industries A380',
               id: 'arc_00009UhD4ongolulWd91Ky',
-              iata_code: '380'
-            }
-          }
+              iata_code: '380',
+            },
+          },
         ],
         origin_type: 'airport',
         origin: {
@@ -84,7 +84,7 @@ export const mockOrderChangeOffer: OrderChangeOffer = {
             name: 'London',
             id: 'cit_lon_gb',
             iata_country_code: 'GB',
-            iata_code: 'LON'
+            iata_code: 'LON',
           },
           airports: [
             {
@@ -101,10 +101,10 @@ export const mockOrderChangeOffer: OrderChangeOffer = {
                 name: 'London',
                 id: 'cit_lon_gb',
                 iata_country_code: 'GB',
-                iata_code: 'LON'
-              }
-            }
-          ]
+                iata_code: 'LON',
+              },
+            },
+          ],
         },
         id: 'sli_00009htYpSCXrwaB9Dn123',
         duration: 'PT02H26M',
@@ -125,7 +125,7 @@ export const mockOrderChangeOffer: OrderChangeOffer = {
             name: 'London',
             id: 'cit_lon_gb',
             iata_country_code: 'GB',
-            iata_code: 'LON'
+            iata_code: 'LON',
           },
           airports: [
             {
@@ -142,12 +142,12 @@ export const mockOrderChangeOffer: OrderChangeOffer = {
                 name: 'London',
                 id: 'cit_lon_gb',
                 iata_country_code: 'GB',
-                iata_code: 'LON'
-              }
-            }
-          ]
-        }
-      }
+                iata_code: 'LON',
+              },
+            },
+          ],
+        },
+      },
     ],
     add: [
       {
@@ -168,20 +168,20 @@ export const mockOrderChangeOffer: OrderChangeOffer = {
                 name: 'London',
                 id: 'cit_lon_gb',
                 iata_country_code: 'GB',
-                iata_code: 'LON'
-              }
+                iata_code: 'LON',
+              },
             },
             operating_carrier_flight_number: '4321',
             operating_carrier: {
               name: 'British Airways',
               id: 'aln_00001876aqC8c5umZmrRds',
-              iata_code: 'BA'
+              iata_code: 'BA',
             },
             marketing_carrier_flight_number: '1234',
             marketing_carrier: {
               name: 'British Airways',
               id: 'aln_00001876aqC8c5umZmrRds',
-              iata_code: 'BA'
+              iata_code: 'BA',
             },
             id: 'seg_00009htYpSCXrwaB9Dn456',
             duration: 'PT02H26M',
@@ -201,17 +201,17 @@ export const mockOrderChangeOffer: OrderChangeOffer = {
                 name: 'London',
                 id: 'cit_lon_gb',
                 iata_country_code: 'GB',
-                iata_code: 'LON'
-              }
+                iata_code: 'LON',
+              },
             },
             departing_at: '2020-06-13T16:38:02',
             arriving_at: '2020-06-13T16:38:02',
             aircraft: {
               name: 'Airbus Industries A380',
               id: 'arc_00009UhD4ongolulWd91Ky',
-              iata_code: '380'
-            }
-          }
+              iata_code: '380',
+            },
+          },
         ],
         origin_type: 'airport',
         origin: {
@@ -230,7 +230,7 @@ export const mockOrderChangeOffer: OrderChangeOffer = {
             name: 'London',
             id: 'cit_lon_gb',
             iata_country_code: 'GB',
-            iata_code: 'LON'
+            iata_code: 'LON',
           },
           airports: [
             {
@@ -247,10 +247,10 @@ export const mockOrderChangeOffer: OrderChangeOffer = {
                 name: 'London',
                 id: 'cit_lon_gb',
                 iata_country_code: 'GB',
-                iata_code: 'LON'
-              }
-            }
-          ]
+                iata_code: 'LON',
+              },
+            },
+          ],
         },
         id: 'sli_00009htYpSCXrwaB9Dn123',
         duration: 'PT02H26M',
@@ -271,7 +271,7 @@ export const mockOrderChangeOffer: OrderChangeOffer = {
             name: 'London',
             id: 'cit_lon_gb',
             iata_country_code: 'GB',
-            iata_code: 'LON'
+            iata_code: 'LON',
           },
           airports: [
             {
@@ -288,13 +288,13 @@ export const mockOrderChangeOffer: OrderChangeOffer = {
                 name: 'London',
                 id: 'cit_lon_gb',
                 iata_country_code: 'GB',
-                iata_code: 'LON'
-              }
-            }
-          ]
-        }
-      }
-    ]
+                iata_code: 'LON',
+              },
+            },
+          ],
+        },
+      },
+    ],
   },
   refund_to: 'arc_bsp_cash',
   penalty_currency: 'GBP',
@@ -306,5 +306,5 @@ export const mockOrderChangeOffer: OrderChangeOffer = {
   expires_at: '2020-01-17T10:42:14.545Z',
   created_at: '2020-01-17T10:12:14.545Z',
   change_total_currency: 'GBP',
-  change_total_amount: '30.20'
+  change_total_amount: '30.20',
 }

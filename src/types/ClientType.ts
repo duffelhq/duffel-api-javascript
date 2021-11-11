@@ -79,7 +79,13 @@ export class DuffelError extends Error {
   public meta: ApiResponseMeta
   public errors: ApiResponseError[]
 
-  constructor({ meta, errors }: { meta: ApiResponseMeta; errors: ApiResponseError[] }) {
+  constructor({
+    meta,
+    errors,
+  }: {
+    meta: ApiResponseMeta
+    errors: ApiResponseError[]
+  }) {
     super()
     this.meta = meta
     this.errors = errors
@@ -89,7 +95,7 @@ export class DuffelError extends Error {
 export class ValidationError extends Error {
   constructor(message: string) {
     super('Invalid data: ' + message)
-    this.name = "ValidationError";
+    this.name = 'ValidationError'
   }
 }
 

@@ -3,7 +3,7 @@ import {
   ConfirmOrderChangePayment,
   CreateOrderChangeParameters,
   DuffelResponse,
-  OrderChangeOfferSlice
+  OrderChangeOfferSlice,
 } from '../../types'
 
 /**
@@ -25,7 +25,9 @@ export class OrderChanges extends Resource {
    * The OrderChange will contain the `selected_order_change_offer` reference of the change you wish to make to your order.
    * @link https://duffel.com/docs/api/order-changes/create-order-change
    */
-  public create = async (options: CreateOrderChangeParameters): Promise<DuffelResponse<OrderChangeOfferSlice>> =>
+  public create = async (
+    options: CreateOrderChangeParameters
+  ): Promise<DuffelResponse<OrderChangeOfferSlice>> =>
     this.request({ method: 'POST', path: this.path, data: options })
 
   /**
@@ -33,7 +35,9 @@ export class OrderChanges extends Resource {
    * @param {string} id - Duffel's unique identifier for the order change
    * @link https://duffel.com/docs/api/order-changes/get-order-change-by-id
    */
-  public get = async (id: string): Promise<DuffelResponse<OrderChangeOfferSlice>> =>
+  public get = async (
+    id: string
+  ): Promise<DuffelResponse<OrderChangeOfferSlice>> =>
     this.request({ method: 'GET', path: `${this.path}/${id}` })
 
   /**
@@ -46,5 +50,9 @@ export class OrderChanges extends Resource {
     id: string,
     options: Partial<ConfirmOrderChangePayment>
   ): Promise<DuffelResponse<OrderChangeOfferSlice>> =>
-    this.request({ method: 'POST', path: `${this.path}/${id}/actions/confirm`, data: options })
+    this.request({
+      method: 'POST',
+      path: `${this.path}/${id}/actions/confirm`,
+      data: options,
+    })
 }

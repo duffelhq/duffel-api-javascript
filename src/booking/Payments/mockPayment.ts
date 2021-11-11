@@ -5,5 +5,5 @@ export const mockPayment: Payment = {
   id: 'pay_00009hthhsUZ8W4LxQgkjo',
   currency: 'GBP',
   created_at: '2020-04-11T15:48:11.642Z',
-  amount: '30.20'
+  amount: '30.20',
 }

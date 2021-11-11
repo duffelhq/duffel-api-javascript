@@ -21,7 +21,7 @@ import readline from 'readline'
 // init io
 const rl = readline.createInterface({
   input: process.stdin,
-  output: process.stdout
+  output: process.stdout,
 })
 
 let operationName = 'OperationName'
@@ -32,30 +32,36 @@ let errorMsg = ''
 // operation name
 const methodNameQuestion = () => {
   return new Promise((resolve, reject) => {
-    rl.question(`Name of the operation? (example: Offers) (default: "OperationName"): `, (answer) => {
-      operationPath = path.join(__dirname, operationName)
-      if (answer) {
-        if (/^[A-z]+$/.test(answer)) {
-          operationName = capitalise(answer)
-        } else {
-          errorMsg = 'Method name should be letters only and CamelCase.'
-          reject()
+    rl.question(
+      `Name of the operation? (example: Offers) (default: "OperationName"): `,
+      (answer) => {
+        operationPath = path.join(__dirname, operationName)
+        if (answer) {
+          if (/^[A-z]+$/.test(answer)) {
+            operationName = capitalise(answer)
+          } else {
+            errorMsg = 'Method name should be letters only and CamelCase.'
+            reject()
+          }
         }
+        resolve(true)
       }
-      resolve(true)
-    })
+    )
   })
 }
 
 // operation folder
 const folderQuestion = () => {
   return new Promise((resolve) => {
-    rl.question(`Where do you want to create the operation? (default/root: src): `, (answer) => {
-      if (answer) {
-        operationPath = path.join(__dirname, answer, operationName)
+    rl.question(
+      `Where do you want to create the operation? (default/root: src): `,
+      (answer) => {
+        if (answer) {
+          operationPath = path.join(__dirname, answer, operationName)
+        }
+        resolve(true)
       }
-      resolve(true)
-    })
+    )
   })
 }
 
@@ -76,7 +82,9 @@ const print = () => {
   console.log('--------------------------------------------------------')
   console.log(`Method Name: `.grey + operationName)
   console.log(`Folder: `.grey + operationPath)
-  console.log(`Note: `.yellow + `export your operation in src/index.ts when done.`.yellow)
+  console.log(
+    `Note: `.yellow + `export your operation in src/index.ts when done.`.yellow
+  )
   console.log('--------------------------------------------------------')
 }
 const makeHeader = () => {
@@ -149,7 +157,8 @@ describe("${operationName}", () => {
 const createMethodFiles = () => {
   // create folder
   console.log(operationPath)
-  fs.existsSync(operationPath) || fs.mkdirSync(operationPath, { recursive: true })
+  fs.existsSync(operationPath) ||
+    fs.mkdirSync(operationPath, { recursive: true })
   // create index.ts
   createFile(`${operationPath}/index.ts`, indexContent())
   // create OperationName.ts

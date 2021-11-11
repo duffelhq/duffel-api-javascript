@@ -17,6 +17,8 @@ export class SeatMaps extends Resource {
    * @param {string} offer_id - Duffel's unique identifier for the offer
    * @link https://duffel.com/docs/api/seat-maps/get-seat-maps
    */
-  public get = async (params: { offer_id: string }): Promise<DuffelResponse<SeatMap>> =>
+  public get = async (params: {
+    offer_id: string
+  }): Promise<DuffelResponse<SeatMap>> =>
     this.request({ method: 'GET', path: `${this.path}`, params })
 }

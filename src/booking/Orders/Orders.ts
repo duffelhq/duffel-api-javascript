@@ -1,5 +1,12 @@
 import { Resource } from '../../Resource'
-import { CreateOrder, DuffelResponse, ListParamsOrders, Order, PaginationMeta, UpdateSingleOrder } from '../../types'
+import {
+  CreateOrder,
+  DuffelResponse,
+  ListParamsOrders,
+  Order,
+  PaginationMeta,
+  UpdateSingleOrder,
+} from '../../types'
 
 export class Orders extends Resource {
   /**
@@ -24,7 +31,9 @@ export class Orders extends Resource {
    * @param {Object} [options] - Pagination options (optional: limit, after, before)
    * @link https://duffel.com/docs/api/orders/get-orders
    */
-  public list = async (options?: PaginationMeta & ListParamsOrders): Promise<DuffelResponse<Order[]>> =>
+  public list = async (
+    options?: PaginationMeta & ListParamsOrders
+  ): Promise<DuffelResponse<Order[]>> =>
     this.request({ method: 'GET', path: this.path, params: options })
 
   /**
@@ -33,13 +42,17 @@ export class Orders extends Resource {
    * @param {Object} [options] - Optional query parameters: awaiting_payment, sort
    * @link https://duffel.com/docs/api/orders/get-orders
    */
-  public listWithGenerator = (options?: ListParamsOrders): AsyncGenerator<DuffelResponse<Order>, void, unknown> =>
+  public listWithGenerator = (
+    options?: ListParamsOrders
+  ): AsyncGenerator<DuffelResponse<Order>, void, unknown> =>
     this.paginatedRequest({ path: 'air/orders', params: options })
 
   /**
    * Creates a booking with an airline based on an offer.
    */
-  public create = async (options: CreateOrder): Promise<DuffelResponse<Order>> => {
+  public create = async (
+    options: CreateOrder
+  ): Promise<DuffelResponse<Order>> => {
     return this.request({ method: 'POST', path: this.path, data: options })
   }
 
@@ -51,7 +64,14 @@ export class Orders extends Resource {
    * @example (id: 'ord_00009hthhsUZ8W4LxQgkjo', { metadata: { 'payment_intent_id': 'pit_00009htYpSCXrwaB9DnUm2' } } )
    * @link https://duffel.com/docs/api/orders/update-order-by-id
    */
-  public update = async (id: string, options: UpdateSingleOrder): Promise<DuffelResponse<Order>> => {
-    return this.request({ method: 'PATCH', path: `${this.path}/${id}`, data: { options } })
+  public update = async (
+    id: string,
+    options: UpdateSingleOrder
+  ): Promise<DuffelResponse<Order>> => {
+    return this.request({
+      method: 'PATCH',
+      path: `${this.path}/${id}`,
+      data: { options },
+    })
   }
 }

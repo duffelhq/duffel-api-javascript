@@ -26,7 +26,7 @@ import { Duffel } from '@duffel/api'
 
 const duffel = new Duffel({
   // Store your access token in an environment variable, keep it secret and only readable on your server
-  token: process.env.DUFFEL_ACCESS_TOKEN
+  token: process.env.DUFFEL_ACCESS_TOKEN,
 })
 
 // To quickly test whether your integration is working, you can get a single aircraft by its Duffel ID
@@ -57,7 +57,7 @@ Sometimes, you can pass in optional query parameters:
 
 ```javascript
 duffel.offers.get(offer_id, {
-  return_available_services: true
+  return_available_services: true,
 })
 ```
 
@@ -183,7 +183,7 @@ console.log(firstPage)
 // You can then manually paginate by passing in the relevant query parameters
 const nextPage = await duffel.airlines.list({
   limit: firstPage.meta.limit,
-  after: firstPage.meta.after
+  after: firstPage.meta.after,
 })
 console.log(nextPage)
 ```
@@ -198,12 +198,12 @@ const offerRequestResponse = await duffel.offerRequests.create({
     {
       origin: 'NYC',
       destination: 'ATL',
-      departure_date: '2021-06-21'
-    }
+      departure_date: '2021-06-21',
+    },
   ],
   passengers: [{ type: 'adult' }],
   cabin_class: 'economy',
-  return_offers: false
+  return_offers: false,
 })
 
 console.log(offerRequestResponse.data.id)
@@ -214,7 +214,9 @@ console.log(offerRequestResponse.data.id)
 On certain endpoints you can perform actions, such as confirming an order cancellation. Usually you'll do that by just passing in the ID, but sometimes you can also pass in optional query parameters.
 
 ```javascript
-const orderCancellationResponse = await duffel.orderCancellations.confirm(order_cancellation_id)
+const orderCancellationResponse = await duffel.orderCancellations.confirm(
+  order_cancellation_id
+)
 console.log(orderCancellationResponse.data.id)
 ```
 
@@ -223,11 +225,14 @@ console.log(orderCancellationResponse.data.id)
 On certain endpoints you can perform updates, such as updating an order. Usually you'll do that by passing the object ID with the object data changes.
 
 ```javascript
-const orderUpdateResponse = await duffel.orders.update('ord_00009hthhsUZ8W4LxQgkjo', {
-  metadata: {
-    payment_intent_id: 'pit_00009htYpSCXrwaB9DnUm2'
+const orderUpdateResponse = await duffel.orders.update(
+  'ord_00009hthhsUZ8W4LxQgkjo',
+  {
+    metadata: {
+      payment_intent_id: 'pit_00009htYpSCXrwaB9DnUm2',
+    },
   }
-})
+)
 
 console.log(orderUpdateResponse.data.id)
 ```
@@ -235,9 +240,12 @@ console.log(orderUpdateResponse.data.id)
 And if you want to clear metadata:
 
 ```javascript
-const orderUpdateResponse = await duffel.orders.update('ord_00009hthhsUZ8W4LxQgkjo', {
-  metadata: {}
-})
+const orderUpdateResponse = await duffel.orders.update(
+  'ord_00009hthhsUZ8W4LxQgkjo',
+  {
+    metadata: {},
+  }
+)
 
 console.log(orderUpdateResponse.data.id)
 ```
@@ -260,7 +268,7 @@ We currently provide some basic logging in the library, and there are plans to a
 const duffel = new Duffel({
   // We recommend storing your access token in an environment variable for security
   token: process.env.DUFFEL_ACCESS_TOKEN,
-  debug: { verbose: true }
+  debug: { verbose: true },
 })
 ```
 
