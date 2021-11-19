@@ -30,6 +30,7 @@ export const mockPaymentIntents: PaymentIntent = {
   created_at: '2020-04-11T15:48:11.642Z',
   confirmed_at: '2020-04-11T15:48:11.642Z',
   client_token:
+    // eslint-disable-next-line spellcheck/spell-checker
     'eyJjbGllbnRfc2VjcmV0IjoicGlfMUl5YTBiQW5rMVRkeXJvRE1iWkJPN0ZSX3NlY3JldF9TbGFrYnJjYnFHZGZha2VrcjdCNE5jZWVyIiwicHVibGlzaGFibGVfa2V5IjoicGtfbGl2ZV81MUl0Q3YwQW5rMUdkeXJvRFlFU3M3RnBTUEdrNG9kbDhneDF3Y1RBNVEzaUcyWEFWVEhxdFlKSVhWMUxoSU5GQUtFMjA1dFdmRGVIcXhwUVdnYkIzTkVFbzAwMmdVY1hzR0YifQ==',
   card_network: 'visa',
   card_last_four_digits: '4242',
