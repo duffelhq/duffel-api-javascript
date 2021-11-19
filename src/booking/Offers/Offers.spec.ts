@@ -1,8 +1,10 @@
 import nock from 'nock'
 import { Client } from '../../Client'
+import { Duffel } from '../../index'
 import { mockOffer, mockUpdatedOffer } from './mockOffer'
 import { Offers } from './Offers'
 
+const duffel = new Duffel({ token: 'mockToken' })
 describe('offers', () => {
   afterEach(() => {
     nock.cleanAll()
@@ -13,9 +15,7 @@ describe('offers', () => {
       .get(`/air/offers/${mockOffer.id}`)
       .reply(200, { data: { ...mockOffer, available_services: [] } })
 
-    const response = await new Offers(new Client({ token: 'mockToken' })).get(
-      mockOffer.id
-    )
+    const response = await duffel.offers.get(mockOffer.id)
     expect(response.data?.id).toBe(mockOffer.id)
     expect(response.data?.available_services).toHaveLength(0)
   })
@@ -25,12 +25,9 @@ describe('offers', () => {
       .get(`/air/offers/${mockOffer.id}?return_available_services=true`)
       .reply(200, { data: mockOffer })
 
-    const response = await new Offers(new Client({ token: 'mockToken' })).get(
-      mockOffer.id,
-      {
-        return_available_services: true,
-      }
-    )
+    const response = await duffel.offers.get(mockOffer.id, {
+      return_available_services: true,
+    })
     expect(response.data?.id).toBe(mockOffer.id)
     expect(response.data?.available_services).toHaveLength(1)
   })
@@ -48,7 +45,7 @@ describe('offers', () => {
         meta: { limit: 1, before: null, after: null },
       })
 
-    const response = await new Offers(new Client({ token: 'mockToken' })).list({
+    const response = await duffel.offers.list({
       offer_request_id: mockOffer.id,
       limit: 1,
     })
