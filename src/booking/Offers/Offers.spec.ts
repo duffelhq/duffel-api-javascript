@@ -1,6 +1,6 @@
 import nock from 'nock'
 import { Client } from '../../Client'
-import { mockOffer } from './mockOffer'
+import { mockOffer, mockUpdatedOffer } from './mockOffer'
 import { Offers } from './Offers'
 
 describe('offers', () => {
@@ -76,5 +76,25 @@ describe('offers', () => {
     for await (const page of response) {
       expect(page.data.id).toBe(mockOffer.id)
     }
+  })
+
+  test('should update a single offer', async () => {
+    nock(/(.*)/)
+      .patch(`/air/offers/${mockOffer.id}/passengers/pas_00009hj8USM7Ncg31cBCL`)
+      .reply(200, { data: mockUpdatedOffer })
+
+    const response = await new Offers(
+      new Client({ token: 'mockToken' })
+    ).update(mockOffer.id, 'pas_00009hj8USM7Ncg31cBCL', {
+      loyalty_programme_accounts: [
+        {
+          airline_iata_code: 'BA',
+          account_number: '12901014',
+        },
+      ],
+      given_name: 'Amelia',
+      family_name: 'Earhart',
+    })
+    expect(response.data?.id).toBe('pas_00009hj8USM7Ncg31cBCL')
   })
 })

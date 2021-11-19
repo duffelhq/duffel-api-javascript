@@ -449,3 +449,24 @@ export interface ListOffersParams extends PaginationMeta {
    */
   sort?: 'total_amount' | 'total_duration'
 }
+
+export interface LoyaltyProgrammeAccounts {
+  /**
+   * The passenger's account number for this Loyalty Programme Account
+   */
+  account_number: string
+
+  /**
+   * The IATA code for the airline that this Loyalty Programme Account belongs to
+   */
+  airline_iata_code: string
+}
+
+export interface UpdateOffer {
+  type: string
+  loyalty_programme_accounts: LoyaltyProgrammeAccounts
+  id: string
+  given_name: string
+  family_name: string
+  age: number
+}

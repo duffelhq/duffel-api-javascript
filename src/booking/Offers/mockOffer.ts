@@ -184,3 +184,17 @@ export const mockOffer: Offer = {
   ],
   allowed_passenger_identity_document_types: ['passport'],
 }
+
+export const mockUpdatedOffer = {
+  type: 'adult',
+  loyalty_programme_accounts: [
+    {
+      airline_iata_code: 'BA',
+      account_number: '12901014',
+    },
+  ],
+  id: 'pas_00009hj8USM7Ncg31cBCL',
+  given_name: 'Amelia',
+  family_name: 'Earhart',
+  age: 14,
+}
