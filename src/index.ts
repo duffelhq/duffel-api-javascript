@@ -1,3 +1,4 @@
+import { PaymentIntents } from './DuffelPayments'
 import {
   OfferRequests,
   Offers,
@@ -41,6 +42,7 @@ export class Duffel {
   public orderCancellations: OrderCancellations
   public payments: Payments
   public seatMaps: SeatMaps
+  public paymentIntents: PaymentIntents
 
   constructor(config: Config) {
     this.client = new Client(config)
@@ -57,5 +59,6 @@ export class Duffel {
     this.orderCancellations = new OrderCancellations(this.client)
     this.payments = new Payments(this.client)
     this.seatMaps = new SeatMaps(this.client)
+    this.paymentIntents = new PaymentIntents(this.client)
   }
 }
