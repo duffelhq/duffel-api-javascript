@@ -992,14 +992,14 @@
   dependencies:
     "@commitlint/config-angular-type-enum" "^15.0.0"
 
-"@commitlint/cz-commitlint@^14.1.0":
-  version "14.1.0"
-  resolved "https://registry.yarnpkg.com/@commitlint/cz-commitlint/-/cz-commitlint-14.1.0.tgz#02a49b5833f81fddc420116ba4c266e23071a8ef"
-  integrity sha512-7bLVETWymyMgrEFzGMwjjbYbZG6MqXzi+v/FtNpQjnnl6yNT+rq/1/acHN4D9725Jbin7NrLk7FlL5w3taSOUg==
+"@commitlint/cz-commitlint@^15.0.0":
+  version "15.0.0"
+  resolved "https://registry.yarnpkg.com/@commitlint/cz-commitlint/-/cz-commitlint-15.0.0.tgz#35ef65981b0febfbc16134c3d46e618e3b0697bb"
+  integrity sha512-e2hdYijPOMVB4JNRHRRhD++Mh9V64AgRJLpyApzJQchNGuWS7ssfTLkmrZWI7omHin7ppgBXuiB7AnI4450Kfg==
   dependencies:
-    "@commitlint/ensure" "^14.1.0"
-    "@commitlint/load" "^14.1.0"
-    "@commitlint/types" "^14.0.0"
+    "@commitlint/ensure" "^15.0.0"
+    "@commitlint/load" "^15.0.0"
+    "@commitlint/types" "^15.0.0"
     chalk "^4.1.0"
     lodash "^4.17.21"
     word-wrap "^1.2.3"
@@ -1030,10 +1030,17 @@
   resolved "https://registry.yarnpkg.com/@commitlint/execute-rule/-/execute-rule-15.0.0.tgz#6bff7962df38e89ff9fdbc00abd79b8849c7e9f9"
   integrity sha512-pyE4ApxjbWhb1TXz5vRiGwI2ssdMMgZbaaheZq1/7WC0xRnqnIhE1yUC1D2q20qPtvkZPstTYvMiRVtF+DvjUg==
 
+<<<<<<< HEAD
 "@commitlint/format@^15.0.0":
   version "15.0.0"
   resolved "https://registry.yarnpkg.com/@commitlint/format/-/format-15.0.0.tgz#10935180913de9384bea4c9217f4c6c5ee100ab3"
   integrity sha512-bPhAfqwRhPk92WiuY0ktEJNpRRHSCd+Eg1MdhGyL9Bl3U25E5zvuInA+dNctnzZiOBSH/37ZaD0eOKCpQE6acg==
+=======
+"@commitlint/format@^14.1.0":
+  version "14.1.0"
+  resolved "https://registry.yarnpkg.com/@commitlint/format/-/format-14.1.0.tgz#09b4081bdcb02163496bfcece98f9d4606238bc5"
+  integrity sha512-sF6engqqHjvxGctWRKjFs/HQeNowlpbVmmoP481b2UMQnVQnjjfXJvQsoLpaqFUvgc2sHM4L85F8BmAw+iHG1w==
+>>>>>>> be4a8a0 (build(deps-dev): bump @commitlint/cz-commitlint from 14.1.0 to 15.0.0)
   dependencies:
     "@commitlint/types" "^15.0.0"
     chalk "^4.0.0"
@@ -1124,6 +1131,19 @@
   version "15.0.0"
   resolved "https://registry.yarnpkg.com/@commitlint/resolve-extends/-/resolve-extends-15.0.0.tgz#baf21227e2ac52cef546ec35dd6732e9b0b6e57c"
   integrity sha512-7apfRJjgJsKja7lHsPfEFixKjA/fk/UeD3owkOw1174yYu4u8xBDLSeU3IinGPdMuF9m245eX8wo7vLUy+EBSg==
+<<<<<<< HEAD
+=======
+  dependencies:
+    import-fresh "^3.0.0"
+    lodash "^4.17.19"
+    resolve-from "^5.0.0"
+    resolve-global "^1.0.0"
+
+"@commitlint/rules@^14.1.0":
+  version "14.1.0"
+  resolved "https://registry.yarnpkg.com/@commitlint/rules/-/rules-14.1.0.tgz#caec339b05c45e7536cac5d9f1db11fcc9e3dfcd"
+  integrity sha512-6jmv414/1JzGzDI/DS+snAMhcL6roQKPdg0WB3kWTWN52EvWXBFm0HIMGt2H/FlRKxozwVXlQN60/1fNIl98xA==
+>>>>>>> be4a8a0 (build(deps-dev): bump @commitlint/cz-commitlint from 14.1.0 to 15.0.0)
   dependencies:
     import-fresh "^3.0.0"
     lodash "^4.17.19"
