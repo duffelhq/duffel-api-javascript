@@ -94,4 +94,19 @@ describe('offers', () => {
     })
     expect(response.data?.id).toBe('pas_00009hj8USM7Ncg31cBCL')
   })
+
+  test('should get offer passenger with loyalty programme details', async () => {
+    nock(/(.*)/)
+      .get(`/air/offers/${mockOffer.id}`)
+      .reply(200, { data: mockOffer })
+
+    const response = await new Offers(new Client({ token: 'mockToken' })).get(
+      mockOffer.id
+    )
+
+    expect(response.data.passengers[0].id).toBe('pas_00009hj8USM7Ncg31cBCL')
+    expect(response.data.passengers[0].loyalty_programme_accounts).toHaveLength(
+      1
+    )
+  })
 })

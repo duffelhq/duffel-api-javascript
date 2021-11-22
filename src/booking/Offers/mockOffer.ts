@@ -145,6 +145,14 @@ export const mockOffer: Offer = {
       type: 'adult',
       id: 'pas_00009hj8USM7Ncg31cBCL',
       age: 14,
+      given_name: 'Carol',
+      family_name: 'Danvers',
+      loyalty_programme_accounts: [
+        {
+          account_number: '12901014',
+          airline_iata_code: 'BA',
+        },
+      ],
     },
   ],
   passenger_identity_documents_required: false,
