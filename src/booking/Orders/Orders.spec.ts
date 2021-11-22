@@ -163,7 +163,7 @@ describe('Orders', () => {
       mockOrder.id
     )
 
-    expect(response.data.passengers[0].id).toBe('pas_00009hj8USM7Ncg31cBCL')
+    expect(response.data.passengers[0].id).toBe('pas_00009hj8USM7Ncg31cBCLL')
     expect(response.data.passengers[0].loyalty_programme_accounts).toHaveLength(
       1
     )
