@@ -6,6 +6,7 @@ import {
   DuffelPassengerTitle,
   DuffelPassengerType,
   FlightsConditions,
+  LoyaltyProgrammeAccount,
   OfferAvailableServiceBaggageMetadata,
   PassengerIdentityDocumentType,
   PaymentType,
@@ -159,6 +160,11 @@ export interface OrderPassenger {
    * @return "adult", "child", or "infant_without_seat"
    */
   infant_passenger_id?: string | null
+
+  /**
+   * The **Loyalty Programme Accounts** for this passenger.
+   */
+  loyalty_programme_accounts?: LoyaltyProgrammeAccount[]
 }
 
 export interface OrderPassengerIdentityDocument {

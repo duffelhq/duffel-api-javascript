@@ -153,4 +153,19 @@ describe('Orders', () => {
     ).update(mockOrder.id, { metadata })
     expect(response.data?.id).toBe(mockOrder.id)
   })
+
+  test('should get order passenger with loyalty programme details', async () => {
+    nock(/(.*)/)
+      .get(`/air/orders/${mockOrder.id}`)
+      .reply(200, { data: mockOrder })
+
+    const response = await new Orders(new Client({ token: 'mockToken' })).get(
+      mockOrder.id
+    )
+
+    expect(response.data.passengers[0].id).toBe('pas_00009hj8USM7Ncg31cBCLL')
+    expect(response.data.passengers[0].loyalty_programme_accounts).toHaveLength(
+      1
+    )
+  })
 })

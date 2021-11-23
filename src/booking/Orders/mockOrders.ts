@@ -206,6 +206,12 @@ export const mockOrder: Order = {
       gender: 'f',
       family_name: 'Earhart',
       born_on: '1987-07-24',
+      loyalty_programme_accounts: [
+        {
+          airline_iata_code: 'BA',
+          account_number: '12901014',
+        },
+      ],
     },
   ],
   owner: {

@@ -1,6 +1,7 @@
 import {
   CabinClass,
   FlightsConditions,
+  LoyaltyProgrammeAccount,
   PassengerIdentityDocumentType,
   Place,
   PlaceType,
@@ -243,6 +244,31 @@ export interface OfferPassenger {
    * The type of the passenger.
    */
   type?: 'adult'
+
+  /**
+   * The passenger's family name. Only `space`, `-`, `'`, and letters from the `ASCII`, `Latin-1 Supplement` and `Latin
+   * Extended-A` (with the exceptions of `Æ`, `æ`, `Ĳ`, `ĳ`, `Œ`, `œ`, `Þ`, , and `ð`) Unicode charts are accepted. All
+   * other characters will result in a validation error. The minimum length is 1 character, and the maximum is 20
+   * characters.
+   *
+   * This is only required if you're also including **Loyalty Programme Accounts**.
+   */
+  family_name?: string
+
+  /**
+   * The passenger's given name. Only `space`, `-`, `'`, and letters from the `ASCII`, `Latin-1 Supplement` and `Latin
+   * Extended-A` (with the exceptions of `Æ`, `æ`, `Ĳ`, `ĳ`, `Œ`, `œ`, `Þ`, , and `ð`) Unicode charts are accepted. All
+   * other characters will result in a validation error. The minimum length is 1 character, and the maximum is 20
+   * characters.
+   *
+   * This is only required if you're also including **Loyalty Programme Accounts**.
+   */
+  given_name?: string
+
+  /**
+   * The **Loyalty Programme Accounts** for this passenger.
+   */
+  loyalty_programme_accounts?: LoyaltyProgrammeAccount[]
 
   /**
    * The identifier for the passenger, unique within this Offer Request and across all Offer Requests.
