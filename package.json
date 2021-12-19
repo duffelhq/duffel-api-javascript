@@ -47,7 +47,7 @@
     ]
   },
   "dependencies": {
-    "@types/node": "^16.0.0",
+    "@types/node": "^17.0.0",
     "isomorphic-unfetch": "^3.1.0"
   },
   "devDependencies": {
