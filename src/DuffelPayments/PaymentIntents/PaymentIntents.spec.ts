@@ -13,7 +13,7 @@ describe('PaymentIntents', () => {
 
   test('should get a single Payment Intent', async () => {
     nock(/(.*)/)
-      .get(`/air/payments/payment_intents/${mockPaymentIntents.id}`)
+      .get(`/payments/payment_intents/${mockPaymentIntents.id}`)
       .reply(200, { data: mockPaymentIntents })
 
     const response = await new PaymentIntents(
@@ -24,7 +24,7 @@ describe('PaymentIntents', () => {
 
   test('should create a Payment Intent', async () => {
     nock(/(.*)/)
-      .post(`/air/payments/payment_intents`, (body) => {
+      .post(`/payments/payment_intents`, (body) => {
         expect(body.data).toEqual(mockCreatePaymentIntent)
         return true
       })
@@ -39,7 +39,7 @@ describe('PaymentIntents', () => {
   test('should confirm a Payment Intent', async () => {
     nock(/(.*)/)
       .post(
-        `/air/payments/payment_intents/${mockPaymentIntents.id}/actions/confirm`
+        `/payments/payment_intents/${mockPaymentIntents.id}/actions/confirm`
       )
       .reply(200, { data: mockPaymentIntents })
 
