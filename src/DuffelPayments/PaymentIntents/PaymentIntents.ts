@@ -10,7 +10,7 @@ export class PaymentIntents extends Resource {
 
   constructor(args: any) {
     super(args)
-    this.path = 'air/payments/payment_intents'
+    this.path = 'payments/payment_intents'
   }
 
   /**
