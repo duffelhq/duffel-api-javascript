@@ -46,6 +46,7 @@ module.exports = {
           'departure_datetime',
           'Earheart',
           'es2021',
+          'Danvers',
         ],
         skipIfMatch: [
           'http://[^s]*',
