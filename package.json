@@ -56,7 +56,7 @@
     "@babel/preset-typescript": "^7.14.5",
     "@commitlint/cli": "^16.0.1",
     "@commitlint/config-angular": "^15.0.0",
-    "@commitlint/cz-commitlint": "^15.0.0",
+    "@commitlint/cz-commitlint": "^16.0.0",
     "@rollup/plugin-commonjs": "^21.0.0",
     "@rollup/plugin-multi-entry": "^4.0.0",
     "@rollup/plugin-node-resolve": "^13.0.0",
