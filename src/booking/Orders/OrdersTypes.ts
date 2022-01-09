@@ -525,7 +525,7 @@ export interface CreateOrder {
   /**
    * The payment details to use to pay for the order
    */
-  payments: OrderPayment[]
+  payments?: OrderPayment[]
 
   /**
    * The payment action you want to take for your order. You can only use pay_later with offers that contain requires_instant_payment: false.
