@@ -139,7 +139,7 @@ export interface CreateOfferRequest {
   /**
    * The cabin that the passengers want to travel in
    */
-  cabin_class: CabinClass
+  cabin_class?: CabinClass
 
   /**
    * The passengers who want to travel.
@@ -161,5 +161,5 @@ export interface CreateOfferRequestQueryParameters {
    * To retrieve the associated `offers` later, use the [List Offers](https://duffel.com/docs/api/offers/get-offers) endpoint, specifying the `offer_request_id`.
    * You should use this option if you want to take advantage of the pagination, sorting and filtering that the [List Offers](https://duffel.com/docs/api/offers/get-offers) endpoint provides.
    */
-  return_offers: boolean
+  return_offers?: boolean
 }
