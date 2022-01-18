@@ -127,7 +127,7 @@ export interface OfferRequest {
   /**
    * The offers returned by the airlines
    */
-  offers?: Omit<Offer, 'available_services'>[]
+  offers: Omit<Offer, 'available_services'>[]
 
   /**
    * The passengers who want to travel. A passenger will have only a type or an age.
