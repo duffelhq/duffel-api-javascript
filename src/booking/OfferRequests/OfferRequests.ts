@@ -63,9 +63,16 @@ export class OfferRequests extends Resource {
    * If set to false, the offer request resource won't include any `offers`. To retrieve the associated offers later, use the List Offers endpoint, specifying the `offer_request_id`.
    * @link https://duffel.com/docs/api/offer-requests/create-offer-request
    */
-  public create = async (
-    options: CreateOfferRequest & CreateOfferRequestQueryParameters
-  ): Promise<DuffelResponse<OfferRequest>> => {
+  public create = async <QueryParams extends CreateOfferRequestQueryParameters>(
+    options: CreateOfferRequest & QueryParams
+  ): Promise<
+    DuffelResponse<
+      // Ensure that the `offers` field can't be accessed if `return_offers` is false
+      QueryParams extends { return_offers: false }
+        ? Omit<OfferRequest, 'offers'>
+        : OfferRequest
+    >
+  > => {
     const { return_offers, ...data } = options
 
     return this.request({
