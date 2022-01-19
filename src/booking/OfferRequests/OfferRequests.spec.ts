@@ -106,7 +106,7 @@ describe('OfferRequests', () => {
     ).toHaveLength(1)
   })
 
-  test('should create an offer request and no offers should return when requested', async () => {
+  test('should create an offer request and return the offer request id when `return_offers` is false', async () => {
     const mockResponseWithoutOffer = { ...mockOfferRequest }
     delete mockResponseWithoutOffer.offers
     nock(/(.*)/)
@@ -120,7 +120,7 @@ describe('OfferRequests', () => {
       ...mockCreateOfferRequest,
       return_offers: false,
     })
-    expect(response.data?.offers).toBe(undefined)
+    // In this case, `offers` won't be in the response, but the offer request's id will still be returned and can be used with the List Offers endpoint to retrieve the offers.
     expect(response.data?.id).toBe(mockOfferRequest.id)
   })
 })

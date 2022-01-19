@@ -1,3 +1,4 @@
+import { Client } from 'Client'
 import { Resource } from '../../Resource'
 import {
   CreateOfferRequest,
@@ -20,8 +21,8 @@ export class OfferRequests extends Resource {
    */
   path: string
 
-  constructor(args: any) {
-    super(args)
+  constructor(client: Client) {
+    super(client)
     this.path = 'air/offer_requests'
   }
 
@@ -57,13 +58,21 @@ export class OfferRequests extends Resource {
    * To search for flights, you'll need to create an `offer request`.
    * An offer request describes the passengers and where and when they want to travel (in the form of a list of `slices`).
    * It may also include additional filters (e.g. a particular cabin to travel in).
-   * @param {boolean} [return_offers] - When set to `true`, the offer request resource returned will include all the `offers` returned by the airlines.
+   * @param {Object} [options] - the parameters for making an offer requests (required: slices, passengers; optional: cabin_class, return_offers)
+   * When `return_offers` is set to `true`, the offer request resource returned will include all the `offers` returned by the airlines.
    * If set to false, the offer request resource won't include any `offers`. To retrieve the associated offers later, use the List Offers endpoint, specifying the `offer_request_id`.
    * @link https://duffel.com/docs/api/offer-requests/create-offer-request
    */
-  public create = async (
-    options: Partial<CreateOfferRequest & CreateOfferRequestQueryParameters>
-  ): Promise<DuffelResponse<OfferRequest>> => {
+  public create = async <QueryParams extends CreateOfferRequestQueryParameters>(
+    options: CreateOfferRequest & QueryParams
+  ): Promise<
+    DuffelResponse<
+      // Ensure that the `offers` field can't be accessed if `return_offers` is false
+      QueryParams extends { return_offers: false }
+        ? Omit<OfferRequest, 'offers'>
+        : OfferRequest
+    >
+  > => {
     const { return_offers, ...data } = options
 
     return this.request({
