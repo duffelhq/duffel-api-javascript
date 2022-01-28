@@ -1,4 +1,3 @@
-import { Client } from '../../Client'
 import { Resource } from '../../Resource'
 import {
   CreateOfferRequest,
@@ -21,7 +20,7 @@ export class OfferRequests extends Resource {
    */
   path: string
 
-  constructor(client: Client) {
+  constructor(client: any) {
     super(client)
     this.path = 'air/offer_requests'
   }
