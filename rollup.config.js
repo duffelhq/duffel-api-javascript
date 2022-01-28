@@ -20,11 +20,13 @@ export default [
     input: 'src/index.ts',
     output: [
       {
+        inlineDynamicImports: true,
         file: packageJson.main,
         format: 'cjs', // commonJS
         sourcemap: true,
       },
       {
+        inlineDynamicImports: true,
         file: packageJson.module,
         format: 'esm', // ES Modules
         sourcemap: true,
@@ -32,7 +34,9 @@ export default [
     ],
     plugins: [
       peerDepsExternal(),
-      resolve(),
+      resolve({
+        preferBuiltins: true,
+      }),
       commonjs(),
       typescript({
         clean: true,
@@ -46,12 +50,25 @@ export default [
       }),
       terser(),
     ],
-    external: Object.keys(globals),
+    external: [
+      ...Object.keys(globals),
+      'node:stream',
+      'node:http',
+      'node:zlib',
+      'node:buffer',
+      'node:https',
+      'node:util',
+      'node:url',
+      'node:net',
+      'node:path',
+      'node:fs',
+    ],
   },
   {
     input: ['dist/index.d.ts', 'dist/types/index.d.ts'],
     output: {
       format: 'es',
+      inlineDynamicImports: true,
       file: packageJson.types,
     },
     plugins: [multi(), dts()],
