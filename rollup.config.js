@@ -71,6 +71,6 @@ export default [
       inlineDynamicImports: true,
       file: packageJson.types,
     },
-    plugins: [multi(), dts()],
+    plugins: [multi(), dts({ compilerOptions: { baseUrl: 'dist' } })],
   },
 ]
