@@ -1,3 +1,4 @@
+import { Client } from 'Client'
 import { Resource } from '../../Resource'
 import {
   DuffelResponse,
@@ -24,7 +25,7 @@ export class Offers extends Resource {
    */
   path: string
 
-  constructor(client: any) {
+  constructor(client: Client) {
     super(client)
     this.path = 'air/offers'
   }

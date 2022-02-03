@@ -107,10 +107,12 @@ describe('OfferRequests', () => {
   })
 
   test('should create an offer request and return the offer request id when `return_offers` is false', async () => {
-    const mockResponseWithoutOffer = { ...mockOfferRequest }
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    //@ts-ignore
-    delete mockResponseWithoutOffer.offers
+    const mockResponseWithoutOffer = Object.entries(mockOfferRequest).reduce(
+      (res, [key, value]) =>
+        key === 'offers' ? res : { ...res, [key]: value },
+      {}
+    )
+
     nock(/(.*)/)
       .post(`/air/offer_requests/`)
       .query({ return_offers: false })
