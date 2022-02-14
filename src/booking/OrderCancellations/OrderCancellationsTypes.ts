@@ -1,8 +1,17 @@
+import { PaginationMeta } from '../../types'
+
 export interface CreateOrderCancellation {
   /**
    * Duffel's unique identifier for the order
    */
   order_id: string
+}
+
+export interface ListOrderCancellationsParams extends PaginationMeta {
+  /**
+   * Duffel's unique identifier for the order, returned when it was created
+   */
+  order_id?: string
 }
 
 export interface OrderCancellation {

@@ -3,6 +3,7 @@ import {
   CreateOrderCancellation,
   DuffelResponse,
   OrderCancellation,
+  ListOrderCancellationsParams,
 } from '../../types'
 
 export class OrderCancellations extends Resource {
@@ -23,6 +24,26 @@ export class OrderCancellations extends Resource {
    */
   public get = async (id: string): Promise<DuffelResponse<OrderCancellation>> =>
     this.request({ method: 'GET', path: `${this.path}/${id}` })
+
+  /**
+   * Retrieves a page of order cancellations. The results may be returned in any order.
+   * @param {Object.<ListOrderCancellationsParams>} params - Endpoint options (optional: limit, after, before, order_id)
+   * @link https://duffel.com/docs/api/order-cancellations/get-order-cancellations
+   */
+  public list = (
+    params?: ListOrderCancellationsParams
+  ): Promise<DuffelResponse<OrderCancellation[]>> =>
+    this.request({ method: 'GET', path: this.path, params })
+
+  /**
+   * Retrieves a generator of all order cancellations. The results may be returned in any order.
+   * @param {Object.<ListOrderCancellationsParams>} params - Endpoint options (optional: limit, after, before, order_id)
+   * @link https://duffel.com/docs/api/order-cancellations/get-order-cancellations
+   */
+  public listWithGenerator = (
+    params?: ListOrderCancellationsParams
+  ): AsyncGenerator<DuffelResponse<OrderCancellation>, void, unknown> =>
+    this.paginatedRequest({ path: this.path, params })
 
   /**
    * Create order cancellation
