@@ -1,6 +1,6 @@
 {
   "name": "@duffel/api",
-  "version": "1.7.8",
+  "version": "1.8.0",
   "description": "Javascript client library for the Duffel API",
   "main": "dist/index.js",
   "module": "dist/index.es.js",
