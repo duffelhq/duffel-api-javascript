@@ -12,7 +12,7 @@ import injectProcessEnv from 'rollup-plugin-inject-process-env'
 const packageJson = require('./package.json')
 
 const globals = {
-  ...packageJson.devDependencies,
+  ...packageJson.dependencies,
 }
 
 export default [
@@ -50,19 +50,7 @@ export default [
       }),
       terser(),
     ],
-    external: [
-      ...Object.keys(globals),
-      'node:stream',
-      'node:http',
-      'node:zlib',
-      'node:buffer',
-      'node:https',
-      'node:util',
-      'node:url',
-      'node:net',
-      'node:path',
-      'node:fs',
-    ],
+    external: [...Object.keys(globals)],
   },
   {
     input: ['dist/index.d.ts', 'dist/types/index.d.ts'],
