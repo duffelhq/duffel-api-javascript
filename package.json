@@ -48,7 +48,8 @@
   },
   "dependencies": {
     "@types/node": "^17.0.21",
-    "node-fetch": "^3.2.3"
+    "@types/node-fetch": "^2.6.1",
+    "node-fetch": "2.6.7"
   },
   "devDependencies": {
     "@babel/core": "^7.15.5",
@@ -70,7 +71,7 @@
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-spellcheck": "^0.0.19",
     "husky": "^7.0.0",
-    "jest": "^27.4.5",
+    "jest": "^27.5.1",
     "lint-staged": "^12.0.1",
     "nock": "^13.1.0",
     "prettier": "^2.4.1",
