@@ -7,6 +7,7 @@ export interface Config {
   basePath?: string
   apiVersion?: string
   debug?: SDKOptions
+  source?: string
 }
 
 export class Client {
@@ -14,12 +15,14 @@ export class Client {
   private basePath: string
   private apiVersion: string
   private debug: SDKOptions | undefined
+  private source: string | undefined
 
-  constructor({ token, basePath, apiVersion, debug }: Config) {
+  constructor({ token, basePath, apiVersion, debug, source }: Config) {
     this.token = token
     this.basePath = basePath || 'https://api.duffel.com'
     this.apiVersion = apiVersion || 'beta'
     this.debug = debug
+    this.source = source
   }
 
   public request = async <T_Data = any>({
@@ -38,7 +41,14 @@ export class Client {
     let body
     let responseBody
     const fullPath = new URL(path, this.basePath)
-    const userAgent = `Duffel/${this.apiVersion} duffel_api_javascript/${process.env.npm_package_version}`
+    const userAgent = [
+      `Duffel/${this.apiVersion}`,
+      `duffel_api_javascript/${process.env.npm_package_version}`,
+      this.source ? `source/${this.source}` : '',
+    ]
+      .join(' ')
+      .trim()
+
     const headers = {
       'User-Agent': userAgent,
       Accept: 'application/json',
