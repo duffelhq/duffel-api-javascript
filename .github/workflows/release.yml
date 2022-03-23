@@ -66,10 +66,10 @@ jobs:
         uses: peter-evans/create-pull-request@v3.10.0
         with:
           token: ${{ secrets.PAT }}
-          commit-message: 'chore(release): ${{ steps.extractver.outputs.extractver }}'
+          commit-message: 'ci(release): ${{ steps.extractver.outputs.extractver }}'
           committer: duffel-bot <duffel-bot-read-write@duffel.com>
           author: duffel-bot <duffel-bot-read-write@duffel.com>
-          title: 'chore(release): ${{ steps.extractver.outputs.extractver }}'
+          title: 'ci(release): ${{ steps.extractver.outputs.extractver }}'
           body: 'Version bump in package.json and package-lock.json for release [${{ steps.extractver.outputs.extractver }}](https://github.com/${{github.repository}}/releases/tag/v${{ steps.extractver.outputs.extractver }})'
           branch: version-bump/${{ steps.extractver.outputs.extractver }}
           labels: |
