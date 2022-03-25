@@ -18,7 +18,6 @@ export const mockCreateOrderRequest: CreateOrder = {
   ],
   passengers: [
     {
-      type: 'adult',
       title: 'mrs',
       phone_number: '+442080160509',
       infant_passenger_id: 'pas_00009hj8USM8Ncg32aTGHL',

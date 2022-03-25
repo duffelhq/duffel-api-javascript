@@ -189,11 +189,11 @@ export interface OrderPassengerIdentityDocument {
   expires_on: string
 }
 
-export interface CreateOrderPassenger extends OrderPassenger {
+export interface CreateOrderPassenger extends Omit<OrderPassenger, 'type'> {
   /**
    * The passenger's identity documents. You may only provide one identity document per passenger. The identity document's type must be included in the offer's allowed_passenger_identity_document_types. If the offer's passenger_identity_documents_required is set to true, then an identity document must be provided.
    */
-  identity_documents: OrderPassengerIdentityDocument[]
+  identity_documents?: OrderPassengerIdentityDocument[]
 
   /**
    * The passenger's email address
@@ -206,6 +206,14 @@ export interface CreateOrderPassenger extends OrderPassenger {
    * @example "+442080160509"
    */
   phone_number: string
+
+  /**
+   * @deprecated This type is here just for the backward-compatibility until the field is officially removed from the API
+   *
+   * The type of the passenger
+   * @example "adult", "child", or "infant_without_seat"
+   */
+  type?: DuffelPassengerType
 }
 
 export interface OrderSliceSegment {
