@@ -75,23 +75,6 @@ export interface DuffelResponse<T_Data> {
   meta?: PaginationMeta
 }
 
-export class DuffelError extends Error {
-  public meta: ApiResponseMeta
-  public errors: ApiResponseError[]
-
-  constructor({
-    meta,
-    errors,
-  }: {
-    meta: ApiResponseMeta
-    errors: ApiResponseError[]
-  }) {
-    super()
-    this.meta = meta
-    this.errors = errors
-  }
-}
-
 export interface SDKOptions {
   /**
    * If `true` it will output the path and the method called
