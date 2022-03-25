@@ -10,9 +10,8 @@ import {
   Payments,
   SeatMaps,
 } from './booking'
-import { Client, Config } from './Client'
+import { Client, Config, DuffelError as _DuffelError } from './Client'
 import { Aircraft, Airlines, Airports } from './supportingResources'
-import { DuffelError as _DuffelError } from './types/ClientType'
 export interface DuffelAPIClient {
   aircraft: Aircraft
   airlines: Airlines

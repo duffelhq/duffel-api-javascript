@@ -1,6 +1,11 @@
 import fetch from 'node-fetch'
 import { URL, URLSearchParams } from 'url'
-import { DuffelError, DuffelResponse, SDKOptions } from './types'
+import {
+  DuffelResponse,
+  SDKOptions,
+  ApiResponseMeta,
+  ApiResponseError,
+} from './types'
 
 export interface Config {
   token: string
@@ -8,6 +13,23 @@ export interface Config {
   apiVersion?: string
   debug?: SDKOptions
   source?: string
+}
+
+export class DuffelError extends Error {
+  public meta: ApiResponseMeta
+  public errors: ApiResponseError[]
+
+  constructor({
+    meta,
+    errors,
+  }: {
+    meta: ApiResponseMeta
+    errors: ApiResponseError[]
+  }) {
+    super()
+    this.meta = meta
+    this.errors = errors
+  }
 }
 
 export class Client {
