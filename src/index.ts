@@ -12,7 +12,7 @@ import {
 } from './booking'
 import { Client, Config } from './Client'
 import { Aircraft, Airlines, Airports } from './supportingResources'
-
+import { DuffelError as _DuffelError } from './types/ClientType'
 export interface DuffelAPIClient {
   aircraft: Aircraft
   airlines: Airlines
@@ -62,3 +62,5 @@ export class Duffel {
     this.paymentIntents = new PaymentIntents(this.client)
   }
 }
+
+export const DuffelError = _DuffelError
