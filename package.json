@@ -1,6 +1,6 @@
 {
   "name": "@duffel/api",
-  "version": "1.9.4",
+  "version": "1.9.5",
   "description": "Javascript client library for the Duffel API",
   "main": "dist/index.js",
   "module": "dist/index.es.js",
@@ -47,7 +47,8 @@
     ]
   },
   "resolutions": {
-    "minimist": "1.2.6"
+    "ansi-regex": "^5.0.1",
+    "set-value": "^4.0.1"
   },
   "dependencies": {
     "@types/node": "^17.0.21",
@@ -87,10 +88,6 @@
     "ts-jest": "^27.1.2",
     "ts-node": "^10.0.0",
     "typescript": "^4.4.2"
-  },
-  "resolutions": {
-    "ansi-regex": "^5.0.1",
-    "set-value": "^4.0.1"
   },
   "engines": {
     "node": ">=14.*"
