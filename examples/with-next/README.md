@@ -14,7 +14,7 @@ yarn create next-app duffel-next-starter --example "https://github.com/duffelhq/
 
 ## Setup
 
-Create a `.env` file in the root of the project and add your Duffel access token. Like so:
+Create a `.env.local` file in the root of the project and add your Duffel access token. Like so:
 
 ```
 DUFFEL_ACCESS_TOKEN=<YOUR_TOKEN_HERE>

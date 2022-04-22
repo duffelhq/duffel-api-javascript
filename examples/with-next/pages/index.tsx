@@ -1,4 +1,4 @@
-import { ApiResponseError, Offer, Order } from '@duffel/api'
+import { Offer, Order } from '@duffel/api'
 import { NextPage } from 'next'
 import { FC, Fragment, useState } from 'react'
 import { Header } from '../components/Header'
@@ -49,7 +49,6 @@ const SearchCard: FC<SearchCardProps> = ({ onSuccess }) => {
   const [origin, setOrigin] = useState('JFK')
   const [destination, setDestination] = useState('LHR')
   const [isFetching, setIsFetching] = useState(false)
-  const [_errors, setErrors] = useState<ApiResponseError[]>([])
 
   const fetchCheapestOffer = async () => {
     setIsFetching(true)
@@ -70,9 +69,8 @@ const SearchCard: FC<SearchCardProps> = ({ onSuccess }) => {
     if (data) {
       onSuccess(data)
     } else {
-      setErrors(errors)
-      // eslint-disable-next-line
-      console.log(errors)
+      // TODO: handle the errors properly
+      console.info(errors)
     }
 
     setIsFetching(false)
@@ -137,7 +135,6 @@ interface BookingCardProps {
 
 const BookingCard: FC<BookingCardProps> = ({ offer, onSuccess }) => {
   const [isFetching, setIsFetching] = useState(false)
-  const [_errors, setErrors] = useState<ApiResponseError[]>([])
 
   const bookOffer = async () => {
     setIsFetching(true)
@@ -167,14 +164,12 @@ const BookingCard: FC<BookingCardProps> = ({ offer, onSuccess }) => {
     ).json()
 
     if (data) {
-      setIsFetching(false)
       onSuccess(data)
     } else {
-      setIsFetching(false)
-      setErrors(errors)
-      // eslint-disable-next-line
-      console.log(errors)
+      // TODO: handle the errors properly
+      console.info(errors)
     }
+    setIsFetching(false)
   }
 
   return (
