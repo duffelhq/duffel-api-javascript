@@ -1,6 +1,6 @@
-# TypeScript Next.js example
+# TypeScript Next.js with Duffel API example
 
-This is a really simple project that shows the usage of Next.js with TypeScript.
+This is a really simple project that shows how to use Next.js with Duffel's API client library and TypeScript.
 
 ## How to use it?
 
@@ -14,7 +14,7 @@ yarn create next-app duffel-next-starter --example "https://github.com/duffelhq/
 
 ## Setup
 
-Create a `.env.local` file in the root of the project and add your Duffel access token. Like so:
+Create a `.env.local` file in the root of the project and add your Duffel access token to it like so:
 
 ```
 DUFFEL_ACCESS_TOKEN=<YOUR_TOKEN_HERE>
