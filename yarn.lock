@@ -1018,12 +1018,12 @@
     ajv "^6.12.6"
 
 "@commitlint/cz-commitlint@^16.0.0":
-  version "16.2.4"
-  resolved "https://registry.yarnpkg.com/@commitlint/cz-commitlint/-/cz-commitlint-16.2.4.tgz#89cb0b44f2c3515df09db04e863f8d6cc2a45ca7"
-  integrity sha512-lioE9TF5H36NH/KdTgrmv6CcLWXLcVqFpfZ0oNX+VuPmDVFZ5q4bQ9yQVlMbUX4AjrlsPt68cHH1jK/PoPtBfg==
+  version "16.3.0"
+  resolved "https://registry.yarnpkg.com/@commitlint/cz-commitlint/-/cz-commitlint-16.3.0.tgz#55964b3e1d71c38f203c8724dca0154b3620f098"
+  integrity sha512-Q+QLQmSIHEgzI18F3/7mqq3vwL0IN9k+Tjp9Um4adFnRXMtUTnEa0er0CXAXxWvoA/x/6nt3t7faAv2HugDIGg==
   dependencies:
     "@commitlint/ensure" "^16.2.1"
-    "@commitlint/load" "^16.2.4"
+    "@commitlint/load" "^16.3.0"
     "@commitlint/types" "^16.2.1"
     chalk "^4.1.0"
     lodash "^4.17.21"
@@ -1068,10 +1068,10 @@
     "@commitlint/rules" "^16.2.4"
     "@commitlint/types" "^16.2.1"
 
-"@commitlint/load@>6.1.1", "@commitlint/load@^16.2.4":
-  version "16.2.4"
-  resolved "https://registry.yarnpkg.com/@commitlint/load/-/load-16.2.4.tgz#32c9f4c6538b21cf48cf40266312bb1adb65f435"
-  integrity sha512-HjANm3/29ROV+zt4yfaY/K6gpr9Dbzgtlp0kSwZGW0poDXlD/yqVYgPQ6JolJzZii5FUz5R4yVLC15hVL/w60w==
+"@commitlint/load@>6.1.1", "@commitlint/load@^16.2.4", "@commitlint/load@^16.3.0":
+  version "16.3.0"
+  resolved "https://registry.yarnpkg.com/@commitlint/load/-/load-16.3.0.tgz#e674ccc9edefd64a2d8b82d175de81ec3bb70eca"
+  integrity sha512-3tykjV/iwbkv2FU9DG+NZ/JqmP0Nm3b7aDwgCNQhhKV5P74JAuByULkafnhn+zsFGypG1qMtI5u+BZoa9APm0A==
   dependencies:
     "@commitlint/config-validator" "^16.2.1"
     "@commitlint/execute-rule" "^16.2.1"
@@ -1080,7 +1080,7 @@
     "@types/node" ">=12"
     chalk "^4.0.0"
     cosmiconfig "^7.0.0"
-    cosmiconfig-typescript-loader "^1.0.0"
+    cosmiconfig-typescript-loader "^2.0.0"
     lodash "^4.17.19"
     resolve-from "^5.0.0"
     typescript "^4.4.3"
@@ -2346,13 +2346,13 @@ core-js-compat@^3.20.0, core-js-compat@^3.22.1:
     browserslist "^4.20.3"
     semver "7.0.0"
 
-cosmiconfig-typescript-loader@^1.0.0:
-  version "1.0.4"
-  resolved "https://registry.yarnpkg.com/cosmiconfig-typescript-loader/-/cosmiconfig-typescript-loader-1.0.4.tgz#2903d53aec07c8079c5ff4aa1b10bd5d2fbdff81"
-  integrity sha512-ulv2dvwurP/MZAIthXm69bO7EzzIUThZ6RJ1qXhdlXM6to3F+IKBL/17EnhYSG52A5N1KcAUu66vSG/3/77KrA==
+cosmiconfig-typescript-loader@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/cosmiconfig-typescript-loader/-/cosmiconfig-typescript-loader-2.0.0.tgz#bc4f5bfcaa11a353714ecdef00c4f2226ef191b8"
+  integrity sha512-2NlGul/E3vTQEANqPziqkA01vfiuUU8vT0jZAuUIjEW8u3eCcnCQWLggapCjhbF76s7KQF0fM0kXSKmzaDaG1g==
   dependencies:
     cosmiconfig "^7"
-    ts-node "^10.4.0"
+    ts-node "^10.7.0"
 
 cosmiconfig@^7, cosmiconfig@^7.0.0:
   version "7.0.1"
@@ -5348,7 +5348,7 @@ ts-jest@^27.1.2:
     semver "7.x"
     yargs-parser "20.x"
 
-ts-node@^10.0.0, ts-node@^10.4.0:
+ts-node@^10.0.0, ts-node@^10.7.0:
   version "10.7.0"
   resolved "https://registry.yarnpkg.com/ts-node/-/ts-node-10.7.0.tgz#35d503d0fab3e2baa672a0e94f4b40653c2463f5"
   integrity sha512-TbIGS4xgJoX2i3do417KSaep1uRAW/Lu+WAL2doDHC0D6ummjirVOXU5/7aiZotbQ5p1Zp9tP7U6cYhA0O7M8A==
