@@ -1,6 +1,6 @@
 import { Offer } from '../../types'
 
-export const mockOffer: Offer = {
+export const mockPartialOffer: Offer = {
   updated_at: '2020-01-17T10:12:14.545Z',
   total_emissions_kg: '460',
   total_currency: 'GBP',
@@ -140,7 +140,7 @@ export const mockOffer: Offer = {
     price_guarantee_expires_at: '2020-01-17T10:42:14.545Z',
     payment_required_by: '2020-01-17T10:42:14.545Z',
   },
-  partial: false,
+  partial: true,
   passengers: [
     {
       type: 'adult',
