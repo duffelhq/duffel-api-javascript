@@ -81,10 +81,20 @@ export class Client {
     }
 
     if (params) {
-      const sortedParams = Object.entries(params)
+      const params_with_array_expanded = new URLSearchParams()
+      Object.entries(params)
         .sort()
         .filter((option) => option[0] !== null)
-      fullPath.search = new URLSearchParams(sortedParams).toString()
+        .forEach(([key, value]) => {
+          if (Array.isArray(value)) {
+            value.forEach((value) =>
+              params_with_array_expanded.append(key, value.toString())
+            )
+          } else {
+            params_with_array_expanded.append(key, value.toString())
+          }
+        })
+      fullPath.search = params_with_array_expanded.toString()
     }
 
     // We need to format body to be sent as { "data": data }

@@ -127,6 +127,13 @@ export interface Offer {
    * The ISO 8601 datetime at which the offer was last updated
    */
   updated_at: string
+
+  /**
+   * Whether this is a partial or full offer.
+   * A partial offer can't be booked directly, but it can be combined with other partial offers to form a full offer.
+   * Partial offers are only ever returned through the multi-step search flow.
+   */
+  partial: boolean
 }
 
 export interface OfferAvailableServiceBaggageMetadata {
