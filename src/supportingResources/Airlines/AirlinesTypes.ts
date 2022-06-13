@@ -15,4 +15,12 @@ export interface Airline {
    * The two-character IATA code for the airline. This may be null for non-IATA carriers.
    */
   iata_code: string
+  /*
+   * Path to a svg of the airline lockup logo. A lockup logo is also called a combination logo, in which it combines the logotype and logomark. This may be `null` if no logo is available.
+   */
+  logo_lockup_url?: string
+  /*
+   * Path to a svg of the airline logo. This may be `null` if no logo is available.
+   */
+  logo_symbol_url?: string
 }
