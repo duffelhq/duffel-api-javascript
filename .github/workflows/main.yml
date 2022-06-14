@@ -1,6 +1,6 @@
 name: 'CI: Pull request'
 
-on: [push, pull_request_target]
+on: [push]
 
 jobs:
   Linting:
