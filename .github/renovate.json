@@ -2,7 +2,15 @@
   "extends": [
     "config:base",
     ":semanticCommits",
-    ":semanticCommitTypeAll(build)"
+    ":semanticCommitTypeAll(build)",
+    "schedule:earlyMondays",
+    ":combinePatchMinorReleases"
   ],
-  "labels": ["dependencies"]
+  "labels": ["dependencies"],
+  "packageRules": [
+    {
+      "matchPackageNames": ["eslint", "prettier"],
+      "automerge": true
+    }
+  ]
 }
