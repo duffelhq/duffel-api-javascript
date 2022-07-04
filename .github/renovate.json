@@ -9,7 +9,7 @@
   "labels": ["dependencies"],
   "packageRules": [
     {
-      "matchPackageNames": ["@commitlint", "eslint", "prettier"],
+      "matchPackageNames": ["@commitlint", "eslint", "lint-staged", "prettier"],
       "automerge": true
     }
   ]
