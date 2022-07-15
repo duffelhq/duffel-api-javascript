@@ -1,6 +1,6 @@
 import { Airport, City } from '../../types'
 
-export interface PlacesSuggestionsResponse {
+export interface Places {
   /**
    * The type of the place
    */
