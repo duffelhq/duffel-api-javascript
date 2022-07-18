@@ -1,6 +1,6 @@
-import { PlacesSuggestionsResponse } from '../../types'
+import { Places } from '../../types'
 
-export const mockPlacesSuggestionsResponse: PlacesSuggestionsResponse = {
+export const mockPlacesSuggestionsResponse: Places = {
   type: 'airport',
   time_zone: 'Europe/London',
   name: 'Heathrow',

@@ -1,6 +1,6 @@
 import { Client } from 'Client'
 import { Resource } from '../../Resource'
-import { DuffelResponse, PlacesSuggestionsResponse } from '../../types'
+import { DuffelResponse, Places } from '../../types'
 
 interface PlacesSuggestionsParameters {
   /**
@@ -29,6 +29,6 @@ export class Suggestions extends Resource {
    */
   public list = async (
     params: PlacesSuggestionsParameters
-  ): Promise<DuffelResponse<PlacesSuggestionsResponse[]>> =>
+  ): Promise<DuffelResponse<Places[]>> =>
     this.request({ method: 'GET', path: `${this.path}`, params })
 }
