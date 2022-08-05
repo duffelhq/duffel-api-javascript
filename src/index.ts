@@ -13,6 +13,7 @@ import {
 import { Client, Config, DuffelError as _DuffelError } from './Client'
 import { Aircraft, Airlines, Airports } from './supportingResources'
 import { Suggestions } from './Places/Suggestions'
+import { Refunds } from './DuffelPayments/Refunds'
 export interface DuffelAPIClient {
   aircraft: Aircraft
   airlines: Airlines
@@ -44,6 +45,7 @@ export class Duffel {
   public seatMaps: SeatMaps
   public paymentIntents: PaymentIntents
   public suggestions: Suggestions
+  public refunds: Refunds
 
   constructor(config: Config) {
     this.client = new Client(config)
@@ -62,6 +64,7 @@ export class Duffel {
     this.seatMaps = new SeatMaps(this.client)
     this.paymentIntents = new PaymentIntents(this.client)
     this.suggestions = new Suggestions(this.client)
+    this.refunds = new Refunds(this.client)
   }
 }
 
