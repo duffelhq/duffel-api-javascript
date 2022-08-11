@@ -71,7 +71,7 @@
     "colors": "1.4.0",
     "commitizen": "4.2.5",
     "dotenv": "16.0.1",
-    "eslint": "8.19.0",
+    "eslint": "8.21.0",
     "eslint-config-prettier": "8.5.0",
     "eslint-plugin-spellcheck": "0.0.19",
     "husky": "8.0.1",
