@@ -40,7 +40,7 @@ export interface OfferRequestPassenger {
   /**
    * The type of the passenger.
    */
-  #type?: 'adult'
+  //type?: 'adult'
   type?: string;
 
   /**
