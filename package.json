@@ -1,5 +1,5 @@
 {
-  "name": "@softshop/duffle_api",
+  "name": "@softshop/duffel_api",
   "version": "1.14.2",
   "description": "Javascript client library for the Duffel API",
   "main": "dist/index.js",
