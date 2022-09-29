@@ -40,7 +40,8 @@ export interface OfferRequestPassenger {
   /**
    * The type of the passenger.
    */
-  type?: 'adult'
+  #type?: 'adult'
+  type?: string;
 
   /**
    * The passenger's family name. Only `space`, `-`, `'`, and letters from the `ASCII`, `Latin-1 Supplement` and `Latin
