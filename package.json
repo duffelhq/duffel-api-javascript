@@ -56,8 +56,8 @@
     "node-fetch": "2.6.7"
   },
   "devDependencies": {
-    "@babel/core": "7.19.1",
-    "@babel/preset-env": "7.19.1",
+    "@babel/core": "7.19.3",
+    "@babel/preset-env": "7.19.3",
     "@babel/preset-typescript": "7.18.6",
     "@commitlint/cli": "17.1.2",
     "@commitlint/config-angular": "17.1.0",
