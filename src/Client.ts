@@ -42,7 +42,7 @@ export class Client {
   constructor({ token, basePath, apiVersion, debug, source }: Config) {
     this.token = token
     this.basePath = basePath || 'https://api.duffel.com'
-    this.apiVersion = apiVersion || 'beta'
+    this.apiVersion = apiVersion || 'v1'
     this.debug = debug
     this.source = source
   }
