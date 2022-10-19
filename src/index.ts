@@ -8,6 +8,7 @@ import {
   OrderChangeOffers,
   OrderChanges,
   Payments,
+  PartialOfferRequests,
   SeatMaps,
 } from './booking'
 import { Client, Config, DuffelError as _DuffelError } from './Client'
@@ -44,6 +45,7 @@ export class Duffel {
   public payments: Payments
   public seatMaps: SeatMaps
   public paymentIntents: PaymentIntents
+  public partialOfferRequests: PartialOfferRequests
   public suggestions: Suggestions
   public refunds: Refunds
 
@@ -63,6 +65,7 @@ export class Duffel {
     this.payments = new Payments(this.client)
     this.seatMaps = new SeatMaps(this.client)
     this.paymentIntents = new PaymentIntents(this.client)
+    this.partialOfferRequests = new PartialOfferRequests(this.client)
     this.suggestions = new Suggestions(this.client)
     this.refunds = new Refunds(this.client)
   }
