@@ -73,6 +73,11 @@ export interface DuffelResponse<T_Data> {
    * Optional metadata for the request
    */
   meta?: PaginationMeta
+
+  /**
+   * The headers from the http response
+   */
+  headers?: Record<string, string>
 }
 
 export interface SDKOptions {
