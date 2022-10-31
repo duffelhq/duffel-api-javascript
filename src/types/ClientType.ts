@@ -1,3 +1,5 @@
+import { Headers } from 'node-fetch'
+
 /**
  * Our list APIs will only return a limited number of results at a time.
  * By default, we'll return 50 results per page, but you can set this to any number between 1 and 200.
@@ -77,7 +79,7 @@ export interface DuffelResponse<T_Data> {
   /**
    * The headers from the http response
    */
-  headers?: Record<string, string>
+  headers?: Headers
 }
 
 export interface SDKOptions {
