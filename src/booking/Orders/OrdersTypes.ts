@@ -7,6 +7,7 @@ import {
   DuffelPassengerType,
   FlightsConditions,
   LoyaltyProgrammeAccount,
+  OfferAvailableService,
   OfferAvailableServiceBaggageMetadata,
   PassengerIdentityDocumentType,
   PaymentType,
@@ -561,3 +562,10 @@ export interface ListParamsOrders {
 export interface UpdateSingleOrder {
   metadata: Order['metadata']
 }
+
+export interface AddServices {
+  payments: OrderPayment[]
+  add_services: Pick<OrderService, 'id' | 'quantity'>[]
+}
+
+export type OrderAvailableService = OfferAvailableService
