@@ -587,12 +587,10 @@ export const mockServices: OrderAvailableService[] = [
 ]
 
 export const mockAddServicesRequest: AddServices = {
-  payments: [
-    {
-      type: 'balance',
-      currency: 'GBP',
-      amount: '30.20',
-    },
-  ],
+  payment: {
+    type: 'balance',
+    currency: 'GBP',
+    amount: '30.20',
+  },
   add_services: [{ id: 'aso_00009UhD4ongolulWd9123', quantity: 1 }],
 }
