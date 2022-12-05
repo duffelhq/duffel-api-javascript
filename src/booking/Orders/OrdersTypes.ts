@@ -564,7 +564,7 @@ export interface UpdateSingleOrder {
 }
 
 export interface AddServices {
-  payments: OrderPayment[]
+  payment: OrderPayment
   add_services: Pick<OrderService, 'id' | 'quantity'>[]
 }
 
