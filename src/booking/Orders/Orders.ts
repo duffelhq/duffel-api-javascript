@@ -102,6 +102,6 @@ export class Orders extends Resource {
     this.request({
       method: 'POST',
       path: `${this.path}/${id}/services`,
-      data: { options },
+      data: options,
     })
 }
