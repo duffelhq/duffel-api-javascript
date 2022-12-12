@@ -1,8 +1,13 @@
 {
   "compilerOptions": {
-    "target": "ES6",
+    "target": "es2019",
     "module": "esnext",
-    "lib": ["es2020"],
+    "lib": [
+      "es2019",
+      "es2020.bigint",
+      "es2020.string",
+      "es2020.symbol.wellknown"
+    ],
     "allowJs": true,
     "outDir": "dist",
     "rootDir": "src",
@@ -21,6 +26,7 @@
     "forceConsistentCasingInFileNames": true,
     "declaration": true
   },
+  "ts-node": { "esm": true },
   "exclude": ["node_modules", "examples", "jest.config.ts", "**/mock*.ts"],
   "include": ["**/*.ts"]
 }
