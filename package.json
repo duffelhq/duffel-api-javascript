@@ -1,7 +1,7 @@
 {
-  "name": "@duffel/api",
+  "name": "@travelbank/duffel-api",
   "version": "1.18.2",
-  "description": "Javascript client library for the Duffel API",
+  "description": "Javascript client library for the Duffel API for Node 12",
   "main": "dist/index.js",
   "module": "dist/index.es.js",
   "types": "dist/types/index.d.ts",
@@ -19,7 +19,7 @@
     "generate:operation": "node ./scripts/createOperation.mjs",
     "build": "rm -rf dist && rollup -c",
     "build:test": "rm -rf dist && tsc --noEmit && rollup -c",
-    "start": "node ./dist/index.js",
+    "start": "node --experimental-specifier-resolution=node ./dist/index.js",
     "dev": "ts-node --experimental-specifier-resolution=node ./src/index.ts",
     "lint": "eslint . --ext .ts,.tsx",
     "test": "jest",
@@ -111,5 +111,16 @@
     "branches": [
       "main"
     ]
+  },
+  "directories": {
+    "doc": "docs",
+    "example": "examples"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/travelbank/duffel-api-javascript.git"
+  },
+  "bugs": {
+    "url": "https://github.com/travelbank/duffel-api-javascript/issues"
   }
 }
