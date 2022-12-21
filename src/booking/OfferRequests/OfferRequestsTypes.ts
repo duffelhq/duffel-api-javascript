@@ -1,4 +1,10 @@
-import { Airline, CabinClass, Place, PlaceType } from '../../types'
+import {
+  Airline,
+  CabinClass,
+  DuffelPassengerType,
+  Place,
+  PlaceType,
+} from '../../types'
 import { Offer } from '../Offers/OfferTypes'
 
 export interface OfferRequestSlice {
@@ -40,7 +46,7 @@ export interface OfferRequestPassenger {
   /**
    * The type of the passenger.
    */
-  type?: 'adult'
+  type?: DuffelPassengerType
 
   /**
    * The passenger's family name. Only `space`, `-`, `'`, and letters from the `ASCII`, `Latin-1 Supplement` and `Latin
