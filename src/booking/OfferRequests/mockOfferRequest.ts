@@ -18,6 +18,7 @@ export const mockCreateOfferRequest: CreateOfferRequest = {
     },
   ],
   cabin_class: 'economy',
+  max_connections: 1,
 }
 
 export const mockOfferRequest: OfferRequest = {
