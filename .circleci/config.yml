@@ -1,0 +1,68 @@
+---
+version: 2.1
+
+# Note: You can validate your config file using the Circle CLI:
+# https://support.circleci.com/hc/en-us/articles/360006735753-Validating-your-CircleCI-Configuration
+
+aliases:
+  - &working_directory ~/duffel_app
+  - &cache_directory ~/.cache/yarn
+
+executors:
+  node-executor:
+    working_directory: *working_directory
+    docker:
+      - image: circleci/node:14.17.6
+
+commands:
+  save_deps_cache:
+    description: Save Yarn Package Cache
+    steps:
+      - save_cache:
+          name: Save Yarn Package Cache
+          key: v${CACHE_VERSION}-yarn-packages-{{ checksum "yarn.lock" }}
+          paths:
+            - *cache_directory
+
+  restore_deps_cache:
+    description: Restore Yarn Package Cache
+    steps:
+      - restore_cache:
+          key: v${CACHE_VERSION}-yarn-packages-{{ checksum "yarn.lock" }}
+          paths:
+            - *cache_directory
+
+  setup:
+    description: Set up common system expectations
+    steps:
+      - checkout
+      - restore_deps_cache
+      - run: yarn install --frozen-lockfile --cache-folder ~/.cache/yarn
+      - save_deps_cache
+
+jobs:
+  lint:
+    executor: node-executor
+    steps:
+      - setup
+      - run: yarn lint
+      - run: yarn prettier-check
+  test:
+    executor: node-executor
+    # We decided to go with `large` because smaller resource classes were running out of memory.
+    resource_class: large
+    steps:
+      - setup
+      - run: yarn test
+  commitlint:
+    executor: node-executor
+    steps:
+      - setup
+      - run: yarn commitlint --from main
+
+workflows:
+  build_test_and_deploy:
+    jobs:
+      - lint
+      - test
+      - commitlint
