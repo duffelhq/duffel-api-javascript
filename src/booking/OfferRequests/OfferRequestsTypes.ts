@@ -158,6 +158,12 @@ export interface CreateOfferRequest {
    * One-way journeys can be expressed using one slice, whereas return trips will need two.
    */
   slices: Omit<OfferRequestSlice, 'origin_type' | 'destination_type'>[]
+
+  /**
+   * The maximum number of connections within any slice of the offer.
+   * For example 0 means a direct flight which will have a single segment within each slice and 1 means a maximum of two segments within each slice of the offer.
+   */
+  max_connections?: 0 | 1 | 2
 }
 
 export interface CreateOfferRequestQueryParameters {
