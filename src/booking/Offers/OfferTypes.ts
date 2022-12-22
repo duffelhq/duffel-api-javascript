@@ -9,6 +9,7 @@ import {
   Airline,
   Airport,
   PaginationMeta,
+  DuffelPassengerType,
 } from '../../types'
 
 /**
@@ -250,7 +251,7 @@ export interface OfferPassenger {
   /**
    * The type of the passenger.
    */
-  type?: 'adult'
+  type?: DuffelPassengerType
 
   /**
    * The passenger's family name. Only `space`, `-`, `'`, and letters from the `ASCII`, `Latin-1 Supplement` and `Latin
