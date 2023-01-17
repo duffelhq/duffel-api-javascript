@@ -1,9 +1,11 @@
 import nock from 'nock'
 import { Client } from '../../Client'
 import {
+  mockAddServicesRequest,
   mockCreateOrderRequest,
   mockOnHoldOrders,
   mockOrder,
+  mockServices,
 } from './mockOrders'
 import { Orders } from './Orders'
 
@@ -167,5 +169,29 @@ describe('Orders', () => {
     expect(response.data.passengers[0].loyalty_programme_accounts).toHaveLength(
       1
     )
+  })
+
+  test('should get available services for an order', async () => {
+    nock(/(.*)/)
+      .get(`/air/orders/${mockOrder.id}/available_services`)
+      .reply(200, { data: mockServices })
+
+    const response = await new Orders(
+      new Client({ token: 'mockToken' })
+    ).getAvailableServices(mockOrder.id)
+
+    expect(response.data[0].id).toBe(mockServices[0].id)
+  })
+
+  test('should add services to an order', async () => {
+    nock(/(.*)/)
+      .post(`/air/orders/${mockOrder.id}/services`)
+      .reply(200, { data: { ...mockOrder, services: mockServices } })
+
+    const response = await new Orders(
+      new Client({ token: 'mockToken' })
+    ).addServices(mockOrder.id, mockAddServicesRequest)
+
+    expect(response.data.services[0].id).toBe(mockServices[0].id)
   })
 })

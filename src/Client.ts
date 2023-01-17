@@ -18,17 +18,21 @@ export interface Config {
 export class DuffelError extends Error {
   public meta: ApiResponseMeta
   public errors: ApiResponseError[]
+  public headers: Record<string, string>
 
   constructor({
     meta,
     errors,
+    headers,
   }: {
     meta: ApiResponseMeta
     errors: ApiResponseError[]
+    headers: Record<string, string>
   }) {
     super()
     this.meta = meta
     this.errors = errors
+    this.headers = headers
   }
 }
 
@@ -42,7 +46,7 @@ export class Client {
   constructor({ token, basePath, apiVersion, debug, source }: Config) {
     this.token = token
     this.basePath = basePath || 'https://api.duffel.com'
-    this.apiVersion = apiVersion || 'beta'
+    this.apiVersion = apiVersion || 'v1'
     this.debug = debug
     this.source = source
   }
@@ -129,10 +133,10 @@ export class Client {
     }
 
     if (!response.ok || ('errors' in responseBody && responseBody.errors)) {
-      throw new DuffelError(responseBody)
+      throw new DuffelError({ ...responseBody, headers: response.headers })
     }
 
-    return responseBody
+    return { ...responseBody, headers: response.headers }
   }
 
   async *paginatedRequest<T_Data = any>({

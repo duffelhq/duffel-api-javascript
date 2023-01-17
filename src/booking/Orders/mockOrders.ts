@@ -1,4 +1,9 @@
-import { CreateOrder, Order } from '../../types'
+import {
+  AddServices,
+  CreateOrder,
+  Order,
+  OrderAvailableService,
+} from '../../types'
 
 export const mockCreateOrderRequest: CreateOrder = {
   type: 'instant',
@@ -568,3 +573,24 @@ export const mockOnHoldOrders: Order[] = [
     base_amount: '93.00',
   },
 ]
+
+export const mockServices: OrderAvailableService[] = [
+  {
+    type: 'baggage',
+    total_currency: 'GBP',
+    total_amount: '15.00',
+    segment_ids: ['seg_00009hj8USM7Ncg31cB456'],
+    passenger_ids: ['pas_00009hj8USM7Ncg31cBCLL'],
+    maximum_quantity: 1,
+    id: 'aso_00009UhD4ongolulWd9123',
+  },
+]
+
+export const mockAddServicesRequest: AddServices = {
+  payment: {
+    type: 'balance',
+    currency: 'GBP',
+    amount: '30.20',
+  },
+  add_services: [{ id: 'aso_00009UhD4ongolulWd9123', quantity: 1 }],
+}

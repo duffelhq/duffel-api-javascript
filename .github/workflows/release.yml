@@ -15,7 +15,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '14.x'
+          node-version: '18'
 
       - name: Get yarn cache directory path
         id: yarn-cache-dir-path
@@ -63,7 +63,7 @@ jobs:
       - name: Create Pull Request with updated package files
         id: cpr
         if: steps.initversion.outputs.version != steps.extractver.outputs.extractver
-        uses: peter-evans/create-pull-request@v4.1.2
+        uses: peter-evans/create-pull-request@v4.2.3
         with:
           token: ${{ secrets.PAT }}
           commit-message: 'ci(release): ${{ steps.extractver.outputs.extractver }}'

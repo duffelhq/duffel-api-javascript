@@ -1,4 +1,10 @@
-import { Airline, CabinClass, Place, PlaceType } from '../../types'
+import {
+  Airline,
+  CabinClass,
+  DuffelPassengerType,
+  Place,
+  PlaceType,
+} from '../../types'
 import { Offer } from '../Offers/OfferTypes'
 
 export interface OfferRequestSlice {
@@ -40,8 +46,9 @@ export interface OfferRequestPassenger {
   /**
    * The type of the passenger.
    */
-  //type?: 'adult'
-  type?: string;
+
+  type?: DuffelPassengerType
+
 
   /**
    * The passenger's family name. Only `space`, `-`, `'`, and letters from the `ASCII`, `Latin-1 Supplement` and `Latin
@@ -153,6 +160,12 @@ export interface CreateOfferRequest {
    * One-way journeys can be expressed using one slice, whereas return trips will need two.
    */
   slices: Omit<OfferRequestSlice, 'origin_type' | 'destination_type'>[]
+
+  /**
+   * The maximum number of connections within any slice of the offer.
+   * For example 0 means a direct flight which will have a single segment within each slice and 1 means a maximum of two segments within each slice of the offer.
+   */
+  max_connections?: 0 | 1 | 2
 }
 
 export interface CreateOfferRequestQueryParameters {

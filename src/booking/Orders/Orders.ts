@@ -1,9 +1,11 @@
 import { Resource } from '../../Resource'
 import {
+  AddServices,
   CreateOrder,
   DuffelResponse,
   ListParamsOrders,
   Order,
+  OrderAvailableService,
   PaginationMeta,
   UpdateSingleOrder,
 } from '../../types'
@@ -74,4 +76,32 @@ export class Orders extends Resource {
       data: { options },
     })
   }
+
+  /**
+   * Retrieves the available services for an order by its ID
+   * @param {string} id - Duffel's unique identifier for the order
+   */
+  public getAvailableServices = async (
+    id: string
+  ): Promise<DuffelResponse<OrderAvailableService[]>> =>
+    this.request({
+      method: 'GET',
+      path: `${this.path}/${id}/available_services`,
+    })
+
+  /**
+   * Adds services for an order by its ID
+   * @param {string} id - Duffel's unique identifier for the order
+   * @param {Object.AddServices} options
+   * @link https://duffel.com/docs/api/orders/create-order-services
+   */
+  public addServices = async (
+    id: string,
+    options: AddServices
+  ): Promise<DuffelResponse<Order>> =>
+    this.request({
+      method: 'POST',
+      path: `${this.path}/${id}/services`,
+      data: options,
+    })
 }
