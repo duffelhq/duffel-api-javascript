@@ -80,8 +80,11 @@ export class OfferRequests extends Resource {
       path: `${this.path}/`,
       data,
       params: {
-        ...(return_offers !== undefined &&
-          return_offers !== null && { return_offers }),
+      /*  ...(return_offers !== undefined &&
+          return_offers !== null && { return_offers }),*/
+        return_offer      : options.return_offers,
+        
+        supplier_timeout: options.supplier_timeout,
       },
     })
   }

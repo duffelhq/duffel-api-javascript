@@ -176,4 +176,5 @@ export interface CreateOfferRequestQueryParameters {
    * You should use this option if you want to take advantage of the pagination, sorting and filtering that the [List Offers](https://duffel.com/docs/api/offers/get-offers) endpoint provides.
    */
   return_offers?: boolean
+  supplier_timeout?: number
 }
