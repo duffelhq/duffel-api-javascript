@@ -1,8 +1,6 @@
 {
-
-  "name": "@duffel/api",
+  "name": "@softshop/duffel_api",
   "version": "1.19.1",
-
   "description": "Javascript client library for the Duffel API",
   "main": "dist/index.js",
   "module": "dist/index.es.js",
@@ -108,5 +106,16 @@
     "branches": [
       "main"
     ]
+  },
+  "directories": {
+    "doc": "docs",
+    "example": "examples"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DesarrolloSoftshop/duffel-api-javascript.git"
+  },
+  "bugs": {
+    "url": "https://github.com/DesarrolloSoftshop/duffel-api-javascript/issues"
   }
 }
