@@ -31,7 +31,7 @@ node_modules/
 
 # misc
 .DS_store
-dist
+#dist
 .vscode
 
 # mock.json helper
