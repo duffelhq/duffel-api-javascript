@@ -139,22 +139,22 @@ export interface Offer {
 
 export interface OfferAvailableServiceBaggageMetadata {
   /**
-   * The maximum weight that the baggage can have in kilograms
+   * The maximum weight that the baggage can have in kilograms.
    */
   maximum_weight_kg: number | null
 
   /**
-   * The maximum height that the baggage can have in centimetres
+   * The maximum height that the baggage can have in centimetres.
    */
   maximum_height_cm: number | null
 
   /**
-   * The maximum length that the baggage can have in centimetres
+   * The maximum length that the baggage can have in centimetres.
    */
   maximum_length_cm: number | null
 
   /**
-   * The maximum depth that the baggage can have in centimetres
+   * The maximum depth that the baggage can have in centimetres.
    */
   maximum_depth_cm: number | null
 
@@ -163,6 +163,104 @@ export interface OfferAvailableServiceBaggageMetadata {
    */
   type: BaggageType
 }
+
+export interface OfferAvailableServiceCFARMetadata {
+  /**
+   * The amount the customer will receive back if the service is used, in
+   * `offer.total_currency`.
+   */
+
+  refund_amount: string
+  /**
+   * Information to display to customers.
+   */
+  merchant_copy: string
+
+  /**
+   * URL with the T&Cs for customers.
+   */
+  terms_and_conditions_url: string
+
+  type: 'cancel_for_any_reason'
+}
+
+export interface OfferAvailableServiceCommon {
+  /**
+   * Duffel's unique identifier for the service.
+   */
+  id: string
+
+  /**
+   * The maximum quantity of this service that can be booked with an order.
+   */
+  maximum_quantity: number
+
+  /**
+   * The list of passenger `id`s the service applies to. If you add this
+   * service to an order it will apply to all the passengers in this list.
+   * For services where the type is `baggage`, this list will include only a
+   * single passenger.
+   */
+  passenger_ids: string[]
+
+  /**
+   * The list of segment `id`s the service applies to. If you add this
+   * service to an order it will apply to all the segments in this list. For
+   * services where the type is `baggage`, depending on the airline, this
+   * list includes all the segments of all slices or all the segments of a
+   * single slice.
+   */
+  segment_ids: string[]
+
+  /**
+   * The total price of the service for all passengers and segments it
+   * applies to, including taxes. This price is for a single unit of the
+   * service.
+   */
+  total_amount: string
+
+  /**
+   * The currency of the `total_amount`, as an [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217)
+   * currency code. It will match your organisation's billing currency unless
+   * you’re using Duffel as an accredited IATA agent, in which case it will be
+   * in the currency provided by the airline (which will usually be based on the
+   * country where your IATA agency is registered).
+   */
+  total_currency: string
+}
+
+export interface OfferAvailableServiceBaggage
+  extends OfferAvailableServiceCommon {
+  /**
+   * The metadata varies by the type of service. It includes further data
+   * about the service. For example, for baggages, it may have data about
+   * size and weight restrictions.
+   */
+  metadata: OfferAvailableServiceBaggageMetadata
+
+  /**
+   * The type of the service.
+   */
+  type: 'baggage'
+}
+
+export interface OfferAvailableServiceCFAR extends OfferAvailableServiceCommon {
+  /**
+   * The metadata varies by the type of service. It includes further data
+   * about the service. For example, for baggages, it may have data about
+   * size and weight restrictions.
+   */
+  metadata: OfferAvailableServiceCFARMetadata
+
+  /**
+   * The type of the service.
+   */
+  type: 'cancel_for_any_reason'
+}
+
+export type OfferAvailableService =
+  | OfferAvailableServiceBaggage
+  | OfferAvailableServiceCFAR
 
 export interface PaymentRequirements {
   /**
@@ -183,63 +281,6 @@ export interface PaymentRequirements {
    * Whether immediate payment is required or not
    */
   requires_instant_payment: boolean
-}
-
-export interface OfferAvailableServiceMetadataMap {
-  baggage: OfferAvailableServiceBaggageMetadata
-}
-
-export type OfferAvailableServiceType = keyof OfferAvailableServiceMetadataMap
-
-export interface OfferAvailableService<
-  T_ServiceType extends OfferAvailableServiceType = 'baggage'
-> {
-  /**
-   * Duffel's unique identifier for the service
-   */
-  id: string
-
-  /**
-   * The maximum quantity of this service that can be booked with an order
-   */
-  maximum_quantity: number
-
-  /**
-   * An object containing metadata about the service, like the maximum weight and dimensions of the baggage.
-   */
-  metadata?: OfferAvailableServiceMetadataMap[T_ServiceType]
-
-  /**
-   * The list of passenger `id`s the service applies to.
-   * If you add this service to an order it will apply to all the passengers in this list.
-   * For services where the type is `baggage`, this list will include only a single passenger.
-   */
-  passenger_ids: string[]
-
-  /**
-   * The list of segment ids the service applies to.
-   * If you add this service to an order it will apply to all the segments in this list.
-   * For services where the type is baggage, depending on the airline,
-   * this list includes all the segments of all slices or all the segments of a single slice.
-   */
-  segment_ids: string[]
-
-  /**
-   * The total price of the service for all passengers and segments it applies to, including taxes
-   */
-  total_amount: string
-
-  /**
-   * The currency of the `total_amount`, as an ISO 4217 currency code
-   */
-  total_currency: string
-
-  /**
-   * The type of the service.
-   * For now we only return services of type baggage but we will return other types in the future.
-   * We won't consider adding new service types a break change.
-   */
-  type: T_ServiceType
 }
 
 export interface OfferPassenger {

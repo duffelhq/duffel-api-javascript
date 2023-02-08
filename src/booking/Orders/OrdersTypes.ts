@@ -7,7 +7,7 @@ import {
   DuffelPassengerType,
   FlightsConditions,
   LoyaltyProgrammeAccount,
-  OfferAvailableService,
+  OfferAvailableServiceBaggage,
   OfferAvailableServiceBaggageMetadata,
   PassengerIdentityDocumentType,
   PaymentType,
@@ -626,4 +626,4 @@ export interface AddServices {
   add_services: Pick<OrderService, 'id' | 'quantity'>[]
 }
 
-export type OrderAvailableService = OfferAvailableService
+export type OrderAvailableService = OfferAvailableServiceBaggage
