@@ -576,13 +576,20 @@ export const mockOnHoldOrders: Order[] = [
 
 export const mockServices: OrderAvailableService[] = [
   {
-    type: 'baggage',
-    total_currency: 'GBP',
-    total_amount: '15.00',
-    segment_ids: ['seg_00009hj8USM7Ncg31cB456'],
-    passenger_ids: ['pas_00009hj8USM7Ncg31cBCLL'],
-    maximum_quantity: 1,
     id: 'aso_00009UhD4ongolulWd9123',
+    maximum_quantity: 1,
+    metadata: {
+      maximum_depth_cm: 75,
+      maximum_height_cm: 90,
+      maximum_length_cm: 90,
+      maximum_weight_kg: 23,
+      type: 'carry_on',
+    },
+    passenger_ids: ['pas_00009hj8USM7Ncg31cBCLL'],
+    segment_ids: ['seg_00009hj8USM7Ncg31cB456'],
+    total_amount: '15.00',
+    total_currency: 'GBP',
+    type: 'baggage',
   },
 ]
 
