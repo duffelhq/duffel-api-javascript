@@ -264,21 +264,29 @@ export type OfferAvailableService =
 
 export interface PaymentRequirements {
   /**
-   *  The ISO 8601 datetime by which you must pay for this order.
-   * At this time, if still unpaid, the reserved space on the flight(s)
-   * will be released and you will have to create a new order.
-   * This will be null only for orders where `awaiting_payment` is `false`.
+   * The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) datetime by which
+   * you must pay for this order. At this time, if still unpaid, the reserved
+   * space on the flight(s) will be released and you will have to create a new
+   * order. This will be null only for orders where `awaiting_payment` is
+   * `false`.
    */
-  payment_required_by?: string | null
+  payment_required_by: string | null
+
   /**
-   *  The ISO 8601 datetime at which the price associated
-   * with the order will no longer be guaranteed by the airline
-   * and the order will need to be repriced before payment.
-   * This can be null when there is no price guarantee.
+   * The ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) datetime at which the
+   * price associated with the order will no longer be guaranteed by the airline
+   * and may change before payment. This will be null when
+   * `requires_instant_payment` is `true`.
    */
-  price_guarantee_expires_at?: string | null
+
+  price_guarantee_expires_at: string | null
+
   /**
-   * Whether immediate payment is required or not
+   * When payment is required at the time of booking this will be true and
+   * `payment_required_by` and `price_guarantee_expires_at` will be `null`. When
+   * payment can be made at a time after booking, this will be `false` and the
+   * time limits on the payment will be provided in `payment_required_by` and
+   * `price_guarantee_expires_at`.
    */
   requires_instant_payment: boolean
 }
