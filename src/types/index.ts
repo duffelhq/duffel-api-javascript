@@ -1,5 +1,6 @@
-export * from '../booking/Offers/OfferTypes'
+export * from '../booking/AirlineInitiatedChanges/AirlineInitiatedChangesTypes'
 export * from '../booking/OfferRequests/OfferRequestsTypes'
+export * from '../booking/Offers/OfferTypes'
 export * from '../booking/OrderCancellations/OrderCancellationsTypes'
 export * from '../booking/OrderChangeOffers/OrderChangeOfferTypes'
 export * from '../booking/OrderChangeRequests/OrderChangeRequestsTypes'
