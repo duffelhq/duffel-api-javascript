@@ -1,6 +1,7 @@
 import {
   Aircraft,
   Airline,
+  AirlineInitiatedChange,
   CabinClass,
   DuffelPassengerGender,
   DuffelPassengerTitle,
@@ -15,59 +16,6 @@ import {
   PlaceType,
 } from '../../types'
 
-export type AvailableActionType = 'accept' | 'cancel' | 'change' | 'update'
-
-export type ActionTakenType = 'accepted' | 'cancelled' | 'changed' | null
-
-export interface AirlineInitiatedChange {
-  /**
-   * Duffel's unique identifier for the airline-initiated change
-   */
-  id: string
-
-  /**
-   * Duffel's unique identifier for the order
-   */
-  order_id: string
-
-  /**
-   * List of updated slices and segments following the change
-   */
-  added: OrderSlice[]
-
-  /**
-   * List of slices and segments as they were before the change
-   */
-  removed: OrderSlice[]
-
-  /**
-   * The action taken in response to this airline-initiated change
-   */
-  action_taken: ActionTakenType
-
-  /**
-   * The ISO 8601 datetime at which an action was taken
-   */
-  action_taken_at: string | null
-
-  /**
-   * The available actions you can take on this Airline-Initiated Change through our API.
-   * 'update' means that you can use the update endpoint for an Airline-Initiated Change.
-   */
-  available_actions: AvailableActionType[]
-
-  /**
-   * The ISO 8601 datetime at which the Payment Intent was created
-   */
-  created_at: string
-
-  /**
-   * The ISO 8601 datetime at which the airline-initiated change was last updated
-   */
-  updated_at: string
-}
-
-export type AirlineInitiatedChanges = AirlineInitiatedChange[]
 /**
  * An object containing metadata about the service, like the designator of the seat.
  */
@@ -570,7 +518,7 @@ export interface Order {
   /**
    * The airline-initiated changes for this order.
    */
-  airline_initiated_changes?: AirlineInitiatedChanges
+  airline_initiated_changes?: AirlineInitiatedChange[]
 }
 
 export interface CreateOrder {
