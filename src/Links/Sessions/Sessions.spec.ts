@@ -1,5 +1,5 @@
 import nock from 'nock'
-import { Duffel } from '../index'
+import { Duffel } from '../../index'
 
 const duffel = new Duffel({ token: 'mockToken' })
 describe('Links', () => {
@@ -7,13 +7,13 @@ describe('Links', () => {
     nock.cleanAll()
   })
 
-  it('should post to /links/generate_link when `generateLink` is called', async () => {
+  it('should post to /links/sessions when `create` is called', async () => {
     const MOCK_URL = 'https://links.duffel.com/?token=abcdef'
     nock(/(.*)/)
-      .post('/links/generate_link')
+      .post('/links/sessions')
       .reply(200, { data: { url: MOCK_URL } })
 
-    const response = await duffel.links.generateLink({
+    const response = await duffel.links.create({
       reference: 'test',
       success_url: 'https://example.com',
       failure_url: 'https://example.com',
