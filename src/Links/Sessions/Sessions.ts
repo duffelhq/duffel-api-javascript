@@ -1,8 +1,8 @@
 import { Client } from 'Client'
-import { Resource } from '../Resource'
-import { DuffelResponse } from '../types'
+import { Resource } from '../../Resource'
+import { DuffelResponse } from '../../types'
 
-interface GenerateLinkParameters {
+interface SessionParameters {
   /**
    * A tracking reference for the booking that may be created within this Duffel Links session
    */
@@ -45,14 +45,14 @@ interface GenerateLinkParameters {
   checkout_display_text?: string
 }
 
-interface GeneratedLink {
+interface Session {
   /**
    * The Duffel Links url that contains the specified configuration
    */
   url: string
 }
 
-export class Links extends Resource {
+export class Sessions extends Resource {
   /**
    * Endpoint path
    */
@@ -60,14 +60,14 @@ export class Links extends Resource {
 
   constructor(client: Client) {
     super(client)
-    this.path = 'links'
+    this.path = 'links/sessions'
   }
 
   /**
-   * Generate a Duffel Link per the configuration
+   * Create a Duffel Links Session per the configuration
    */
-  public generateLink = async (
-    data: GenerateLinkParameters
-  ): Promise<DuffelResponse<GeneratedLink>> =>
-    this.request({ method: 'POST', path: `${this.path}/generate_link`, data })
+  public create = async (
+    data: SessionParameters
+  ): Promise<DuffelResponse<Session>> =>
+    this.request({ method: 'POST', path: this.path, data })
 }

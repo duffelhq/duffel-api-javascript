@@ -15,7 +15,7 @@ import { Client, Config, DuffelError as _DuffelError } from './Client'
 import { Aircraft, Airlines, Airports } from './supportingResources'
 import { Suggestions } from './Places/Suggestions'
 import { Refunds } from './DuffelPayments/Refunds'
-import { Links } from './Links'
+import { Sessions } from './Links'
 export interface DuffelAPIClient {
   aircraft: Aircraft
   airlines: Airlines
@@ -36,7 +36,7 @@ export class Duffel {
   public aircraft: Aircraft
   public airlines: Airlines
   public airports: Airports
-  public links: Links
+  public links: Sessions
   public offerRequests: OfferRequests
   public offers: Offers
   public orders: Orders
@@ -57,7 +57,7 @@ export class Duffel {
     this.aircraft = new Aircraft(this.client)
     this.airlines = new Airlines(this.client)
     this.airports = new Airports(this.client)
-    this.links = new Links(this.client)
+    this.links = new Sessions(this.client)
     this.offerRequests = new OfferRequests(this.client)
     this.offers = new Offers(this.client)
     this.orders = new Orders(this.client)
