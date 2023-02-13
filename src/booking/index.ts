@@ -1,3 +1,4 @@
+export * from './AirlineInitiatedChanges'
 export * from './OfferRequests'
 export * from './Offers'
 export * from './OrderCancellations'

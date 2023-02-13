@@ -10,6 +10,7 @@ import {
   Payments,
   PartialOfferRequests,
   SeatMaps,
+  AirlineInitiatedChanges,
 } from './booking'
 import { Client, Config, DuffelError as _DuffelError } from './Client'
 import { Aircraft, Airlines, Airports } from './supportingResources'
@@ -34,6 +35,7 @@ export interface DuffelAPIClient {
 export class Duffel {
   private client: Client
   public aircraft: Aircraft
+  public airlineInitiatedChanges: AirlineInitiatedChanges
   public airlines: Airlines
   public airports: Airports
   public links: Sessions
@@ -57,6 +59,7 @@ export class Duffel {
     this.aircraft = new Aircraft(this.client)
     this.airlines = new Airlines(this.client)
     this.airports = new Airports(this.client)
+    this.airlineInitiatedChanges = new AirlineInitiatedChanges(this.client)
     this.links = new Sessions(this.client)
     this.offerRequests = new OfferRequests(this.client)
     this.offers = new Offers(this.client)
