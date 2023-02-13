@@ -20,7 +20,7 @@ describe('AirlineInitiatedChanges', () => {
 
     const response = await new AirlineInitiatedChanges(mockClient).update(
       mockAirlineInitiatedChange.id,
-      'accept'
+      'accepted'
     )
     expect(response.data.id).toEqual(mockAirlineInitiatedChange.id)
     expect(response.data.action_taken).toBe('accepted')

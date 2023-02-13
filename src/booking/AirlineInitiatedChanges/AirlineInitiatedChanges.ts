@@ -1,11 +1,10 @@
 import { Client } from '../../Client'
 import { Resource } from '../../Resource'
+import { DuffelResponse, Order } from '../../types'
 import {
-  AirlineInitiatedChangeAvailableAction,
-  DuffelResponse,
-  Order,
-} from '../../types'
-import { AirlineInitiatedChange } from './AirlineInitiatedChangesTypes'
+  AirlineInitiatedChange,
+  AirlineInitiatedChangeActionTaken,
+} from './AirlineInitiatedChangesTypes'
 
 /**
  * Sometimes there can be changes to your order initiated by the airline, for
@@ -52,7 +51,7 @@ export class AirlineInitiatedChanges extends Resource {
    */
   public update = async (
     id: AirlineInitiatedChange['id'],
-    action_taken: AirlineInitiatedChangeAvailableAction
+    action_taken: AirlineInitiatedChangeActionTaken
   ): Promise<DuffelResponse<AirlineInitiatedChange>> =>
     this.request({
       method: 'PATCH',
