@@ -92,6 +92,11 @@ export interface Offer {
   payment_requirements: PaymentRequirements
 
   /**
+   * The private fares applied on this offer.
+   */
+  private_fares: OfferPrivateFare[]
+
+  /**
    * The slices that make up this offer. Each slice will include one or more segments,
    * the specific flights that the airline is offering to take the passengers from the slice's `origin` to its `destination`.
    */
@@ -289,6 +294,23 @@ export interface PaymentRequirements {
    * `price_guarantee_expires_at`.
    */
   requires_instant_payment: boolean
+}
+
+export interface OfferPrivateFare {
+  /**
+   * The corporate code that was applied, if any.
+   */
+  corporate_code: string
+
+  /**
+   * The tracking reference that was applied, if any.
+   */
+  tracking_reference: string
+
+  /**
+   * The type of private fare applied.
+   */
+  type: 'corporate' | 'leisure' | 'negotiated'
 }
 
 export interface OfferPassenger {

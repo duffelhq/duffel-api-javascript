@@ -140,6 +140,7 @@ export const mockOffer: Offer = {
     price_guarantee_expires_at: '2020-01-17T10:42:14.545Z',
     payment_required_by: '2020-01-17T10:42:14.545Z',
   },
+  private_fares: [],
   partial: false,
   passengers: [
     {
