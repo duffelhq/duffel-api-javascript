@@ -96,6 +96,11 @@ export type CreateOfferRequestPassenger =
   | CreateOfferRequestAdultPassenger
   | CreateOfferRequestNonAdultPassenger
 
+export interface CreateOfferRequestPrivateFare {
+  corporate_code: string
+  tracking_reference: string
+}
+
 /**
  * The passengers who want to travel. A passenger will have only a type or an age.
  */
@@ -225,6 +230,17 @@ export interface CreateOfferRequest {
    * `type` – not both.
    */
   passengers: CreateOfferRequestPassenger[]
+
+  /**
+   * The private fare codes for this Offer Request. You can pass in multiple
+   * airlines with their specific private fare codes. The key is the airline's
+   * IATA code that provided the private fare code. The `corporate_code` is
+   * provided to you by the airline and the `tracking_reference` is to identify
+   * your business by the airlines.
+   */
+  private_fares?: {
+    [iataCode: string]: CreateOfferRequestPrivateFare[]
+  }
 
   /**
    * The [slices](https://duffel.com/docs/api/overview/key-principles) that make
