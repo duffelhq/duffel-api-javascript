@@ -68,6 +68,7 @@ interface CreateOfferRequestPassengerCommon {
 interface CreateOfferRequestAdultPassenger
   extends CreateOfferRequestPassengerCommon {
   age?: never
+  fare_type?: never
   /**
    * The type of the passenger. If the passenger is aged 18 or over, you should
    * specify a `type` of `adult`. If a passenger is aged under 18, you should
@@ -89,12 +90,55 @@ interface CreateOfferRequestNonAdultPassenger
    * `fare_type` though.
    */
   age: number
+  fare_type?: never
+  type?: never
+}
+
+export type CreateOfferRequestPassengerFareType =
+  | 'accompanying_adult'
+  | 'contract_bulk'
+  | 'contract_bulk_child'
+  | 'contract_bulk_infant_with_seat'
+  | 'contract_bulk_infant_without_seat'
+  | 'frequent_flyer'
+  | 'group_inclusive_tour'
+  | 'group_inclusive_tour_child'
+  | 'humanitarian'
+  | 'individual_inclusive_tour_child'
+  | 'marine'
+  | 'seat_only'
+  | 'student'
+  | 'teacher'
+  | 'tour_operator_inclusive'
+  | 'tour_operator_inclusive_infant'
+  | 'unaccompanied_child'
+  | 'visiting_friends_and_family'
+
+interface CreateOfferRequestPassengerWithFareType
+  extends CreateOfferRequestPassengerCommon {
+  /**
+   * The age of the passenger on the `departure_date` of the final slice. e.g.
+   * if you a searching for a round trip and the passenger is 15 years old at
+   * the time of the outbound flight, but they then have their birthday and are
+   * 16 years old for the inbound flight, you must set the age to 16. You should
+   * specify an `age` for passengers who are under 18 years old. A passenger can
+   * have only a type or an age, but not both. You can optionally pass age with
+   * `fare_type` though.
+   */
+  age: number
+
+  /**
+   * The fare type of the passenger. If the passenger is aged less than 18, you
+   * should pass in age as well.
+   */
+  fare_type: CreateOfferRequestPassengerFareType
   type?: never
 }
 
 export type CreateOfferRequestPassenger =
   | CreateOfferRequestAdultPassenger
   | CreateOfferRequestNonAdultPassenger
+  | CreateOfferRequestPassengerWithFareType
 
 export interface CreateOfferRequestPrivateFare {
   corporate_code: string
