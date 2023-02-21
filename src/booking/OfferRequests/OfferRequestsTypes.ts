@@ -125,7 +125,7 @@ interface CreateOfferRequestPassengerWithFareType
    * have only a type or an age, but not both. You can optionally pass age with
    * `fare_type` though.
    */
-  age: number
+  age?: number
 
   /**
    * The fare type of the passenger. If the passenger is aged less than 18, you

@@ -300,12 +300,12 @@ export interface OfferPrivateFare {
   /**
    * The corporate code that was applied, if any.
    */
-  corporate_code: string
+  corporate_code?: string
 
   /**
    * The tracking reference that was applied, if any.
    */
-  tracking_reference: string
+  tracking_reference?: string
 
   /**
    * The type of private fare applied.
