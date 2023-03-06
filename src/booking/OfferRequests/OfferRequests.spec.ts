@@ -1,8 +1,9 @@
 import nock from 'nock'
 import { Client } from '../../Client'
-import { CreateOfferRequest } from './OfferRequestsTypes'
+import { CreateOfferRequest, OfferRequest } from './OfferRequestsTypes'
 import { mockCreateOfferRequest, mockOfferRequest } from './mockOfferRequest'
 import { OfferRequests } from './OfferRequests'
+import { OfferPrivateFare } from 'types'
 
 describe('OfferRequests', () => {
   afterEach(() => {
@@ -126,5 +127,78 @@ describe('OfferRequests', () => {
     })
     // In this case, `offers` won't be in the response, but the offer request's id will still be returned and can be used with the List Offers endpoint to retrieve the offers.
     expect(response.data?.id).toBe(mockOfferRequest.id)
+  })
+
+  test('should create an offer request and return an offer with corporate private fares', async () => {
+    const mockCorporatePrivateFare: OfferPrivateFare = {
+      corporate_code: 'FLX53',
+      tracking_reference: 'ABN:2345678',
+      type: 'corporate',
+    }
+
+    const mockResponseWithCorporatePrivateFares: OfferRequest = {
+      ...mockOfferRequest,
+      offers: [
+        {
+          ...mockOfferRequest.offers[0],
+          private_fares: [mockCorporatePrivateFare],
+        },
+      ],
+    }
+
+    nock(/(.*)/)
+      .post(`/air/offer_requests/`)
+      .reply(200, { data: mockResponseWithCorporatePrivateFares })
+
+    const response = await new OfferRequests(
+      new Client({ token: 'mockToken ' })
+    ).create({
+      ...mockCreateOfferRequest,
+      private_fares: {
+        QF: [
+          {
+            corporate_code: 'FLX53',
+            tracking_reference: 'ABN:2345678',
+          },
+        ],
+      },
+    })
+
+    expect(response.data.offers[0].private_fares).toHaveLength(1)
+    expect(response.data.offers[0].private_fares[0].type).toBe('corporate')
+  })
+
+  test('should create an offer request and return an offer with lesuire private fares', async () => {
+    const mockLeisurePrivateFare: OfferPrivateFare = {
+      type: 'leisure',
+    }
+
+    const mockResponseWithLeisurePrivateFare: OfferRequest = {
+      ...mockOfferRequest,
+      offers: [
+        {
+          ...mockOfferRequest.offers[0],
+          private_fares: [mockLeisurePrivateFare],
+        },
+      ],
+    }
+
+    nock(/(.*)/)
+      .post(`/air/offer_requests/`)
+      .reply(200, { data: mockResponseWithLeisurePrivateFare })
+
+    const response = await new OfferRequests(
+      new Client({ token: 'mockToken ' })
+    ).create({
+      ...mockCreateOfferRequest,
+      passengers: [
+        {
+          fare_type: 'teacher',
+        },
+      ],
+    })
+
+    expect(response.data.offers[0].private_fares).toHaveLength(1)
+    expect(response.data.offers[0].private_fares[0].type).toBe('leisure')
   })
 })

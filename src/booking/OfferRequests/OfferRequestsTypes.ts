@@ -34,6 +34,117 @@ export interface OfferRequestSlice {
   destination_type: PlaceType
 }
 
+interface CreateOfferRequestPassengerCommon {
+  /**
+   * The passenger's family name. Only `space`, `-`, `'`, and letters from the
+   * `ASCII`, `Latin-1 Supplement` and `Latin Extended-A` (with the exceptions
+   * of `Æ`, `æ`, `Ĳ`, `ĳ`, `Œ`, `œ`, `Þ`, and `ð`) Unicode charts are accepted.
+   * All other characters will result in a validation error. The minimum length
+   * is 1 character, and the maximum is 20 characters.
+   *
+   * This is only required if you're also including
+   * **Loyalty Programme Accounts**.
+   */
+  family_name?: string
+
+  /**
+   * The passenger's given name. Only `space`, `-`, `'`, and letters from the
+   * `ASCII`, `Latin-1 Supplement` and `Latin Extended-A` (with the exceptions
+   * of `Æ`, `æ`, `Ĳ`, `ĳ`, `Œ`, `œ`, `Þ`, and `ð`) Unicode charts are accepted.
+   * All other characters will result in a validation error. The minimum length
+   * is 1 character, and the maximum is 20 characters.
+   *
+   * This is only required if you're also including
+   * **Loyalty Programme Accounts**.
+   */
+  given_name?: string
+
+  /**
+   * The **Loyalty Programme Accounts** for this passenger.
+   */
+  loyalty_programme_accounts?: LoyaltyProgrammeAccount[]
+}
+
+interface CreateOfferRequestAdultPassenger
+  extends CreateOfferRequestPassengerCommon {
+  age?: never
+  fare_type?: never
+  /**
+   * The type of the passenger. If the passenger is aged 18 or over, you should
+   * specify a `type` of `adult`. If a passenger is aged under 18, you should
+   * specify their `age` instead of a `type`. A passenger can have only a type
+   * or an age, but not both.
+   */
+  type: Extract<DuffelPassengerType, 'adult'>
+}
+
+interface CreateOfferRequestNonAdultPassenger
+  extends CreateOfferRequestPassengerCommon {
+  /**
+   * The age of the passenger on the `departure_date` of the final slice. e.g.
+   * if you a searching for a round trip and the passenger is 15 years old at
+   * the time of the outbound flight, but they then have their birthday and are
+   * 16 years old for the inbound flight, you must set the age to 16. You should
+   * specify an `age` for passengers who are under 18 years old. A passenger can
+   * have only a type or an age, but not both. You can optionally pass age with
+   * `fare_type` though.
+   */
+  age: number
+  fare_type?: never
+  type?: never
+}
+
+export type CreateOfferRequestPassengerFareType =
+  | 'accompanying_adult'
+  | 'contract_bulk'
+  | 'contract_bulk_child'
+  | 'contract_bulk_infant_with_seat'
+  | 'contract_bulk_infant_without_seat'
+  | 'frequent_flyer'
+  | 'group_inclusive_tour'
+  | 'group_inclusive_tour_child'
+  | 'humanitarian'
+  | 'individual_inclusive_tour_child'
+  | 'marine'
+  | 'seat_only'
+  | 'student'
+  | 'teacher'
+  | 'tour_operator_inclusive'
+  | 'tour_operator_inclusive_infant'
+  | 'unaccompanied_child'
+  | 'visiting_friends_and_family'
+
+interface CreateOfferRequestPassengerWithFareType
+  extends CreateOfferRequestPassengerCommon {
+  /**
+   * The age of the passenger on the `departure_date` of the final slice. e.g.
+   * if you a searching for a round trip and the passenger is 15 years old at
+   * the time of the outbound flight, but they then have their birthday and are
+   * 16 years old for the inbound flight, you must set the age to 16. You should
+   * specify an `age` for passengers who are under 18 years old. A passenger can
+   * have only a type or an age, but not both. You can optionally pass age with
+   * `fare_type` though.
+   */
+  age?: number
+
+  /**
+   * The fare type of the passenger. If the passenger is aged less than 18, you
+   * should pass in age as well.
+   */
+  fare_type: CreateOfferRequestPassengerFareType
+  type?: never
+}
+
+export type CreateOfferRequestPassenger =
+  | CreateOfferRequestAdultPassenger
+  | CreateOfferRequestNonAdultPassenger
+  | CreateOfferRequestPassengerWithFareType
+
+export interface CreateOfferRequestPrivateFare {
+  corporate_code: string
+  tracking_reference: string
+}
+
 /**
  * The passengers who want to travel. A passenger will have only a type or an age.
  */
@@ -143,27 +254,44 @@ export interface OfferRequest {
 
 export interface CreateOfferRequest {
   /**
-   * The cabin that the passengers want to travel in
+   * The cabin that the passengers want to travel in.
    */
   cabin_class?: CabinClass
 
   /**
-   * The passengers who want to travel.
-   * If you specify an age for a passenger, the type may differ for the same passenger in different offers due to airline's different rules. e.g. one airline may treat a 14 year old as an adult, and another as a young adult.
-   */
-  passengers: Omit<OfferRequestPassenger, 'id'>[]
-
-  /**
-   * The [slices](https://duffel.com/docs/api/overview/key-principles) that make up this offer request.
-   * One-way journeys can be expressed using one slice, whereas return trips will need two.
-   */
-  slices: Omit<OfferRequestSlice, 'origin_type' | 'destination_type'>[]
-
-  /**
-   * The maximum number of connections within any slice of the offer.
-   * For example 0 means a direct flight which will have a single segment within each slice and 1 means a maximum of two segments within each slice of the offer.
+   * The maximum number of connections within any slice of the offer. For
+   * example 0 means a direct flight which will have a single segment within
+   * each slice and 1 means a maximum of two segments within each slice of the
+   * offer.
    */
   max_connections?: 0 | 1 | 2
+
+  /**
+   * The passengers who want to travel. If you specify an `age` for a passenger,
+   * the `type` may differ for the same passenger in different offers due to
+   * airline's different rules. E.g. one airline may treat a 14 year old as an
+   * adult, and another as a young adult. You may only specify an `age` or a
+   * `type` – not both.
+   */
+  passengers: CreateOfferRequestPassenger[]
+
+  /**
+   * The private fare codes for this Offer Request. You can pass in multiple
+   * airlines with their specific private fare codes. The key is the airline's
+   * IATA code that provided the private fare code. The `corporate_code` is
+   * provided to you by the airline and the `tracking_reference` is to identify
+   * your business by the airlines.
+   */
+  private_fares?: {
+    [iataCode: string]: CreateOfferRequestPrivateFare[]
+  }
+
+  /**
+   * The [slices](https://duffel.com/docs/api/overview/key-principles) that make
+   * up this offer request. One-way journeys can be expressed using one slice,
+   * whereas return trips will need two.
+   */
+  slices: Omit<OfferRequestSlice, 'origin_type' | 'destination_type'>[]
 }
 
 export interface CreateOfferRequestQueryParameters {
