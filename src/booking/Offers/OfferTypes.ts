@@ -490,6 +490,38 @@ export interface OfferSliceSegment {
    * Additional segment-specific information about the passengers included in the offer (e.g. their baggage allowance and the cabin class they will be travelling in)
    */
   passengers: OfferSliceSegmentPassenger[]
+
+  /**
+   * Additional segment-specific information about the stops, if any, included in the segment
+   */
+  stops?: OfferSliceSegmentStop[]
+}
+
+export interface OfferSliceSegmentStop {
+  /**
+   * Duffel's unique identifier for the Stop
+   */
+  id: string
+
+  /**
+   * The airport at which the Stop happens
+   */
+  airport: Airport
+
+  /**
+   * The ISO 8601 datetime at which the Stop is scheduled to arrive, in the airport's timezone (see destination.timezone)
+   */
+  arrivingAt: string
+
+  /**
+   * The ISO 8601 datetime at which the Stop is scheduled to depart, in the airport's timezone (see origin.timezone)
+   */
+  departingAt: string
+
+  /**
+   * The duration of the Stop, represented as a ISO 8601 duration
+   */
+  duration: string
 }
 
 export interface OfferSliceSegmentPassenger {
