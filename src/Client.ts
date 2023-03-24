@@ -124,6 +124,10 @@ export class Client {
       compress,
     })
 
+    if (this.debug?.verbose && response.headers.get('x-request-id')) {
+      console.info('Request ID: ', response.headers.get('x-request-id'))
+    }
+
     const contentType = response.headers.get('content-type')
 
     if (contentType && contentType.includes('json')) {
