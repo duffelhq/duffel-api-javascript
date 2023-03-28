@@ -63,7 +63,7 @@ jobs:
       - name: Create Pull Request with updated package files
         id: cpr
         if: steps.initversion.outputs.version != steps.extractver.outputs.extractver
-        uses: peter-evans/create-pull-request@v4.2.3
+        uses: peter-evans/create-pull-request@v4.2.4
         with:
           token: ${{ secrets.PAT }}
           commit-message: 'ci(release): ${{ steps.extractver.outputs.extractver }}'
