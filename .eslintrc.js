@@ -60,10 +60,12 @@ module.exports = {
           'ser_00009UhD4ongolulWd9123',
           'seg_00009hj8USM7Ncg31cB456',
           'pit_00009htYpSCXrwaB9DnUm2',
+          'g2wAAAACbQAAABBBZXJvbWlzdC1LaGFya2l2bQAAAB=',
           'Earhart',
           'Embraer',
           'errorMsg',
           'perf',
+          'Webhook',
         ],
         skipWordIfMatch: [
           '.*vh$',

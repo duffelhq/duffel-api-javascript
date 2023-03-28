@@ -17,6 +17,7 @@ import { Aircraft, Airlines, Airports } from './supportingResources'
 import { Suggestions } from './Places/Suggestions'
 import { Refunds } from './DuffelPayments/Refunds'
 import { Sessions } from './Links'
+import { Webhooks } from './notifications'
 export interface DuffelAPIClient {
   aircraft: Aircraft
   airlines: Airlines
@@ -52,6 +53,7 @@ export class Duffel {
   public partialOfferRequests: PartialOfferRequests
   public suggestions: Suggestions
   public refunds: Refunds
+  public webhooks: Webhooks
 
   constructor(config: Config) {
     this.client = new Client(config)
@@ -74,6 +76,7 @@ export class Duffel {
     this.partialOfferRequests = new PartialOfferRequests(this.client)
     this.suggestions = new Suggestions(this.client)
     this.refunds = new Refunds(this.client)
+    this.webhooks = new Webhooks(this.client)
   }
 }
 
