@@ -19,7 +19,7 @@ import {
 export interface Offer {
   /**
    * The types of identity documents that may be provided for the passengers when creating an order based on this offer.
-   * Currently, the only supported type is `passport`. If this is `[]`, then you must not provide identity documents.
+   * If this is `[]`, then you must not provide identity documents.
    */
   allowed_passenger_identity_document_types: PassengerIdentityDocumentType[]
 
