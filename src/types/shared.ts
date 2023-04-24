@@ -75,10 +75,10 @@ export type DuffelPassengerTitle = 'mr' | 'ms' | 'mrs' | 'MR' | 'MS' | 'MRS'
 export type DuffelPassengerGender = 'm' | 'f'
 
 /**
- * The type of the identity document. Currently, the only supported type is passport.
+ * The type of the identity document.
  * This must be one of the `allowed_passenger_identity_document_types` on the offer.
  */
-export type PassengerIdentityDocumentType = 'passport'
+export type PassengerIdentityDocumentType = 'passport' | 'tax_id'
 
 /**
  * The type of the origin or destination

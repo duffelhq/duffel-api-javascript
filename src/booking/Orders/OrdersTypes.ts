@@ -171,7 +171,7 @@ export interface OrderPassenger {
 
 export interface OrderPassengerIdentityDocument {
   /**
-   * The type of the identity document. Currently, the only supported type is passport. This must be one of the allowed_passenger_identity_document_types on the offer.
+   * The type of the identity document. This must be one of the allowed_passenger_identity_document_types on the offer.
    */
   type: PassengerIdentityDocumentType
 
