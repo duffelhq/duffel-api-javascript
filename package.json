@@ -64,7 +64,7 @@
     "@commitlint/cz-commitlint": "17.5.0",
     "@rollup/plugin-commonjs": "22.0.2",
     "@rollup/plugin-multi-entry": "4.1.0",
-    "@rollup/plugin-node-resolve": "13.3.0",
+    "@rollup/plugin-node-resolve": "15.0.2",
     "@types/jest": "29.0.3",
     "@typescript-eslint/eslint-plugin": "5.35.1",
     "@typescript-eslint/parser": "5.35.1",
