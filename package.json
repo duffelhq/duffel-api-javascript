@@ -4,7 +4,7 @@
   "description": "Javascript client library for the Duffel API",
   "main": "dist/index.js",
   "module": "dist/index.es.js",
-  "types": "dist/types/index.d.ts",
+  "types": "dist/typings.d.ts",
   "homepage": "https://duffel.com",
   "keywords": [
     "duffel"
@@ -16,7 +16,8 @@
   "license": "MIT",
   "scripts": {
     "generate:operation": "node ./scripts/createOperation.mjs",
-    "build": "rm -rf dist && rollup -c",
+    "build": "rm -rf dist && rollup -c && yarn remove-declaration-files",
+    "remove-declaration-files": "rm -rf dist/types dist/Client.d.ts dist/index.d.ts dist/Resource.d.ts",
     "build:test": "rm -rf dist && tsc --noEmit && rollup -c",
     "start": "node ./dist/index.js",
     "dev": "ts-node ./src/index.ts",
@@ -63,7 +64,6 @@
     "@commitlint/config-angular": "17.4.4",
     "@commitlint/cz-commitlint": "17.5.0",
     "@rollup/plugin-commonjs": "24.1.0",
-    "@rollup/plugin-multi-entry": "6.0.0",
     "@rollup/plugin-node-resolve": "15.0.2",
     "@types/jest": "29.0.3",
     "@typescript-eslint/eslint-plugin": "5.35.1",
@@ -80,7 +80,7 @@
     "nock": "13.2.9",
     "prettier": "2.8.8",
     "rollup": "3.21.3",
-    "rollup-plugin-dts": "4.2.3",
+    "rollup-plugin-dts-bundle": "^1.0.0",
     "rollup-plugin-inject-process-env": "1.3.1",
     "rollup-plugin-peer-deps-external": "2.2.4",
     "rollup-plugin-terser": "7.0.2",
