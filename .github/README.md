@@ -13,7 +13,7 @@ A JavaScript client library for the Duffel API.
 
 ## Prerequisites
 
-- Node >= 14.17.6
+- Node >= 18.16.0
 
 ## Install
 
