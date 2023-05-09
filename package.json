@@ -57,7 +57,7 @@
     "node-fetch": "2.6.9"
   },
   "devDependencies": {
-    "@babel/core": "7.21.5",
+    "@babel/core": "7.21.8",
     "@babel/preset-env": "7.21.5",
     "@babel/preset-typescript": "7.21.5",
     "@commitlint/cli": "17.5.1",
