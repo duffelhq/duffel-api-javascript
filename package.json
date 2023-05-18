@@ -22,7 +22,7 @@
     "start": "node ./dist/index.js",
     "dev": "ts-node ./src/index.ts",
     "lint": "eslint . --ext .ts,.tsx",
-    "test": "jest",
+    "test": "jest --runInBand",
     "pre-commit-check": "yarn lint-staged && yarn test && yarn build:test",
     "prepare": "husky install",
     "example": "ts-node ./examples/example.ts",
