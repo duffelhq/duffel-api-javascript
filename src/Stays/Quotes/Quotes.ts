@@ -1,5 +1,5 @@
 import { Client } from 'Client'
-import { StaysQuote } from 'Stays/types'
+import { StaysQuote } from 'Stays/StaysTypes'
 import { Resource } from '../../Resource'
 import { DuffelResponse } from '../../types'
 

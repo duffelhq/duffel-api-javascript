@@ -4,7 +4,7 @@ import {
   StaysBooking,
   StaysQuote,
   StaysSearchResult,
-} from './types'
+} from './StaysTypes'
 import { StaysBookingPayload } from './Bookings/Bookings'
 
 export const MOCK_ACCOMMODATION: StaysAccommodation = {
