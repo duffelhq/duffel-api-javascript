@@ -1,4 +1,4 @@
-import { Client } from 'Client'
+import { Client } from '../Client'
 import { StaysSearchParams, StaysSearchResult } from './StaysTypes'
 import { Resource } from '../Resource'
 import { DuffelResponse } from '../types'

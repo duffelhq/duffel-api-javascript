@@ -1,5 +1,5 @@
-import { Client } from 'Client'
-import { StaysSearchResult } from 'Stays/StaysTypes'
+import { Client } from '../../Client'
+import { StaysSearchResult } from '../StaysTypes'
 import { Resource } from '../../Resource'
 import { DuffelResponse } from '../../types'
 
