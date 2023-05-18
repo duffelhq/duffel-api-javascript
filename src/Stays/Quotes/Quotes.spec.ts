@@ -18,7 +18,7 @@ describe('Stays/Quotes', () => {
         return true
       })
       .reply(200, mockResponse)
-    const response = await duffel.staysQuotes.create(rateId)
+    const response = await duffel.stays.quotes.create(rateId)
     expect(response.data).toEqual(mockResponse.data)
   })
 })

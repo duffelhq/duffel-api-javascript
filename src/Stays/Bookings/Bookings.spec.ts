@@ -30,7 +30,7 @@ describe('Stays/Bookings', () => {
         return true
       })
       .reply(200, mockResponse)
-    const response = await duffel.staysBookings.create(mockBookingParams)
+    const response = await duffel.stays.bookings.create(mockBookingParams)
     expect(response.data).toEqual(mockResponse.data)
   })
 
@@ -38,7 +38,7 @@ describe('Stays/Bookings', () => {
     const mockResponse = { data: [MOCK_BOOKING] }
 
     nock(/(.*)/).get('/stays/bookings').reply(200, mockResponse)
-    const response = await duffel.staysBookings.list()
+    const response = await duffel.stays.bookings.list()
     expect(response.data).toEqual(mockResponse.data)
   })
 
@@ -46,7 +46,7 @@ describe('Stays/Bookings', () => {
     const mockResponse = { data: MOCK_BOOKING }
 
     nock(/(.*)/).get('/stays/bookings/bok_123').reply(200, mockResponse)
-    const response = await duffel.staysBookings.get('bok_123')
+    const response = await duffel.stays.bookings.get('bok_123')
     expect(response.data).toEqual(mockResponse.data)
   })
 })

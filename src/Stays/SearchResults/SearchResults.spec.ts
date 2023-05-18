@@ -13,7 +13,7 @@ describe('Stays/SearchResults', () => {
       .post('/stays/search_results/rat_123/actions/fetch_all_rates')
       .reply(200, { data: MOCK_SEARCH_RESULT })
 
-    const response = await duffel.staysSearchResults.fetchAllRates('rat_123')
+    const response = await duffel.stays.searchResults.fetchAllRates('rat_123')
     expect(response.data).toEqual(MOCK_SEARCH_RESULT)
   })
 })

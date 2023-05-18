@@ -15,7 +15,7 @@ export interface StaysBookingPayload {
   accommodation_special_requests?: string
 }
 
-export class StaysBookings extends Resource {
+export class Bookings extends Resource {
   /**
    * Endpoint path
    */

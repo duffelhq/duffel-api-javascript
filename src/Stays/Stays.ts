@@ -2,6 +2,9 @@ import { Client } from 'Client'
 import { StaysSearchParams, StaysSearchResult } from './types'
 import { Resource } from '../Resource'
 import { DuffelResponse } from '../types'
+import { Bookings } from './Bookings'
+import { Quotes } from './Quotes'
+import { SearchResults } from './SearchResults'
 
 export class Stays extends Resource {
   /**
@@ -9,9 +12,17 @@ export class Stays extends Resource {
    */
   path: string
 
+  public searchResults: SearchResults
+  public quotes: Quotes
+  public bookings: Bookings
+
   constructor(client: Client) {
     super(client)
     this.path = 'stays'
+
+    this.searchResults = new SearchResults(client)
+    this.quotes = new Quotes(client)
+    this.bookings = new Bookings(client)
   }
 
   /**

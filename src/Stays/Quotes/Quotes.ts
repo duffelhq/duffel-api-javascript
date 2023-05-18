@@ -3,7 +3,7 @@ import { StaysQuote } from 'Stays/types'
 import { Resource } from '../../Resource'
 import { DuffelResponse } from '../../types'
 
-export class StaysQuotes extends Resource {
+export class Quotes extends Resource {
   /**
    * Endpoint path
    */
