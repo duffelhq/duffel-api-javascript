@@ -414,11 +414,7 @@ export interface StaysQuote {
   due_at_accommodation_currency: string
 }
 
-export type StaysBookingStatus =
-  | 'requested'
-  | 'confirmed'
-  | 'failed'
-  | 'cancellation_confirmed'
+export type StaysBookingStatus = 'confirmed' | 'cancelled'
 
 export interface StaysBooking {
   /**
