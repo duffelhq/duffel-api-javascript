@@ -54,7 +54,7 @@ export class Bookings extends Resource {
   /**
    * list bookings
    */
-  public list = async (): Promise<DuffelResponse<StaysBooking>> =>
+  public list = async (): Promise<DuffelResponse<StaysBooking[]>> =>
     this.request({
       method: 'GET',
       path: this.path,
