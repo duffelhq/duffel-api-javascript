@@ -448,9 +448,9 @@ export interface StaysBooking {
   status: StaysBookingStatus
 
   /**
-   * The ISO 8601 datetime at which the booking was confirmed by the accommodation.
+   * The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) datetime at which the booking was made.
    */
-  confirmed_at: string | null
+  confirmed_at: string
 
   /**
    * The ISO 8601 datetime of the cancellation of this booking.
