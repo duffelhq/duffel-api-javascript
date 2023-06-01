@@ -49,4 +49,19 @@ describe('Stays/Bookings', () => {
     const response = await duffel.stays.bookings.get('bok_123')
     expect(response.data).toEqual(mockResponse.data)
   })
+
+  it('should post to /stays/bookings/{id}/actions/cancel when `cancel` is called', async () => {
+    const mockResponse = {
+      data: {
+        ...MOCK_BOOKING,
+        status: 'cancelled',
+      },
+    }
+
+    nock(/(.*)/)
+      .post('/stays/bookings/bok_123/actions/cancel')
+      .reply(200, mockResponse)
+    const response = await duffel.stays.bookings.cancel('bok_123')
+    expect(response.data).toEqual(mockResponse.data)
+  })
 })
