@@ -65,7 +65,7 @@
     "@commitlint/config-angular": "17.6.3",
     "@commitlint/cz-commitlint": "17.5.0",
     "@rollup/plugin-commonjs": "24.1.0",
-    "@rollup/plugin-node-resolve": "15.0.2",
+    "@rollup/plugin-node-resolve": "15.1.0",
     "@types/jest": "29.0.3",
     "@typescript-eslint/eslint-plugin": "5.35.1",
     "@typescript-eslint/parser": "5.35.1",
