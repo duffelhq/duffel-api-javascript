@@ -3,7 +3,7 @@
     "config:base",
     ":semanticCommits",
     ":semanticCommitTypeAll(build)",
-    "schedule:earlyMondays",
+    "schedule:monthly",
     ":combinePatchMinorReleases"
   ],
   "labels": ["dependencies"],
