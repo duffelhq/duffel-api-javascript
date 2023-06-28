@@ -50,7 +50,9 @@
   "resolutions": {
     "ansi-regex": "^5.0.1",
     "set-value": "^4.0.1",
-    "minimist": "1.2.8"
+    "minimist": "1.2.8",
+    "semver": "^7.5.3",
+    "word-wrap": "npm:@aashutoshrathi/word-wrap"
   },
   "dependencies": {
     "@types/node": "^17.0.21",
