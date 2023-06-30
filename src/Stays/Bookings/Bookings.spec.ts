@@ -13,6 +13,7 @@ describe('Stays/Bookings', () => {
     const mockResponse = { data: MOCK_BOOKING }
     const mockBookingParams: StaysBookingPayload = {
       quote_id: 'quo_123',
+      loyalty_programme_account_number: '123456789',
       guests: [
         {
           given_name: 'John',

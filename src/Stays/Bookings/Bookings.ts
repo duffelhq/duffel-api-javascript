@@ -5,6 +5,7 @@ import { DuffelResponse } from '../../types'
 
 export interface StaysBookingPayload {
   quote_id: string
+  loyalty_programme_account_number?: string
   guests: Array<{
     given_name: string
     family_name: string

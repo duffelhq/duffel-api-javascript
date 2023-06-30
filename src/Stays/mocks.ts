@@ -160,6 +160,7 @@ export const MOCK_BOOKING: StaysBooking = {
 
 export const MOCK_CREATE_BOOKING_PAYLOAD: StaysBookingPayload = {
   quote_id: 'quo_0000ARxBI85qTkbDDEZMO3',
+  loyalty_programme_account_number: '123456789',
   guests: [
     {
       given_name: 'Jean',
@@ -187,4 +188,5 @@ export const MOCK_QUOTE: StaysQuote = {
   tax_currency: 'USD',
   due_at_accommodation_amount: null,
   due_at_accommodation_currency: 'USD',
+  supported_loyalty_programme: 'duffel_hotel_group_rewards',
 }
