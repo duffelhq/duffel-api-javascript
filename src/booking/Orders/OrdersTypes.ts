@@ -397,6 +397,9 @@ export interface OrderPayment {
    * @example "GBP"
    */
   currency: string
+
+
+  card_id?:string
 }
 
 export interface Order {
