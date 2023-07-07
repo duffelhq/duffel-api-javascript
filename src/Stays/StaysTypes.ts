@@ -412,6 +412,28 @@ export interface StaysQuote {
    * Example: "GBP"
    */
   due_at_accommodation_currency: string
+
+  /**
+   * The loyalty programme that this quote supports.
+   */
+  supported_loyalty_programme:
+    | 'wyndham_rewards'
+    | 'choice_privileges'
+    | 'marriott_bonvoy'
+    | 'best_western_rewards'
+    | 'world_of_hyatt'
+    | 'hilton_honors'
+    | 'ihg_one_rewards'
+    | 'leaders_club'
+    | 'stash_rewards'
+    | 'omni_select_guest'
+    | 'i_prefer'
+    | 'accor_live_limitless'
+    | 'my_6'
+    | 'jumeirah_one'
+    | 'global_hotel_alliance_discovery'
+    | 'duffel_hotel_group_rewards'
+    | null
 }
 
 export type StaysBookingStatus = 'confirmed' | 'cancelled'
