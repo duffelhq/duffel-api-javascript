@@ -156,6 +156,8 @@ export const MOCK_BOOKING: StaysBooking = {
       family_name: 'Ei',
     },
   ],
+  supported_loyalty_programme: null,
+  rooms: 1,
 }
 
 export const MOCK_CREATE_BOOKING_PAYLOAD: StaysBookingPayload = {
