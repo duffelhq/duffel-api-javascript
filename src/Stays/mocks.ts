@@ -157,6 +157,7 @@ export const MOCK_BOOKING: StaysBooking = {
     },
   ],
   supported_loyalty_programme: null,
+  loyalty_programme_account_number: null,
   rooms: 1,
 }
 
