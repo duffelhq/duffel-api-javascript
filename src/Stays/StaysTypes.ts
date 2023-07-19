@@ -508,7 +508,12 @@ export interface StaysBooking {
     | null
 
   /**
-   * The number of rooms in the booking
+   * Loyalty account number to associate with this booking. Use this only when the quote has a supported_loyalty_programme indicated. Otherwise, this will result into an error.
+   */
+  loyalty_programme_account_number: string | null
+
+  /**
+   * The number of rooms in the booking.
    */
   rooms: number
 }
