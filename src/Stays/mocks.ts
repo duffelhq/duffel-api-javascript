@@ -46,6 +46,7 @@ export const MOCK_ACCOMMODATION: StaysAccommodation = {
           fee_amount: '40.00',
           cancellation_timeline: [],
           board_type: 'room_only',
+          payment_method: 'balance',
         },
         {
           total_currency: 'GBP',
@@ -73,6 +74,7 @@ export const MOCK_ACCOMMODATION: StaysAccommodation = {
           fee_amount: '40.00',
           cancellation_timeline: [],
           board_type: 'room_only',
+          payment_method: 'card',
         },
       ],
       photos: [

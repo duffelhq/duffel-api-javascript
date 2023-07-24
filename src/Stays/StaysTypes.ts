@@ -133,6 +133,11 @@ export interface StaysRate {
    * The currency of the total_amount, as an ISO 4217 currency code
    */
   total_currency: string
+
+  /**
+   * The method available for payment of this rate. A rate with the `balance` payment type will be paid for using your Duffel Balance, and a rate with the `card` payment type will be paid for with card details provided at time of booking.
+   */
+  payment_method: 'balance' | 'card'
 }
 
 export interface StaysPhoto {
