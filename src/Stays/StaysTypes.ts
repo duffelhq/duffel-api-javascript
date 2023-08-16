@@ -233,6 +233,11 @@ export interface StaysLocation {
 
 export interface StaysAccommodation {
   /**
+   * Duffel ID for this accommodation. Useful for searching availability
+   * for the same accommodation via accommodation based search.
+   */
+  id: string
+  /**
    * The amenities available at the accommodation
    */
   amenities: StaysAmenity[] | null
@@ -523,11 +528,14 @@ export interface StaysBooking {
   rooms: number
 }
 
-export interface StaysSearchParams {
+interface CommonStaysSearchParams {
   check_in_date: string
   check_out_date: string
   adults: number
   rooms: number
+}
+
+type LocationSearchParams = {
   location: {
     radius: number
     geographic_coordinates: {
@@ -535,7 +543,16 @@ export interface StaysSearchParams {
       longitude: number
     }
   }
-}
+} & CommonStaysSearchParams
+
+type AccommodationSearchParams = {
+  accommodation: {
+    ids: Array<string>
+    fetch_rates?: boolean
+  }
+} & CommonStaysSearchParams
+
+export type StaysSearchParams = LocationSearchParams | AccommodationSearchParams
 
 export interface StaysSearchResult {
   id: string
