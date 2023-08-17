@@ -33,7 +33,7 @@ export const MOCK_ACCOMMODATION: StaysAccommodation = {
           supplier: 'priceline',
           payment_type: 'prepaid',
           id: 'rat_0000ASuebQfixzpI2v20qe',
-          due_at_accommodation_currency: 'GBP',
+          due_at_accommodation_currency: 'USD',
           due_at_accommodation_amount: '39.95',
           conditions: [
             {
