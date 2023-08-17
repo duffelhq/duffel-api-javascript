@@ -18,7 +18,6 @@ describe('Stays/Bookings', () => {
         {
           given_name: 'John',
           family_name: 'Smith',
-          born_on: '1980-01-01',
         },
       ],
       email: 'a@example.com',

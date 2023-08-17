@@ -171,7 +171,6 @@ export const MOCK_CREATE_BOOKING_PAYLOAD: StaysBookingPayload = {
     {
       given_name: 'Jean',
       family_name: 'Gunnhildr',
-      born_on: '1994-03-14',
     },
   ],
   email: 'jean@example.com',

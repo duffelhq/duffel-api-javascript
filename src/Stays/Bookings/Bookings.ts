@@ -9,7 +9,6 @@ export interface StaysBookingPayload {
   guests: Array<{
     given_name: string
     family_name: string
-    born_on: string
   }>
   email: string
   phone_number: string
