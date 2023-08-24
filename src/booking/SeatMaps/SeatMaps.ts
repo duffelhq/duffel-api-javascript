@@ -19,6 +19,6 @@ export class SeatMaps extends Resource {
    */
   public get = async (params: {
     offer_id: string
-  }): Promise<DuffelResponse<SeatMap>> =>
+  }): Promise<DuffelResponse<SeatMap[]>> =>
     this.request({ method: 'GET', path: `${this.path}`, params })
 }
