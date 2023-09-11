@@ -481,21 +481,19 @@ export const mockOrderChangeRequestAltered: OrderChangeRequestResponse = {
 
 export const mockCreateChangeRequest: CreateOrderChangeRequest = {
   order_id: mockOrderChangeRequest.id,
-  changes: {
-    slices: {
-      remove: [
-        {
-          slice_id: mockOrderChangeRequest.slices.remove.slice_id,
-        },
-      ],
-      add: [
-        {
-          origin: 'LHR',
-          destination: 'JFK',
-          departure_date: '2020-04-24',
-          cabin_class: 'economy',
-        },
-      ],
-    },
+  slices: {
+    remove: [
+      {
+        slice_id: mockOrderChangeRequest.slices.remove.slice_id,
+      },
+    ],
+    add: [
+      {
+        origin: 'LHR',
+        destination: 'JFK',
+        departure_date: '2020-04-24',
+        cabin_class: 'economy',
+      },
+    ],
   },
 }
