@@ -5,8 +5,29 @@ import { DuffelResponse, Places } from '../../types'
 interface PlacesSuggestionsParameters {
   /**
    * A search string for finding matching Places.
+   * Deprecated in favour of "name".
    */
-  query: string
+  query?: string
+
+  /**
+   * A search string for finding matching Places by name.
+   */
+  name?: string
+
+  /**
+   * The radius, in metres, to search within.
+   */
+  rad?: string
+
+  /**
+   * The latitude to search by.
+   */
+  lat?: string
+
+  /**
+   * The longitude to search by.
+   */
+  lng?: string
 }
 
 /**
