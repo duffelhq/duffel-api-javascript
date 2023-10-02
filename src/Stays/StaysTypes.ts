@@ -140,6 +140,13 @@ export interface StaysRate {
   payment_method: 'balance' | 'card'
 }
 
+export interface StaysRoomRate extends StaysRate {
+  /**
+   * The quantity of rooms available to be booked at this rate. This number is not guaranteed to be accurate. Will be null if this information is unknown.
+   */
+  quantity_available: number
+}
+
 export interface StaysPhoto {
   url: string
 }
@@ -163,7 +170,7 @@ export interface StaysRoom {
   /**
    * The available rates for a specific room, including commission, distribution, payment and included services information.
    */
-  rates: StaysRate[]
+  rates: StaysRoomRate[]
 }
 
 export interface StaysAmenity {
