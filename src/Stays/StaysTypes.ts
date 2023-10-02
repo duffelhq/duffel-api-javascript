@@ -144,7 +144,7 @@ export interface StaysRoomRate extends StaysRate {
   /**
    * The quantity of rooms available to be booked at this rate. This number is not guaranteed to be accurate. Will be null if this information is unknown.
    */
-  quantity_available: number
+  quantity_available: number | null
 }
 
 export interface StaysPhoto {
