@@ -53,6 +53,24 @@ export interface StaysRateCancellationTimeline {
   currency: string
 }
 
+export type StaysLoyaltyProgramme =
+  | 'wyndham_rewards'
+  | 'choice_privileges'
+  | 'marriott_bonvoy'
+  | 'best_western_rewards'
+  | 'world_of_hyatt'
+  | 'hilton_honors'
+  | 'ihg_one_rewards'
+  | 'leaders_club'
+  | 'stash_rewards'
+  | 'omni_select_guest'
+  | 'i_prefer'
+  | 'accor_live_limitless'
+  | 'my_6'
+  | 'jumeirah_one'
+  | 'global_hotel_alliance_discovery'
+  | 'duffel_hotel_group_rewards'
+
 export interface StaysRate {
   /**
    * The currency of the base_amount, as an ISO 4217 currency code.
@@ -138,6 +156,13 @@ export interface StaysRate {
    * The method available for payment of this rate. A rate with the `balance` payment type will be paid for using your Duffel Balance, and a rate with the `card` payment type will be paid for with card details provided at time of booking.
    */
   payment_method: 'balance' | 'card'
+
+  /**
+   * The loyalty programme that this rate supports.
+   * If the rate does not support a loyalty programme, this will be null.
+   * The duffel_hotel_group_rewards value is an example programme for testing and integration purposes, and will only appear on Duffel Hotel Group test hotel rates.
+   */
+  supported_loyalty_programme: StaysLoyaltyProgramme | null
 }
 
 export interface StaysRoomRate extends StaysRate {
@@ -433,24 +458,7 @@ export interface StaysQuote {
   /**
    * The loyalty programme that this quote supports.
    */
-  supported_loyalty_programme:
-    | 'wyndham_rewards'
-    | 'choice_privileges'
-    | 'marriott_bonvoy'
-    | 'best_western_rewards'
-    | 'world_of_hyatt'
-    | 'hilton_honors'
-    | 'ihg_one_rewards'
-    | 'leaders_club'
-    | 'stash_rewards'
-    | 'omni_select_guest'
-    | 'i_prefer'
-    | 'accor_live_limitless'
-    | 'my_6'
-    | 'jumeirah_one'
-    | 'global_hotel_alliance_discovery'
-    | 'duffel_hotel_group_rewards'
-    | null
+  supported_loyalty_programme: StaysLoyaltyProgramme | null
 }
 
 export type StaysBookingStatus = 'confirmed' | 'cancelled'
@@ -505,24 +513,7 @@ export interface StaysBooking {
   /**
    * The loyalty programme that this booking supports.
    */
-  supported_loyalty_programme:
-    | 'wyndham_rewards'
-    | 'choice_privileges'
-    | 'marriott_bonvoy'
-    | 'best_western_rewards'
-    | 'world_of_hyatt'
-    | 'hilton_honors'
-    | 'ihg_one_rewards'
-    | 'leaders_club'
-    | 'stash_rewards'
-    | 'omni_select_guest'
-    | 'i_prefer'
-    | 'accor_live_limitless'
-    | 'my_6'
-    | 'jumeirah_one'
-    | 'global_hotel_alliance_discovery'
-    | 'duffel_hotel_group_rewards'
-    | null
+  supported_loyalty_programme: StaysLoyaltyProgramme | null
 
   /**
    * Loyalty account number to associate with this booking. Use this only when the quote has a supported_loyalty_programme indicated. Otherwise, this will result into an error.
