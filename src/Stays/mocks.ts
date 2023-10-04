@@ -49,6 +49,7 @@ export const MOCK_ACCOMMODATION: StaysAccommodation = {
           board_type: 'room_only',
           payment_method: 'balance',
           quantity_available: 1,
+          supported_loyalty_programme: null,
         },
         {
           total_currency: 'GBP',
@@ -78,6 +79,7 @@ export const MOCK_ACCOMMODATION: StaysAccommodation = {
           board_type: 'room_only',
           payment_method: 'card',
           quantity_available: 1,
+          supported_loyalty_programme: 'duffel_hotel_group_rewards',
         },
       ],
       photos: [
