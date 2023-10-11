@@ -1,4 +1,4 @@
-import { Client } from 'Client'
+import { Client } from '../../Client'
 import { Resource } from '../../Resource'
 import { CreateOfferRequest, DuffelResponse, OfferRequest } from '../../types'
 import { SelectedPartialOffersParams } from './PartialOfferRequestTypes'
