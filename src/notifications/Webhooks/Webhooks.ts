@@ -10,7 +10,7 @@ import {
   WebhooksUpdateParams,
 } from '../../types'
 import { Resource } from '../../Resource'
-import { Client } from 'Client'
+import { Client } from '../../Client'
 
 export class Webhooks extends Resource {
   /**

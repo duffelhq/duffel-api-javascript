@@ -7,7 +7,7 @@
     "type-check": "tsc"
   },
   "dependencies": {
-    "@duffel/api": "^1.9.5",
+    "@duffel/api": "^2.5.2",
     "classnames": "^2.3.1",
     "next": "^13.5.4",
     "react": "^18.2.0",
