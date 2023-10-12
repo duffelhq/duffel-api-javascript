@@ -3,6 +3,7 @@ import cx from 'classnames'
 
 interface SharedProps {
   className?: string
+  children?: React.ReactNode
 }
 
 export const Root: FC<SharedProps> = ({ className, children }) => (
