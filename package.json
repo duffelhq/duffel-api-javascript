@@ -57,7 +57,7 @@
   "dependencies": {
     "@types/node": "^17.0.21",
     "@types/node-fetch": "^2.6.2",
-    "node-fetch": "2.6.11"
+    "node-fetch": "2.7.0"
   },
   "devDependencies": {
     "@babel/core": "7.23.0",
