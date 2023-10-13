@@ -1,4 +1,4 @@
-import { Offer, Order } from '@duffel/api'
+import { Offer, Order } from '@duffel/api/types'
 import { NextPage } from 'next'
 import { FC, Fragment, useState } from 'react'
 import { Header } from '../components/Header'

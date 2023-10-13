@@ -5,7 +5,7 @@ import { duffel } from '../../utils/duffel'
 const bookHandler = async (req: NextApiRequest, res: NextApiResponse) => {
   const { method } = req
 
-  if (method.toLowerCase() !== 'post') return res.status(404).end()
+  if (method?.toLowerCase() !== 'post') return res.status(404).end()
 
   const { passengers, offerId, currency, amount } = req.body
 
