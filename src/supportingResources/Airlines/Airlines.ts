@@ -3,7 +3,8 @@ import { Airline, DuffelResponse, PaginationMeta } from '../../types'
 
 /** Airlines are used to identify the air travel companies selling and operating flights
  * @class
- * @link https://duffel.com/docs/api/airlines */
+ * @link https://duffel.com/docs/api/airlines
+ */
 export class Airlines extends Resource {
   /**
    * Endpoint path
