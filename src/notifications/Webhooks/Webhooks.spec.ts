@@ -14,7 +14,7 @@ describe('Webhooks', () => {
       .reply(200, {})
 
     const response = await duffel.webhooks.redeliver(
-      'wev_0000A3tQSmKyqOrcySrGbo'
+      'wev_0000A3tQSmKyqOrcySrGbo',
     )
     expect(response.data).toBe(undefined)
   })
@@ -43,10 +43,10 @@ describe('Webhooks', () => {
       .query((queryObject) => {
         expect(queryObject?.limit).toBe('1')
         expect(queryObject?.before).toBe(
-          'g2wAAAACbQAAABBBZXJvbWlzdC1LaGFya2l2bQAAAB='
+          'g2wAAAACbQAAABBBZXJvbWlzdC1LaGFya2l2bQAAAB=',
         )
         expect(queryObject?.after).toBe(
-          'g2wAAAACbQAAABBBZXJvbWlzdC1LaGFya2l2bQAAAB='
+          'g2wAAAACbQAAABBBZXJvbWlzdC1LaGFya2l2bQAAAB=',
         )
         expect(queryObject?.type).toBe('order.created')
         expect(queryObject?.delivery_success).toBe('true')
@@ -81,10 +81,10 @@ describe('Webhooks', () => {
       .query((queryObject) => {
         expect(queryObject?.limit).toBe('1')
         expect(queryObject?.before).toBe(
-          'g2wAAAACbQAAABBBZXJvbWlzdC1LaGFya2l2bQAAAB='
+          'g2wAAAACbQAAABBBZXJvbWlzdC1LaGFya2l2bQAAAB=',
         )
         expect(queryObject?.after).toBe(
-          'g2wAAAACbQAAABBBZXJvbWlzdC1LaGFya2l2bQAAAB='
+          'g2wAAAACbQAAABBBZXJvbWlzdC1LaGFya2l2bQAAAB=',
         )
         return true
       })

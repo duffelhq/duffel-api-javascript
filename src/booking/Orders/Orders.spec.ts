@@ -20,7 +20,7 @@ describe('Orders', () => {
       .reply(200, { data: mockOrder })
 
     const response = await new Orders(new Client({ token: 'mockToken' })).get(
-      mockOrder.id
+      mockOrder.id,
     )
     expect(response.data?.id).toBe(mockOrder.id)
   })
@@ -53,7 +53,7 @@ describe('Orders', () => {
       })
 
     const response = new Orders(
-      new Client({ token: 'mockToken' })
+      new Client({ token: 'mockToken' }),
     ).listWithGenerator()
     for await (const page of response) {
       expect(page.data.id).toBe(mockOrder.id)
@@ -89,7 +89,7 @@ describe('Orders', () => {
       .reply(200, { data: mockOrder })
 
     const response = await new Orders(
-      new Client({ token: 'mockToken' })
+      new Client({ token: 'mockToken' }),
     ).create(mockCreateOrderRequest)
     expect(response.data?.id).toBe(mockOrder.id)
   })
@@ -129,14 +129,14 @@ describe('Orders', () => {
     nock(/(.*)/)
       .patch(`/air/orders/${mockOrder.id}`, (body) => {
         expect(body.data.options.metadata['payment_intent_id']).toEqual(
-          metadata['payment_intent_id']
+          metadata['payment_intent_id'],
         )
         return true
       })
       .reply(200, { data: mockOrder })
 
     const response = await new Orders(
-      new Client({ token: 'mockToken' })
+      new Client({ token: 'mockToken' }),
     ).update(mockOrder.id, { metadata })
     expect(response.data?.id).toBe(mockOrder.id)
   })
@@ -151,7 +151,7 @@ describe('Orders', () => {
       .reply(200, { data: mockOrder })
 
     const response = await new Orders(
-      new Client({ token: 'mockToken' })
+      new Client({ token: 'mockToken' }),
     ).update(mockOrder.id, { metadata })
     expect(response.data?.id).toBe(mockOrder.id)
   })
@@ -162,12 +162,12 @@ describe('Orders', () => {
       .reply(200, { data: mockOrder })
 
     const response = await new Orders(new Client({ token: 'mockToken' })).get(
-      mockOrder.id
+      mockOrder.id,
     )
 
     expect(response.data.passengers[0].id).toBe('pas_00009hj8USM7Ncg31cBCLL')
     expect(response.data.passengers[0].loyalty_programme_accounts).toHaveLength(
-      1
+      1,
     )
   })
 
@@ -177,7 +177,7 @@ describe('Orders', () => {
       .reply(200, { data: mockServices })
 
     const response = await new Orders(
-      new Client({ token: 'mockToken' })
+      new Client({ token: 'mockToken' }),
     ).getAvailableServices(mockOrder.id)
 
     expect(response.data[0].id).toBe(mockServices[0].id)
@@ -189,7 +189,7 @@ describe('Orders', () => {
       .reply(200, { data: { ...mockOrder, services: mockServices } })
 
     const response = await new Orders(
-      new Client({ token: 'mockToken' })
+      new Client({ token: 'mockToken' }),
     ).addServices(mockOrder.id, mockAddServicesRequest)
 
     expect(response.data.services[0].id).toBe(mockServices[0].id)

@@ -31,7 +31,7 @@ export class Bookings extends Resource {
    * @param {object} payload - The booking payload, including quote id and guest information
    */
   public create = async (
-    payload: StaysBookingPayload
+    payload: StaysBookingPayload,
   ): Promise<DuffelResponse<StaysBooking>> =>
     this.request({
       method: 'POST',
@@ -44,7 +44,7 @@ export class Bookings extends Resource {
    * @param {string} bookingId - The ID of the booking
    */
   public get = async (
-    bookingId: string
+    bookingId: string,
   ): Promise<DuffelResponse<StaysBooking>> =>
     this.request({
       method: 'GET',
@@ -65,7 +65,7 @@ export class Bookings extends Resource {
    * @param {string} bookingId - The ID of the booking
    */
   public cancel = async (
-    bookindId: string
+    bookindId: string,
   ): Promise<DuffelResponse<StaysBooking>> =>
     this.request({
       method: 'POST',

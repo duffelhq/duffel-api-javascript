@@ -19,7 +19,7 @@ export class Payments extends Resource {
    * @param {string} payment
    */
   public create = async (
-    options: CreatePayment
+    options: CreatePayment,
   ): Promise<DuffelResponse<Payment>> => {
     return this.request({ method: 'POST', path: this.path, data: options })
   }

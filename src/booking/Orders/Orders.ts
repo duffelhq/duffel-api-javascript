@@ -34,7 +34,7 @@ export class Orders extends Resource {
    * @link https://duffel.com/docs/api/orders/get-orders
    */
   public list = async (
-    options?: PaginationMeta & ListParamsOrders
+    options?: PaginationMeta & ListParamsOrders,
   ): Promise<DuffelResponse<Order[]>> =>
     this.request({ method: 'GET', path: this.path, params: options })
 
@@ -45,7 +45,7 @@ export class Orders extends Resource {
    * @link https://duffel.com/docs/api/orders/get-orders
    */
   public listWithGenerator = (
-    options?: ListParamsOrders
+    options?: ListParamsOrders,
   ): AsyncGenerator<DuffelResponse<Order>, void, unknown> =>
     this.paginatedRequest({ path: 'air/orders', params: options })
 
@@ -53,7 +53,7 @@ export class Orders extends Resource {
    * Creates a booking with an airline based on an offer.
    */
   public create = async (
-    options: CreateOrder
+    options: CreateOrder,
   ): Promise<DuffelResponse<Order>> => {
     return this.request({ method: 'POST', path: this.path, data: options })
   }
@@ -68,7 +68,7 @@ export class Orders extends Resource {
    */
   public update = async (
     id: string,
-    options: UpdateSingleOrder
+    options: UpdateSingleOrder,
   ): Promise<DuffelResponse<Order>> => {
     return this.request({
       method: 'PATCH',
@@ -82,7 +82,7 @@ export class Orders extends Resource {
    * @param {string} id - Duffel's unique identifier for the order
    */
   public getAvailableServices = async (
-    id: string
+    id: string,
   ): Promise<DuffelResponse<OrderAvailableService[]>> =>
     this.request({
       method: 'GET',
@@ -97,7 +97,7 @@ export class Orders extends Resource {
    */
   public addServices = async (
     id: string,
-    options: AddServices
+    options: AddServices,
   ): Promise<DuffelResponse<Order>> =>
     this.request({
       method: 'POST',

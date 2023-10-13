@@ -40,7 +40,7 @@ export class OfferRequests extends Resource {
    * @link https://duffel.com/docs/api/offer-requests/get-offer-requests
    */
   public list = (
-    options?: PaginationMeta
+    options?: PaginationMeta,
   ): Promise<DuffelResponse<OfferRequest[]>> =>
     this.request({ method: 'GET', path: this.path, params: options })
 
@@ -64,7 +64,7 @@ export class OfferRequests extends Resource {
    * @link https://duffel.com/docs/api/offer-requests/create-offer-request
    */
   public create = async <QueryParams extends CreateOfferRequestQueryParameters>(
-    options: CreateOfferRequest & QueryParams
+    options: CreateOfferRequest & QueryParams,
   ): Promise<
     DuffelResponse<
       // Ensure that the `offers` field can't be accessed if `return_offers` is false

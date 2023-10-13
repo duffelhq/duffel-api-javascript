@@ -20,7 +20,7 @@ describe('AirlineInitiatedChanges', () => {
 
     const response = await new AirlineInitiatedChanges(mockClient).update(
       mockAirlineInitiatedChange.id,
-      'accepted'
+      'accepted',
     )
     expect(response.data.id).toEqual(mockAirlineInitiatedChange.id)
     expect(response.data.action_taken).toBe('accepted')
@@ -29,12 +29,12 @@ describe('AirlineInitiatedChanges', () => {
   test('should accept the airline-initiated change', async () => {
     nock(/(.*)/)
       .post(
-        `/air/airline_initiated_changes/${mockAirlineInitiatedChange.id}/actions/accept`
+        `/air/airline_initiated_changes/${mockAirlineInitiatedChange.id}/actions/accept`,
       )
       .reply(200, { data: mockAirlineInitiatedChangeAccepted })
 
     const response = await new AirlineInitiatedChanges(mockClient).accept(
-      mockAirlineInitiatedChange.id
+      mockAirlineInitiatedChange.id,
     )
 
     expect(response.data.id).toEqual(mockAirlineInitiatedChange.id)
@@ -47,7 +47,7 @@ describe('AirlineInitiatedChanges', () => {
       .reply(200, { data: [mockAirlineInitiatedChange] })
 
     const response = await new AirlineInitiatedChanges(mockClient).list(
-      mockOrder.id
+      mockOrder.id,
     )
 
     expect(response.data?.length).toBeGreaterThan(0)

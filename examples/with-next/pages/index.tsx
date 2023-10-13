@@ -44,7 +44,7 @@ interface SearchCardProps {
 
 const SearchCard: FC<SearchCardProps> = ({ onSuccess }) => {
   const [sort, setSort] = useState<'total_amount' | 'total_duration'>(
-    'total_amount'
+    'total_amount',
   )
   const [origin, setOrigin] = useState('JFK')
   const [destination, setDestination] = useState('LHR')

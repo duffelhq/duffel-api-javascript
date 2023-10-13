@@ -17,7 +17,7 @@ describe('PaymentIntents', () => {
       .reply(200, { data: mockPaymentIntents })
 
     const response = await new PaymentIntents(
-      new Client({ token: 'mockToken' })
+      new Client({ token: 'mockToken' }),
     ).get(mockPaymentIntents.id)
     expect(response.data?.id).toBe(mockPaymentIntents.id)
   })
@@ -31,7 +31,7 @@ describe('PaymentIntents', () => {
       .reply(200, { data: mockPaymentIntents })
 
     const response = await new PaymentIntents(
-      new Client({ token: 'mockToken' })
+      new Client({ token: 'mockToken' }),
     ).create(mockCreatePaymentIntent)
     expect(response.data?.id).toBe(mockPaymentIntents.id)
   })
@@ -39,12 +39,12 @@ describe('PaymentIntents', () => {
   test('should confirm a Payment Intent', async () => {
     nock(/(.*)/)
       .post(
-        `/payments/payment_intents/${mockPaymentIntents.id}/actions/confirm`
+        `/payments/payment_intents/${mockPaymentIntents.id}/actions/confirm`,
       )
       .reply(200, { data: mockPaymentIntents })
 
     const response = await new PaymentIntents(
-      new Client({ token: 'mockToken' })
+      new Client({ token: 'mockToken' }),
     ).confirm(mockPaymentIntents.id)
     expect(response.data?.id).toBe(mockPaymentIntents.id)
   })

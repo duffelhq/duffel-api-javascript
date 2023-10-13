@@ -26,7 +26,7 @@ export class Refunds extends Resource {
    * @param {Object.<CreateFund>} params - Endpoint params (amount, currency and payment_intent_id)
    */
   public create = async (
-    params: CreateRefund
+    params: CreateRefund,
   ): Promise<DuffelResponse<Refund>> => {
     return this.request({ method: 'POST', path: this.path, data: params })
   }

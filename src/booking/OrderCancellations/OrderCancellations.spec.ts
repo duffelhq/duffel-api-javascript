@@ -14,7 +14,7 @@ describe('OrderCancellations', () => {
       .reply(200, { data: mockOrderCancellation })
 
     const response = await new OrderCancellations(
-      new Client({ token: 'mockToken' })
+      new Client({ token: 'mockToken' }),
     ).create({
       order_id: 'ord_00009hthhsUZ8W4LxQgkjo',
     })
@@ -24,12 +24,12 @@ describe('OrderCancellations', () => {
   test('should confirm the order cancellation', async () => {
     nock(/(.*)/)
       .post(
-        `/air/order_cancellations/${mockOrderCancellation.id}/actions/confirm`
+        `/air/order_cancellations/${mockOrderCancellation.id}/actions/confirm`,
       )
       .reply(200, { data: mockOrderCancellation })
 
     const response = await new OrderCancellations(
-      new Client({ token: 'mockToken' })
+      new Client({ token: 'mockToken' }),
     ).confirm('ore_00009qzZWzjDipIkqpaUAj')
     expect(response.data?.order_id).toBe('ord_00009hthhsUZ8W4LxQgkjo')
   })
@@ -48,7 +48,7 @@ describe('OrderCancellations', () => {
       })
 
     const response = await new OrderCancellations(
-      new Client({ token: 'mockToken' })
+      new Client({ token: 'mockToken' }),
     ).list({
       order_id: 'ord_123',
       limit: 1,
@@ -70,7 +70,7 @@ describe('OrderCancellations', () => {
       })
 
     const response = await new OrderCancellations(
-      new Client({ token: 'mockToken' })
+      new Client({ token: 'mockToken' }),
     ).listWithGenerator({
       order_id: 'ord_123',
     })

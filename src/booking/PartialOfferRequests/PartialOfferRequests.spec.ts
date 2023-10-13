@@ -24,7 +24,7 @@ describe('PartialOfferRequests', () => {
       .reply(200, { data: mockPartialOfferRequest })
 
     const response = await new PartialOfferRequests(
-      new Client({ token: 'mockToken' })
+      new Client({ token: 'mockToken' }),
     ).get(mockPartialOfferRequest.id, {
       'selected_partial_offer[]': ['partial_offer_1', 'partial_offer_2'],
     })
@@ -38,7 +38,7 @@ describe('PartialOfferRequests', () => {
       .reply(200, { data: mockPartialOfferRequest })
 
     const response = await new PartialOfferRequests(
-      new Client({ token: 'mockToken' })
+      new Client({ token: 'mockToken' }),
     ).create(mockCreatePartialOfferRequest)
     expect(response.data?.id).toBe(mockPartialOfferRequest.id)
     expect(response.data?.offers.length).toBeGreaterThan(0)
@@ -57,7 +57,7 @@ describe('PartialOfferRequests', () => {
       .reply(200, { data: mockPartialOfferRequest })
 
     const response = await new PartialOfferRequests(
-      new Client({ token: 'mockToken' })
+      new Client({ token: 'mockToken' }),
     ).getFaresById(mockPartialOfferRequest.id, {
       'selected_partial_offer[]': ['partial_offer_1', 'partial_offer_2'],
     })

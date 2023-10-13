@@ -19,7 +19,7 @@ describe('Payments', () => {
       .reply(200, { data: mockPayment })
 
     const response = await new Payments(
-      new Client({ token: 'mockToken' })
+      new Client({ token: 'mockToken' }),
     ).create(data)
     expect(response.data?.id).toBe(mockPayment.id)
   })

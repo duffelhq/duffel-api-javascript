@@ -16,7 +16,7 @@ describe('OfferRequests', () => {
       .reply(200, { data: mockOfferRequest })
 
     const response = await new OfferRequests(
-      new Client({ token: 'mockToken' })
+      new Client({ token: 'mockToken' }),
     ).get(mockOfferRequest.id)
     expect(response.data?.id).toBe(mockOfferRequest.id)
   })
@@ -30,7 +30,7 @@ describe('OfferRequests', () => {
       })
 
     const response = await new OfferRequests(
-      new Client({ token: 'mockToken' })
+      new Client({ token: 'mockToken' }),
     ).list({ limit: 1 })
     expect(response.data).toHaveLength(1)
     expect(response.data[0].id).toBe(mockOfferRequest.id)
@@ -45,7 +45,7 @@ describe('OfferRequests', () => {
       })
 
     const response = new OfferRequests(
-      new Client({ token: 'mockToken' })
+      new Client({ token: 'mockToken' }),
     ).listWithGenerator()
     for await (const page of response) {
       expect(page.data!.id).toBe(mockOfferRequest.id)
@@ -62,7 +62,7 @@ describe('OfferRequests', () => {
       .reply(200, { data: mockOfferRequest })
 
     const response = await new OfferRequests(
-      new Client({ token: 'mockToken' })
+      new Client({ token: 'mockToken' }),
     ).create(mockCreateOfferRequest)
     expect(response.data?.id).toBe(mockOfferRequest.id)
   })
@@ -97,13 +97,13 @@ describe('OfferRequests', () => {
       .reply(200, { data: mockResponseWithLoyaltyProgrammes })
 
     const response = await new OfferRequests(
-      new Client({ token: 'mockToken' })
+      new Client({ token: 'mockToken' }),
     ).create({
       ...mockCreateOfferRequest,
       passengers: passengersWithLoyaltyProgrammes,
     })
     expect(
-      response.data?.passengers[0].loyalty_programme_accounts
+      response.data?.passengers[0].loyalty_programme_accounts,
     ).toHaveLength(1)
   })
 
@@ -111,7 +111,7 @@ describe('OfferRequests', () => {
     const mockResponseWithoutOffer = Object.entries(mockOfferRequest).reduce(
       (res, [key, value]) =>
         key === 'offers' ? res : { ...res, [key]: value },
-      {}
+      {},
     )
 
     nock(/(.*)/)
@@ -120,7 +120,7 @@ describe('OfferRequests', () => {
       .reply(200, { data: mockResponseWithoutOffer })
 
     const response = await new OfferRequests(
-      new Client({ token: 'mockToken' })
+      new Client({ token: 'mockToken' }),
     ).create({
       ...mockCreateOfferRequest,
       return_offers: false,
@@ -151,7 +151,7 @@ describe('OfferRequests', () => {
       .reply(200, { data: mockResponseWithCorporatePrivateFares })
 
     const response = await new OfferRequests(
-      new Client({ token: 'mockToken ' })
+      new Client({ token: 'mockToken ' }),
     ).create({
       ...mockCreateOfferRequest,
       private_fares: {
@@ -188,7 +188,7 @@ describe('OfferRequests', () => {
       .reply(200, { data: mockResponseWithLeisurePrivateFare })
 
     const response = await new OfferRequests(
-      new Client({ token: 'mockToken ' })
+      new Client({ token: 'mockToken ' }),
     ).create({
       ...mockCreateOfferRequest,
       passengers: [

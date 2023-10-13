@@ -14,7 +14,7 @@ describe('OrderChangeOffers', () => {
       .reply(200, { data: mockOrderChangeOffer })
 
     const response = await new OrderChangeOffers(
-      new Client({ token: 'mockToken' })
+      new Client({ token: 'mockToken' }),
     ).get(mockOrderChangeOffer.id)
     expect(response.data?.id).toBe(mockOrderChangeOffer.id)
   })
@@ -28,7 +28,7 @@ describe('OrderChangeOffers', () => {
       })
 
     const response = await new OrderChangeOffers(
-      new Client({ token: 'mockToken' })
+      new Client({ token: 'mockToken' }),
     ).list({ limit: 1 })
     expect(response.data).toHaveLength(1)
     expect(response.data[0].id).toBe(mockOrderChangeOffer.id)
@@ -43,7 +43,7 @@ describe('OrderChangeOffers', () => {
       })
 
     const response = new OrderChangeOffers(
-      new Client({ token: 'mockToken' })
+      new Client({ token: 'mockToken' }),
     ).listWithGenerator()
     for await (const page of response) {
       expect(page.data.id).toBe(mockOrderChangeOffer.id)
