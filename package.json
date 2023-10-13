@@ -51,7 +51,8 @@
     "ansi-regex": "^5.0.1",
     "set-value": "^4.0.1",
     "minimist": "1.2.8",
-    "semver": "^7.5.3"
+    "semver": "^7.5.3",
+    "@aashutoshrathi/word-wrap": "npm:word-wrap"
   },
   "dependencies": {
     "@types/node": "^18.0.0",
@@ -73,7 +74,7 @@
     "colors": "1.4.0",
     "commitizen": "4.3.0",
     "dotenv": "16.3.1",
-    "eslint": "8.43.0",
+    "eslint": "8.51.0",
     "eslint-config-prettier": "9.0.0",
     "eslint-plugin-spellcheck": "0.0.20",
     "husky": "8.0.3",
