@@ -12,7 +12,7 @@ executors:
   node-executor:
     working_directory: *working_directory
     docker:
-      - image: cimg/node:18.16
+      - image: cimg/node:18.18
 
 commands:
   save_deps_cache:
