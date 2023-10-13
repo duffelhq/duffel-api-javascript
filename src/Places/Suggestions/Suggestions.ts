@@ -49,7 +49,7 @@ export class Suggestions extends Resource {
    * Retrieves a list of Places matching the provided query
    */
   public list = async (
-    params: PlacesSuggestionsParameters
+    params: PlacesSuggestionsParameters,
   ): Promise<DuffelResponse<Places[]>> =>
     this.request({ method: 'GET', path: `${this.path}`, params })
 }

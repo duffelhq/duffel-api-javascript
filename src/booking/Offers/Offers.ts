@@ -38,7 +38,7 @@ export class Offers extends Resource {
    */
   public get = async (
     id: string,
-    params?: { return_available_services: boolean }
+    params?: { return_available_services: boolean },
   ): Promise<DuffelResponse<Offer>> =>
     this.request({ method: 'GET', path: `${this.path}/${id}`, params })
 
@@ -90,7 +90,7 @@ export class Offers extends Resource {
   public update = async (
     offerId: string,
     passengerId: string,
-    params: UpdateOfferBodyParameters
+    params: UpdateOfferBodyParameters,
   ): Promise<DuffelResponse<UpdateOffer>> =>
     this.request({
       method: 'PATCH',

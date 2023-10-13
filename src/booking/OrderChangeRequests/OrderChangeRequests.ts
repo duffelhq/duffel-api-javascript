@@ -27,7 +27,7 @@ export class OrderChangeRequests extends Resource {
    * @param {string} id - The ID of your order change request
    */
   public get = async (
-    id: string
+    id: string,
   ): Promise<DuffelResponse<OrderChangeRequestResponse>> =>
     this.request({ method: 'GET', path: `${this.path}/${id}` })
 
@@ -38,7 +38,7 @@ export class OrderChangeRequests extends Resource {
    * @memberof OrderChangeRequests
    */
   public create = async (
-    options: CreateOrderChangeRequest
+    options: CreateOrderChangeRequest,
   ): Promise<DuffelResponse<OrderChangeRequestResponse>> =>
     this.request({ method: 'POST', path: this.path, data: options })
 }

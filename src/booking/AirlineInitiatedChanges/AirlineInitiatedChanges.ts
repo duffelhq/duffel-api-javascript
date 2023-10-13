@@ -51,7 +51,7 @@ export class AirlineInitiatedChanges extends Resource {
    */
   public update = async (
     id: AirlineInitiatedChange['id'],
-    action_taken: AirlineInitiatedChangeActionTaken
+    action_taken: AirlineInitiatedChangeActionTaken,
   ): Promise<DuffelResponse<AirlineInitiatedChange>> =>
     this.request({
       method: 'PATCH',
@@ -68,7 +68,7 @@ export class AirlineInitiatedChanges extends Resource {
    * @link https://duffel.com/docs/api/v1/airline-initiated-changes/accept-airline-initiated-changes
    */
   public accept = async (
-    id: AirlineInitiatedChange['id']
+    id: AirlineInitiatedChange['id'],
   ): Promise<DuffelResponse<AirlineInitiatedChange>> =>
     this.request({
       method: 'POST',
@@ -85,7 +85,7 @@ export class AirlineInitiatedChanges extends Resource {
    * @link https://duffel.com/docs/api/v1/airline-initiated-changes/get-airline-initiated-changes
    */
   public list = async (
-    order_id: Order['id']
+    order_id: Order['id'],
   ): Promise<DuffelResponse<Order['airline_initiated_changes']>> =>
     this.request({
       method: 'GET',

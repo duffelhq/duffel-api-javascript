@@ -14,7 +14,7 @@ describe('OrderChanges', () => {
       .reply(200, { data: mockOrderChange })
 
     const response = await new OrderChanges(
-      new Client({ token: 'mockToken' })
+      new Client({ token: 'mockToken' }),
     ).get(mockOrderChange.id)
     expect(response.data?.id).toBe(mockOrderChange.id)
   })
@@ -25,7 +25,7 @@ describe('OrderChanges', () => {
       .reply(200, { data: mockOrderChange })
 
     const response = await new OrderChanges(
-      new Client({ token: 'mockToken' })
+      new Client({ token: 'mockToken' }),
     ).create({
       selected_order_change_offer: mockOrderChange.id,
     })
@@ -38,7 +38,7 @@ describe('OrderChanges', () => {
       .reply(200, { data: mockOrderChange })
 
     const response = await new OrderChanges(
-      new Client({ token: 'mockToken' })
+      new Client({ token: 'mockToken' }),
     ).confirm(mockOrderChange.id, {})
     expect(response.data?.id).toBe(mockOrderChange.id)
   })

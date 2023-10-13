@@ -30,7 +30,7 @@ export class Airports extends Resource {
    * @link https://duffel.com/docs/api/airports/get-airports
    */
   public list = (
-    options?: PaginationMeta
+    options?: PaginationMeta,
   ): Promise<DuffelResponse<Airport[]>> =>
     this.request({ method: 'GET', path: this.path, params: options })
 

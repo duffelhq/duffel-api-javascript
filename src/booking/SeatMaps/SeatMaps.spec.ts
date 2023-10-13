@@ -15,7 +15,7 @@ describe('SeatMaps', () => {
       .reply(200, { data: [mockSeatMap] })
 
     const response = await new SeatMaps(new Client({ token: 'mockToken' })).get(
-      { offer_id: mockOfferId }
+      { offer_id: mockOfferId },
     )
     expect(response.data[0].id).toBe(mockSeatMap.id)
   })

@@ -45,7 +45,7 @@ const methodNameQuestion = () => {
           }
         }
         resolve(true)
-      }
+      },
     )
   })
 }
@@ -60,7 +60,7 @@ const folderQuestion = () => {
           operationPath = path.join(__dirname, answer, operationName)
         }
         resolve(true)
-      }
+      },
     )
   })
 }
@@ -83,7 +83,7 @@ const print = () => {
   console.log(`Method Name: `.grey + operationName)
   console.log(`Folder: `.grey + operationPath)
   console.log(
-    `Note: `.yellow + `export your operation in src/index.ts when done.`.yellow
+    `Note: `.yellow + `export your operation in src/index.ts when done.`.yellow,
   )
   console.log('--------------------------------------------------------')
 }

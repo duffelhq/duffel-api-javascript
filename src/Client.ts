@@ -92,7 +92,7 @@ export class Client {
         .forEach(([key, value]) => {
           if (Array.isArray(value)) {
             value.forEach((value) =>
-              params_with_array_expanded.append(key, value.toString())
+              params_with_array_expanded.append(key, value.toString()),
             )
           } else {
             params_with_array_expanded.append(key, value.toString())

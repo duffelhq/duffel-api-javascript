@@ -215,7 +215,7 @@ On certain endpoints you can perform actions, such as confirming an order cancel
 
 ```javascript
 const orderCancellationResponse = await duffel.orderCancellations.confirm(
-  order_cancellation_id
+  order_cancellation_id,
 )
 console.log(orderCancellationResponse.data.id)
 ```
@@ -231,7 +231,7 @@ const orderUpdateResponse = await duffel.orders.update(
     metadata: {
       payment_intent_id: 'pit_00009htYpSCXrwaB9DnUm2',
     },
-  }
+  },
 )
 
 console.log(orderUpdateResponse.data.id)
@@ -244,7 +244,7 @@ const orderUpdateResponse = await duffel.orders.update(
   'ord_00009hthhsUZ8W4LxQgkjo',
   {
     metadata: {},
-  }
+  },
 )
 
 console.log(orderUpdateResponse.data.id)

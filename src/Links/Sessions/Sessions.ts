@@ -67,7 +67,7 @@ export class Sessions extends Resource {
    * Create a Duffel Links Session per the configuration
    */
   public create = async (
-    data: SessionParameters
+    data: SessionParameters,
   ): Promise<DuffelResponse<Session>> =>
     this.request({ method: 'POST', path: this.path, data })
 }

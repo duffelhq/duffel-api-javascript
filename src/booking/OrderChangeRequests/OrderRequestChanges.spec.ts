@@ -18,7 +18,7 @@ describe('OrderChangeRequests', () => {
       .reply(200, { data: mockOrderChangeRequest })
 
     const response = await new OrderChangeRequests(
-      new Client({ token: 'mockToken' })
+      new Client({ token: 'mockToken' }),
     ).get(mockOrderChangeRequest.id)
     expect(response.data?.id).toBe(mockOrderChangeRequest.id)
   })
@@ -29,13 +29,13 @@ describe('OrderChangeRequests', () => {
       .reply(200, { data: mockOrderChangeRequestAltered })
 
     const response = await new OrderChangeRequests(
-      new Client({ token: 'mockToken' })
+      new Client({ token: 'mockToken' }),
     ).create(mockCreateChangeRequest)
     expect(response.data?.slices.remove.slice_id).toBe(
-      mockCreateChangeRequest.slices.remove[0].slice_id
+      mockCreateChangeRequest.slices.remove[0].slice_id,
     )
     expect(response.data?.slices.add.destination.iata_code).toBe(
-      mockCreateChangeRequest.slices.add[0].destination
+      mockCreateChangeRequest.slices.add[0].destination,
     )
   })
 })

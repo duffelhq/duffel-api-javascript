@@ -19,7 +19,7 @@ export class SearchResults extends Resource {
    * @param {string} searchResultId - The ID of the search result to fetch rates for
    */
   public fetchAllRates = async (
-    searchResultId: string
+    searchResultId: string,
   ): Promise<DuffelResponse<StaysSearchResult>> =>
     this.request({
       method: 'POST',

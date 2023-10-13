@@ -32,7 +32,7 @@ export class OrderChangeOffers extends Resource {
    * @param {Object} [options] - Pagination options (optional: limit, after, before)
    */
   public list = (
-    options?: PaginationMeta
+    options?: PaginationMeta,
   ): Promise<DuffelResponse<OrderChangeOffer[]>> =>
     this.request({ method: 'GET', path: this.path, params: options })
 

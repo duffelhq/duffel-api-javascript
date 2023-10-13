@@ -14,7 +14,7 @@ describe('aircraft', () => {
       .reply(200, { data: mockAircraft })
 
     const response = await new Aircraft(new Client({ token: 'mockToken' })).get(
-      mockAircraft.id
+      mockAircraft.id,
     )
     expect(response.data?.id).toBe(mockAircraft.id)
   })
@@ -28,7 +28,7 @@ describe('aircraft', () => {
       })
 
     const response = await new Aircraft(
-      new Client({ token: 'mockToken' })
+      new Client({ token: 'mockToken' }),
     ).list({ limit: 1 })
     expect(response.data).toHaveLength(1)
     expect(response.data[0].id).toBe(mockAircraft.id)
@@ -43,7 +43,7 @@ describe('aircraft', () => {
       })
 
     const response = new Aircraft(
-      new Client({ token: 'mockToken' })
+      new Client({ token: 'mockToken' }),
     ).listWithGenerator()
     for await (const page of response) {
       expect(page.data.id).toBe(mockAircraft.id)

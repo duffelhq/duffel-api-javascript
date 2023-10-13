@@ -66,7 +66,7 @@ describe('offers', () => {
       })
 
     const response = new Offers(
-      new Client({ token: 'mockToken' })
+      new Client({ token: 'mockToken' }),
     ).listWithGenerator({
       offer_request_id: mockOffer.id,
     })
@@ -81,7 +81,7 @@ describe('offers', () => {
       .reply(200, { data: mockUpdatedOffer })
 
     const response = await new Offers(
-      new Client({ token: 'mockToken' })
+      new Client({ token: 'mockToken' }),
     ).update(mockOffer.id, 'pas_00009hj8USM7Ncg31cBCL', {
       loyalty_programme_accounts: [
         {
@@ -101,12 +101,12 @@ describe('offers', () => {
       .reply(200, { data: mockOffer })
 
     const response = await new Offers(new Client({ token: 'mockToken' })).get(
-      mockOffer.id
+      mockOffer.id,
     )
 
     expect(response.data.passengers[0].id).toBe('pas_00009hj8USM7Ncg31cBCL')
     expect(response.data.passengers[0].loyalty_programme_accounts).toHaveLength(
-      1
+      1,
     )
   })
 })

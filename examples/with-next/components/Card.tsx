@@ -41,7 +41,7 @@ export const Highlight: FC<HighlightProps> = ({
     className={cx(
       'card__highlight',
       { 'card__highlight--secondary': secondary },
-      className
+      className,
     )}
   >
     {children}
@@ -89,7 +89,7 @@ export const Button: FC<ButtonProps> = ({
     className={cx(
       'card__btn',
       { 'card__btn--secondary': secondary },
-      className
+      className,
     )}
     {...props}
   >

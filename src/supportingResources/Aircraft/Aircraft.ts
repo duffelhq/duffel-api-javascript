@@ -34,7 +34,7 @@ export class Aircraft extends Resource {
    * @link https://duffel.com/docs/api/aircraft/get-aircraft
    */
   public list = (
-    options?: PaginationMeta
+    options?: PaginationMeta,
   ): Promise<DuffelResponse<AircraftType[]>> =>
     this.request({ method: 'GET', path: this.path, params: options })
 

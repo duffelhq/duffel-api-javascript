@@ -87,7 +87,7 @@ export class Webhooks extends Resource {
    */
   public update = async (
     id: string,
-    { active, events, url }: WebhooksUpdateParams
+    { active, events, url }: WebhooksUpdateParams,
   ) =>
     this.request({
       method: 'PATCH',

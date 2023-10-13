@@ -35,7 +35,7 @@ export class PaymentIntents extends Resource {
    * @param {Object.<CreatePaymentIntent>} params - Endpoint params (amount and string)
    */
   public create = async (
-    params: CreatePaymentIntent
+    params: CreatePaymentIntent,
   ): Promise<DuffelResponse<PaymentIntent>> => {
     return this.request({ method: 'POST', path: this.path, data: params })
   }

@@ -30,7 +30,7 @@ export class Stays extends Resource {
    * @param {object} params - The search parameters
    */
   public search = async (
-    params: StaysSearchParams
+    params: StaysSearchParams,
   ): Promise<DuffelResponse<StaysSearchResult>> =>
     this.request({ method: 'POST', path: `${this.path}/search`, data: params })
 }

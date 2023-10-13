@@ -31,7 +31,7 @@ export class OrderCancellations extends Resource {
    * @link https://duffel.com/docs/api/order-cancellations/get-order-cancellations
    */
   public list = (
-    params?: ListOrderCancellationsParams
+    params?: ListOrderCancellationsParams,
   ): Promise<DuffelResponse<OrderCancellation[]>> =>
     this.request({ method: 'GET', path: this.path, params })
 
@@ -41,7 +41,7 @@ export class OrderCancellations extends Resource {
    * @link https://duffel.com/docs/api/order-cancellations/get-order-cancellations
    */
   public listWithGenerator = (
-    params?: ListOrderCancellationsParams
+    params?: ListOrderCancellationsParams,
   ): AsyncGenerator<DuffelResponse<OrderCancellation>, void, unknown> =>
     this.paginatedRequest({ path: this.path, params })
 
@@ -52,7 +52,7 @@ export class OrderCancellations extends Resource {
    * @link https://duffel.com/docs/api/order-cancellations/create-order-cancellation
    */
   public create = async (
-    options: CreateOrderCancellation
+    options: CreateOrderCancellation,
   ): Promise<DuffelResponse<OrderCancellation>> => {
     return this.request({ method: 'POST', path: this.path, data: options })
   }
@@ -64,7 +64,7 @@ export class OrderCancellations extends Resource {
    * @link https://duffel.com/docs/api/order-cancellations/confirm-order-cancellation
    */
   public confirm = async (
-    id: string
+    id: string,
   ): Promise<DuffelResponse<OrderCancellation>> =>
     this.request({ method: 'POST', path: `${this.path}/${id}/actions/confirm` })
 }

@@ -29,7 +29,7 @@ export class PartialOfferRequests extends Resource {
    */
   public get = async (
     id: string,
-    options?: SelectedPartialOffersParams
+    options?: SelectedPartialOffersParams,
   ): Promise<DuffelResponse<OfferRequest>> => {
     return this.request({
       method: 'GET',
@@ -46,7 +46,7 @@ export class PartialOfferRequests extends Resource {
    * @link https://duffel.com/docs/api/partial-offer-requests/create-partial-offer-request
    */
   public create = async <QueryParams>(
-    options: CreateOfferRequest & QueryParams
+    options: CreateOfferRequest & QueryParams,
   ): Promise<DuffelResponse<OfferRequest>> => {
     return this.request({
       method: 'POST',
@@ -63,7 +63,7 @@ export class PartialOfferRequests extends Resource {
    */
   public getFaresById = async (
     id: string,
-    options?: SelectedPartialOffersParams
+    options?: SelectedPartialOffersParams,
   ): Promise<DuffelResponse<OfferRequest>> => {
     return this.request({
       method: 'GET',
