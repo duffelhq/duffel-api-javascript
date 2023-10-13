@@ -54,7 +54,7 @@
     "semver": "^7.5.3"
   },
   "dependencies": {
-    "@types/node": "^17.0.21",
+    "@types/node": "^18.0.0",
     "@types/node-fetch": "^2.6.2",
     "node-fetch": "2.7.0"
   },
