@@ -1,4 +1,4 @@
-import { PaginationMeta } from 'types'
+import { PaginationMeta } from '../../types'
 
 export interface Webhooks {
   /**

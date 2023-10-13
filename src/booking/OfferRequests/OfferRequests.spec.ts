@@ -3,7 +3,7 @@ import { Client } from '../../Client'
 import { CreateOfferRequest, OfferRequest } from './OfferRequestsTypes'
 import { mockCreateOfferRequest, mockOfferRequest } from './mockOfferRequest'
 import { OfferRequests } from './OfferRequests'
-import { OfferPrivateFare } from 'types'
+import { OfferPrivateFare } from '../../types'
 
 describe('OfferRequests', () => {
   afterEach(() => {
