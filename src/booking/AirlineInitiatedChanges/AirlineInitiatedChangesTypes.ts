@@ -1,4 +1,4 @@
-import { OrderSlice } from 'types'
+import { OrderSlice } from '../../types'
 
 export type AirlineInitiatedChangeActionTaken =
   | 'accepted'
