@@ -11,7 +11,7 @@ export const MOCK_ACCOMMODATION: StaysAccommodation = {
   id: 'acc_0000AWr2VsUNIF1Vl91xg0',
   amenities: [
     { type: 'parking', description: 'Parking' },
-    { type: 'wi-fi', description: 'Wi-Fi available' },
+    { type: 'wifi', description: 'Wi-Fi available' },
     { type: 'gym', description: '24h Gym' },
   ],
   description:

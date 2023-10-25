@@ -200,7 +200,25 @@ export interface StaysRoom {
 
 export interface StaysAmenity {
   /* the type of amenity */
-  type: 'parking' | 'wi-fi' | 'gym'
+  type:
+    | 'parking'
+    | 'gym'
+    | 'wifi'
+    | '24_hour_front_desk'
+    | 'accessibility_hearing'
+    | 'accessibility_mobility'
+    | 'adult_only'
+    | 'business_centre'
+    | 'cash_machine'
+    | 'childcare_service'
+    | 'concierge'
+    | 'laundry'
+    | 'lounge'
+    | 'pets_allowed'
+    | 'pool'
+    | 'restaurant'
+    | 'room_service'
+    | 'spa'
   /* label friendly description of the amenity */
   description: string
 }
