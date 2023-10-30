@@ -109,14 +109,14 @@ export type FlightsConditions = {
      * If this is `null` then `penalty_amount` will also be `null`.
      * @example "GBP"
      */
-    penalty_currency: string
+    penalty_currency?: string | null
     /**
      * If the modification is `allowed` then this is the amount payable to apply the modification to all passengers.
      * If there is no penalty, the value will be zero. If the modification isn't `allowed` or the penalty is not known then this field will be `null`.
      * If this is `null` then the `penalty_currency` will also be null.
      * @example "100.00"
      */
-    penalty_amount?: string
+    penalty_amount?: string | null
     /**
      * Whether this kind of modification is allowed post-booking
      *
@@ -140,14 +140,14 @@ export type FlightsConditions = {
      * If this is `null` then `penalty_amount` will also be `null`.
      * @example "GBP"
      */
-    penalty_currency: string
+    penalty_currency?: string | null
     /**
      * If the modification is `allowed` then this is the amount payable to apply the modification to all passengers.
      * If there is no penalty, the value will be zero. If the modification isn't `allowed` or the penalty is not known then this field will be `null`.
      * If this is `null` then the `penalty_currency` will also be null.
      * @example "100.00"
      */
-    penalty_amount?: string
+    penalty_amount?: string | null
     /**
      * Whether this kind of modification is allowed post-booking
      *
