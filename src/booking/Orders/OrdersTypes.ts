@@ -530,7 +530,7 @@ export interface CreateOrder {
   /**
    * The services you want to book along wpith the first selected offer.
    */
-  services?: Pick<OrderService, 'id' | 'quantity'>[]
+  services?: CreateOrderService[]
 
   /**
    * The personal details of the passengers, expanding on the information initially provided when creating the offer request
@@ -556,6 +556,8 @@ export interface CreateOrder {
    */
   metadata?: Record<string, string>
 }
+
+export type CreateOrderService = Pick<OrderService, 'id' | 'quantity'>
 
 export interface ListParamsOrders {
   /**
