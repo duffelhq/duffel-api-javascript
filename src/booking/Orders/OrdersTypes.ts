@@ -528,7 +528,7 @@ export interface CreateOrder {
   selected_offers: string[]
 
   /**
-   * The services you want to book along with the first selected offer.
+   * The services you want to book along wpith the first selected offer.
    */
   services?: Pick<OrderService, 'id' | 'quantity'>[]
 
@@ -546,6 +546,15 @@ export interface CreateOrder {
    * The payment action you want to take for your order. You can only use pay_later with offers that contain requires_instant_payment: false.
    */
   type: 'instant' | 'pay_later'
+
+  /**
+   * Metadata contains a set of key-value pairs that you can attach to an object. It can be useful for storing additional information about the object, in a structured format. Duffel does not use this information. You should not store sensitive information in this field.
+   *
+   * The metadata is a collection of key-value pairs, both of which are strings. You can store a maximum of 50 key-value pairs, where each key has a maximum length of 40 characters and each value has a maximum length of 500 characters.
+   *
+   * Keys must only contain numbers, letters, dashes, or underscores.
+   */
+  metadata?: Record<string, string>
 }
 
 export interface ListParamsOrders {
