@@ -252,7 +252,7 @@ export interface StaysAddress {
   postal_code: string
 
   /**
-   * The setay's region or state
+   * The stay's region or state
    */
   region: string
 }

@@ -65,10 +65,10 @@ export class Bookings extends Resource {
    * @param {string} bookingId - The ID of the booking
    */
   public cancel = async (
-    bookindId: string,
+    bookingId: string,
   ): Promise<DuffelResponse<StaysBooking>> =>
     this.request({
       method: 'POST',
-      path: `${this.path}/${bookindId}/actions/cancel`,
+      path: `${this.path}/${bookingId}/actions/cancel`,
     })
 }
