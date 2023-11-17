@@ -113,9 +113,9 @@ export interface StaysRate {
   id: string
 
   /**
-   * The accepted payment method for this rate. Prepaid rates require payment at time of reservation. Accepted types: prepaid
+   * The accepted payment method for this rate. Prepaid rates require payment at time of reservation. Accepted types: pay_now, guarantee
    */
-  payment_type: 'prepaid'
+  payment_type: 'pay_now' | 'guarantee'
 
   /**
    * The supplier from which Duffel got this rate
