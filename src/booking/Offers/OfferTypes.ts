@@ -511,12 +511,12 @@ export interface OfferSliceSegmentStop {
   /**
    * The ISO 8601 datetime at which the Stop is scheduled to arrive, in the airport's timezone (see destination.timezone)
    */
-  arrivingAt: string
+  arriving_at: string
 
   /**
    * The ISO 8601 datetime at which the Stop is scheduled to depart, in the airport's timezone (see origin.timezone)
    */
-  departingAt: string
+  departing_at: string
 
   /**
    * The duration of the Stop, represented as a ISO 8601 duration
