@@ -477,6 +477,12 @@ export interface StaysQuote {
    * The loyalty programme that this quote supports.
    */
   supported_loyalty_programme: StaysLoyaltyProgramme | null
+
+  /**
+   * A client key to authenticate with Duffel's Card Component when creating a tokenised card.
+   * This value will be `null` if your organisation does not have this feature enabled,
+   */
+  card_component_key: string | null
 }
 
 export type StaysBookingStatus = 'confirmed' | 'cancelled'
