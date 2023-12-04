@@ -198,4 +198,5 @@ export const MOCK_QUOTE: StaysQuote = {
   due_at_accommodation_amount: null,
   due_at_accommodation_currency: 'USD',
   supported_loyalty_programme: 'duffel_hotel_group_rewards',
+  card_component_key: null,
 }
