@@ -13,6 +13,7 @@ export interface StaysBookingPayload {
   email: string
   phone_number: string
   accommodation_special_requests?: string
+  payment?: { card_id: string }
 }
 
 export class Bookings extends Resource {
