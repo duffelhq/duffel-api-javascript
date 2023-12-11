@@ -205,7 +205,6 @@ export const mockOffer: Offer = {
         merchant_copy: 'some information for the merchant',
         refund_amount: '33.75',
         terms_and_conditions_url: 'this is a link',
-        type: 'cancel_for_any_reason',
       },
       passenger_ids: ['pas_00009hj8USM7Ncg31cBCL'],
       segment_ids: ['seg_00009htYpSCXrwaB9Dn456'],
