@@ -174,8 +174,8 @@ export interface OfferAvailableServiceCFARMetadata {
    * The amount the customer will receive back if the service is used, in
    * `offer.total_currency`.
    */
-
   refund_amount: string
+
   /**
    * Information to display to customers.
    */
@@ -185,8 +185,6 @@ export interface OfferAvailableServiceCFARMetadata {
    * URL with the T&Cs for customers.
    */
   terms_and_conditions_url: string
-
-  type: 'cancel_for_any_reason'
 }
 
 export interface OfferAvailableServiceCommon {
