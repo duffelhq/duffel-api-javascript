@@ -22,6 +22,8 @@ export const MOCK_ACCOMMODATION: StaysAccommodation = {
       source: 'aaa',
     },
   ],
+  rating: 4,
+  review_score: 8.8,
   rooms: [
     {
       rates: [
@@ -146,6 +148,8 @@ export const MOCK_SEARCH_RESULT: StaysSearchResult = {
   id: 'sta_something',
   check_in_date: '2023-03-24',
   check_out_date: '2023-03-28',
+  adults: 1,
+  rooms: 1,
 }
 
 export const MOCK_BOOKING: StaysBooking = {
@@ -199,4 +203,6 @@ export const MOCK_QUOTE: StaysQuote = {
   due_at_accommodation_currency: 'USD',
   supported_loyalty_programme: 'duffel_hotel_group_rewards',
   card_component_key: null,
+  adults: 1,
+  rooms: 1,
 }

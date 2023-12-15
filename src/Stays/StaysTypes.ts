@@ -358,6 +358,16 @@ export interface StaysAccommodation {
   ratings: StaysRating[] | null
 
   /**
+   * A "star rating" of this accommodation. If available, this is an integer from 1 to 5 "stars". This value is consolidated by Duffel based on data provided by our sources and accommodation providers. For more detailed rating information, see ratings.
+   */
+  rating: number | null
+
+  /**
+   * A review score of this accommodation, aggregated from guest reviews. If available, the value is a score from the 1.0-10.0 range. This value is consolidated by Duffel based on user review data from multiple sources.
+   */
+  review_score: number | null
+
+  /**
    * Rooms for the accommodation
    */
   rooms: StaysRoom[]
@@ -483,6 +493,16 @@ export interface StaysQuote {
    * This value will be `null` if your organisation does not have this feature enabled,
    */
   card_component_key: string | null
+
+  /*
+   * The number of adult guests this quote is for.
+   */
+  adults: number
+
+  /*
+   * The number of rooms this quote is for
+   */
+  rooms: number
 }
 
 export type StaysBookingStatus = 'confirmed' | 'cancelled'
@@ -581,4 +601,6 @@ export interface StaysSearchResult {
   check_in_date: string
   check_out_date: string
   accommodation: StaysAccommodation
+  adults: number
+  rooms: number
 }
