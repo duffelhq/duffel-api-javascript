@@ -22,6 +22,8 @@ export const MOCK_ACCOMMODATION: StaysAccommodation = {
       source: 'aaa',
     },
   ],
+  rating: 4,
+  review_score: 8.8,
   rooms: [
     {
       rates: [
