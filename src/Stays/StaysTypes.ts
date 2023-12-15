@@ -493,6 +493,16 @@ export interface StaysQuote {
    * This value will be `null` if your organisation does not have this feature enabled,
    */
   card_component_key: string | null
+
+  /*
+   * The number of adult guests this quote is for.
+   */
+  adults: number
+
+  /*
+   * The number of rooms this quote is for
+   */
+  rooms: number
 }
 
 export type StaysBookingStatus = 'confirmed' | 'cancelled'
@@ -591,4 +601,6 @@ export interface StaysSearchResult {
   check_in_date: string
   check_out_date: string
   accommodation: StaysAccommodation
+  adults: number
+  rooms: number
 }
