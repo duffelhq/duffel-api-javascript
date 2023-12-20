@@ -16,7 +16,7 @@ export interface StaysRating {
   /**
    * The source of this rating. Possible values: `"aaa"` (American Automobile Association Diamond Rating), `"northstar"` (Northstar Crown Rating), `"priceline"` (Priceline star rating)
    */
-  source: 'aaa' | 'northstar' | 'priceline'
+  source: 'aaa' | 'northstar' | 'priceline' | 'bookingcom'
 
   /**
    * The rating value. This is an integer from 1 to 5 regardless of the `source`.
@@ -85,7 +85,12 @@ export interface StaysRate {
   /**
    * The type of boarding offered by this rate.
    */
-  board_type: 'room_only' | 'breakfast' | 'all_inclusive'
+  board_type:
+    | 'room_only'
+    | 'breakfast'
+    | 'half_board'
+    | 'full_board'
+    | 'all_inclusive'
 
   /**
    * A timeline that contains policies, such as possible refunds, once this rate has been booked. This is sorted in ascending chronological order.
