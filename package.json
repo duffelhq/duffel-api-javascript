@@ -68,7 +68,7 @@
     "@commitlint/cz-commitlint": "17.8.1",
     "@rollup/plugin-commonjs": "25.0.7",
     "@rollup/plugin-node-resolve": "15.2.3",
-    "@types/jest": "29.5.10",
+    "@types/jest": "29.5.11",
     "@typescript-eslint/eslint-plugin": "6.7.5",
     "@typescript-eslint/parser": "6.7.5",
     "colors": "1.4.0",
