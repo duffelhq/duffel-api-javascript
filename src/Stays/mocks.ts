@@ -52,6 +52,7 @@ export const MOCK_ACCOMMODATION: StaysAccommodation = {
           payment_method: 'balance',
           quantity_available: 1,
           supported_loyalty_programme: null,
+          source: 'duffel_hotel_group',
         },
         {
           total_currency: 'GBP',
@@ -82,6 +83,7 @@ export const MOCK_ACCOMMODATION: StaysAccommodation = {
           payment_method: 'card',
           quantity_available: 1,
           supported_loyalty_programme: 'duffel_hotel_group_rewards',
+          source: 'duffel_hotel_group',
         },
       ],
       photos: [
