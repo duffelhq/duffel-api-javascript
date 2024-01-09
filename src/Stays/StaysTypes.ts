@@ -168,6 +168,12 @@ export interface StaysRate {
    * The duffel_hotel_group_rewards value is an example programme for testing and integration purposes, and will only appear on Duffel Hotel Group test hotel rates.
    */
   supported_loyalty_programme: StaysLoyaltyProgramme | null
+
+  /**
+   * The source of the rate.
+   * Useful in scenarios where a rate requires explicitly showing the source.
+   */
+  source: 'bookingcom' | 'priceline' | 'travelport' | 'duffel_hotel_group'
 }
 
 export interface StaysRoomRate extends StaysRate {
