@@ -65,7 +65,7 @@ interface CreateOfferRequestPassengerCommon {
   loyalty_programme_accounts?: LoyaltyProgrammeAccount[]
 }
 
-interface CreateOfferRequestAdultPassenger
+export interface CreateOfferRequestAdultPassenger
   extends CreateOfferRequestPassengerCommon {
   age?: never
   fare_type?: never
@@ -78,7 +78,7 @@ interface CreateOfferRequestAdultPassenger
   type: Extract<DuffelPassengerType, 'adult'>
 }
 
-interface CreateOfferRequestNonAdultPassenger
+export interface CreateOfferRequestNonAdultPassenger
   extends CreateOfferRequestPassengerCommon {
   /**
    * The age of the passenger on the `departure_date` of the final slice. e.g.
