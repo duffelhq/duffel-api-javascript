@@ -172,6 +172,9 @@ export const MOCK_BOOKING: StaysBooking = {
   supported_loyalty_programme: null,
   loyalty_programme_account_number: null,
   rooms: 1,
+  key_collection: {
+    instructions: 'Key is at the property. Collect from the lock box.',
+  },
 }
 
 export const MOCK_CREATE_BOOKING_PAYLOAD: StaysBookingPayload = {
