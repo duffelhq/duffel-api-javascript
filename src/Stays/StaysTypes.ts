@@ -518,6 +518,10 @@ export interface StaysQuote {
 
 export type StaysBookingStatus = 'confirmed' | 'cancelled'
 
+export interface StaysBookingKeyCollection {
+  instructions: string
+}
+
 export interface StaysBooking {
   /**
    * The ID of the booking
@@ -579,6 +583,11 @@ export interface StaysBooking {
    * The number of rooms in the booking.
    */
   rooms: number
+
+  /**
+   * Instructions to access the accommodation in the booking
+   */
+  key_collection: StaysBookingKeyCollection | null
 }
 
 interface CommonStaysSearchParams {
