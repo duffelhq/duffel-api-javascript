@@ -160,10 +160,17 @@ export interface StaysRate {
   total_currency: string
 
   /**
-   * The method available for payment of this rate. A rate with the `balance` payment type will be paid for using your Duffel Balance, and a rate with the `card` payment type will be paid for with card details provided at time of booking.
-   */
+    Deprecated. Refer to available_payment_methods instead.
+  */
   payment_method: StaysPaymentType
 
+  /**
+   * The methods available for payment of this rate.
+
+   A rate with the `balance` payment type can be paid for using your Duffel Balance.
+
+   A rate with the `card` payment type can be paid for with card details provided at time of booking.
+   */
   available_payment_methods: StaysPaymentType[]
 
   /**

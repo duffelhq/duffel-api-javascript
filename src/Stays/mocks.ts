@@ -49,7 +49,7 @@ export const MOCK_ACCOMMODATION: StaysAccommodation = {
           fee_amount: '40.00',
           cancellation_timeline: [],
           board_type: 'room_only',
-          payment_method: 'balance',
+          payment_method: 'balance', // Deprecated. Refer to available_payment_methods instead.
           available_payment_methods: ['balance'],
           quantity_available: 1,
           supported_loyalty_programme: null,
@@ -81,7 +81,7 @@ export const MOCK_ACCOMMODATION: StaysAccommodation = {
           fee_amount: '40.00',
           cancellation_timeline: [],
           board_type: 'room_only',
-          payment_method: 'card',
+          payment_method: 'card', // Deprecated. Refer to available_payment_methods instead.
           available_payment_methods: ['card'],
           quantity_available: 1,
           supported_loyalty_programme: 'duffel_hotel_group_rewards',
