@@ -71,6 +71,8 @@ export type StaysLoyaltyProgramme =
   | 'global_hotel_alliance_discovery'
   | 'duffel_hotel_group_rewards'
 
+export type StaysPaymentType = 'balance' | 'card'
+
 export interface StaysRate {
   /**
    * The currency of the base_amount, as an ISO 4217 currency code.
@@ -158,9 +160,18 @@ export interface StaysRate {
   total_currency: string
 
   /**
-   * The method available for payment of this rate. A rate with the `balance` payment type will be paid for using your Duffel Balance, and a rate with the `card` payment type will be paid for with card details provided at time of booking.
+    Deprecated. Refer to available_payment_methods instead.
+  */
+  payment_method: StaysPaymentType
+
+  /**
+   * The methods available for payment of this rate.
+
+   A rate with the `balance` payment type can be paid for using your Duffel Balance.
+
+   A rate with the `card` payment type can be paid for with card details provided at time of booking.
    */
-  payment_method: 'balance' | 'card'
+  available_payment_methods: StaysPaymentType[]
 
   /**
    * The loyalty programme that this rate supports.
