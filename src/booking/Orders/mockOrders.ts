@@ -97,12 +97,24 @@ export const mockOrder: Order = {
             name: 'British Airways',
             id: 'aln_00001876aqC8c5umZmrRds',
             iata_code: 'BA',
+            logo_symbol_url:
+              'https://assets.duffel.com/img/airlines/for-light-background/full-color-logo/BA.svg',
+            logo_lockup_url:
+              'https://assets.duffel.com/img/airlines/for-light-background/full-color-lockup/BA.svg',
+            conditions_of_carriage_url:
+              'https://www.britishairways.com/en-gb/information/legal/british-airways/general-conditions-of-carriage',
           },
           marketing_carrier_flight_number: '1234',
           marketing_carrier: {
             name: 'British Airways',
             id: 'aln_00001876aqC8c5umZmrRds',
             iata_code: 'BA',
+            logo_symbol_url:
+              'https://assets.duffel.com/img/airlines/for-light-background/full-color-logo/BA.svg',
+            logo_lockup_url:
+              'https://assets.duffel.com/img/airlines/for-light-background/full-color-lockup/BA.svg',
+            conditions_of_carriage_url:
+              'https://www.britishairways.com/en-gb/information/legal/british-airways/general-conditions-of-carriage',
           },
           id: 'seg_00009htYpSCXrwaB9Dn456',
           duration: 'PT02H26M',
@@ -222,6 +234,12 @@ export const mockOrder: Order = {
     name: 'British Airways',
     id: 'aln_00001876aqC8c5umZmrRds',
     iata_code: 'BA',
+    logo_symbol_url:
+      'https://assets.duffel.com/img/airlines/for-light-background/full-color-logo/BA.svg',
+    logo_lockup_url:
+      'https://assets.duffel.com/img/airlines/for-light-background/full-color-lockup/BA.svg',
+    conditions_of_carriage_url:
+      'https://www.britishairways.com/en-gb/information/legal/british-airways/general-conditions-of-carriage',
   },
   metadata: {
     customer_prefs: 'window seat',
@@ -295,12 +313,18 @@ export const mockOnHoldOrders: Order[] = [
               name: 'American Airlines',
               id: 'arl_00009VME7DAGiJjwomhv32',
               iata_code: 'AA',
+              logo_lockup_url: null,
+              logo_symbol_url: null,
+              conditions_of_carriage_url: null,
             },
             marketing_carrier_flight_number: '4721',
             marketing_carrier: {
               name: 'American Airlines',
               id: 'arl_00009VME7DAGiJjwomhv32',
               iata_code: 'AA',
+              logo_lockup_url: null,
+              logo_symbol_url: null,
+              conditions_of_carriage_url: null,
             },
             id: 'seg_0000A6GioOO1UDbjb7nIi9',
             duration: 'PT2H45M',
@@ -396,6 +420,9 @@ export const mockOnHoldOrders: Order[] = [
       name: 'American Airlines',
       id: 'arl_00009VME7DAGiJjwomhv32',
       iata_code: 'AA',
+      logo_symbol_url: null,
+      logo_lockup_url: null,
+      conditions_of_carriage_url: null,
     },
     metadata: {
       customer_prefs: 'window seat',
@@ -454,12 +481,18 @@ export const mockOnHoldOrders: Order[] = [
               name: 'American Airlines',
               id: 'arl_00009VME7DAGiJjwomhv32',
               iata_code: 'AA',
+              logo_lockup_url: null,
+              logo_symbol_url: null,
+              conditions_of_carriage_url: null,
             },
             marketing_carrier_flight_number: '4341',
             marketing_carrier: {
               name: 'American Airlines',
               id: 'arl_00009VME7DAGiJjwomhv32',
               iata_code: 'AA',
+              logo_lockup_url: null,
+              logo_symbol_url: null,
+              conditions_of_carriage_url: null,
             },
             id: 'seg_0000A6GiZRU4WXtdZJrivU',
             duration: 'PT2H49M',
@@ -555,6 +588,9 @@ export const mockOnHoldOrders: Order[] = [
       name: 'American Airlines',
       id: 'arl_00009VME7DAGiJjwomhv32',
       iata_code: 'AA',
+      logo_symbol_url: null,
+      logo_lockup_url: null,
+      conditions_of_carriage_url: null,
     },
     metadata: {
       customer_prefs: 'window seat',
