@@ -50,6 +50,8 @@ export const mockAirlineInitiatedChange: AirlineInitiatedChange = {
               'https://assets.duffel.com/img/airlines/for-light-background/full-color-lockup/BA.svg',
             id: 'arl_00009VME7DBKeMags5CliQ',
             iata_code: 'BA',
+            conditions_of_carriage_url:
+              'https://www.britishairways.com/en-gb/information/legal/british-airways/general-conditions-of-carriage',
           },
           marketing_carrier_flight_number: '0472',
           marketing_carrier: {
@@ -60,6 +62,8 @@ export const mockAirlineInitiatedChange: AirlineInitiatedChange = {
               'https://assets.duffel.com/img/airlines/for-light-background/full-color-lockup/BA.svg',
             id: 'arl_00009VME7DBKeMags5CliQ',
             iata_code: 'BA',
+            conditions_of_carriage_url:
+              'https://www.britishairways.com/en-gb/information/legal/british-airways/general-conditions-of-carriage',
           },
           id: 'seg_00009htYpSCXrwaB9Dn456',
           duration: 'PT2H10M',
@@ -173,6 +177,8 @@ export const mockAirlineInitiatedChange: AirlineInitiatedChange = {
               'https://assets.duffel.com/img/airlines/for-light-background/full-color-lockup/BA.svg',
             id: 'arl_00009VME7DBKeMags5CliQ',
             iata_code: 'BA',
+            conditions_of_carriage_url:
+              'https://www.britishairways.com/en-gb/information/legal/british-airways/general-conditions-of-carriage',
           },
           marketing_carrier_flight_number: '0474',
           marketing_carrier: {
@@ -183,6 +189,8 @@ export const mockAirlineInitiatedChange: AirlineInitiatedChange = {
               'https://assets.duffel.com/img/airlines/for-light-background/full-color-lockup/BA.svg',
             id: 'arl_00009VME7DBKeMags5CliQ',
             iata_code: 'BA',
+            conditions_of_carriage_url:
+              'https://www.britishairways.com/en-gb/information/legal/british-airways/general-conditions-of-carriage',
           },
           id: 'seg_00009htYpSCXrwaB9Dn457',
           duration: 'PT2H15M',
