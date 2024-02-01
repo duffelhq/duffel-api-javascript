@@ -73,7 +73,7 @@ export class OfferRequests extends Resource {
         : OfferRequest
     >
   > => {
-    const { return_offers, ...data } = options
+    const { return_offers, supplier_timeout, ...data } = options
 
     return this.request({
       method: 'POST',
@@ -82,6 +82,8 @@ export class OfferRequests extends Resource {
       params: {
         ...(return_offers !== undefined &&
           return_offers !== null && { return_offers }),
+        ...(supplier_timeout !== undefined &&
+          supplier_timeout !== null && { supplier_timeout }),
       },
     })
   }
