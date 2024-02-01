@@ -1,7 +1,10 @@
 import { Client } from '../../Client'
 import { Resource } from '../../Resource'
 import { CreateOfferRequest, DuffelResponse, OfferRequest } from '../../types'
-import { SelectedPartialOffersParams } from './PartialOfferRequestTypes'
+import {
+  CreatePartialOfferRequestQueryParam,
+  SelectedPartialOffersParams,
+} from './PartialOfferRequestTypes'
 
 /**
  * To search for and select flights separately for each slice of the journey, you'll need to create a partial offer request.
@@ -45,13 +48,20 @@ export class PartialOfferRequests extends Resource {
    * @param {Object} [options] - the parameters for making a partial offer requests (required: slices, passengers; optional: cabin_class)
    * @link https://duffel.com/docs/api/partial-offer-requests/create-partial-offer-request
    */
-  public create = async <QueryParams>(
+  public create = async <
+    QueryParams extends CreatePartialOfferRequestQueryParam,
+  >(
     options: CreateOfferRequest & QueryParams,
   ): Promise<DuffelResponse<OfferRequest>> => {
+    const { supplier_timeout, ...data } = options
     return this.request({
       method: 'POST',
       path: `${this.path}/`,
-      data: options,
+      data: data,
+      params: {
+        ...(supplier_timeout !== undefined &&
+          supplier_timeout !== null && { supplier_timeout }),
+      },
     })
   }
 
