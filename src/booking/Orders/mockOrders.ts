@@ -394,7 +394,9 @@ export const mockOnHoldOrders: Order[] = [
             iata_code: 'MIA',
           },
         },
-        conditions: { change_before_departure: null },
+        conditions: {
+          change_before_departure: null,
+        },
         changeable: null,
       },
     ],

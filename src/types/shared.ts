@@ -158,6 +158,34 @@ export type FlightsConditions = {
 }
 
 /**
+ * The conditions associated with this offer, describing the kinds of modifications you can make post-booking and any penalties that will apply to those modifications.
+ * This information assumes the condition is applied to all of the slices and passengers associated with this offer - for information at the slice level (e.g. "what happens if I just want to change the first slice?") refer to the slices.
+ * If a particular kind of modification is allowed, you may not always be able to take action through the Duffel API.
+ * In some cases, you may need to contact the Duffel support team or the airline directly.
+ * Note that the perks associated with the slice are aggregated across passengers and segments and are intended to provide a brief summary of the passenger experience,
+ * however, the experience may not be consistent across all segments.
+ * As an example, priority boarding may be flagged as available but not available on all segments on the slice.
+ * See segment passenger conditions for a per-flight breakdown what is available to
+ * passengers if you require this level of granularity.
+ */
+export type OfferSliceConditions = FlightsConditions & {
+  /**
+   * Whether passengers are able to select a seat prior to check in.
+   */
+  advance_seat_selection: boolean
+
+  /**
+   * Whether passengers are given preferential boarding over others passengers in their cabin.
+   */
+  priority_boarding: boolean
+
+  /**
+   * Whether passengers are given access to a fast track lane during check in.
+   */
+  priority_check_in: boolean
+}
+
+/**
  * The type of payment you want to apply to the order.
  * If you are an IATA agent with your own agreements with airlines, in some cases, you can pay using ARC/BSP cash by specifying `arc_bsp_cash`. Otherwise, you must pay using your Duffel account's balance by specifying `balance`.
  * In test mode, your balance is unlimited. If you're not sure which of these options applies to you, get in touch with the Duffel support team at [help@duffel.com](mailto:help@duffel.com).
