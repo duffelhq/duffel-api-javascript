@@ -67,7 +67,7 @@ export type DuffelPassengerType = 'adult' | 'child' | 'infant_without_seat'
 /**
  * The passenger's title
  */
-export type DuffelPassengerTitle = 'mr' | 'ms' | 'mrs' | 'MR' | 'MS' | 'MRS'
+export type DuffelPassengerTitle = 'mr' | 'ms' | 'mrs' | 'miss' | 'dr'
 
 /**
  * The passenger's gender
