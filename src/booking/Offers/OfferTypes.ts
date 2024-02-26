@@ -10,6 +10,7 @@ import {
   Airport,
   PaginationMeta,
   DuffelPassengerType,
+  OfferSliceConditions,
 } from '../../types'
 
 /**
@@ -403,12 +404,32 @@ export interface OfferSlice {
   segments: OfferSliceSegment[]
 
   /**
-   * The conditions associated with this slice, describing the kinds of modifications you can make post-booking and any penalties that will apply to those modifications.
+   * The conditions associated with this slice, describing the kinds of modifications you can make post-booking and any penalties that will apply to those modifications
+   * and also what perks shall be available to passengers when travelling.
    * This condition is applied only to this slice and to all the passengers associated with this offer - for information at the offer level (e.g. "what happens if I want to change all the slices?") refer to the conditions at the top level.
    * If a particular kind of modification is allowed, you may not always be able to take action through the Duffel API.
    * In some cases, you may need to contact the Duffel support team or the airline directly.
+   * Note that the perks associated with the slice are aggregated across passengers and segments and are intended to provide a brief summary of the passenger experience,
+   * however, the experience may not be consistent across all segments.
+   * As an example, priority boarding may be flagged as available but not available on all segments on the slice.
+   * See segment passenger conditions for a per-flight breakdown what is available to
+   * passengers if you require this level of granularity.
    */
-  conditions: FlightsConditions
+  conditions: OfferSliceConditions
+
+  /**
+   * A summary of the seat characteristics and extras available to passengers on the given slice.
+   * The shelf is calculated by Duffel and may be used to group similar slices across offers when building a shopping display.
+   * Note this value does not take into account any services that may be purchased in addition to the offer and should not be directly used
+   * in any offer ranking systems.
+   * Includes the following:
+   *   - `"1"`: standard seating with limited extras.
+   *   - `"2"`: standard seating with extras, i.e. carry-on baggage, advanced seat selection,  priority boarding etc.
+   *   - `"3"`: preferred seating, such as additional legroom, seat width or middle seat free
+   *   - `"4"`: premium seating, additional legroom and recline. Situated in business class or higher.
+   *    - `"5"`: deluxe seating, additional legroom and reclines to lie flat position. Situated in business class or higher.
+   */
+  ngs_shelf: number
 }
 
 export interface OfferSliceSegment {
@@ -522,6 +543,17 @@ export interface OfferSliceSegmentStop {
   duration: string
 }
 
+export type WiFiAmenityCost = 'free' | 'paid' | 'free or paid' | 'n/a'
+export type SeatPitch = 'less' | 'more' | 'standard' | 'n/a'
+export type SeatType =
+  | 'standard'
+  | 'extra_legroom'
+  | 'skycouch'
+  | 'recliner'
+  | 'angle_flat'
+  | 'full_flat'
+  | 'private_suite'
+
 export interface OfferSliceSegmentPassenger {
   /**
    * The baggage allowances for the passenger on this segment included in the offer.
@@ -550,6 +582,74 @@ export interface OfferSliceSegmentPassenger {
    * fare basis code is not available or the airline does not use fare basis codes.
    */
   fare_basis_code: string
+
+  /**
+   * Data about the cabin that the passenger will be flying in for this segment
+   */
+  cabin: {
+    /**
+     * The name of the cabin class
+     */
+    name: CabinClass
+
+    /**
+     * TThe name that the marketing carrier uses to market this cabin class
+     */
+    marketing_name: string
+
+    /**
+     * The amenities specific to this cabin class on this plane
+     */
+    amenities: {
+      /**
+       * If Wi-Fi is available, information on its cost, availability, etc
+       */
+      wifi: {
+        /**
+         * Whether Wi-Fi is available in this cabin
+         */
+        available: boolean
+
+        /**
+         * The cost, if any, to use the Wi-Fi
+         */
+        cost: WiFiAmenityCost
+      } | null
+
+      /**
+       * Information on the standard seat in this cabin class. Exceptions may apply, such as on exit rows.
+       */
+      seat: {
+        /**
+         * The distance from a point on a seat to the seat front/behind it, in inches, or "n/a" if not available
+         */
+        pitch: SeatPitch
+
+        /**
+         * A summary of the seat characteristics for the cabin.
+         * Includes the following:
+         *   - `"standard"` - typical seating with regular legroom / recline
+         *   - `"extra_legroom"` - typical seating with additional legroom
+         *   - `"skycouch"` - a row of seats converted into a couch layout
+         *   - `"recliner"` - seating with additional legroom and recline
+         *   - `"angle_flat"` - seating with additional legroom and near flat recline
+         *   - `"full_flat_pod"` - seating with full flat recline and enclosing privacy screens
+         *   - `"private_suite"` - a full suite, typically including a bed and recliner seat
+         */
+        type: SeatType
+      } | null
+
+      /**
+       * If power (AC and/or USB) is available, information on what is available
+       */
+      power: {
+        /**
+         * Whether there is power available or not in this cabin
+         */
+        available: boolean
+      } | null
+    }
+  } | null
 }
 
 export type BaggageType = 'carry_on' | 'checked'

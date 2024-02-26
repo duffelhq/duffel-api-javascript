@@ -9,6 +9,7 @@ export const mockOffer: Offer = {
   tax_amount: '40.80',
   slices: [
     {
+      ngs_shelf: 1,
       segments: [
         {
           passengers: [
@@ -23,6 +24,15 @@ export const mockOffer: Offer = {
                 },
               ],
               fare_basis_code: 'KLWC10A',
+              cabin: {
+                name: 'economy',
+                marketing_name: 'Economy Basic',
+                amenities: {
+                  wifi: null,
+                  power: null,
+                  seat: null,
+                },
+              },
             },
           ],
           origin_terminal: 'B',
@@ -144,6 +154,9 @@ export const mockOffer: Offer = {
           penalty_amount: '100.00',
           allowed: true,
         },
+        advance_seat_selection: false,
+        priority_boarding: false,
+        priority_check_in: false,
       },
     },
   ],
