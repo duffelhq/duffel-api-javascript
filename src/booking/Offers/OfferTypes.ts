@@ -543,6 +543,17 @@ export interface OfferSliceSegmentStop {
   duration: string
 }
 
+export type WiFiAmenityCost = 'free' | 'paid' | 'free or paid' | 'n/a'
+export type SeatPitch = 'less' | 'more' | 'standard' | 'n/a'
+export type SeatType =
+  | 'standard'
+  | 'extra_legroom'
+  | 'skycouch'
+  | 'recliner'
+  | 'angle_flat'
+  | 'full_flat'
+  | 'private_suite'
+
 export interface OfferSliceSegmentPassenger {
   /**
    * The baggage allowances for the passenger on this segment included in the offer.
@@ -602,7 +613,7 @@ export interface OfferSliceSegmentPassenger {
         /**
          * The cost, if any, to use the Wi-Fi
          */
-        cost: 'free' | 'paid' | 'free or paid' | 'n/a'
+        cost: WiFiAmenityCost
       } | null
 
       /**
@@ -612,7 +623,7 @@ export interface OfferSliceSegmentPassenger {
         /**
          * The distance from a point on a seat to the seat front/behind it, in inches, or "n/a" if not available
          */
-        pitch: 'less' | 'more' | 'standard' | 'n/a'
+        pitch: SeatPitch
 
         /**
          * A summary of the seat characteristics for the cabin.
@@ -625,14 +636,7 @@ export interface OfferSliceSegmentPassenger {
          *   - `"full_flat_pod"` - seating with full flat recline and enclosing privacy screens
          *   - `"private_suite"` - a full suite, typically including a bed and recliner seat
          */
-        type:
-          | 'standard'
-          | 'extra_legroom'
-          | 'skycouch'
-          | 'recliner'
-          | 'angle_flat'
-          | 'full_flat'
-          | 'private_suite'
+        type: SeatType
       } | null
 
       /**
