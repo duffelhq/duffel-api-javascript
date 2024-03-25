@@ -16,12 +16,12 @@ export interface OfferRequestSlice {
   /**
    * The city or airport the passengers want to travel to
    */
-  destination: Place | string
+  destination: Place
 
   /**
    * The city or airport the passengers want to depart from
    */
-  origin: Place | string
+  origin: Place
 
   /**
    * The type of the origin

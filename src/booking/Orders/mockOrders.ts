@@ -296,7 +296,6 @@ export const mockOnHoldOrders: Order[] = [
             ],
             origin_terminal: null,
             origin: {
-              type: 'airport',
               time_zone: 'America/Indiana/Indianapolis',
               name: 'Indianapolis International Airport',
               longitude: -86.295526,
@@ -331,7 +330,6 @@ export const mockOnHoldOrders: Order[] = [
             distance: null,
             destination_terminal: null,
             destination: {
-              type: 'airport',
               time_zone: 'America/New_York',
               name: 'Miami International Airport',
               longitude: -80.288826,
@@ -466,7 +464,6 @@ export const mockOnHoldOrders: Order[] = [
             ],
             origin_terminal: null,
             origin: {
-              type: 'airport',
               time_zone: 'America/Indiana/Indianapolis',
               name: 'Indianapolis International Airport',
               longitude: -86.295526,
@@ -501,7 +498,6 @@ export const mockOnHoldOrders: Order[] = [
             distance: null,
             destination_terminal: null,
             destination: {
-              type: 'airport',
               time_zone: 'America/New_York',
               name: 'Miami International Airport',
               longitude: -80.288826,

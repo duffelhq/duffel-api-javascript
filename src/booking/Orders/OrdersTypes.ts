@@ -1,8 +1,8 @@
-import { Airport } from '@duffel/api/types'
 import {
   Aircraft,
   Airline,
   AirlineInitiatedChange,
+  Airport,
   CabinClass,
   DuffelPassengerGender,
   DuffelPassengerTitle,
