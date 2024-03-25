@@ -1,3 +1,4 @@
+import { Airport } from '@duffel/api/types'
 import {
   Aircraft,
   Airline,
@@ -232,9 +233,9 @@ export interface OrderSliceSegment {
    */
   departing_at: string
   /**
-   * The city or airport where this slice ends
+   * The airport at which the segment is scheduled to arrive
    */
-  destination: Place
+  destination: Airport
   /**
    * The terminal at the destination airport where the segment is scheduled to arrive
    * @example "5"
@@ -268,9 +269,9 @@ export interface OrderSliceSegment {
    */
   operating_carrier_flight_number: string
   /**
-   * The city or airport where this slice begins
+   * The airport from which the flight is scheduled to depart
    */
-  origin: Place
+  origin: Airport
   /**
    * The terminal at the origin airport from which the segment is scheduled to depart
    * @example "B"
