@@ -291,7 +291,37 @@ export interface CreateOfferRequest {
    * up this offer request. One-way journeys can be expressed using one slice,
    * whereas return trips will need two.
    */
-  slices: Omit<OfferRequestSlice, 'origin_type' | 'destination_type'>[]
+  slices: CreateOfferRequestSlice[]
+}
+
+export interface CreateOfferRequestSlice {
+  /**
+   * The 3-letter IATA code for the city or airport where this slice ends
+   * Example: "JFK"
+   */
+  destination: string
+
+  /**
+   * The 3-letter IATA code for the city or airport where this slice starts
+   * Example: "LHR"
+   */
+  origin: string
+
+  /**
+   * The ISO 8601 date on which the passengers want to depart
+   * Example: "2020-04-24"
+   */
+  departure_date: string
+
+  /**
+   * The inclusive time range for the arrival of the slice
+   */
+  arrival_time?: string | null
+
+  /**
+   * The inclusive time range for the departure of the slice
+   */
+  departure_time?: string | null
 }
 
 export interface CreateOfferRequestQueryParameters {
