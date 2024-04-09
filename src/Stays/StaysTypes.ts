@@ -335,6 +335,11 @@ export interface StaysAccommodation {
   } | null
 
   /**
+   * Deprecated: Instructions to access the accommodation in the booking
+   */
+  key_collection: StaysBookingKeyCollection | null
+
+  /**
    * The total currency for the cheapest rate for this accommodation, as an ISO 4217 currency code. If rooms data is available, this is equivalent to the cheapest rate for the cheapest room.
    */
   cheapest_rate_currency: string
@@ -596,7 +601,7 @@ export interface StaysBooking {
   rooms: number
 
   /**
-   * Instructions to access the accommodation in the booking
+   * Deprecated: Instructions to access the accommodation in the booking
    */
   key_collection: StaysBookingKeyCollection | null
 }
