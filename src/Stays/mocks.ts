@@ -140,6 +140,9 @@ export const MOCK_ACCOMMODATION: StaysAccommodation = {
     check_out_before_time: '11:30',
     check_in_after_time: '14:30',
   },
+  key_collection: {
+    instructions: 'Key is at the property. Collect from the lock box.',
+  },
   cheapest_rate_total_amount: '799.00',
   cheapest_rate_currency: 'GBP',
   chain: {
