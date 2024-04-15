@@ -252,7 +252,7 @@ console.log(orderUpdateResponse.data.id)
 
 ## Configuration
 
-### Test and live modes
+### Test and live mode
 
 To use the Duffel test mode, make sure you're using a "test" token. And for live mode, make sure to use a "live" token.
 
