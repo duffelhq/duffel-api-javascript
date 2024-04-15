@@ -86,7 +86,7 @@
     "rollup-plugin-dts-bundle": "^1.0.0",
     "rollup-plugin-inject-process-env": "1.3.1",
     "rollup-plugin-peer-deps-external": "2.2.4",
-    "@rollup/plugin-terser": "0.1.0",
+    "rollup-plugin-terser": "7.0.2",
     "rollup-plugin-typescript2": "0.36.0",
     "semantic-release": "22.0.12",
     "ts-jest": "29.1.2",
