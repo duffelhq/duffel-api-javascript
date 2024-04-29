@@ -1,4 +1,4 @@
-import fetch from 'node-fetch'
+import fetch, { Headers } from 'node-fetch'
 import { URL, URLSearchParams } from 'url'
 import {
   DuffelResponse,
@@ -18,7 +18,7 @@ export interface Config {
 export class DuffelError extends Error {
   public meta: ApiResponseMeta
   public errors: ApiResponseError[]
-  public headers: Record<string, string>
+  public headers: Headers
 
   constructor({
     meta,
@@ -27,7 +27,7 @@ export class DuffelError extends Error {
   }: {
     meta: ApiResponseMeta
     errors: ApiResponseError[]
-    headers: Record<string, string>
+    headers: Headers
   }) {
     super()
     this.meta = meta
