@@ -612,10 +612,11 @@ export interface StaysBooking {
   key_collection: StaysBookingKeyCollection | null
 }
 
-export type Guest = {
-  type: string
-  age?: number
-}
+// Age is not required for adult, but required for child
+type Adult = { type: 'adult'; age?: number }
+type Child = { type: 'child'; age: number }
+
+export type Guest = Adult | Child
 
 type OccupancyCriteria = {
   rooms: number

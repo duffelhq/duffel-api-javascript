@@ -1,6 +1,7 @@
 import nock from 'nock'
 import { Duffel } from '../index'
 import { MOCK_SEARCH_RESULT } from './mocks'
+import { StaysSearchParams } from './StaysTypes'
 
 const duffel = new Duffel({ token: 'mockToken' })
 describe('Stays', () => {
@@ -10,7 +11,7 @@ describe('Stays', () => {
 
   it('should post location params to /stays/search when `search` is called', async () => {
     const mockResponse = { data: { results: [MOCK_SEARCH_RESULT] } }
-    const mockSearchParams = {
+    const mockSearchParams: StaysSearchParams = {
       location: {
         radius: 5,
         geographic_coordinates: {
@@ -36,7 +37,7 @@ describe('Stays', () => {
 
   it('should post accommodation params to /stays/search when `search` is called', async () => {
     const mockResponse = { data: { results: [MOCK_SEARCH_RESULT] } }
-    const mockSearchParams = {
+    const mockSearchParams: StaysSearchParams = {
       accommodation: {
         ids: ['acc_12345'],
         fetch_rates: true,
@@ -59,7 +60,7 @@ describe('Stays', () => {
 
   it('should alternatively accept `guests` with `accommodation` as a search criteria and post it to /stays/search', async () => {
     const mockResponse = { data: { results: [MOCK_SEARCH_RESULT] } }
-    const mockSearchParams = {
+    const mockSearchParams: StaysSearchParams = {
       accommodation: {
         ids: ['acc_12345'],
         fetch_rates: true,
@@ -87,7 +88,7 @@ describe('Stays', () => {
 
   it('should alternatively accept `guests` with `location` as a search criteria and post it to /stays/search', async () => {
     const mockResponse = { data: { results: [MOCK_SEARCH_RESULT] } }
-    const mockSearchParams = {
+    const mockSearchParams: StaysSearchParams = {
       location: {
         radius: 5,
         geographic_coordinates: {
