@@ -530,6 +530,12 @@ export interface StaysQuote {
    * The number of rooms this quote is for
    */
   rooms: number
+
+  /*
+   * A list of guests representing the requested occupancy for this quote
+   */
+
+  guests: Array<Guest>
 }
 
 export type StaysBookingStatus = 'confirmed' | 'cancelled'
@@ -606,12 +612,20 @@ export interface StaysBooking {
   key_collection: StaysBookingKeyCollection | null
 }
 
-interface CommonStaysSearchParams {
+// Age is not required for adult, but required for child
+type Adult = { type: 'adult'; age?: number }
+type Child = { type: 'child'; age: number }
+
+export type Guest = Adult | Child
+
+type OccupancyCriteria = {
+  rooms: number
+} & ({ adults: number } | { guests: Array<Guest> })
+
+type CommonStaysSearchParams = {
   check_in_date: string
   check_out_date: string
-  adults: number
-  rooms: number
-}
+} & OccupancyCriteria
 
 type LocationSearchParams = {
   location: {
@@ -639,4 +653,5 @@ export interface StaysSearchResult {
   accommodation: StaysAccommodation
   adults: number
   rooms: number
+  guests: Array<Guest>
 }
