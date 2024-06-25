@@ -400,6 +400,12 @@ export interface StaysAccommodation {
   rooms: StaysRoom[]
 }
 
+export interface StaysAccommodationSuggestion {
+  accommodation_id: StaysAccommodation['id']
+  accommodation_name: StaysAccommodation['name']
+  accommodation_location: StaysLocation
+}
+
 /**
  * Represents a quote for a stay.
  */

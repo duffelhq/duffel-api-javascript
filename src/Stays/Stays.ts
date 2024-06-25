@@ -2,6 +2,7 @@ import { Client } from '../Client'
 import { StaysSearchParams, StaysSearchResult } from './StaysTypes'
 import { Resource } from '../Resource'
 import { DuffelResponse } from '../types'
+import { Accommodation } from './Accommodation'
 import { Bookings } from './Bookings'
 import { Quotes } from './Quotes'
 import { SearchResults } from './SearchResults'
@@ -12,6 +13,7 @@ export class Stays extends Resource {
    */
   path: string
 
+  public accommodation: Accommodation
   public searchResults: SearchResults
   public quotes: Quotes
   public bookings: Bookings
@@ -20,6 +22,7 @@ export class Stays extends Resource {
     super(client)
     this.path = 'stays'
 
+    this.accommodation = new Accommodation(client)
     this.searchResults = new SearchResults(client)
     this.quotes = new Quotes(client)
     this.bookings = new Bookings(client)
