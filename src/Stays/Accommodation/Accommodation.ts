@@ -1,5 +1,5 @@
 import { Client } from '../../Client'
-import { StaysAccommodationSuggestion } from '../StaysTypes'
+import { StaysAccommodationSuggestion, StaysAccommodation } from '../StaysTypes'
 import { Resource } from '../../Resource'
 import { DuffelResponse } from '../../types'
 
@@ -27,5 +27,17 @@ export class Accommodation extends Resource {
       data: {
         query: query,
       },
+    })
+
+  /**
+   * Get information about an accommodation with a specific Duffel ID
+   * @param {string} id - The Duffel ID of the Accommodation
+   */
+  public get = async (
+    id: StaysAccommodation['id'],
+  ): Promise<DuffelResponse<StaysAccommodation>> =>
+    this.request({
+      method: 'GET',
+      path: `${this.path}/${id}`,
     })
 }
