@@ -1,6 +1,7 @@
 // eslint-disable spellcheck/spell-checker
 import {
   StaysAccommodation,
+  StaysAccommodationSuggestion,
   StaysBooking,
   StaysQuote,
   StaysSearchResult,
@@ -217,4 +218,10 @@ export const MOCK_QUOTE: StaysQuote = {
   adults: 2,
   rooms: 1,
   guests: [{ type: 'adult' }, { type: 'adult' }],
+}
+
+export const MOCK_ACCOMMODATION_SUGGESTION: StaysAccommodationSuggestion = {
+  accommodation_id: MOCK_ACCOMMODATION.id,
+  accommodation_name: MOCK_ACCOMMODATION.name,
+  accommodation_location: MOCK_ACCOMMODATION.location,
 }
