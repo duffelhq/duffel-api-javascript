@@ -15,8 +15,8 @@ export class Accommodation extends Resource {
   }
 
   /**
-   * Create a booking
-   * @param {object} payload - The booking payload, including quote id and guest information
+   * Get suggestions for accommodation given a query string.
+   * @param {string} query - The query string for the search
    */
   public suggestions = async (
     query: string,
