@@ -633,14 +633,16 @@ type CommonStaysSearchParams = {
   check_out_date: string
 } & OccupancyCriteria
 
-type LocationSearchParams = {
-  location: {
-    radius: number
-    geographic_coordinates: {
-      latitude: number
-      longitude: number
-    }
+export type LocationParams = {
+  radius: number
+  geographic_coordinates: {
+    latitude: number
+    longitude: number
   }
+}
+
+type LocationSearchParams = {
+  location: LocationParams
 } & CommonStaysSearchParams
 
 type AccommodationSearchParams = {
