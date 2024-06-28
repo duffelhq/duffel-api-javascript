@@ -10,11 +10,37 @@ describe('Stays/Accommodation', () => {
 
   it('should post to /stays/suggestions when `suggestions` is called', async () => {
     const query = 'rits'
+    const location = {
+      geographic_coordinates: { latitude: 51.5287398, longitude: -0.2664005 },
+      radius: 5,
+    }
+
     const mockResponse = { data: [MOCK_ACCOMMODATION_SUGGESTION] }
 
     nock(/(.*)/)
       .post('/stays/accommodation/suggestions', (body) => {
         expect(body.data.query).toEqual(query)
+        expect(body.data.location).toEqual(location)
+
+        return true
+      })
+      .reply(200, mockResponse)
+
+    const response = await duffel.stays.accommodation.suggestions(
+      query,
+      location,
+    )
+    expect(response.data).toEqual(mockResponse.data)
+  })
+
+  it('should post to /stays/suggestions without a location when `suggestions` is called with only a query', async () => {
+    const query = 'rits'
+    const mockResponse = { data: [MOCK_ACCOMMODATION_SUGGESTION] }
+
+    nock(/(.*)/)
+      .post('/stays/accommodation/suggestions', (body) => {
+        expect(body.data.query).toEqual(query)
+        expect(body.data.location).toBeUndefined()
         return true
       })
       .reply(200, mockResponse)

@@ -1,5 +1,9 @@
 import { Client } from '../../Client'
-import { StaysAccommodationSuggestion, StaysAccommodation } from '../StaysTypes'
+import {
+  LocationParams,
+  StaysAccommodationSuggestion,
+  StaysAccommodation,
+} from '../StaysTypes'
 import { Resource } from '../../Resource'
 import { DuffelResponse } from '../../types'
 
@@ -20,12 +24,14 @@ export class Accommodation extends Resource {
    */
   public suggestions = async (
     query: string,
+    location?: LocationParams,
   ): Promise<DuffelResponse<StaysAccommodationSuggestion[]>> =>
     this.request({
       method: 'POST',
       path: `${this.path}/suggestions`,
       data: {
         query: query,
+        location: location,
       },
     })
 
