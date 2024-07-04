@@ -182,6 +182,9 @@ export const MOCK_BOOKING: StaysBooking = {
   key_collection: {
     instructions: 'Key is at the property. Collect from the lock box.',
   },
+  metadata: {
+    checkout_reference: 'usr_0000AePJGl5G9ZYfmNllrs',
+  },
 }
 
 export const MOCK_CREATE_BOOKING_PAYLOAD: StaysBookingPayload = {
