@@ -53,7 +53,7 @@ export interface StaysRateCancellationTimeline {
   currency: string
 }
 
-export type StaysLoyaltyProgramme =
+export type StaysLoyaltyProgrammeReference =
   | 'wyndham_rewards'
   | 'choice_privileges'
   | 'marriott_bonvoy'
@@ -178,7 +178,7 @@ export interface StaysRate {
    * If the rate does not support a loyalty programme, this will be null.
    * The duffel_hotel_group_rewards value is an example programme for testing and integration purposes, and will only appear on Duffel Hotel Group test hotel rates.
    */
-  supported_loyalty_programme: StaysLoyaltyProgramme | null
+  supported_loyalty_programme: StaysLoyaltyProgrammeReference | null
 
   /**
    * The source of the rate.
@@ -398,6 +398,11 @@ export interface StaysAccommodation {
    * Rooms for the accommodation
    */
   rooms: StaysRoom[]
+
+  /**
+   * The loyalty programme that this accommodation supports.
+   */
+  supported_loyalty_programme: StaysLoyaltyProgrammeReference | null
 }
 
 export interface StaysAccommodationSuggestion {
@@ -519,7 +524,7 @@ export interface StaysQuote {
   /**
    * The loyalty programme that this quote supports.
    */
-  supported_loyalty_programme: StaysLoyaltyProgramme | null
+  supported_loyalty_programme: StaysLoyaltyProgrammeReference | null
 
   /**
    * A client key to authenticate with Duffel's Card Component when creating a tokenised card.
@@ -600,7 +605,7 @@ export interface StaysBooking {
   /**
    * The loyalty programme that this booking supports.
    */
-  supported_loyalty_programme: StaysLoyaltyProgramme | null
+  supported_loyalty_programme: StaysLoyaltyProgrammeReference | null
 
   /**
    * Loyalty account number to associate with this booking. Use this only when the quote has a supported_loyalty_programme indicated. Otherwise, this will result into an error.
@@ -667,4 +672,10 @@ export interface StaysSearchResult {
   adults: number
   rooms: number
   guests: Array<Guest>
+}
+
+export interface StaysLoyaltyProgramme {
+  reference: StaysLoyaltyProgrammeReference
+  name: string
+  logo_url: string | null
 }

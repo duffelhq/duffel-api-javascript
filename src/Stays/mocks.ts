@@ -3,6 +3,7 @@ import {
   StaysAccommodation,
   StaysAccommodationSuggestion,
   StaysBooking,
+  StaysLoyaltyProgramme,
   StaysQuote,
   StaysSearchResult,
 } from './StaysTypes'
@@ -149,6 +150,7 @@ export const MOCK_ACCOMMODATION: StaysAccommodation = {
   chain: {
     name: 'The Ritz-Carlton',
   },
+  supported_loyalty_programme: 'duffel_hotel_group_rewards',
 }
 
 export const MOCK_SEARCH_RESULT: StaysSearchResult = {
@@ -228,3 +230,12 @@ export const MOCK_ACCOMMODATION_SUGGESTION: StaysAccommodationSuggestion = {
   accommodation_name: MOCK_ACCOMMODATION.name,
   accommodation_location: MOCK_ACCOMMODATION.location,
 }
+
+export const MOCK_LOYALTY_PROGRAMMES: StaysLoyaltyProgramme[] = [
+  {
+    reference: 'duffel_hotel_group_rewards',
+    name: 'Duffel Hotel Group Rewards',
+    logo_url:
+      'https://assets.duffel.com/img/stays/loyalty-programmes/full-color-logo/duffel_hotel_group_rewards-square.svg',
+  },
+]
