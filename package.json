@@ -5,7 +5,11 @@
   "main": "dist/index.js",
   "module": "dist/index.es.js",
   "types": "dist/typings.d.ts",
-  "homepage": "https://duffel.com",
+  "homepage": "https://github.com/duffelhq/duffel-api-javascript",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/duffelhq/duffel-api-javascript.git"
+  },
   "keywords": [
     "duffel"
   ],
