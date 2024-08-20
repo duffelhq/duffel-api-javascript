@@ -237,5 +237,9 @@ export const MOCK_LOYALTY_PROGRAMMES: StaysLoyaltyProgramme[] = [
     name: 'Duffel Hotel Group Rewards',
     logo_url:
       'https://assets.duffel.com/img/stays/loyalty-programmes/full-color-logo/duffel_hotel_group_rewards-square.svg',
+    logo_url_svg:
+      'https://assets.duffel.com/img/stays/loyalty-programmes/full-color-logo/duffel_hotel_group_rewards-square.svg',
+    logo_url_png_small:
+      'https://assets.duffel.com/img/stays/loyalty-programmes/transparent-logo/duffel_hotel_group_rewards.png',
   },
 ]
