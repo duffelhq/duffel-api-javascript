@@ -677,7 +677,6 @@ export interface StaysSearchResult {
 export interface StaysLoyaltyProgramme {
   reference: StaysLoyaltyProgrammeReference
   name: string
-  logo_url: string
   logo_url_svg: string
   logo_url_png_small: string
 }
