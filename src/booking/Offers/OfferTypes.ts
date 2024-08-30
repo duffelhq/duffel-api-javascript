@@ -11,6 +11,7 @@ import {
   PaginationMeta,
   DuffelPassengerType,
   OfferSliceConditions,
+  CreateOfferRequestPassengerFareType,
 } from '../../types'
 
 /**
@@ -22,7 +23,7 @@ export interface Offer {
    * The types of identity documents that may be provided for the passengers when creating an order based on this offer.
    * If this is `[]`, then you must not provide identity documents.
    */
-  allowed_passenger_identity_document_types: PassengerIdentityDocumentType[]
+  supported_passenger_identity_document_types: PassengerIdentityDocumentType[]
 
   /**
    * The services that can be booked along with the offer but are not included by default, for example an additional checked bag.
@@ -316,12 +317,18 @@ export interface OfferPassenger {
   /**
    * The age of the passenger on the departure_date of the final slice.
    */
-  age?: number
+  age: number | null
 
   /**
    * The type of the passenger.
    */
-  type?: DuffelPassengerType
+  type: DuffelPassengerType | null
+
+  /**
+   * The fare type of the passenger. If the passenger is aged less than 18, you
+   * should pass in age as well.
+   */
+  fare_type: CreateOfferRequestPassengerFareType | null
 
   /**
    * The passenger's family name. Only `space`, `-`, `'`, and letters from the `ASCII`, `Latin-1 Supplement` and `Latin
@@ -331,7 +338,7 @@ export interface OfferPassenger {
    *
    * This is only required if you're also including **Loyalty Programme Accounts**.
    */
-  family_name?: string
+  family_name: string | null
 
   /**
    * The passenger's given name. Only `space`, `-`, `'`, and letters from the `ASCII`, `Latin-1 Supplement` and `Latin
@@ -341,12 +348,12 @@ export interface OfferPassenger {
    *
    * This is only required if you're also including **Loyalty Programme Accounts**.
    */
-  given_name?: string
+  given_name: string | null
 
   /**
    * The **Loyalty Programme Accounts** for this passenger.
    */
-  loyalty_programme_accounts?: LoyaltyProgrammeAccount[]
+  loyalty_programme_accounts: LoyaltyProgrammeAccount[]
 
   /**
    * The identifier for the passenger, unique within this Offer Request and across all Offer Requests.

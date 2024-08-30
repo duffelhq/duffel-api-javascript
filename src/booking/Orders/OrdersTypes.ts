@@ -172,7 +172,7 @@ export interface OrderPassenger {
 
 export interface OrderPassengerIdentityDocument {
   /**
-   * The type of the identity document. This must be one of the allowed_passenger_identity_document_types on the offer.
+   * The type of the identity document. This must be one of the supported_passenger_identity_document_types on the offer.
    */
   type: PassengerIdentityDocumentType
 
@@ -194,7 +194,7 @@ export interface OrderPassengerIdentityDocument {
 
 export interface CreateOrderPassenger extends Omit<OrderPassenger, 'type'> {
   /**
-   * The passenger's identity documents. You may only provide one identity document per passenger. The identity document's type must be included in the offer's allowed_passenger_identity_document_types. If the offer's passenger_identity_documents_required is set to true, then an identity document must be provided.
+   * The passenger's identity documents. You may only provide one identity document per passenger. The identity document's type must be included in the offer's supported_passenger_identity_document_types. If the offer's passenger_identity_documents_required is set to true, then an identity document must be provided.
    */
   identity_documents?: OrderPassengerIdentityDocument[]
 

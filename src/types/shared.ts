@@ -55,9 +55,13 @@ export type DuffelPassengerGender = 'm' | 'f'
 
 /**
  * The type of the identity document.
- * This must be one of the `allowed_passenger_identity_document_types` on the offer.
+ * This must be one of the `supported_passenger_identity_document_types` on the offer.
  */
-export type PassengerIdentityDocumentType = 'passport' | 'tax_id'
+export type PassengerIdentityDocumentType =
+  | 'passport'
+  | 'tax_id'
+  | 'known_traveler_number'
+  | 'passenger_redress_number'
 
 /**
  * The type of the origin or destination

@@ -170,6 +170,7 @@ export const mockPartialOffer: Offer = {
   passengers: [
     {
       type: 'adult',
+      fare_type: 'contract_bulk',
       id: 'pas_00009hj8USM7Ncg31cBCL',
       age: 14,
       given_name: 'Carol',
@@ -244,7 +245,7 @@ export const mockPartialOffer: Offer = {
       type: 'cancel_for_any_reason',
     },
   ],
-  allowed_passenger_identity_document_types: ['passport'],
+  supported_passenger_identity_document_types: ['passport'],
 }
 
 export const mockUpdatedOffer = {
