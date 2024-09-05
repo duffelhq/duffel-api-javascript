@@ -165,6 +165,8 @@ export const MOCK_SEARCH_RESULT: StaysSearchResult = {
 
 export const MOCK_BOOKING: StaysBooking = {
   accommodation: MOCK_ACCOMMODATION,
+  email: 'jean@example.com',
+  phone_number: '+4407242242424',
   status: 'confirmed',
   reference: 'dhg-4692ARxBI85qTkbDDEZMO8',
   id: 'bok_0000ARxBI85qTkbDDEZMO3',
