@@ -562,6 +562,16 @@ export interface StaysBooking {
   id: string
 
   /**
+   * The email of the lead guest of the booking
+   */
+  email: string
+
+  /**
+   * The phone number of the lead guest of the booking
+   */
+  phone_number: string
+
+  /**
    * The accommodation object for the booking
    */
   accommodation: StaysAccommodation
