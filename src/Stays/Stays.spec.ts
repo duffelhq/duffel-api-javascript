@@ -21,7 +21,7 @@ describe('Stays', () => {
       },
       check_in_date: '2023-10-20',
       check_out_date: '2023-10-24',
-      adults: 2,
+      guests: [{ type: 'adult' }, { type: 'adult' }, { type: 'child', age: 5 }],
       rooms: 1,
     }
 
@@ -44,7 +44,7 @@ describe('Stays', () => {
       },
       check_in_date: '2023-10-20',
       check_out_date: '2023-10-24',
-      adults: 2,
+      guests: [{ type: 'adult' }, { type: 'adult' }, { type: 'child', age: 5 }],
       rooms: 1,
     }
 

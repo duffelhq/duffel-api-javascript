@@ -244,7 +244,8 @@ export const mockOffer: Offer = {
       type: 'cancel_for_any_reason',
     },
   ],
-  allowed_passenger_identity_document_types: ['passport'],
+  supported_passenger_identity_document_types: ['passport'],
+  supported_loyalty_programmes: [],
 }
 
 export const mockUpdatedOffer = {

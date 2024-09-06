@@ -51,7 +51,6 @@ export const MOCK_ACCOMMODATION: StaysAccommodation = {
           fee_amount: '40.00',
           cancellation_timeline: [],
           board_type: 'room_only',
-          payment_method: 'balance', // Deprecated. Refer to available_payment_methods instead.
           available_payment_methods: ['balance'],
           quantity_available: 1,
           supported_loyalty_programme: null,
@@ -83,7 +82,6 @@ export const MOCK_ACCOMMODATION: StaysAccommodation = {
           fee_amount: '40.00',
           cancellation_timeline: [],
           board_type: 'room_only',
-          payment_method: 'card', // Deprecated. Refer to available_payment_methods instead.
           available_payment_methods: ['card'],
           quantity_available: 1,
           supported_loyalty_programme: 'duffel_hotel_group_rewards',
@@ -145,8 +143,6 @@ export const MOCK_ACCOMMODATION: StaysAccommodation = {
   key_collection: {
     instructions: 'Key is at the property. Collect from the lock box.',
   },
-  cheapest_rate_total_amount: '799.00',
-  cheapest_rate_currency: 'GBP',
   chain: {
     name: 'The Ritz-Carlton',
   },
@@ -158,9 +154,10 @@ export const MOCK_SEARCH_RESULT: StaysSearchResult = {
   id: 'sta_something',
   check_in_date: '2023-03-24',
   check_out_date: '2023-03-28',
-  adults: 2,
   rooms: 1,
   guests: [{ type: 'adult' }, { type: 'adult' }],
+  cheapest_rate_total_amount: '799.00',
+  cheapest_rate_currency: 'GBP',
 }
 
 export const MOCK_BOOKING: StaysBooking = {
@@ -221,8 +218,6 @@ export const MOCK_QUOTE: StaysQuote = {
   due_at_accommodation_amount: null,
   due_at_accommodation_currency: 'USD',
   supported_loyalty_programme: 'duffel_hotel_group_rewards',
-  card_component_key: null,
-  adults: 2,
   rooms: 1,
   guests: [{ type: 'adult' }, { type: 'adult' }],
 }
