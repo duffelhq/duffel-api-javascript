@@ -3,6 +3,7 @@ import {
   Airline,
   Airport,
   CabinClass,
+  CreateOfferRequestPassengerFareType,
   DuffelPassengerType,
   FlightsConditions,
   LoyaltyProgrammeAccount,
@@ -368,6 +369,12 @@ export interface OfferPassenger {
    * Optionally providing one has been deprecated.
    */
   id: string
+
+  /**
+   * The fare type of the passenger
+   * Example: "contract_bulk"
+   */
+  fare_type: CreateOfferRequestPassengerFareType | null
 }
 
 export interface OfferSlice {

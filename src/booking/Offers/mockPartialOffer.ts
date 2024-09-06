@@ -180,6 +180,7 @@ export const mockPartialOffer: Offer = {
           airline_iata_code: 'BA',
         },
       ],
+      fare_type: null,
     },
   ],
   passenger_identity_documents_required: false,
