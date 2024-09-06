@@ -209,14 +209,6 @@ export interface CreateOrderPassenger extends Omit<OrderPassenger, 'type'> {
    * @example "+442080160509"
    */
   phone_number: string
-
-  /**
-   * @deprecated This type is here just for the backward-compatibility until the field is officially removed from the API
-   *
-   * The type of the passenger
-   * @example "adult", "child", or "infant_without_seat"
-   */
-  type?: DuffelPassengerType
 }
 
 export interface OrderSliceSegment {
@@ -289,10 +281,6 @@ export interface OrderSliceSegment {
 }
 
 export interface OrderSlice {
-  /**
-   * Whether this slice can be changed. This can only be true for paid orders.
-   */
-  changeable: boolean | null
   /**
    * The conditions associated with this slice, describing the kinds of modifications you can make and any penalties that will apply to those modifications.
    * This condition is applied only to this slice and to all the passengers associated with this order - for information at the order level (e.g. "what happens if I want to change all the slices?") refer to the `conditions` at the top level. If a particular kind of modification is allowed, you may not always be able to take action through the Duffel API. In some cases, you may need to contact the Duffel support team or the airline directly.
@@ -520,7 +508,21 @@ export interface Order {
    * The airline-initiated changes for this order.
    */
   airline_initiated_changes?: AirlineInitiatedChange[]
+
+  /**
+   * The available actions you can take on this order through our API.
+   * It's a list of zero or more of the following values:
+   *
+   * "cancel": You can cancel the order.
+   * "change": You can can change the order's slices.
+   * "update": You can update some of the order's fields.
+   *
+   * @example: ["cancel","update"]
+   */
+  available_actions: OrderAvailableAction[]
 }
+
+export type OrderAvailableAction = 'cancel' | 'change' | 'update'
 
 export interface CreateOrder {
   /**

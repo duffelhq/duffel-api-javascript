@@ -36,6 +36,8 @@ export class DuffelError extends Error {
   }
 }
 
+const CURRENT_API_VERSION = 'v2'
+
 export class Client {
   private token: string
   private basePath: string
@@ -46,7 +48,7 @@ export class Client {
   constructor({ token, basePath, apiVersion, debug, source }: Config) {
     this.token = token
     this.basePath = basePath || 'https://api.duffel.com'
-    this.apiVersion = apiVersion || 'v1'
+    this.apiVersion = apiVersion || CURRENT_API_VERSION
     this.debug = debug
     this.source = source
   }
