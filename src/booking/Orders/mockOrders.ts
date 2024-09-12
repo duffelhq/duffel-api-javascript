@@ -45,6 +45,7 @@ export const mockCreateOrderRequest: CreateOrder = {
 }
 
 export const mockOrder: Order = {
+  available_actions: ['cancel', 'change'],
   total_currency: 'GBP',
   total_amount: '90.80',
   tax_currency: 'GBP',
@@ -193,7 +194,6 @@ export const mockOrder: Order = {
           allowed: true,
         },
       },
-      changeable: false,
     },
   ],
   services: [
@@ -273,6 +273,7 @@ export const mockOrder: Order = {
 
 export const mockOnHoldOrders: Order[] = [
   {
+    available_actions: ['cancel', 'change'],
     total_currency: 'GBP',
     total_amount: '87.90',
     tax_currency: 'GBP',
@@ -395,7 +396,6 @@ export const mockOnHoldOrders: Order[] = [
         conditions: {
           change_before_departure: null,
         },
-        changeable: null,
       },
     ],
     services: [],
@@ -441,6 +441,7 @@ export const mockOnHoldOrders: Order[] = [
     base_amount: '72.00',
   },
   {
+    available_actions: ['cancel', 'change'],
     total_currency: 'GBP',
     total_amount: '110.50',
     tax_currency: 'GBP',
@@ -561,7 +562,6 @@ export const mockOnHoldOrders: Order[] = [
           },
         },
         conditions: { change_before_departure: null },
-        changeable: null,
       },
     ],
     services: [],

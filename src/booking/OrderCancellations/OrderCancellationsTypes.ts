@@ -40,15 +40,19 @@ export interface OrderCancellation {
    */
   order_id: string
   /**
-   * The amount that will be returned to the original payment method if the order is cancelled, determined according to the fare conditions. This may be `0.00` if the fare is non-refundable. It will include the refund amount of the flights and the services booked.
+   * The amount that will be returned to the original payment method if the order is cancelled, determined according
+   * to the fare conditions. This may be 0.00 if the fare is non-refundable. It will include the refund amount
+   * of the flights and the services booked. This may be null in cases where the refund amount is unknown.
+   * This only applies in cases where we are unable to get a refund quote from the carrier.
    */
-  refund_amount: string
+  refund_amount: string | null
   /**
-   * The currency of the `refund_amount`, as an [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency code.
-   * It will match your organisation's billing currency unless you're using Duffel as an accredited IATA agent, in which case it will be in the currency provided by the airline (which will usually be based on the country where your IATA agency is registered).
-   * For pay later orders that are awaiting payment, the refund amount will always be 0.00.
+   * The currency of the refund_amount, as an ISO 4217 currency code.
+   * It will match your organisation's billing currency unless you’re using Duffel as an accredited IATA agent,
+   * in which case it will be in the currency provided by the airline (which will usually be based on the
+   * country where your IATA agency is registered). For hold orders that are awaiting payment, the refund amount will always be 0.00.
    */
-  refund_currency: string
+  refund_currency: string | null
   /**
    * Where the refund, once confirmed, will be sent. `card` is currently a restricted feature. `awaiting_payment` is for pay later orders where no payment has been made yet.
    */

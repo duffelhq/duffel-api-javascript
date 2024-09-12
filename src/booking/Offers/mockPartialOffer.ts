@@ -180,6 +180,7 @@ export const mockPartialOffer: Offer = {
           airline_iata_code: 'BA',
         },
       ],
+      fare_type: null,
     },
   ],
   passenger_identity_documents_required: false,
@@ -244,7 +245,8 @@ export const mockPartialOffer: Offer = {
       type: 'cancel_for_any_reason',
     },
   ],
-  allowed_passenger_identity_document_types: ['passport'],
+  supported_passenger_identity_document_types: ['passport'],
+  supported_loyalty_programmes: [],
 }
 
 export const mockUpdatedOffer = {

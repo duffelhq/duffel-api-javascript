@@ -1,16 +1,16 @@
 import {
-  CabinClass,
-  FlightsConditions,
-  LoyaltyProgrammeAccount,
-  PassengerIdentityDocumentType,
-  Place,
-  PlaceType,
   Aircraft,
   Airline,
   Airport,
-  PaginationMeta,
+  CabinClass,
+  CreateOfferRequestPassengerFareType,
   DuffelPassengerType,
+  FlightsConditions,
+  LoyaltyProgrammeAccount,
   OfferSliceConditions,
+  PaginationMeta,
+  Place,
+  PlaceType,
 } from '../../types'
 
 /**
@@ -18,12 +18,6 @@ import {
  * @link https://duffel.com/docs/api/offers/schema
  */
 export interface Offer {
-  /**
-   * The types of identity documents that may be provided for the passengers when creating an order based on this offer.
-   * If this is `[]`, then you must not provide identity documents.
-   */
-  allowed_passenger_identity_document_types: PassengerIdentityDocumentType[]
-
   /**
    * The services that can be booked along with the offer but are not included by default, for example an additional checked bag.
    * This field is only returned in the Get single offer endpoint.
@@ -141,7 +135,28 @@ export interface Offer {
    * Partial offers are only ever returned through the multi-step search flow.
    */
   partial: boolean
+
+  /**
+   * A list of airline IATA codes whose loyalty programmes are supported when booking the offer.
+   * Loyalty programmes present within the offer passengers that are not present in this field shall be ignored at booking.
+   * If this is an empty list ([]), no loyalty programmes are supported for the offer and shall be ignored if provided.
+   * @example: ["AF","KL","DL"]
+   */
+  supported_loyalty_programmes: string[]
+
+  /**
+   * The types of identity documents supported by the airline and may be provided for the
+   * passengers when creating an order based on this offer. Currently, possible types are `passport`,
+   * `tax_id`, `known_traveler_number`, and `passenger_redress_number`.
+   */
+  supported_passenger_identity_document_types: OfferSupportedPassengerIdentityDocumentTypes[]
 }
+
+export type OfferSupportedPassengerIdentityDocumentTypes =
+  | 'passport'
+  | 'tax_id'
+  | 'known_traveler_number'
+  | 'passenger_redress_number'
 
 export interface OfferAvailableServiceBaggageMetadata {
   /**
@@ -354,6 +369,12 @@ export interface OfferPassenger {
    * Optionally providing one has been deprecated.
    */
   id: string
+
+  /**
+   * The fare type of the passenger
+   * Example: "contract_bulk"
+   */
+  fare_type: CreateOfferRequestPassengerFareType | null
 }
 
 export interface OfferSlice {

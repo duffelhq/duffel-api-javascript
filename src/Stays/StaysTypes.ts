@@ -160,11 +160,6 @@ export interface StaysRate {
   total_currency: string
 
   /**
-    Deprecated. Refer to available_payment_methods instead.
-  */
-  payment_method: StaysPaymentType
-
-  /**
    * The methods available for payment of this rate.
 
    A rate with the `balance` payment type can be paid for using your Duffel Balance.
@@ -335,19 +330,9 @@ export interface StaysAccommodation {
   } | null
 
   /**
-   * Deprecated: Instructions to access the accommodation in the booking
+   * The key collection details for the accommodation.
    */
   key_collection: StaysBookingKeyCollection | null
-
-  /**
-   * The total currency for the cheapest rate for this accommodation, as an ISO 4217 currency code. If rooms data is available, this is equivalent to the cheapest rate for the cheapest room.
-   */
-  cheapest_rate_currency: string
-
-  /**
-   * The total amount for the cheapest rate for this accommodation. If rooms data is available, this is equivalent to the cheapest rate for the cheapest room.
-   */
-  cheapest_rate_total_amount: string
 
   /**
    * The accommodation’s description
@@ -418,7 +403,7 @@ export interface StaysQuote {
   /**
    * The id of the stay quote.
    *
-   * Example: "quo_0000AS0NZdKjjnnHZmSUbI"
+   * @example: "quo_0000AS0NZdKjjnnHZmSUbI"
    */
   id: string
 
@@ -525,17 +510,6 @@ export interface StaysQuote {
    * The loyalty programme that this quote supports.
    */
   supported_loyalty_programme: StaysLoyaltyProgrammeReference | null
-
-  /**
-   * A client key to authenticate with Duffel's Card Component when creating a tokenised card.
-   * This value will be `null` if your organisation does not have this feature enabled,
-   */
-  card_component_key: string | null
-
-  /*
-   * The number of adult guests this quote is for.
-   */
-  adults: number
 
   /*
    * The number of rooms this quote is for
@@ -644,14 +618,12 @@ type Child = { type: 'child'; age: number }
 
 export type Guest = Adult | Child
 
-type OccupancyCriteria = {
-  rooms: number
-} & ({ adults: number } | { guests: Array<Guest> })
-
-type CommonStaysSearchParams = {
+interface CommonStaysSearchParams {
   check_in_date: string
   check_out_date: string
-} & OccupancyCriteria
+  rooms: number
+  guests: Array<Guest>
+}
 
 export type LocationParams = {
   radius: number
@@ -679,9 +651,10 @@ export interface StaysSearchResult {
   check_in_date: string
   check_out_date: string
   accommodation: StaysAccommodation
-  adults: number
   rooms: number
   guests: Array<Guest>
+  cheapest_rate_total_amount: string
+  cheapest_rate_currency: string
 }
 
 export interface StaysLoyaltyProgramme {
