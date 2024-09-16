@@ -45,6 +45,7 @@ export const mockCreateOrderRequest: CreateOrder = {
 }
 
 export const mockOrder: Order = {
+  available_actions: ['cancel', 'change'],
   total_currency: 'GBP',
   total_amount: '90.80',
   tax_currency: 'GBP',
@@ -97,12 +98,24 @@ export const mockOrder: Order = {
             name: 'British Airways',
             id: 'aln_00001876aqC8c5umZmrRds',
             iata_code: 'BA',
+            logo_symbol_url:
+              'https://assets.duffel.com/img/airlines/for-light-background/full-color-logo/BA.svg',
+            logo_lockup_url:
+              'https://assets.duffel.com/img/airlines/for-light-background/full-color-lockup/BA.svg',
+            conditions_of_carriage_url:
+              'https://www.britishairways.com/en-gb/information/legal/british-airways/general-conditions-of-carriage',
           },
           marketing_carrier_flight_number: '1234',
           marketing_carrier: {
             name: 'British Airways',
             id: 'aln_00001876aqC8c5umZmrRds',
             iata_code: 'BA',
+            logo_symbol_url:
+              'https://assets.duffel.com/img/airlines/for-light-background/full-color-logo/BA.svg',
+            logo_lockup_url:
+              'https://assets.duffel.com/img/airlines/for-light-background/full-color-lockup/BA.svg',
+            conditions_of_carriage_url:
+              'https://www.britishairways.com/en-gb/information/legal/british-airways/general-conditions-of-carriage',
           },
           id: 'seg_00009htYpSCXrwaB9Dn456',
           duration: 'PT02H26M',
@@ -181,7 +194,6 @@ export const mockOrder: Order = {
           allowed: true,
         },
       },
-      changeable: false,
     },
   ],
   services: [
@@ -222,6 +234,12 @@ export const mockOrder: Order = {
     name: 'British Airways',
     id: 'aln_00001876aqC8c5umZmrRds',
     iata_code: 'BA',
+    logo_symbol_url:
+      'https://assets.duffel.com/img/airlines/for-light-background/full-color-logo/BA.svg',
+    logo_lockup_url:
+      'https://assets.duffel.com/img/airlines/for-light-background/full-color-lockup/BA.svg',
+    conditions_of_carriage_url:
+      'https://www.britishairways.com/en-gb/information/legal/british-airways/general-conditions-of-carriage',
   },
   metadata: {
     customer_prefs: 'window seat',
@@ -255,6 +273,7 @@ export const mockOrder: Order = {
 
 export const mockOnHoldOrders: Order[] = [
   {
+    available_actions: ['cancel', 'change'],
     total_currency: 'GBP',
     total_amount: '87.90',
     tax_currency: 'GBP',
@@ -278,7 +297,6 @@ export const mockOnHoldOrders: Order[] = [
             ],
             origin_terminal: null,
             origin: {
-              type: 'airport',
               time_zone: 'America/Indiana/Indianapolis',
               name: 'Indianapolis International Airport',
               longitude: -86.295526,
@@ -295,19 +313,24 @@ export const mockOnHoldOrders: Order[] = [
               name: 'American Airlines',
               id: 'arl_00009VME7DAGiJjwomhv32',
               iata_code: 'AA',
+              logo_lockup_url: null,
+              logo_symbol_url: null,
+              conditions_of_carriage_url: null,
             },
             marketing_carrier_flight_number: '4721',
             marketing_carrier: {
               name: 'American Airlines',
               id: 'arl_00009VME7DAGiJjwomhv32',
               iata_code: 'AA',
+              logo_lockup_url: null,
+              logo_symbol_url: null,
+              conditions_of_carriage_url: null,
             },
             id: 'seg_0000A6GioOO1UDbjb7nIi9',
             duration: 'PT2H45M',
             distance: null,
             destination_terminal: null,
             destination: {
-              type: 'airport',
               time_zone: 'America/New_York',
               name: 'Miami International Airport',
               longitude: -80.288826,
@@ -370,8 +393,9 @@ export const mockOnHoldOrders: Order[] = [
             iata_code: 'MIA',
           },
         },
-        conditions: { change_before_departure: null },
-        changeable: null,
+        conditions: {
+          change_before_departure: null,
+        },
       },
     ],
     services: [],
@@ -396,6 +420,9 @@ export const mockOnHoldOrders: Order[] = [
       name: 'American Airlines',
       id: 'arl_00009VME7DAGiJjwomhv32',
       iata_code: 'AA',
+      logo_symbol_url: null,
+      logo_lockup_url: null,
+      conditions_of_carriage_url: null,
     },
     metadata: {
       customer_prefs: 'window seat',
@@ -414,6 +441,7 @@ export const mockOnHoldOrders: Order[] = [
     base_amount: '72.00',
   },
   {
+    available_actions: ['cancel', 'change'],
     total_currency: 'GBP',
     total_amount: '110.50',
     tax_currency: 'GBP',
@@ -437,7 +465,6 @@ export const mockOnHoldOrders: Order[] = [
             ],
             origin_terminal: null,
             origin: {
-              type: 'airport',
               time_zone: 'America/Indiana/Indianapolis',
               name: 'Indianapolis International Airport',
               longitude: -86.295526,
@@ -454,19 +481,24 @@ export const mockOnHoldOrders: Order[] = [
               name: 'American Airlines',
               id: 'arl_00009VME7DAGiJjwomhv32',
               iata_code: 'AA',
+              logo_lockup_url: null,
+              logo_symbol_url: null,
+              conditions_of_carriage_url: null,
             },
             marketing_carrier_flight_number: '4341',
             marketing_carrier: {
               name: 'American Airlines',
               id: 'arl_00009VME7DAGiJjwomhv32',
               iata_code: 'AA',
+              logo_lockup_url: null,
+              logo_symbol_url: null,
+              conditions_of_carriage_url: null,
             },
             id: 'seg_0000A6GiZRU4WXtdZJrivU',
             duration: 'PT2H49M',
             distance: null,
             destination_terminal: null,
             destination: {
-              type: 'airport',
               time_zone: 'America/New_York',
               name: 'Miami International Airport',
               longitude: -80.288826,
@@ -530,7 +562,6 @@ export const mockOnHoldOrders: Order[] = [
           },
         },
         conditions: { change_before_departure: null },
-        changeable: null,
       },
     ],
     services: [],
@@ -555,6 +586,9 @@ export const mockOnHoldOrders: Order[] = [
       name: 'American Airlines',
       id: 'arl_00009VME7DAGiJjwomhv32',
       iata_code: 'AA',
+      logo_symbol_url: null,
+      logo_lockup_url: null,
+      conditions_of_carriage_url: null,
     },
     metadata: {
       customer_prefs: 'window seat',
@@ -576,13 +610,20 @@ export const mockOnHoldOrders: Order[] = [
 
 export const mockServices: OrderAvailableService[] = [
   {
-    type: 'baggage',
-    total_currency: 'GBP',
-    total_amount: '15.00',
-    segment_ids: ['seg_00009hj8USM7Ncg31cB456'],
-    passenger_ids: ['pas_00009hj8USM7Ncg31cBCLL'],
-    maximum_quantity: 1,
     id: 'aso_00009UhD4ongolulWd9123',
+    maximum_quantity: 1,
+    metadata: {
+      maximum_depth_cm: 75,
+      maximum_height_cm: 90,
+      maximum_length_cm: 90,
+      maximum_weight_kg: 23,
+      type: 'carry_on',
+    },
+    passenger_ids: ['pas_00009hj8USM7Ncg31cBCLL'],
+    segment_ids: ['seg_00009hj8USM7Ncg31cB456'],
+    total_amount: '15.00',
+    total_currency: 'GBP',
+    type: 'baggage',
   },
 ]
 

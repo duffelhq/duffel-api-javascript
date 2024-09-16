@@ -112,39 +112,34 @@ export interface OrderChangeRequestResponse {
 
 export interface CreateOrderChangeRequest {
   /**
-   * The changes you wish to make to your order
+   * The [slices](https://duffel.com/docs/api/overview/key-principles) that make up this offer request. One-way journeys can be expressed using one slice, whereas return trips will need two.
    */
-  changes: {
+  slices: {
     /**
-     * The [slices](https://duffel.com/docs/api/overview/key-principles) that make up this offer request. One-way journeys can be expressed using one slice, whereas return trips will need two.
+     * The search criteria for slices which you wish to add to your order
      */
-    slices: {
+    add: {
       /**
-       * The search criteria for slices which you wish to add to your order
+       * The cabin that the passengers want to travel in
        */
-      add: {
-        /**
-         * The cabin that the passengers want to travel in
-         */
-        cabin_class: CabinClass
-        /**
-         * The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date on which the passengers want to depart
-         */
-        departure_date: string
-        /**
-         * The 3-letter IATA code for the city or airport where this slice ends
-         */
-        destination: string
-        /**
-         * The 3-letter IATA code for the city or airport where this slice starts
-         */
-        origin: string
-      }[]
+      cabin_class: CabinClass
       /**
-       * The slices that you wish to remove from your order
+       * The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date on which the passengers want to depart
        */
-      remove: { slice_id: string }[]
-    }
+      departure_date: string
+      /**
+       * The 3-letter IATA code for the city or airport where this slice ends
+       */
+      destination: string
+      /**
+       * The 3-letter IATA code for the city or airport where this slice starts
+       */
+      origin: string
+    }[]
+    /**
+     * The slices that you wish to remove from your order
+     */
+    remove: { slice_id: string }[]
   }
   /**
    * The order ID you wish to change

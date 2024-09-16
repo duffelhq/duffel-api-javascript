@@ -1,14 +1,16 @@
 import {
-  CabinClass,
-  FlightsConditions,
-  LoyaltyProgrammeAccount,
-  PassengerIdentityDocumentType,
-  Place,
-  PlaceType,
   Aircraft,
   Airline,
   Airport,
+  CabinClass,
+  CreateOfferRequestPassengerFareType,
+  DuffelPassengerType,
+  FlightsConditions,
+  LoyaltyProgrammeAccount,
+  OfferSliceConditions,
   PaginationMeta,
+  Place,
+  PlaceType,
 } from '../../types'
 
 /**
@@ -16,12 +18,6 @@ import {
  * @link https://duffel.com/docs/api/offers/schema
  */
 export interface Offer {
-  /**
-   * The types of identity documents that may be provided for the passengers when creating an order based on this offer.
-   * Currently, the only supported type is `passport`. If this is `[]`, then you must not provide identity documents.
-   */
-  allowed_passenger_identity_document_types: PassengerIdentityDocumentType[]
-
   /**
    * The services that can be booked along with the offer but are not included by default, for example an additional checked bag.
    * This field is only returned in the Get single offer endpoint.
@@ -91,6 +87,11 @@ export interface Offer {
   payment_requirements: PaymentRequirements
 
   /**
+   * The private fares applied on this offer.
+   */
+  private_fares: OfferPrivateFare[]
+
+  /**
    * The slices that make up this offer. Each slice will include one or more segments,
    * the specific flights that the airline is offering to take the passengers from the slice's `origin` to its `destination`.
    */
@@ -134,26 +135,47 @@ export interface Offer {
    * Partial offers are only ever returned through the multi-step search flow.
    */
   partial: boolean
+
+  /**
+   * A list of airline IATA codes whose loyalty programmes are supported when booking the offer.
+   * Loyalty programmes present within the offer passengers that are not present in this field shall be ignored at booking.
+   * If this is an empty list ([]), no loyalty programmes are supported for the offer and shall be ignored if provided.
+   * @example: ["AF","KL","DL"]
+   */
+  supported_loyalty_programmes: string[]
+
+  /**
+   * The types of identity documents supported by the airline and may be provided for the
+   * passengers when creating an order based on this offer. Currently, possible types are `passport`,
+   * `tax_id`, `known_traveler_number`, and `passenger_redress_number`.
+   */
+  supported_passenger_identity_document_types: OfferSupportedPassengerIdentityDocumentTypes[]
 }
+
+export type OfferSupportedPassengerIdentityDocumentTypes =
+  | 'passport'
+  | 'tax_id'
+  | 'known_traveler_number'
+  | 'passenger_redress_number'
 
 export interface OfferAvailableServiceBaggageMetadata {
   /**
-   * The maximum weight that the baggage can have in kilograms
+   * The maximum weight that the baggage can have in kilograms.
    */
   maximum_weight_kg: number | null
 
   /**
-   * The maximum height that the baggage can have in centimetres
+   * The maximum height that the baggage can have in centimetres.
    */
   maximum_height_cm: number | null
 
   /**
-   * The maximum length that the baggage can have in centimetres
+   * The maximum length that the baggage can have in centimetres.
    */
   maximum_length_cm: number | null
 
   /**
-   * The maximum depth that the baggage can have in centimetres
+   * The maximum depth that the baggage can have in centimetres.
    */
   maximum_depth_cm: number | null
 
@@ -163,82 +185,146 @@ export interface OfferAvailableServiceBaggageMetadata {
   type: BaggageType
 }
 
-export interface PaymentRequirements {
+export interface OfferAvailableServiceCFARMetadata {
   /**
-   *  The ISO 8601 datetime by which you must pay for this order.
-   * At this time, if still unpaid, the reserved space on the flight(s)
-   * will be released and you will have to create a new order.
-   * This will be null only for orders where `awaiting_payment` is `false`.
+   * The amount the customer will receive back if the service is used, in
+   * `offer.total_currency`.
    */
-  payment_required_by?: string | null
+  refund_amount: string
+
   /**
-   *  The ISO 8601 datetime at which the price associated
-   * with the order will no longer be guaranteed by the airline
-   * and the order will need to be repriced before payment.
-   * This can be null when there is no price guarantee.
+   * Information to display to customers.
    */
-  price_guarantee_expires_at?: string | null
+  merchant_copy: string
+
   /**
-   * Whether immediate payment is required or not
+   * URL with the T&Cs for customers.
    */
-  requires_instant_payment: boolean
+  terms_and_conditions_url: string
 }
 
-export interface OfferAvailableServiceMetadataMap {
-  baggage: OfferAvailableServiceBaggageMetadata
-}
-
-export type OfferAvailableServiceType = keyof OfferAvailableServiceMetadataMap
-
-export interface OfferAvailableService<
-  T_ServiceType extends OfferAvailableServiceType = 'baggage'
-> {
+export interface OfferAvailableServiceCommon {
   /**
-   * Duffel's unique identifier for the service
+   * Duffel's unique identifier for the service.
    */
   id: string
 
   /**
-   * The maximum quantity of this service that can be booked with an order
+   * The maximum quantity of this service that can be booked with an order.
    */
   maximum_quantity: number
 
   /**
-   * An object containing metadata about the service, like the maximum weight and dimensions of the baggage.
-   */
-  metadata?: OfferAvailableServiceMetadataMap[T_ServiceType]
-
-  /**
-   * The list of passenger `id`s the service applies to.
-   * If you add this service to an order it will apply to all the passengers in this list.
-   * For services where the type is `baggage`, this list will include only a single passenger.
+   * The list of passenger `id`s the service applies to. If you add this
+   * service to an order it will apply to all the passengers in this list.
+   * For services where the type is `baggage`, this list will include only a
+   * single passenger.
    */
   passenger_ids: string[]
 
   /**
-   * The list of segment ids the service applies to.
-   * If you add this service to an order it will apply to all the segments in this list.
-   * For services where the type is baggage, depending on the airline,
-   * this list includes all the segments of all slices or all the segments of a single slice.
+   * The list of segment `id`s the service applies to. If you add this
+   * service to an order it will apply to all the segments in this list. For
+   * services where the type is `baggage`, depending on the airline, this
+   * list includes all the segments of all slices or all the segments of a
+   * single slice.
    */
   segment_ids: string[]
 
   /**
-   * The total price of the service for all passengers and segments it applies to, including taxes
+   * The total price of the service for all passengers and segments it
+   * applies to, including taxes. This price is for a single unit of the
+   * service.
    */
   total_amount: string
 
   /**
-   * The currency of the `total_amount`, as an ISO 4217 currency code
+   * The currency of the `total_amount`, as an [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217)
+   * currency code. It will match your organisation's billing currency unless
+   * you’re using Duffel as an accredited IATA agent, in which case it will be
+   * in the currency provided by the airline (which will usually be based on the
+   * country where your IATA agency is registered).
    */
   total_currency: string
+}
+
+export interface OfferAvailableServiceBaggage
+  extends OfferAvailableServiceCommon {
+  /**
+   * The metadata varies by the type of service. It includes further data
+   * about the service. For example, for baggages, it may have data about
+   * size and weight restrictions.
+   */
+  metadata: OfferAvailableServiceBaggageMetadata
 
   /**
    * The type of the service.
-   * For now we only return services of type baggage but we will return other types in the future.
-   * We won't consider adding new service types a break change.
    */
-  type: T_ServiceType
+  type: 'baggage'
+}
+
+export interface OfferAvailableServiceCFAR extends OfferAvailableServiceCommon {
+  /**
+   * The metadata varies by the type of service. It includes further data
+   * about the service. For example, for baggages, it may have data about
+   * size and weight restrictions.
+   */
+  metadata: OfferAvailableServiceCFARMetadata
+
+  /**
+   * The type of the service.
+   */
+  type: 'cancel_for_any_reason'
+}
+
+export type OfferAvailableService =
+  | OfferAvailableServiceBaggage
+  | OfferAvailableServiceCFAR
+
+export interface PaymentRequirements {
+  /**
+   * The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) datetime by which
+   * you must pay for this order. At this time, if still unpaid, the reserved
+   * space on the flight(s) will be released and you will have to create a new
+   * order. This will be null only for orders where `awaiting_payment` is
+   * `false`.
+   */
+  payment_required_by: string | null
+
+  /**
+   * The ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) datetime at which the
+   * price associated with the order will no longer be guaranteed by the airline
+   * and may change before payment. This will be null when
+   * `requires_instant_payment` is `true`.
+   */
+
+  price_guarantee_expires_at: string | null
+
+  /**
+   * When payment is required at the time of booking this will be true and
+   * `payment_required_by` and `price_guarantee_expires_at` will be `null`. When
+   * payment can be made at a time after booking, this will be `false` and the
+   * time limits on the payment will be provided in `payment_required_by` and
+   * `price_guarantee_expires_at`.
+   */
+  requires_instant_payment: boolean
+}
+
+export interface OfferPrivateFare {
+  /**
+   * The corporate code that was applied, if any.
+   */
+  corporate_code?: string
+
+  /**
+   * The tracking reference that was applied, if any.
+   */
+  tracking_reference?: string
+
+  /**
+   * The type of private fare applied.
+   */
+  type: 'corporate' | 'leisure' | 'negotiated'
 }
 
 export interface OfferPassenger {
@@ -250,7 +336,7 @@ export interface OfferPassenger {
   /**
    * The type of the passenger.
    */
-  type?: 'adult'
+  type?: DuffelPassengerType
 
   /**
    * The passenger's family name. Only `space`, `-`, `'`, and letters from the `ASCII`, `Latin-1 Supplement` and `Latin
@@ -283,6 +369,12 @@ export interface OfferPassenger {
    * Optionally providing one has been deprecated.
    */
   id: string
+
+  /**
+   * The fare type of the passenger
+   * Example: "contract_bulk"
+   */
+  fare_type: CreateOfferRequestPassengerFareType | null
 }
 
 export interface OfferSlice {
@@ -333,12 +425,32 @@ export interface OfferSlice {
   segments: OfferSliceSegment[]
 
   /**
-   * The conditions associated with this slice, describing the kinds of modifications you can make post-booking and any penalties that will apply to those modifications.
+   * The conditions associated with this slice, describing the kinds of modifications you can make post-booking and any penalties that will apply to those modifications
+   * and also what perks shall be available to passengers when travelling.
    * This condition is applied only to this slice and to all the passengers associated with this offer - for information at the offer level (e.g. "what happens if I want to change all the slices?") refer to the conditions at the top level.
    * If a particular kind of modification is allowed, you may not always be able to take action through the Duffel API.
    * In some cases, you may need to contact the Duffel support team or the airline directly.
+   * Note that the perks associated with the slice are aggregated across passengers and segments and are intended to provide a brief summary of the passenger experience,
+   * however, the experience may not be consistent across all segments.
+   * As an example, priority boarding may be flagged as available but not available on all segments on the slice.
+   * See segment passenger conditions for a per-flight breakdown what is available to
+   * passengers if you require this level of granularity.
    */
-  conditions: FlightsConditions
+  conditions: OfferSliceConditions
+
+  /**
+   * A summary of the seat characteristics and extras available to passengers on the given slice.
+   * The shelf is calculated by Duffel and may be used to group similar slices across offers when building a shopping display.
+   * Note this value does not take into account any services that may be purchased in addition to the offer and should not be directly used
+   * in any offer ranking systems.
+   * Includes the following:
+   *   - `"1"`: standard seating with limited extras.
+   *   - `"2"`: standard seating with extras, i.e. carry-on baggage, advanced seat selection,  priority boarding etc.
+   *   - `"3"`: preferred seating, such as additional legroom, seat width or middle seat free
+   *   - `"4"`: premium seating, additional legroom and recline. Situated in business class or higher.
+   *    - `"5"`: deluxe seating, additional legroom and reclines to lie flat position. Situated in business class or higher.
+   */
+  ngs_shelf: number
 }
 
 export interface OfferSliceSegment {
@@ -418,7 +530,50 @@ export interface OfferSliceSegment {
    * Additional segment-specific information about the passengers included in the offer (e.g. their baggage allowance and the cabin class they will be travelling in)
    */
   passengers: OfferSliceSegmentPassenger[]
+
+  /**
+   * Additional segment-specific information about the stops, if any, included in the segment
+   */
+  stops?: OfferSliceSegmentStop[]
 }
+
+export interface OfferSliceSegmentStop {
+  /**
+   * Duffel's unique identifier for the Stop
+   */
+  id: string
+
+  /**
+   * The airport at which the Stop happens
+   */
+  airport: Airport
+
+  /**
+   * The ISO 8601 datetime at which the Stop is scheduled to arrive, in the airport's timezone (see destination.timezone)
+   */
+  arriving_at: string
+
+  /**
+   * The ISO 8601 datetime at which the Stop is scheduled to depart, in the airport's timezone (see origin.timezone)
+   */
+  departing_at: string
+
+  /**
+   * The duration of the Stop, represented as a ISO 8601 duration
+   */
+  duration: string
+}
+
+export type WiFiAmenityCost = 'free' | 'paid' | 'free or paid' | 'n/a'
+export type SeatPitch = 'less' | 'more' | 'standard' | 'n/a'
+export type SeatType =
+  | 'standard'
+  | 'extra_legroom'
+  | 'skycouch'
+  | 'recliner'
+  | 'angle_flat'
+  | 'full_flat'
+  | 'private_suite'
 
 export interface OfferSliceSegmentPassenger {
   /**
@@ -448,6 +603,74 @@ export interface OfferSliceSegmentPassenger {
    * fare basis code is not available or the airline does not use fare basis codes.
    */
   fare_basis_code: string
+
+  /**
+   * Data about the cabin that the passenger will be flying in for this segment
+   */
+  cabin: {
+    /**
+     * The name of the cabin class
+     */
+    name: CabinClass
+
+    /**
+     * TThe name that the marketing carrier uses to market this cabin class
+     */
+    marketing_name: string
+
+    /**
+     * The amenities specific to this cabin class on this plane
+     */
+    amenities: {
+      /**
+       * If Wi-Fi is available, information on its cost, availability, etc
+       */
+      wifi: {
+        /**
+         * Whether Wi-Fi is available in this cabin
+         */
+        available: boolean
+
+        /**
+         * The cost, if any, to use the Wi-Fi
+         */
+        cost: WiFiAmenityCost
+      } | null
+
+      /**
+       * Information on the standard seat in this cabin class. Exceptions may apply, such as on exit rows.
+       */
+      seat: {
+        /**
+         * The distance from a point on a seat to the seat front/behind it, in inches, or "n/a" if not available
+         */
+        pitch: SeatPitch
+
+        /**
+         * A summary of the seat characteristics for the cabin.
+         * Includes the following:
+         *   - `"standard"` - typical seating with regular legroom / recline
+         *   - `"extra_legroom"` - typical seating with additional legroom
+         *   - `"skycouch"` - a row of seats converted into a couch layout
+         *   - `"recliner"` - seating with additional legroom and recline
+         *   - `"angle_flat"` - seating with additional legroom and near flat recline
+         *   - `"full_flat_pod"` - seating with full flat recline and enclosing privacy screens
+         *   - `"private_suite"` - a full suite, typically including a bed and recliner seat
+         */
+        type: SeatType
+      } | null
+
+      /**
+       * If power (AC and/or USB) is available, information on what is available
+       */
+      power: {
+        /**
+         * Whether there is power available or not in this cabin
+         */
+        available: boolean
+      } | null
+    }
+  } | null
 }
 
 export type BaggageType = 'carry_on' | 'checked'

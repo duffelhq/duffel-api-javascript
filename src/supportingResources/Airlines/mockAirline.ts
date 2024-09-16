@@ -8,4 +8,6 @@ export const mockAirline: Airline = {
     'https://assets.duffel.com/img/airlines/for-light-background/full-color-lockup/BA.svg',
   logo_symbol_url:
     'https://assets.duffel.com/img/airlines/for-light-background/full-color-logo/BA.svg',
+  conditions_of_carriage_url:
+    'https://www.britishairways.com/en-gb/information/legal/british-airways/general-conditions-of-carriage',
 }

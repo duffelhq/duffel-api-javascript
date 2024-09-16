@@ -30,12 +30,24 @@ export const mockOrderChangeOffer: OrderChangeOffer = {
               name: 'British Airways',
               id: 'aln_00001876aqC8c5umZmrRds',
               iata_code: 'BA',
+              logo_symbol_url:
+                'https://assets.duffel.com/img/airlines/for-light-background/full-color-logo/BA.svg',
+              logo_lockup_url:
+                'https://assets.duffel.com/img/airlines/for-light-background/full-color-lockup/BA.svg',
+              conditions_of_carriage_url:
+                'https://www.britishairways.com/en-gb/information/legal/british-airways/general-conditions-of-carriage',
             },
             marketing_carrier_flight_number: '1234',
             marketing_carrier: {
               name: 'British Airways',
               id: 'aln_00001876aqC8c5umZmrRds',
               iata_code: 'BA',
+              logo_symbol_url:
+                'https://assets.duffel.com/img/airlines/for-light-background/full-color-logo/BA.svg',
+              logo_lockup_url:
+                'https://assets.duffel.com/img/airlines/for-light-background/full-color-lockup/BA.svg',
+              conditions_of_carriage_url:
+                'https://www.britishairways.com/en-gb/information/legal/british-airways/general-conditions-of-carriage',
             },
             id: 'seg_00009htYpSCXrwaB9Dn456',
             duration: 'PT02H26M',
@@ -176,12 +188,24 @@ export const mockOrderChangeOffer: OrderChangeOffer = {
               name: 'British Airways',
               id: 'aln_00001876aqC8c5umZmrRds',
               iata_code: 'BA',
+              logo_symbol_url:
+                'https://assets.duffel.com/img/airlines/for-light-background/full-color-logo/BA.svg',
+              logo_lockup_url:
+                'https://assets.duffel.com/img/airlines/for-light-background/full-color-lockup/BA.svg',
+              conditions_of_carriage_url:
+                'https://www.britishairways.com/en-gb/information/legal/british-airways/general-conditions-of-carriage',
             },
             marketing_carrier_flight_number: '1234',
             marketing_carrier: {
               name: 'British Airways',
               id: 'aln_00001876aqC8c5umZmrRds',
               iata_code: 'BA',
+              logo_symbol_url:
+                'https://assets.duffel.com/img/airlines/for-light-background/full-color-logo/BA.svg',
+              logo_lockup_url:
+                'https://assets.duffel.com/img/airlines/for-light-background/full-color-lockup/BA.svg',
+              conditions_of_carriage_url:
+                'https://www.britishairways.com/en-gb/information/legal/british-airways/general-conditions-of-carriage',
             },
             id: 'seg_00009htYpSCXrwaB9Dn456',
             duration: 'PT02H26M',
