@@ -29,7 +29,7 @@ describe('offers', () => {
       return_available_services: true,
     })
     expect(response.data?.id).toBe(mockOffer.id)
-    expect(response.data?.available_services).toHaveLength(1)
+    expect(response.data?.available_services).toHaveLength(2)
   })
 
   test('should get a page of offers', async () => {

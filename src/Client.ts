@@ -1,4 +1,4 @@
-import fetch from 'node-fetch'
+import fetch, { Headers } from 'node-fetch'
 import { URL, URLSearchParams } from 'url'
 import {
   DuffelResponse,
@@ -18,7 +18,7 @@ export interface Config {
 export class DuffelError extends Error {
   public meta: ApiResponseMeta
   public errors: ApiResponseError[]
-  public headers: Record<string, string>
+  public headers: Headers
 
   constructor({
     meta,
@@ -27,7 +27,7 @@ export class DuffelError extends Error {
   }: {
     meta: ApiResponseMeta
     errors: ApiResponseError[]
-    headers: Record<string, string>
+    headers: Headers
   }) {
     super()
     this.meta = meta
@@ -35,6 +35,8 @@ export class DuffelError extends Error {
     this.headers = headers
   }
 }
+
+const CURRENT_API_VERSION = 'v2'
 
 export class Client {
   private token: string
@@ -46,7 +48,7 @@ export class Client {
   constructor({ token, basePath, apiVersion, debug, source }: Config) {
     this.token = token
     this.basePath = basePath || 'https://api.duffel.com'
-    this.apiVersion = apiVersion || 'v1'
+    this.apiVersion = apiVersion || CURRENT_API_VERSION
     this.debug = debug
     this.source = source
   }
@@ -123,6 +125,10 @@ export class Client {
       body,
       compress,
     })
+
+    if (this.debug?.verbose && response.headers.get('x-request-id')) {
+      console.info('Request ID: ', response.headers.get('x-request-id'))
+    }
 
     const contentType = response.headers.get('content-type')
 

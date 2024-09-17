@@ -9,6 +9,7 @@ export const mockPartialOffer: Offer = {
   tax_amount: '40.80',
   slices: [
     {
+      ngs_shelf: 1,
       segments: [
         {
           passengers: [
@@ -23,6 +24,15 @@ export const mockPartialOffer: Offer = {
                 },
               ],
               fare_basis_code: 'KLWC10A',
+              cabin: {
+                name: 'economy',
+                marketing_name: 'Economy Basic',
+                amenities: {
+                  wifi: null,
+                  power: null,
+                  seat: null,
+                },
+              },
             },
           ],
           origin_terminal: 'B',
@@ -48,12 +58,24 @@ export const mockPartialOffer: Offer = {
             name: 'British Airways',
             id: 'aln_00001876aqC8c5umZmrRds',
             iata_code: 'BA',
+            logo_symbol_url:
+              'https://assets.duffel.com/img/airlines/for-light-background/full-color-logo/BA.svg',
+            logo_lockup_url:
+              'https://assets.duffel.com/img/airlines/for-light-background/full-color-lockup/BA.svg',
+            conditions_of_carriage_url:
+              'https://www.britishairways.com/en-gb/information/legal/british-airways/general-conditions-of-carriage',
           },
           marketing_carrier_flight_number: '1234',
           marketing_carrier: {
             name: 'British Airways',
             id: 'aln_00001876aqC8c5umZmrRds',
             iata_code: 'BA',
+            logo_symbol_url:
+              'https://assets.duffel.com/img/airlines/for-light-background/full-color-logo/BA.svg',
+            logo_lockup_url:
+              'https://assets.duffel.com/img/airlines/for-light-background/full-color-lockup/BA.svg',
+            conditions_of_carriage_url:
+              'https://www.britishairways.com/en-gb/information/legal/british-airways/general-conditions-of-carriage',
           },
           id: 'seg_00009htYpSCXrwaB9Dn456',
           duration: 'PT02H26M',
@@ -132,6 +154,9 @@ export const mockPartialOffer: Offer = {
           penalty_amount: '100.00',
           allowed: true,
         },
+        advance_seat_selection: false,
+        priority_boarding: false,
+        priority_check_in: false,
       },
     },
   ],
@@ -140,6 +165,7 @@ export const mockPartialOffer: Offer = {
     price_guarantee_expires_at: '2020-01-17T10:42:14.545Z',
     payment_required_by: '2020-01-17T10:42:14.545Z',
   },
+  private_fares: [],
   partial: true,
   passengers: [
     {
@@ -154,6 +180,7 @@ export const mockPartialOffer: Offer = {
           airline_iata_code: 'BA',
         },
       ],
+      fare_type: null,
     },
   ],
   passenger_identity_documents_required: false,
@@ -161,6 +188,12 @@ export const mockPartialOffer: Offer = {
     name: 'British Airways',
     id: 'aln_00001876aqC8c5umZmrRds',
     iata_code: 'BA',
+    logo_symbol_url:
+      'https://assets.duffel.com/img/airlines/for-light-background/full-color-logo/BA.svg',
+    logo_lockup_url:
+      'https://assets.duffel.com/img/airlines/for-light-background/full-color-lockup/BA.svg',
+    conditions_of_carriage_url:
+      'https://www.britishairways.com/en-gb/information/legal/british-airways/general-conditions-of-carriage',
   },
   live_mode: true,
   id: 'off_00009htYpSCXrwaB9DnUm0',
@@ -182,16 +215,38 @@ export const mockPartialOffer: Offer = {
   base_amount: '30.20',
   available_services: [
     {
-      type: 'baggage',
-      total_currency: 'GBP',
-      total_amount: '15.00',
-      segment_ids: ['seg_00009hj8USM7Ncg31cB456'],
-      passenger_ids: ['pas_00009hj8USM7Ncg31cBCLL'],
-      maximum_quantity: 1,
       id: 'ase_00009UhD4ongolulWd9123',
+      maximum_quantity: 1,
+      metadata: {
+        maximum_depth_cm: 75,
+        maximum_height_cm: 90,
+        maximum_length_cm: 90,
+        maximum_weight_kg: 23,
+        type: 'carry_on',
+      },
+      passenger_ids: ['pas_00009hj8USM7Ncg31cBCL'],
+      segment_ids: ['seg_00009htYpSCXrwaB9Dn456'],
+      total_amount: '15.00',
+      total_currency: 'GBP',
+      type: 'baggage',
+    },
+    {
+      id: 'cfa_0000AQlbGwJwVg4M6Z6dF2',
+      maximum_quantity: 1,
+      metadata: {
+        merchant_copy: 'some information for the merchant',
+        refund_amount: '33.75',
+        terms_and_conditions_url: 'this is a link',
+      },
+      passenger_ids: ['pas_00009hj8USM7Ncg31cBCL'],
+      segment_ids: ['seg_00009htYpSCXrwaB9Dn456'],
+      total_amount: '3.25',
+      total_currency: 'GBP',
+      type: 'cancel_for_any_reason',
     },
   ],
-  allowed_passenger_identity_document_types: ['passport'],
+  supported_passenger_identity_document_types: ['passport'],
+  supported_loyalty_programmes: [],
 }
 
 export const mockUpdatedOffer = {

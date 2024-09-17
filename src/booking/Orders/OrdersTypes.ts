@@ -1,13 +1,15 @@
 import {
   Aircraft,
   Airline,
+  AirlineInitiatedChange,
+  Airport,
   CabinClass,
   DuffelPassengerGender,
   DuffelPassengerTitle,
   DuffelPassengerType,
   FlightsConditions,
   LoyaltyProgrammeAccount,
-  OfferAvailableService,
+  OfferAvailableServiceBaggage,
   OfferAvailableServiceBaggageMetadata,
   PassengerIdentityDocumentType,
   PaymentType,
@@ -170,7 +172,7 @@ export interface OrderPassenger {
 
 export interface OrderPassengerIdentityDocument {
   /**
-   * The type of the identity document. Currently, the only supported type is passport. This must be one of the allowed_passenger_identity_document_types on the offer.
+   * The type of the identity document. This must be one of the allowed_passenger_identity_document_types on the offer.
    */
   type: PassengerIdentityDocumentType
 
@@ -207,14 +209,6 @@ export interface CreateOrderPassenger extends Omit<OrderPassenger, 'type'> {
    * @example "+442080160509"
    */
   phone_number: string
-
-  /**
-   * @deprecated This type is here just for the backward-compatibility until the field is officially removed from the API
-   *
-   * The type of the passenger
-   * @example "adult", "child", or "infant_without_seat"
-   */
-  type?: DuffelPassengerType
 }
 
 export interface OrderSliceSegment {
@@ -231,9 +225,9 @@ export interface OrderSliceSegment {
    */
   departing_at: string
   /**
-   * The city or airport where this slice ends
+   * The airport at which the segment is scheduled to arrive
    */
-  destination: Place
+  destination: Airport
   /**
    * The terminal at the destination airport where the segment is scheduled to arrive
    * @example "5"
@@ -267,9 +261,9 @@ export interface OrderSliceSegment {
    */
   operating_carrier_flight_number: string
   /**
-   * The city or airport where this slice begins
+   * The airport from which the flight is scheduled to depart
    */
-  origin: Place
+  origin: Airport
   /**
    * The terminal at the origin airport from which the segment is scheduled to depart
    * @example "B"
@@ -287,10 +281,6 @@ export interface OrderSliceSegment {
 }
 
 export interface OrderSlice {
-  /**
-   * Whether this slice can be changed. This can only be true for paid orders.
-   */
-  changeable: boolean | null
   /**
    * The conditions associated with this slice, describing the kinds of modifications you can make and any penalties that will apply to those modifications.
    * This condition is applied only to this slice and to all the passengers associated with this order - for information at the order level (e.g. "what happens if I want to change all the slices?") refer to the `conditions` at the top level. If a particular kind of modification is allowed, you may not always be able to take action through the Duffel API. In some cases, you may need to contact the Duffel support team or the airline directly.
@@ -397,9 +387,6 @@ export interface OrderPayment {
    * @example "GBP"
    */
   currency: string
-
-
-  card_id?:string
 }
 
 export interface Order {
@@ -516,7 +503,26 @@ export interface Order {
    * You should not store sensitive information in this field.
    */
   metadata: Record<string, string>
+
+  /**
+   * The airline-initiated changes for this order.
+   */
+  airline_initiated_changes?: AirlineInitiatedChange[]
+
+  /**
+   * The available actions you can take on this order through our API.
+   * It's a list of zero or more of the following values:
+   *
+   * "cancel": You can cancel the order.
+   * "change": You can can change the order's slices.
+   * "update": You can update some of the order's fields.
+   *
+   * @example: ["cancel","update"]
+   */
+  available_actions: OrderAvailableAction[]
 }
+
+export type OrderAvailableAction = 'cancel' | 'change' | 'update'
 
 export interface CreateOrder {
   /**
@@ -525,9 +531,9 @@ export interface CreateOrder {
   selected_offers: string[]
 
   /**
-   * The services you want to book along with the first selected offer.
+   * The services you want to book along wpith the first selected offer.
    */
-  services?: Pick<OrderService, 'id' | 'quantity'>[]
+  services?: CreateOrderService[]
 
   /**
    * The personal details of the passengers, expanding on the information initially provided when creating the offer request
@@ -543,7 +549,18 @@ export interface CreateOrder {
    * The payment action you want to take for your order. You can only use pay_later with offers that contain requires_instant_payment: false.
    */
   type: 'instant' | 'pay_later'
+
+  /**
+   * Metadata contains a set of key-value pairs that you can attach to an object. It can be useful for storing additional information about the object, in a structured format. Duffel does not use this information. You should not store sensitive information in this field.
+   *
+   * The metadata is a collection of key-value pairs, both of which are strings. You can store a maximum of 50 key-value pairs, where each key has a maximum length of 40 characters and each value has a maximum length of 500 characters.
+   *
+   * Keys must only contain numbers, letters, dashes, or underscores.
+   */
+  metadata?: Record<string, string>
 }
+
+export type CreateOrderService = Pick<OrderService, 'id' | 'quantity'>
 
 export interface ListParamsOrders {
   /**
@@ -571,4 +588,4 @@ export interface AddServices {
   add_services: Pick<OrderService, 'id' | 'quantity'>[]
 }
 
-export type OrderAvailableService = OfferAvailableService
+export type OrderAvailableService = OfferAvailableServiceBaggage

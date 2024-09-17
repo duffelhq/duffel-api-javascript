@@ -121,12 +121,24 @@ export const mockOrderChangeRequest: OrderChangeRequestResponse = {
                   name: 'British Airways',
                   id: 'aln_00001876aqC8c5umZmrRds',
                   iata_code: 'BA',
+                  logo_symbol_url:
+                    'https://assets.duffel.com/img/airlines/for-light-background/full-color-logo/BA.svg',
+                  logo_lockup_url:
+                    'https://assets.duffel.com/img/airlines/for-light-background/full-color-lockup/BA.svg',
+                  conditions_of_carriage_url:
+                    'https://www.britishairways.com/en-gb/information/legal/british-airways/general-conditions-of-carriage',
                 },
                 marketing_carrier_flight_number: '1234',
                 marketing_carrier: {
                   name: 'British Airways',
                   id: 'aln_00001876aqC8c5umZmrRds',
                   iata_code: 'BA',
+                  logo_symbol_url:
+                    'https://assets.duffel.com/img/airlines/for-light-background/full-color-logo/BA.svg',
+                  logo_lockup_url:
+                    'https://assets.duffel.com/img/airlines/for-light-background/full-color-lockup/BA.svg',
+                  conditions_of_carriage_url:
+                    'https://www.britishairways.com/en-gb/information/legal/british-airways/general-conditions-of-carriage',
                 },
                 id: 'seg_00009htYpSCXrwaB9Dn456',
                 duration: 'PT02H26M',
@@ -267,12 +279,24 @@ export const mockOrderChangeRequest: OrderChangeRequestResponse = {
                   name: 'British Airways',
                   id: 'aln_00001876aqC8c5umZmrRds',
                   iata_code: 'BA',
+                  logo_symbol_url:
+                    'https://assets.duffel.com/img/airlines/for-light-background/full-color-logo/BA.svg',
+                  logo_lockup_url:
+                    'https://assets.duffel.com/img/airlines/for-light-background/full-color-lockup/BA.svg',
+                  conditions_of_carriage_url:
+                    'https://www.britishairways.com/en-gb/information/legal/british-airways/general-conditions-of-carriage',
                 },
                 marketing_carrier_flight_number: '1234',
                 marketing_carrier: {
                   name: 'British Airways',
                   id: 'aln_00001876aqC8c5umZmrRds',
                   iata_code: 'BA',
+                  logo_symbol_url:
+                    'https://assets.duffel.com/img/airlines/for-light-background/full-color-logo/BA.svg',
+                  logo_lockup_url:
+                    'https://assets.duffel.com/img/airlines/for-light-background/full-color-lockup/BA.svg',
+                  conditions_of_carriage_url:
+                    'https://www.britishairways.com/en-gb/information/legal/british-airways/general-conditions-of-carriage',
                 },
                 id: 'seg_00009htYpSCXrwaB9Dn456',
                 duration: 'PT02H26M',
@@ -461,15 +485,10 @@ export const mockOrderChangeRequestAltered: OrderChangeRequestResponse = {
         city_name: 'New York',
         city: {
           type: 'city',
-          time_zone: null,
           name: 'New York',
-          longitude: null,
-          latitude: null,
           id: 'cit_nyc_us',
           iata_country_code: 'US',
           iata_code: 'NYC',
-          iata_city_code: 'NYC',
-          city_name: null,
         },
         airports: null,
       },
@@ -481,21 +500,19 @@ export const mockOrderChangeRequestAltered: OrderChangeRequestResponse = {
 
 export const mockCreateChangeRequest: CreateOrderChangeRequest = {
   order_id: mockOrderChangeRequest.id,
-  changes: {
-    slices: {
-      remove: [
-        {
-          slice_id: mockOrderChangeRequest.slices.remove.slice_id,
-        },
-      ],
-      add: [
-        {
-          origin: 'LHR',
-          destination: 'JFK',
-          departure_date: '2020-04-24',
-          cabin_class: 'economy',
-        },
-      ],
-    },
+  slices: {
+    remove: [
+      {
+        slice_id: mockOrderChangeRequest.slices.remove.slice_id,
+      },
+    ],
+    add: [
+      {
+        origin: 'LHR',
+        destination: 'JFK',
+        departure_date: '2020-04-24',
+        cabin_class: 'economy',
+      },
+    ],
   },
 }
