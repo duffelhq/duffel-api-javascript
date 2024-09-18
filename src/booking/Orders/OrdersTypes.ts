@@ -144,6 +144,10 @@ export interface OrderPassenger {
    */
   given_name: string
   /**
+   * The passenger's email
+   */
+  email: string;
+  /**
    * The passenger's gender
    * @return "m" or "f"
    */
