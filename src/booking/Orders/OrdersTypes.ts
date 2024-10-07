@@ -342,6 +342,11 @@ export interface OrderPaymentStatus {
    * Price Guarantee means it will hold price
    */
   price_guarantee_expires_at?: string
+
+  /**
+   *  The ISO 8601 datetime at which the Order was paid for, if at all
+   */
+  paid_at: string | null
 }
 
 /**
