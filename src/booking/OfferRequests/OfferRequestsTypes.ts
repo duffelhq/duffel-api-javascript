@@ -1,7 +1,7 @@
 import {
   Airline,
   CabinClass,
-  DuffelPassengerType,
+  PassengerType,
   Place,
   PlaceType,
 } from '../../types'
@@ -75,7 +75,7 @@ export interface CreateOfferRequestAdultPassenger
    * specify their `age` instead of a `type`. A passenger can have only a type
    * or an age, but not both.
    */
-  type: Extract<DuffelPassengerType, 'adult'>
+  type: Extract<PassengerType, 'adult'>
 }
 
 export interface CreateOfferRequestNonAdultPassenger
@@ -157,7 +157,7 @@ export interface OfferRequestPassenger {
   /**
    * The type of the passenger.
    */
-  type?: DuffelPassengerType
+  type?: PassengerType
 
   /**
    * The passenger's family name. Only `space`, `-`, `'`, and letters from the `ASCII`, `Latin-1 Supplement` and `Latin

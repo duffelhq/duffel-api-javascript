@@ -6,7 +6,7 @@ import {
   CabinClass,
   DuffelPassengerGender,
   DuffelPassengerTitle,
-  DuffelPassengerType,
+  PassengerType,
   FlightsConditions,
   LoyaltyProgrammeAccount,
   OfferAvailableServiceBaggage,
@@ -157,7 +157,7 @@ export interface OrderPassenger {
    * The type of the passenger
    * @return "adult", "child", or "infant_without_seat"
    */
-  type: DuffelPassengerType
+  type: PassengerType
   /**
    * The id of the infant associated with this passenger
    * @return "adult", "child", or "infant_without_seat"
@@ -215,7 +215,7 @@ export interface OrderSliceSegment {
   /**
    * The aircraft that the operating carrier will use to operate this segment
    */
-  aircraft?: Aircraft
+  aircraft: Aircraft
   /**
    * The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) datetime at which the segment is scheduled to arrive, in the destination airport timezone (see destination.timezone)
    */
@@ -232,11 +232,11 @@ export interface OrderSliceSegment {
    * The terminal at the destination airport where the segment is scheduled to arrive
    * @example "5"
    */
-  destination_terminal?: string | null
+  destination_terminal: string
   /**
    * The duration of the segment, represented as a [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601#Durations) duration
    */
-  duration?: string
+  duration: string
   /**
    * Duffel's unique identifier for the segment.
    * It identifies the segment of an order (i.e. the same segment across orders will have different ids.
@@ -268,7 +268,7 @@ export interface OrderSliceSegment {
    * The terminal at the origin airport from which the segment is scheduled to depart
    * @example "B"
    */
-  origin_terminal?: string | null
+  origin_terminal: string
   /**
    * Additional segment-specific information about the passengers included in the offer (e.g. their baggage allowance and the cabin class they will be travelling in)
    */
@@ -277,7 +277,47 @@ export interface OrderSliceSegment {
    * The distance of the segment in kilometres
    * @example "424.2"
    */
-  distance?: string | null
+  distance: string
+
+  /**
+   * Additional segment-specific information about the stops, if any, included in the segment
+   */
+  stops: Array<Stop>
+}
+
+export interface Stop {
+  /**
+   * The airport at which the stop happens
+   */
+  airport: Airport
+
+  /**
+   * The ISO 8601 datetime at which the stop is scheduled to arrive, in the airport's timezone (see destination.timezone)
+   *
+   * @example "2020-06-13T16:38:02"
+   */
+  arriving_at: string
+
+  /**
+   * The ISO 8601 datetime at which the stop is scheduled to depart, in the airport's timezone (see origin.timezone)
+   *
+   * @example "2020-06-13T16:38:02"
+   */
+  departing_at: string
+
+  /**
+   * The duration of the stop, represented as a ISO 8601 duration
+   *
+   * @example "PT02H26M"
+   */
+  duration: string
+
+  /**
+   * Duffel's unique identifier for the resource
+   *
+   * @example "sto_00009htYpSCXrwaB9Dn456"
+   */
+  id: string
 }
 
 export interface OrderSlice {
@@ -512,7 +552,7 @@ export interface Order {
   /**
    * The airline-initiated changes for this order.
    */
-  airline_initiated_changes?: AirlineInitiatedChange[]
+  airline_initiated_changes: AirlineInitiatedChange[]
 
   /**
    * The available actions you can take on this order through our API.
@@ -525,6 +565,15 @@ export interface Order {
    * @example: ["cancel","update"]
    */
   available_actions: OrderAvailableAction[]
+
+  /**
+   * Airlines are always the source of truth for orders. The orders returned in the Duffel API
+   * are a view of those orders. This field is the ISO 8601 datetime at which the order was
+   * last synced with the airline. If this datetime is in the last minute you can consider the order up to date.
+   *
+   * @example "2020-04-11T15:48:11Z"
+   */
+  synced_at: string
 }
 
 export type OrderAvailableAction = 'cancel' | 'change' | 'update'
