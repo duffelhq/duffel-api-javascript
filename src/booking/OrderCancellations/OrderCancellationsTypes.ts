@@ -99,6 +99,7 @@ export interface OrderCancellation {
     | 'card'
     | 'voucher'
     | 'awaiting_payment'
+    | 'airline_credits'
 
   /**
    * The airline credits for this OrderCancellation
