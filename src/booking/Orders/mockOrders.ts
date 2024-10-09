@@ -45,6 +45,8 @@ export const mockCreateOrderRequest: CreateOrder = {
 }
 
 export const mockOrder: Order = {
+  synced_at: '2020-04-11T15:48:11Z',
+  airline_initiated_changes: [],
   available_actions: ['cancel', 'change'],
   total_currency: 'GBP',
   total_amount: '90.80',
@@ -86,13 +88,17 @@ export const mockOrder: Order = {
             iata_country_code: 'GB',
             iata_code: 'LHR',
             city_name: 'London',
+            type: 'airport',
+            iata_city_code: 'LON',
             city: {
               name: 'London',
               id: 'cit_lon_gb',
               iata_country_code: 'GB',
               iata_code: 'LON',
+              type: 'city',
             },
           },
+          stops: [],
           operating_carrier_flight_number: '4321',
           operating_carrier: {
             name: 'British Airways',
@@ -136,7 +142,10 @@ export const mockOrder: Order = {
               id: 'cit_lon_gb',
               iata_country_code: 'GB',
               iata_code: 'LON',
+              type: 'city',
             },
+            type: 'airport',
+            iata_city_code: 'LON',
           },
           departing_at: '2020-06-13T16:38:02',
           arriving_at: '2020-06-13T16:38:02',
@@ -159,11 +168,13 @@ export const mockOrder: Order = {
         iata_country_code: 'GB',
         iata_code: 'LHR',
         city_name: 'London',
+        iata_city_code: 'LON',
         city: {
           name: 'London',
           id: 'cit_lon_gb',
           iata_country_code: 'GB',
           iata_code: 'LON',
+          type: 'city',
         },
       },
       id: 'sli_00009htYpSCXrwaB9Dn123',
@@ -180,11 +191,13 @@ export const mockOrder: Order = {
         iata_country_code: 'GB',
         iata_code: 'LHR',
         city_name: 'London',
+        iata_city_code: 'LON',
         city: {
           name: 'London',
           id: 'cit_lon_gb',
           iata_country_code: 'GB',
           iata_code: 'LON',
+          type: 'city',
         },
       },
       conditions: {
@@ -211,6 +224,7 @@ export const mockOrder: Order = {
     price_guarantee_expires_at: '2020-01-17T10:42:14.545Z',
     payment_required_by: '2020-01-17T10:42:14.545Z',
     awaiting_payment: true,
+    paid_at: null,
   },
   passengers: [
     {
@@ -228,6 +242,8 @@ export const mockOrder: Order = {
           account_number: '12901014',
         },
       ],
+      email: 'amelia@duffel.com',
+      phone_number: '+442080160509',
     },
   ],
   owner: {
@@ -248,6 +264,7 @@ export const mockOrder: Order = {
   id: 'ord_00009hthhsUZ8W4LxQgkjo',
   documents: [
     {
+      passenger_ids: ['pas_00009hj8USM7Ncg31cBCLL'],
       unique_identifier: '1252106312810',
       type: 'electronic_ticket',
     },
@@ -295,7 +312,7 @@ export const mockOnHoldOrders: Order[] = [
                 ],
               },
             ],
-            origin_terminal: null,
+            origin_terminal: 'B',
             origin: {
               time_zone: 'America/Indiana/Indianapolis',
               name: 'Indianapolis International Airport',
@@ -307,6 +324,8 @@ export const mockOnHoldOrders: Order[] = [
               iata_code: 'IND',
               city_name: 'Indianapolis',
               city: null,
+              type: 'airport',
+              iata_city_code: 'IND',
             },
             operating_carrier_flight_number: '4721',
             operating_carrier: {
@@ -328,8 +347,8 @@ export const mockOnHoldOrders: Order[] = [
             },
             id: 'seg_0000A6GioOO1UDbjb7nIi9',
             duration: 'PT2H45M',
-            distance: null,
-            destination_terminal: null,
+            distance: '424.2',
+            destination_terminal: 'A',
             destination: {
               time_zone: 'America/New_York',
               name: 'Miami International Airport',
@@ -340,6 +359,8 @@ export const mockOnHoldOrders: Order[] = [
               iata_country_code: 'US',
               iata_code: 'MIA',
               city_name: 'Miami',
+              type: 'airport',
+              iata_city_code: 'MIA',
               city: {
                 type: 'city',
                 name: 'Miami',
@@ -348,6 +369,7 @@ export const mockOnHoldOrders: Order[] = [
                 iata_code: 'MIA',
               },
             },
+            stops: [],
             departing_at: '2021-08-07T17:53:00',
             arriving_at: '2021-08-07T20:38:00',
             aircraft: {
@@ -369,6 +391,7 @@ export const mockOnHoldOrders: Order[] = [
           iata_country_code: 'US',
           iata_code: 'IND',
           city_name: 'Indianapolis',
+          iata_city_code: 'IND',
           city: null,
         },
         id: 'sli_0000A6GioOQrJfsNjv7Z8C',
@@ -385,6 +408,7 @@ export const mockOnHoldOrders: Order[] = [
           iata_country_code: 'US',
           iata_code: 'MIA',
           city_name: 'Miami',
+          iata_city_code: 'MIA',
           city: {
             type: 'city',
             name: 'Miami',
@@ -403,6 +427,7 @@ export const mockOnHoldOrders: Order[] = [
       price_guarantee_expires_at: '2021-04-16T23:59:00Z',
       payment_required_by: '2021-04-16T23:59:00Z',
       awaiting_payment: true,
+      paid_at: null,
     },
     passengers: [
       {
@@ -414,6 +439,8 @@ export const mockOnHoldOrders: Order[] = [
         gender: 'm',
         family_name: 'SMITH',
         born_on: '1995-05-05',
+        email: 'john@duffel.com',
+        phone_number: '+447700900000',
       },
     ],
     owner: {
@@ -439,6 +466,8 @@ export const mockOnHoldOrders: Order[] = [
     booking_reference: 'ZVNHEX',
     base_currency: 'GBP',
     base_amount: '72.00',
+    synced_at: '2020-04-11T15:48:11Z',
+    airline_initiated_changes: [],
   },
   {
     available_actions: ['cancel', 'change'],
@@ -463,7 +492,7 @@ export const mockOnHoldOrders: Order[] = [
                 ],
               },
             ],
-            origin_terminal: null,
+            origin_terminal: 'C',
             origin: {
               time_zone: 'America/Indiana/Indianapolis',
               name: 'Indianapolis International Airport',
@@ -474,6 +503,8 @@ export const mockOnHoldOrders: Order[] = [
               iata_country_code: 'US',
               iata_code: 'IND',
               city_name: 'Indianapolis',
+              iata_city_code: 'IND',
+              type: 'airport',
               city: null,
             },
             operating_carrier_flight_number: '4341',
@@ -496,8 +527,8 @@ export const mockOnHoldOrders: Order[] = [
             },
             id: 'seg_0000A6GiZRU4WXtdZJrivU',
             duration: 'PT2H49M',
-            distance: null,
-            destination_terminal: null,
+            distance: '424.2',
+            destination_terminal: '1',
             destination: {
               time_zone: 'America/New_York',
               name: 'Miami International Airport',
@@ -508,6 +539,8 @@ export const mockOnHoldOrders: Order[] = [
               iata_country_code: 'US',
               iata_code: 'MIA',
               city_name: 'Miami',
+              type: 'airport',
+              iata_city_code: 'MIA',
               city: {
                 type: 'city',
                 name: 'Miami',
@@ -516,6 +549,7 @@ export const mockOnHoldOrders: Order[] = [
                 iata_code: 'MIA',
               },
             },
+            stops: [],
             departing_at: '2021-08-07T11:55:00',
             arriving_at: '2021-08-07T14:44:00',
             aircraft: {
@@ -537,6 +571,7 @@ export const mockOnHoldOrders: Order[] = [
           iata_country_code: 'US',
           iata_code: 'IND',
           city_name: 'Indianapolis',
+          iata_city_code: 'IND',
           city: null,
         },
         id: 'sli_0000A6GiZRWYNJshh11hnE',
@@ -553,6 +588,7 @@ export const mockOnHoldOrders: Order[] = [
           iata_country_code: 'US',
           iata_code: 'MIA',
           city_name: 'Miami',
+          iata_city_code: 'MIA',
           city: {
             type: 'city',
             name: 'Miami',
@@ -569,6 +605,7 @@ export const mockOnHoldOrders: Order[] = [
       price_guarantee_expires_at: '2021-04-16T23:59:00Z',
       payment_required_by: '2021-04-16T23:59:00Z',
       awaiting_payment: true,
+      paid_at: null,
     },
     passengers: [
       {
@@ -580,6 +617,8 @@ export const mockOnHoldOrders: Order[] = [
         gender: 'm',
         family_name: 'SMITH',
         born_on: '1995-05-05',
+        email: 'john@duffel.com',
+        phone_number: '+442080160509',
       },
     ],
     owner: {
@@ -605,6 +644,8 @@ export const mockOnHoldOrders: Order[] = [
     booking_reference: 'RTEMPK',
     base_currency: 'GBP',
     base_amount: '93.00',
+    synced_at: '2020-04-11T15:48:11Z',
+    airline_initiated_changes: [],
   },
 ]
 

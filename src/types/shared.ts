@@ -30,7 +30,7 @@ export interface City {
   /**
    * "The airports associated to a city. This will only be provided where the `type` is `city`."
    */
-  airports: Airport[]
+  airports?: Airport[]
   /**
    * The type of the place
    */
