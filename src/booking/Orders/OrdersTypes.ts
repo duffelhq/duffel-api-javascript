@@ -168,6 +168,20 @@ export interface OrderPassenger {
    * The **Loyalty Programme Accounts** for this passenger.
    */
   loyalty_programme_accounts?: LoyaltyProgrammeAccount[]
+
+  /**
+   * The passenger's email address.
+   * Note that this data may differ from the airline's records if it was updated directly with the airline since the order was created.
+   * @xample "amelia@duffel.com"
+   */
+  email: string
+
+  /**
+   * The passenger's phone number in E.164 (international) format.
+   * Note that this data may differ from the airline's records if it was updated directly with the airline since the order was created.
+   * @xample "442080160509"
+   */
+  phone_number: string
 }
 
 export interface OrderPassengerIdentityDocument {
