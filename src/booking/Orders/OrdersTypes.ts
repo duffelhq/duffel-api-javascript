@@ -424,6 +424,12 @@ export interface OrderDocument {
    * The type of document
    */
   type: OrderDocumentsType
+
+  /**
+   * The list of passenger ids the document applies to
+   * @example ["pas_00009hj8USM7Ncg31cBCLL"]
+   */
+  passenger_ids: string[]
 }
 
 export interface OrderPayment {
