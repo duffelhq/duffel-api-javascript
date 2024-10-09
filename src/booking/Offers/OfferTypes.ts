@@ -451,7 +451,7 @@ export interface OfferSlice {
    *   - `"4"`: premium seating, additional legroom and recline. Situated in business class or higher.
    *    - `"5"`: deluxe seating, additional legroom and reclines to lie flat position. Situated in business class or higher.
    */
-  ngs_shelf: number
+  ngs_shelf: number | null
 }
 
 export interface OfferSliceSegment {

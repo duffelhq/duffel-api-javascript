@@ -137,7 +137,7 @@ export type FlightsConditions = {
    * If any of the slices on the order or offer can't be refunded then the `allowed` property will be `false`.
    * If the airline hasn't provided any information about whether this order or offer can be refunded then this property will be `null`.
    */
-  refund_before_departure?: FlightsCondition | null
+  refund_before_departure: FlightsCondition | null
 
   /**
    * Whether the whole order or offer can be changed before the departure of the first slice.
@@ -147,7 +147,7 @@ export type FlightsConditions = {
    * In this case you should refer to the slices conditions to determine if any part of the order or offer is changeable.
    * If the airline hasn't provided any information about whether this order or offer can be changed then this property will be `null`.
    */
-  change_before_departure?: FlightsCondition | null
+  change_before_departure: FlightsCondition | null
 }
 
 /**
@@ -162,21 +162,20 @@ export type FlightsConditions = {
  * passengers if you require this level of granularity.
  */
 export type OfferSliceConditions = FlightsConditions & {
-  // TODO: ask James about this
   /**
    * Whether passengers are able to select a seat prior to check in.
    */
-  advance_seat_selection: boolean
+  advance_seat_selection: boolean | null
 
   /**
    * Whether passengers are given preferential boarding over others passengers in their cabin.
    */
-  priority_boarding: boolean
+  priority_boarding: boolean | null
 
   /**
    * Whether passengers are given access to a fast track lane during check in.
    */
-  priority_check_in: boolean
+  priority_check_in: boolean | null
 }
 
 /**
