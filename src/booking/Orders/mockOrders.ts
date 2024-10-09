@@ -206,6 +206,7 @@ export const mockOrder: Order = {
           penalty_amount: '100.00',
           allowed: true,
         },
+        refund_before_departure: null,
       },
     },
   ],
@@ -419,6 +420,7 @@ export const mockOnHoldOrders: Order[] = [
         },
         conditions: {
           change_before_departure: null,
+          refund_before_departure: null,
         },
       },
     ],
@@ -597,7 +599,10 @@ export const mockOnHoldOrders: Order[] = [
             iata_code: 'MIA',
           },
         },
-        conditions: { change_before_departure: null },
+        conditions: {
+          change_before_departure: null,
+          refund_before_departure: null,
+        },
       },
     ],
     services: [],

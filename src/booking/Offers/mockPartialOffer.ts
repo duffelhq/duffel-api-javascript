@@ -165,6 +165,7 @@ export const mockPartialOffer: Offer = {
           penalty_amount: '100.00',
           allowed: true,
         },
+        refund_before_departure: null,
         advance_seat_selection: false,
         priority_boarding: false,
         priority_check_in: false,
