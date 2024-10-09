@@ -165,6 +165,7 @@ export const MOCK_BOOKING: StaysBooking = {
   email: 'jean@example.com',
   phone_number: '+4407242242424',
   status: 'confirmed',
+  // eslint-disable-next-line spellcheck/spell-checker
   reference: 'dhg-4692ARxBI85qTkbDDEZMO8',
   id: 'bok_0000ARxBI85qTkbDDEZMO3',
   confirmed_at: '2022-12-20T15:45:03.000000Z',
@@ -173,7 +174,7 @@ export const MOCK_BOOKING: StaysBooking = {
   cancelled_at: null,
   guests: [
     {
-      given_name: 'Raiden',
+      given_name: 'John',
       family_name: 'Ei',
     },
   ],
@@ -194,7 +195,7 @@ export const MOCK_CREATE_BOOKING_PAYLOAD: StaysBookingPayload = {
   guests: [
     {
       given_name: 'Jean',
-      family_name: 'Gunnhildr',
+      family_name: 'Gun',
     },
   ],
   email: 'jean@example.com',

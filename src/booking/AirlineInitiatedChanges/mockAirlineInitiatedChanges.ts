@@ -225,6 +225,7 @@ export const mockAirlineInitiatedChange: AirlineInitiatedChange = {
           departing_at: '2023-03-28T11:00:00',
           arriving_at: '2023-03-28T14:15:00',
           aircraft: {
+            // eslint-disable-next-line spellcheck/spell-checker
             name: 'Airbus A320neo',
             id: 'arc_00009lcSPZuSbgKG1u4Pkn',
             iata_code: '32N',

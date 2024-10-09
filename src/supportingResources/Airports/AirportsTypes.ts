@@ -1,4 +1,4 @@
-import { City, PlaceType } from '../../types'
+import { City } from '../../types'
 
 /**
  * Airports are used to identify origins and destinations in journey slices
