@@ -318,12 +318,12 @@ export interface CreateOfferRequestSlice {
   /**
    * The inclusive time range for the arrival of the slice
    */
-  arrival_time?: TimeRangeFilter | null
+  arrival_time: TimeRangeFilter | null
 
   /**
    * The inclusive time range for the departure of the slice
    */
-  departure_time?: TimeRangeFilter | null
+  departure_time: TimeRangeFilter | null
 }
 
 export interface CreateOfferRequestQueryParameters {
