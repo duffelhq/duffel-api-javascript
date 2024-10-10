@@ -294,6 +294,8 @@ export interface CreateOfferRequest {
   slices: CreateOfferRequestSlice[]
 }
 
+export type TimeRangeFilter = { from: string; to: string }
+
 export interface CreateOfferRequestSlice {
   /**
    * The 3-letter IATA code for the city or airport where this slice ends
@@ -316,12 +318,12 @@ export interface CreateOfferRequestSlice {
   /**
    * The inclusive time range for the arrival of the slice
    */
-  arrival_time?: string | null
+  arrival_time?: TimeRangeFilter | null
 
   /**
    * The inclusive time range for the departure of the slice
    */
-  departure_time?: string | null
+  departure_time?: TimeRangeFilter | null
 }
 
 export interface CreateOfferRequestQueryParameters {
