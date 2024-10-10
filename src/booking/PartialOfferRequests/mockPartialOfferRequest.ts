@@ -7,6 +7,8 @@ export const mockCreatePartialOfferRequest: CreateOfferRequest = {
       origin: 'LHR',
       destination: 'JFK',
       departure_date: '2020-04-24',
+      arrival_time: null,
+      departure_time: null,
     },
   ],
   passengers: [
