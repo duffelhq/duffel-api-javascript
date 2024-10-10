@@ -35,7 +35,7 @@ export interface Seat {
    * A name which describes the type of seat, which you can display in your user interface to help customers to understand its features
    * @example "Exit row seat"
    */
-  name: string
+  name: string | null
 }
 
 /**
