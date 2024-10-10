@@ -11,6 +11,17 @@ export type AirlineInitiatedChangeAvailableAction =
   | 'change'
   | 'update'
 
+/**
+ * The associated Travel Agent Ticket, if any, for this Airline-Initiated Change.
+ * This value will be present for Airline-Initiated changes that take some time to be processed.
+ */
+export interface TravelAgentTicket {
+  id: string
+  external_ticket_id: string
+}
+
+type EmptyObject = Record<string, unknown>
+
 export interface AirlineInitiatedChange {
   /**
    * The action taken in response to this airline-initiated change. Accepted,
@@ -66,7 +77,7 @@ export interface AirlineInitiatedChange {
    * Change. This value will be present for Airline-Initiated changes that take
    * some time to be processed.
    */
-  travel_agent_ticket: any | null
+  travel_agent_ticket: TravelAgentTicket | EmptyObject | null
 
   /**
    * The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) datetime at which

@@ -54,6 +54,7 @@ export const mockWebhooksListResponse: WebhooksListResponse[] = [
 ]
 
 export const mockWebhooksCreateResponse: WebhooksCreateResponse = {
+  // eslint-disable-next-line spellcheck/spell-checker
   secret: 'QKfUULLQh+8SegYmIsF6kA==',
   url: 'https://www.example.com:4000/webhooks',
   updated_at: '2020-04-11T15:48:11.642Z',

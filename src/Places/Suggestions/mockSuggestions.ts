@@ -18,6 +18,7 @@ export const mockPlacesSuggestionsResponse: Places = {
     id: 'cit_lon_gb',
     iata_country_code: 'GB',
     iata_code: 'LON',
+    type: 'city',
   },
   airports: [
     {
@@ -30,11 +31,14 @@ export const mockPlacesSuggestionsResponse: Places = {
       iata_country_code: 'GB',
       iata_code: 'LHR',
       city_name: 'London',
+      type: 'airport',
+      iata_city_code: 'LON',
       city: {
         name: 'London',
         id: 'cit_lon_gb',
         iata_country_code: 'GB',
         iata_code: 'LON',
+        type: 'city',
       },
     },
   ],

@@ -4,7 +4,7 @@ export interface OrderChange {
   /**
    * The price of this offer as a change to your existing order, excluding taxes
    */
-  change_total_amount: string | null
+  change_total_amount: string
 
   /**
    * The currency of the change_total_amount, as an ISO 4217 currency code.
@@ -13,7 +13,7 @@ export interface OrderChange {
    * by the airline (which will usually be based on the country where your
    * IATA agency is registered).
    */
-  change_total_currency: string | null
+  change_total_currency: string
 
   /**
    * Whether the order was created in live mode. This field will be set to `true`
@@ -29,7 +29,7 @@ export interface OrderChange {
   /**
    * The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) datetime that indicates when the order change was confirmed
    */
-  confirmed_at: string
+  confirmed_at: string | null
 
   /**
    * The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) datetime at which the offer will expire
@@ -45,7 +45,7 @@ export interface OrderChange {
   /**
    * The price of this offer if it was newly purchased, excluding taxes
    */
-  new_total_amount: string | null
+  new_total_amount: string
 
   /**
    * The currency of the new_total_amount, as an ISO 4217 currency code.
@@ -64,7 +64,7 @@ export interface OrderChange {
   /**
    * The penalty price imposed by the airline for making this change
    */
-  penalty_amount: string | null
+  penalty_total_amount: string | null
 
   /**
    * The currency of the penalty_amount, as an ISO 4217 currency code.
@@ -73,19 +73,15 @@ export interface OrderChange {
    * currency provided by the airline (which will usually be based on
    * the country where your IATA agency is registered).
    */
-  penalty_currency: string | null
+  penalty_total_currency: string | null
 
   /**
-   * Where the refund, once confirmed, will be sent. card is currently a restricted feature.
-   * `awaiting_payment` is for pay later orders where no payment has been made yet.
+   * Where the refund, once confirmed, will be sent.
+   * Refunds are indicated by a negative change_total_amount.
+   * If the change does not require a refund, this field will be null.
+   * original_form_of_payment refers to the form of payment used to create the order.
    */
-  refund_to:
-    | 'arc_bsp_cash'
-    | 'balance'
-    | 'card'
-    | 'voucher'
-    | 'awaiting_payment'
-    | 'original_form_of_payment'
+  refund_to: 'voucher' | 'original_form_of_payment'
 
   /**
    * The slices to be added and/or removed

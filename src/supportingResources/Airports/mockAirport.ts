@@ -10,10 +10,13 @@ export const mockAirport: Airport = {
   iata_country_code: 'GB',
   iata_code: 'LHR',
   city_name: 'London',
+  iata_city_code: 'LON',
+  type: 'airport',
   city: {
     name: 'London',
     id: 'cit_lon_gb',
     iata_country_code: 'GB',
     iata_code: 'LON',
+    type: 'city',
   },
 }

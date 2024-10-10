@@ -13,6 +13,7 @@ export interface StaysBed {
 }
 
 export interface StaysRating {
+  // eslint-disable-next-line spellcheck/spell-checker
   /**
    * The source of this rating. Possible values: `"aaa"` (American Automobile Association Diamond Rating), `"northstar"` (Northstar Crown Rating), `"priceline"` (Priceline star rating)
    */

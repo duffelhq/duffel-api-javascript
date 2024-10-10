@@ -14,6 +14,43 @@ export interface ListOrderCancellationsParams extends PaginationMeta {
   order_id?: string
 }
 
+export interface OrderCancellationAirlineCredit {
+  /**
+   * Duffel's unique identifier for the airline credit
+   */
+  id: string
+
+  /**
+   * The human-readable name used by the airline to categorize the type of credit being offered. This name should help when trying to understand the airline's conditions of use which apply to this credit.
+   */
+  credit_name: string
+
+  /**
+   * The code which identifies the airline credit to the airline and will be used to redeem the airline credit
+   */
+  credit_code: string
+
+  /**
+   * The monetary value associated with this airline credit
+   */
+  credit_amount: string
+
+  /**
+   * The currency in which this airline credit is issued, as an ISO 4217 currency code
+   */
+  credit_currency: string
+
+  /**
+   * The date the credit was issued. It is important to note that this date might not be the same as the date of cancellation. Often airlines associate credits with tickets, in which case the date of issue is considered to be the date the ticket was originally issued. Airline credits may have expiration dates which are based on the date of issue. Airlines don't always reliably disclose the expiration date in their APIs at the time of cancellation, so we are unable to return this information on airline credits. To get the latest info on expiration dates for airline credits we recommend checking directly with the airlines to determine the specific conditions of use for the credit.
+   */
+  issued_on: string
+
+  /**
+   * Duffel's unique identifier for the passenger on the order that the credit is associated with
+   */
+  passenger_id: string
+}
+
 export interface OrderCancellation {
   /**
    * The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) datetime that indicates when the order cancellation was confirmed
@@ -62,4 +99,10 @@ export interface OrderCancellation {
     | 'card'
     | 'voucher'
     | 'awaiting_payment'
+    | 'airline_credits'
+
+  /**
+   * The airline credits for this OrderCancellation
+   */
+  airline_credits: OrderCancellationAirlineCredit[]
 }

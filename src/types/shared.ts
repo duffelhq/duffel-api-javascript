@@ -7,10 +7,6 @@ import { Airport } from '../supportingResources/Airports/AirportsTypes'
  */
 export interface City {
   /**
-   * The type of the place
-   */
-  type?: 'city'
-  /**
    * The three-character IATA code for the city
    * @example "LON"
    */
@@ -31,6 +27,14 @@ export interface City {
    * @example "London"
    */
   name: string
+  /**
+   * "The airports associated to a city. This will only be provided where the `type` is `city`."
+   */
+  airports?: Airport[]
+  /**
+   * The type of the place
+   */
+  type: 'city'
 }
 
 /**
@@ -41,7 +45,7 @@ export type CabinClass = 'first' | 'business' | 'premium_economy' | 'economy'
 /**
  * The type of the passenger
  */
-export type DuffelPassengerType = 'adult' | 'child' | 'infant_without_seat'
+export type PassengerType = 'adult' | 'child' | 'infant_without_seat'
 
 /**
  * The passenger's title
@@ -59,14 +63,66 @@ export type DuffelPassengerGender = 'm' | 'f'
  */
 export type PassengerIdentityDocumentType = 'passport' | 'tax_id'
 
+export type Place = (Airport & { type: 'airport' }) | (City & { type: 'city' })
+
 /**
  * The type of the origin or destination
  */
-export type PlaceType = 'airport' | 'city'
+export type PlaceType = Place['type']
 
-export type Place =
-  | (Airport & { type?: 'airport'; airports?: Airport[] | null })
-  | (City & { type?: 'city' })
+export type FlightsConditionAllowed = {
+  /**
+   * The currency of the `penalty_amount` as an [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency code.
+   * This will be in a currency determined by the airline, which is not necessarily the same as the currency of the order or offer.
+   * If this is `null` then `penalty_amount` will also be `null`.
+   *
+   * @example "GBP"
+   */
+  penalty_currency: string
+  /**
+   * If the modification is `allowed` then this is the amount payable to apply the modification to all passengers.
+   * If there is no penalty, the value will be zero. If the modification isn't `allowed` or the penalty is not known then this field will be `null`.
+   * If this is `null` then the `penalty_currency` will also be null.
+   *
+   * @example "100.00"
+   */
+  penalty_amount: string
+  /**
+   * Whether this kind of modification is allowed post-booking
+   *
+   * @example "true"
+   */
+  allowed: true
+}
+
+export type FlightsConditionNotAllowed = {
+  /**
+   * The currency of the `penalty_amount` as an [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency code.
+   * This will be in a currency determined by the airline, which is not necessarily the same as the currency of the order or offer.
+   * If this is `null` then `penalty_amount` will also be `null`.
+   *
+   * @example "GBP"
+   */
+  penalty_currency: null
+  /**
+   * If the modification is `allowed` then this is the amount payable to apply the modification to all passengers.
+   * If there is no penalty, the value will be zero. If the modification isn't `allowed` or the penalty is not known then this field will be `null`.
+   * If this is `null` then the `penalty_currency` will also be null.
+   *
+   * @example "100.00"
+   */
+  penalty_amount: null
+  /**
+   * Whether this kind of modification is allowed post-booking
+   *
+   * @example "true"
+   */
+  allowed: false
+}
+
+export type FlightsCondition =
+  | FlightsConditionAllowed
+  | FlightsConditionNotAllowed
 
 /**
  * The conditions associated with this offer, describing the kinds of modifications you can make post-booking and any penalties that will apply to those modifications.
@@ -81,28 +137,7 @@ export type FlightsConditions = {
    * If any of the slices on the order or offer can't be refunded then the `allowed` property will be `false`.
    * If the airline hasn't provided any information about whether this order or offer can be refunded then this property will be `null`.
    */
-  refund_before_departure?: {
-    /**
-     * The currency of the `penalty_amount` as an [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency code.
-     * This will be in a currency determined by the airline, which is not necessarily the same as the currency of the order or offer.
-     * If this is `null` then `penalty_amount` will also be `null`.
-     * @example "GBP"
-     */
-    penalty_currency?: string | null
-    /**
-     * If the modification is `allowed` then this is the amount payable to apply the modification to all passengers.
-     * If there is no penalty, the value will be zero. If the modification isn't `allowed` or the penalty is not known then this field will be `null`.
-     * If this is `null` then the `penalty_currency` will also be null.
-     * @example "100.00"
-     */
-    penalty_amount?: string | null
-    /**
-     * Whether this kind of modification is allowed post-booking
-     *
-     * @example "true"
-     */
-    allowed: boolean
-  } | null
+  refund_before_departure: FlightsCondition | null
 
   /**
    * Whether the whole order or offer can be changed before the departure of the first slice.
@@ -112,28 +147,7 @@ export type FlightsConditions = {
    * In this case you should refer to the slices conditions to determine if any part of the order or offer is changeable.
    * If the airline hasn't provided any information about whether this order or offer can be changed then this property will be `null`.
    */
-  change_before_departure?: {
-    /**
-     * The currency of the `penalty_amount` as an [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency code.
-     * This will be in a currency determined by the airline, which is not necessarily the same as the currency of the order or offer.
-     * If this is `null` then `penalty_amount` will also be `null`.
-     * @example "GBP"
-     */
-    penalty_currency?: string | null
-    /**
-     * If the modification is `allowed` then this is the amount payable to apply the modification to all passengers.
-     * If there is no penalty, the value will be zero. If the modification isn't `allowed` or the penalty is not known then this field will be `null`.
-     * If this is `null` then the `penalty_currency` will also be null.
-     * @example "100.00"
-     */
-    penalty_amount?: string | null
-    /**
-     * Whether this kind of modification is allowed post-booking
-     *
-     * @example "true"
-     */
-    allowed: boolean
-  } | null
+  change_before_departure: FlightsCondition | null
 }
 
 /**
@@ -151,17 +165,17 @@ export type OfferSliceConditions = FlightsConditions & {
   /**
    * Whether passengers are able to select a seat prior to check in.
    */
-  advance_seat_selection: boolean
+  advance_seat_selection: boolean | null
 
   /**
    * Whether passengers are given preferential boarding over others passengers in their cabin.
    */
-  priority_boarding: boolean
+  priority_boarding: boolean | null
 
   /**
    * Whether passengers are given access to a fast track lane during check in.
    */
-  priority_check_in: boolean
+  priority_check_in: boolean | null
 }
 
 /**

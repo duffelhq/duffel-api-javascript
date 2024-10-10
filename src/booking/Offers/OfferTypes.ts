@@ -4,13 +4,14 @@ import {
   Airport,
   CabinClass,
   CreateOfferRequestPassengerFareType,
-  DuffelPassengerType,
+  PassengerType,
   FlightsConditions,
   LoyaltyProgrammeAccount,
   OfferSliceConditions,
   PaginationMeta,
   Place,
   PlaceType,
+  Stop,
 } from '../../types'
 
 /**
@@ -331,12 +332,12 @@ export interface OfferPassenger {
   /**
    * The age of the passenger on the departure_date of the final slice.
    */
-  age?: number
+  age: number | null
 
   /**
    * The type of the passenger.
    */
-  type?: DuffelPassengerType
+  type: PassengerType | null
 
   /**
    * The passenger's family name. Only `space`, `-`, `'`, and letters from the `ASCII`, `Latin-1 Supplement` and `Latin
@@ -450,7 +451,7 @@ export interface OfferSlice {
    *   - `"4"`: premium seating, additional legroom and recline. Situated in business class or higher.
    *    - `"5"`: deluxe seating, additional legroom and reclines to lie flat position. Situated in business class or higher.
    */
-  ngs_shelf: number
+  ngs_shelf: number | null
 }
 
 export interface OfferSliceSegment {
@@ -534,34 +535,7 @@ export interface OfferSliceSegment {
   /**
    * Additional segment-specific information about the stops, if any, included in the segment
    */
-  stops?: OfferSliceSegmentStop[]
-}
-
-export interface OfferSliceSegmentStop {
-  /**
-   * Duffel's unique identifier for the Stop
-   */
-  id: string
-
-  /**
-   * The airport at which the Stop happens
-   */
-  airport: Airport
-
-  /**
-   * The ISO 8601 datetime at which the Stop is scheduled to arrive, in the airport's timezone (see destination.timezone)
-   */
-  arriving_at: string
-
-  /**
-   * The ISO 8601 datetime at which the Stop is scheduled to depart, in the airport's timezone (see origin.timezone)
-   */
-  departing_at: string
-
-  /**
-   * The duration of the Stop, represented as a ISO 8601 duration
-   */
-  duration: string
+  stops: Array<Stop>
 }
 
 export type WiFiAmenityCost = 'free' | 'paid' | 'free or paid' | 'n/a'
@@ -607,70 +581,72 @@ export interface OfferSliceSegmentPassenger {
   /**
    * Data about the cabin that the passenger will be flying in for this segment
    */
-  cabin: {
-    /**
-     * The name of the cabin class
-     */
-    name: CabinClass
+  cabin: OfferSliceSegmentPassengerCabin | null
+}
 
-    /**
-     * TThe name that the marketing carrier uses to market this cabin class
-     */
-    marketing_name: string
+export interface OfferSliceSegmentPassengerCabin {
+  /**
+   * The name of the cabin class
+   */
+  name: CabinClass
 
+  /**
+   * TThe name that the marketing carrier uses to market this cabin class
+   */
+  marketing_name: string
+
+  /**
+   * The amenities specific to this cabin class on this plane
+   */
+  amenities: {
     /**
-     * The amenities specific to this cabin class on this plane
+     * If Wi-Fi is available, information on its cost, availability, etc
      */
-    amenities: {
+    wifi: {
       /**
-       * If Wi-Fi is available, information on its cost, availability, etc
+       * Whether Wi-Fi is available in this cabin
        */
-      wifi: {
-        /**
-         * Whether Wi-Fi is available in this cabin
-         */
-        available: boolean
-
-        /**
-         * The cost, if any, to use the Wi-Fi
-         */
-        cost: WiFiAmenityCost
-      } | null
+      available: boolean
 
       /**
-       * Information on the standard seat in this cabin class. Exceptions may apply, such as on exit rows.
+       * The cost, if any, to use the Wi-Fi
        */
-      seat: {
-        /**
-         * The distance from a point on a seat to the seat front/behind it, in inches, or "n/a" if not available
-         */
-        pitch: SeatPitch
+      cost: WiFiAmenityCost
+    } | null
 
-        /**
-         * A summary of the seat characteristics for the cabin.
-         * Includes the following:
-         *   - `"standard"` - typical seating with regular legroom / recline
-         *   - `"extra_legroom"` - typical seating with additional legroom
-         *   - `"skycouch"` - a row of seats converted into a couch layout
-         *   - `"recliner"` - seating with additional legroom and recline
-         *   - `"angle_flat"` - seating with additional legroom and near flat recline
-         *   - `"full_flat_pod"` - seating with full flat recline and enclosing privacy screens
-         *   - `"private_suite"` - a full suite, typically including a bed and recliner seat
-         */
-        type: SeatType
-      } | null
+    /**
+     * Information on the standard seat in this cabin class. Exceptions may apply, such as on exit rows.
+     */
+    seat: {
+      /**
+       * The distance from a point on a seat to the seat front/behind it, in inches, or "n/a" if not available
+       */
+      pitch: SeatPitch
 
       /**
-       * If power (AC and/or USB) is available, information on what is available
+       * A summary of the seat characteristics for the cabin.
+       * Includes the following:
+       *   - `"standard"` - typical seating with regular legroom / recline
+       *   - `"extra_legroom"` - typical seating with additional legroom
+       *   - `"skycouch"` - a row of seats converted into a couch layout
+       *   - `"recliner"` - seating with additional legroom and recline
+       *   - `"angle_flat"` - seating with additional legroom and near flat recline
+       *   - `"full_flat_pod"` - seating with full flat recline and enclosing privacy screens
+       *   - `"private_suite"` - a full suite, typically including a bed and recliner seat
        */
-      power: {
-        /**
-         * Whether there is power available or not in this cabin
-         */
-        available: boolean
-      } | null
-    }
-  } | null
+      type: SeatType
+    } | null
+
+    /**
+     * If power (AC and/or USB) is available, information on what is available
+     */
+    power: {
+      /**
+       * Whether there is power available or not in this cabin
+       */
+      available: boolean
+    } | null
+  }
 }
 
 export type BaggageType = 'carry_on' | 'checked'
