@@ -1,6 +1,7 @@
 import { Client } from '../../Client'
 import {
   LocationParams,
+  ListAccommodationParams,
   StaysAccommodationSuggestion,
   StaysAccommodation,
 } from '../StaysTypes'
@@ -45,5 +46,32 @@ export class Accommodation extends Resource {
     this.request({
       method: 'GET',
       path: `${this.path}/${id}`,
+    })
+
+  /**
+   * Retrieves a page of accommodation.
+   * @param {Object.<ListAccommodationParams>} params - Endpoint options (radius, latitude, longitude, before, after, limit)
+   * @link https://duffel.com/docs/api/v2/accommodation/list-accommodation
+   */
+  public list = (
+    params: ListAccommodationParams,
+  ): Promise<DuffelResponse<StaysAccommodation[]>> =>
+    this.request({
+      method: 'GET',
+      path: this.path,
+      params: params,
+    })
+
+  /**
+   * Retrieves a generator of accommodation pages given the criteria in the params.
+   * @param {Object.<ListAccommodationParams>} params - Endpoint options (radius, latitude, longitude, before, after, limit)
+   * @link https://duffel.com/docs/api/v2/accommodation/list-accommodation
+   */
+  public listWithGenerator = (
+    params: ListAccommodationParams,
+  ): AsyncGenerator<DuffelResponse<StaysAccommodation[]>> =>
+    this.paginatedRequest({
+      path: this.path,
+      params: params,
     })
 }

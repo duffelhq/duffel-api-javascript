@@ -165,7 +165,10 @@ export class Client {
       response = await this.request({
         method: 'GET',
         path,
-        params: { limit: response.meta.limit, after: response.meta.after },
+        params: {
+          ...params,
+          ...{ limit: response.meta.limit, after: response.meta.after },
+        },
       })
       for (const item of response.data) {
         yield { data: item }
