@@ -1,6 +1,7 @@
 import { Client } from '../../Client'
 import {
   LocationParams,
+  ListAccommodationParams,
   StaysAccommodationSuggestion,
   StaysAccommodation,
 } from '../StaysTypes'
@@ -45,5 +46,14 @@ export class Accommodation extends Resource {
     this.request({
       method: 'GET',
       path: `${this.path}/${id}`,
+    })
+
+  public list = (
+    params: ListAccommodationParams,
+  ): Promise<DuffelResponse<StaysAccommodation[]>> =>
+    this.request({
+      method: 'GET',
+      path: `${this.path}`,
+      params: params,
     })
 }

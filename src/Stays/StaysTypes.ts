@@ -1,3 +1,5 @@
+import { PaginationMeta } from './../types'
+
 export type StaysBedType = 'single' | 'double' | 'queen' | 'king' | 'sofabed'
 
 export interface StaysBed {
@@ -628,10 +630,7 @@ interface CommonStaysSearchParams {
 
 export type LocationParams = {
   radius: number
-  geographic_coordinates: {
-    latitude: number
-    longitude: number
-  }
+  geographic_coordinates: GeographicCoordinates
 }
 
 type LocationSearchParams = {
@@ -646,6 +645,12 @@ type AccommodationSearchParams = {
 } & CommonStaysSearchParams
 
 export type StaysSearchParams = LocationSearchParams | AccommodationSearchParams
+
+export interface ListAccommodationParams extends PaginationMeta {
+  radius?: LocationParams['radius']
+  latitude: GeographicCoordinates['latitude']
+  longitude: GeographicCoordinates['longitude']
+}
 
 export interface StaysSearchResult {
   id: string
