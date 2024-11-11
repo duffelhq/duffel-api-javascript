@@ -301,6 +301,11 @@ export interface StaysLocation {
   geographic_coordinates: GeographicCoordinates | null
 }
 
+export interface StaysAccommodationBrand {
+  name: string
+  id: string
+}
+
 export interface StaysAccommodation {
   /**
    * Duffel ID for this accommodation. Useful for searching availability
@@ -316,6 +321,8 @@ export interface StaysAccommodation {
    * Information about the chain this accommodation belongs to
    */
   chain: StaysChain | null
+
+  brand: StaysAccommodationBrand | null
 
   /**
    * Check in and check out related information

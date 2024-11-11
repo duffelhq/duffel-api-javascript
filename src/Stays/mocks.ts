@@ -1,6 +1,7 @@
 // eslint-disable spellcheck/spell-checker
 import {
   StaysAccommodation,
+  StaysAccommodationBrand,
   StaysAccommodationSuggestion,
   StaysBooking,
   StaysLoyaltyProgramme,
@@ -8,6 +9,11 @@ import {
   StaysSearchResult,
 } from './StaysTypes'
 import { StaysBookingPayload } from './Bookings/Bookings'
+
+export const MOCK_BRAND: StaysAccommodationBrand = {
+  id: 'bra_DQPneLbCejxRuxAqD7amaW',
+  name: 'The Ritz-Carlton',
+}
 
 export const MOCK_ACCOMMODATION: StaysAccommodation = {
   id: 'acc_0000AWr2VsUNIF1Vl91xg0',
@@ -143,8 +149,9 @@ export const MOCK_ACCOMMODATION: StaysAccommodation = {
   key_collection: {
     instructions: 'Key is at the property. Collect from the lock box.',
   },
+  brand: MOCK_BRAND,
   chain: {
-    name: 'The Ritz-Carlton',
+    name: 'Marriott International',
   },
   supported_loyalty_programme: 'duffel_hotel_group_rewards',
 }
