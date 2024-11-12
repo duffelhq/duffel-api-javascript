@@ -19,7 +19,8 @@ import { Refunds } from './DuffelPayments/Refunds'
 import { Sessions } from './Links'
 import { Webhooks } from './notifications'
 import { Stays } from './Stays/Stays'
-import { Cards } from './Vault/Cards'
+import { Cards } from './Payments/Cards'
+import { ThreeDSecureSessions } from './Payments/ThreeDSecureSessions'
 
 export interface DuffelAPIClient {
   aircraft: Aircraft
@@ -34,6 +35,7 @@ export interface DuffelAPIClient {
   orderCancellations: OrderCancellations
   payments: Payments
   seatMaps: SeatMaps
+  threeDSecureSessions: ThreeDSecureSessions
 }
 
 export class Duffel {
@@ -58,6 +60,7 @@ export class Duffel {
   public refunds: Refunds
   public webhooks: Webhooks
   public stays: Stays
+  public three_d_secure_sessions: ThreeDSecureSessions
 
   private cardsClient: Client
   public cards: Cards
@@ -85,6 +88,7 @@ export class Duffel {
     this.refunds = new Refunds(this.client)
     this.webhooks = new Webhooks(this.client)
     this.stays = new Stays(this.client)
+    this.three_d_secure_sessions = new ThreeDSecureSessions(this.client)
 
     this.cardsClient = new Client({
       ...config,
