@@ -56,11 +56,19 @@ interface CardParameters {
    * The card verification code
    */
   cvc: string
+  /**
+   * Set to true to indicate that this card can be used multiple times
+   */
+  multi_use: boolean
 }
 
 interface CardRecord {
   id: string
   live_mode: boolean
+  multi_use: boolean
+  unavailble_at: string
+  brand: string
+  last_4_digits: string
 }
 
 export class Cards extends Resource {
@@ -72,7 +80,7 @@ export class Cards extends Resource {
   // basePath must be 'https://api.duffel.cards'
   constructor(client: Client) {
     super(client)
-    this.path = 'vault/cards'
+    this.path = 'payments/cards'
   }
 
   /**
