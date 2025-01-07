@@ -42,6 +42,36 @@ describe('Stays/Bookings', () => {
     expect(response.data).toEqual(mockResponse.data)
   })
 
+  it('should get a page of bookings when `list` is called with pagination params', async () => {
+    const mockResponse = { data: [MOCK_BOOKING] }
+
+    nock(/(.*)/)
+      .get('/stays/bookings')
+      .query((queryObject) => {
+        expect(queryObject.limit).toEqual('1')
+        return true
+      })
+      .reply(200, mockResponse)
+
+    const response = await duffel.stays.bookings.list({ limit: 1 })
+    expect(response.data).toEqual(mockResponse.data)
+  })
+
+  it('should get all bookings paginated', async () => {
+    nock(/(.*)/)
+      .get(`/stays/bookings`)
+      .reply(200, {
+        data: [MOCK_BOOKING],
+        meta: { limit: 1, before: null, after: null },
+      })
+
+    const response = duffel.stays.bookings.listWithGenerator()
+
+    for await (const page of response) {
+      expect(page.data.id).toBe(MOCK_BOOKING.id)
+    }
+  })
+
   it('should get to /stays/bookings/{id} when `get` is called', async () => {
     const mockResponse = { data: MOCK_BOOKING }
 

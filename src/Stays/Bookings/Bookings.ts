@@ -1,7 +1,7 @@
 import { Client } from '../../Client'
 import { StaysBooking } from '../StaysTypes'
 import { Resource } from '../../Resource'
-import { DuffelResponse } from '../../types'
+import { DuffelResponse, PaginationMeta } from '../../types'
 
 export interface StaysBookingPayload {
   quote_id: string
@@ -54,12 +54,23 @@ export class Bookings extends Resource {
 
   /**
    * List bookings
+   * @param {Object} [options] - Pagination options (optional: limit, after, before)
+   * @link https://duffel.com/docs/api/bookings/list-bookings
    */
-  public list = async (): Promise<DuffelResponse<StaysBooking[]>> =>
-    this.request({
-      method: 'GET',
-      path: this.path,
-    })
+  public list = async (
+    options?: PaginationMeta,
+  ): Promise<DuffelResponse<StaysBooking[]>> =>
+    this.request({ method: 'GET', path: this.path, params: options })
+
+  /**
+   * Retrieves a generator of all bookings. The results may be returned in any order.
+   * @link https://duffel.com/docs/api/bookings/list-bookings
+   */
+  public listWithGenerator = (): AsyncGenerator<
+    DuffelResponse<StaysBooking>,
+    void,
+    unknown
+  > => this.paginatedRequest({ path: this.path })
 
   /**
    * Cancel a booking
