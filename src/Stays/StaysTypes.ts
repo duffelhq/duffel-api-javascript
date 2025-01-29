@@ -74,7 +74,14 @@ export type StaysLoyaltyProgrammeReference =
   | 'global_hotel_alliance_discovery'
   | 'duffel_hotel_group_rewards'
 
-export type StaysPaymentType = 'balance' | 'card'
+export type StaysPaymentMethod = 'balance' | 'card'
+export type StaysPaymentType = 'guarantee' | 'deposit' | 'pay_now'
+export type StaysSource =
+  | 'bookingcom'
+  | 'priceline'
+  | 'travelport'
+  | 'expedia'
+  | 'duffel_hotel_group'
 
 export interface StaysRate {
   /**
@@ -123,14 +130,12 @@ export interface StaysRate {
   id: string
 
   /**
-   * The accepted payment method for this rate. Prepaid rates require payment at time of reservation. Accepted types: pay_now, guarantee
-   */
-  payment_type: 'pay_now' | 'guarantee'
-
-  /**
-   * The supplier from which Duffel got this rate
-   */
-  supplier: 'priceline'
+   * The accepted payment type for this rate.
+   * Guarantee rates are paid at at the accommodation.
+   * Deposit rates require a prepayment of a deposit amount, then the remainder at the accommodation.
+   * Pay now rates require full prepayment.
+   * */
+  payment_type: StaysPaymentType
 
   /**
    * The fee amount, as an ISO 4217 currency code.
@@ -165,11 +170,11 @@ export interface StaysRate {
   /**
    * The methods available for payment of this rate.
 
-   A rate with the `balance` payment type can be paid for using your Duffel Balance.
+   A rate with the `balance` payment method can be paid for using your Duffel Balance.
 
-   A rate with the `card` payment type can be paid for with card details provided at time of booking.
+   A rate with the `card` payment method can be paid for with card details provided at time of booking.
    */
-  available_payment_methods: StaysPaymentType[]
+  available_payment_methods: StaysPaymentMethod[]
 
   /**
    * The loyalty programme that this rate supports.
@@ -182,7 +187,7 @@ export interface StaysRate {
    * The source of the rate.
    * Useful in scenarios where a rate requires explicitly showing the source.
    */
-  source: 'bookingcom' | 'priceline' | 'travelport' | 'duffel_hotel_group'
+  source: StaysSource
 }
 
 export interface StaysRoomRate extends StaysRate {
