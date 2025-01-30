@@ -1,5 +1,5 @@
 import { Client } from '../Client'
-import { StaysSearchParams, StaysSearchResult } from './StaysTypes'
+import { StaysSearchParams, StaysSearchResponse } from './StaysTypes'
 import { Resource } from '../Resource'
 import { DuffelResponse } from '../types'
 import { Accommodation } from './Accommodation'
@@ -40,6 +40,6 @@ export class Stays extends Resource {
    */
   public search = async (
     params: StaysSearchParams,
-  ): Promise<DuffelResponse<StaysSearchResult>> =>
+  ): Promise<DuffelResponse<StaysSearchResponse>> =>
     this.request({ method: 'POST', path: `${this.path}/search`, data: params })
 }

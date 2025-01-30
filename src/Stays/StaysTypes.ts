@@ -664,6 +664,11 @@ export interface ListAccommodationParams extends PaginationMeta {
   longitude: GeographicCoordinates['longitude']
 }
 
+export interface StaysSearchResponse {
+  results: Array<StaysSearchResult>
+  created_at: string
+}
+
 export interface StaysSearchResult {
   id: string
   check_in_date: string
