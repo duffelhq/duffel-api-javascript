@@ -91,7 +91,7 @@ export interface SeatMapCabinRowSectionElementSeat {
   /**
    * The type of this element.
    */
-  type: 'seat'
+  type: 'seat' | 'restricted_seat_general'
 
   /**
    * The designator used to uniquely identify the seat, usually made up of a row number and a column letter
