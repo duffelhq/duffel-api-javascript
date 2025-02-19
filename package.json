@@ -93,7 +93,7 @@
     "@rollup/plugin-terser": "0.4.4",
     "rollup-plugin-typescript2": "0.36.0",
     "semantic-release": "22.0.12",
-    "ts-jest": "29.1.2",
+    "ts-jest": "29.2.5",
     "ts-node": "10.9.2",
     "typescript": "5.7.3"
   },
