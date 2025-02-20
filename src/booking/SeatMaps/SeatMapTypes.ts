@@ -227,5 +227,5 @@ export type SeatMapCabinRowSectionElementType =
   SeatMapCabinRowSectionElement['type']
 export type SeatMapCabinRowSectionElementAmenity = Exclude<
   SeatMapCabinRowSectionElementType,
-  'empty' | 'seat'
+  'empty' | 'seat' | 'restricted_seat_general'
 >
