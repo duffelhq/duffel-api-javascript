@@ -22,6 +22,9 @@ describe('Stays/Bookings', () => {
       ],
       email: 'a@example.com',
       phone_number: '+447700900000',
+      metadata: {
+        customer_reference_number: 'ABXYZZ53Z',
+      },
     }
 
     nock(/(.*)/)
