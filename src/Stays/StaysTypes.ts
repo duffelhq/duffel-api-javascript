@@ -279,7 +279,7 @@ export interface StaysAddress {
   /**
    * The stay's region or state
    */
-  region: string
+  region?: string
 }
 
 export interface GeographicCoordinates {
