@@ -14,6 +14,7 @@ export interface StaysBookingPayload {
   phone_number: string
   accommodation_special_requests?: string
   payment?: { card_id: string } | { three_d_secure_session_id: string }
+  metadata?: StaysBooking['metadata']
 }
 
 export class Bookings extends Resource {
