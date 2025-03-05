@@ -52,6 +52,7 @@ export const mockOrder: Order = {
   total_amount: '90.80',
   tax_currency: 'GBP',
   tax_amount: '30.20',
+  cancellation: null,
   slices: [
     {
       segments: [

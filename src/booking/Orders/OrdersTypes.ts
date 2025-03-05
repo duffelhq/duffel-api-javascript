@@ -15,6 +15,7 @@ import {
   PaymentType,
   Place,
   PlaceType,
+  OrderCancellation,
 } from '../../types'
 
 /**
@@ -594,6 +595,11 @@ export interface Order {
    * @example "2020-04-11T15:48:11Z"
    */
   synced_at: string
+
+  /**
+   * The confirmed cancellation associated with this Order (if this Order has been cancelled)
+   */
+  cancellation?: OrderCancellation | null
 }
 
 export type OrderAvailableAction = 'cancel' | 'change' | 'update'
