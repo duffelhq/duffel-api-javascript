@@ -9,6 +9,7 @@ export const mockOffer: Offer = {
   tax_amount: '40.80',
   slices: [
     {
+      comparison_key: 'BmlZDw==',
       ngs_shelf: 1,
       segments: [
         {

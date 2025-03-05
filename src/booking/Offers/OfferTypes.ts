@@ -452,6 +452,11 @@ export interface OfferSlice {
    *    - `"5"`: deluxe seating, additional legroom and reclines to lie flat position. Situated in business class or higher.
    */
   ngs_shelf: number | null
+
+  /**
+   * A hash uniquely identifying this slice. This value could be use to group together identical slices from different offers.
+   */
+  comparison_key: string
 }
 
 export interface OfferSliceSegment {
