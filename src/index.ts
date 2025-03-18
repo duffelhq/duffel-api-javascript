@@ -21,6 +21,7 @@ import { Webhooks } from './notifications'
 import { Stays } from './Stays/Stays'
 import { Cards } from './Payments/Cards'
 import { ThreeDSecureSessions } from './Payments/ThreeDSecureSessions'
+import { Identity } from './Identity/Identity'
 
 export interface DuffelAPIClient {
   aircraft: Aircraft
@@ -61,6 +62,7 @@ export class Duffel {
   public webhooks: Webhooks
   public stays: Stays
   public three_d_secure_sessions: ThreeDSecureSessions
+  public identity: Identity
 
   private cardsClient: Client
   public cards: Cards
@@ -89,6 +91,7 @@ export class Duffel {
     this.webhooks = new Webhooks(this.client)
     this.stays = new Stays(this.client)
     this.three_d_secure_sessions = new ThreeDSecureSessions(this.client)
+    this.identity = new Identity(this.client)
 
     this.cardsClient = new Client({
       ...config,
