@@ -16,6 +16,16 @@ export class Quotes extends Resource {
 
   /**
    * Create a quote for the selected rate
+   * @param {string} quoteId - The ID of the rate to create a quote for
+   */
+  public get = async (quoteId: string): Promise<DuffelResponse<StaysQuote>> =>
+    this.request({
+      method: 'GET',
+      path: `${this.path}/${quoteId}`,
+    })
+
+  /**
+   * Create a quote for the selected rate
    * @param {string} rateId - The ID of the rate to create a quote for
    */
   public create = async (rateId: string): Promise<DuffelResponse<StaysQuote>> =>
