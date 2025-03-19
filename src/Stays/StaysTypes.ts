@@ -184,6 +184,12 @@ export interface StaysRate {
   supported_loyalty_programme: StaysLoyaltyProgrammeReference | null
 
   /**
+   * Whether this rate requires you to be a member of the supported loyalty programme.
+   * If true, you must supply a loyalty_programme_account_number when creating a booking for this rate.
+   */
+  loyalty_programme_required: boolean
+
+  /**
    * The source of the rate.
    * Useful in scenarios where a rate requires explicitly showing the source.
    */

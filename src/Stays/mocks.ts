@@ -59,6 +59,7 @@ export const MOCK_ACCOMMODATION: StaysAccommodation = {
           available_payment_methods: ['balance'],
           quantity_available: 1,
           supported_loyalty_programme: null,
+          loyalty_programme_required: false,
           source: 'duffel_hotel_group',
         },
         {
@@ -89,6 +90,7 @@ export const MOCK_ACCOMMODATION: StaysAccommodation = {
           available_payment_methods: ['card'],
           quantity_available: 1,
           supported_loyalty_programme: 'duffel_hotel_group_rewards',
+          loyalty_programme_required: true,
           source: 'duffel_hotel_group',
         },
       ],
