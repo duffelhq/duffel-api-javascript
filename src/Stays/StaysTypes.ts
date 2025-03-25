@@ -684,6 +684,8 @@ export interface StaysSearchResult {
   guests: Array<Guest>
   cheapest_rate_total_amount: string
   cheapest_rate_currency: string
+  cheapest_rate_public_amount: string | null
+  cheapest_rate_public_currency: string
 }
 
 export interface StaysLoyaltyProgramme {
