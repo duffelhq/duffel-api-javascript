@@ -165,6 +165,8 @@ export const MOCK_SEARCH_RESULT: StaysSearchResult = {
   guests: [{ type: 'adult' }, { type: 'adult' }],
   cheapest_rate_total_amount: '799.00',
   cheapest_rate_currency: 'GBP',
+  cheapest_rate_public_amount: null,
+  cheapest_rate_public_currency: 'GBP',
 }
 
 export const MOCK_BOOKING: StaysBooking = {
