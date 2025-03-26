@@ -22,6 +22,8 @@ import { Stays } from './Stays/Stays'
 import { Cards } from './Payments/Cards'
 import { ThreeDSecureSessions } from './Payments/ThreeDSecureSessions'
 import { Identity } from './Identity/Identity'
+import { hasService as hasServiceImport } from './functions/hasService'
+import { hasAvailableSeatService as hasAvailableSeatServiceImport } from './functions/hasAvailableSeatService'
 
 export interface DuffelAPIClient {
   aircraft: Aircraft
@@ -104,5 +106,5 @@ export class Duffel {
 export const DuffelError = _DuffelError
 
 // Exports helper functions:
-export * from './functions/hasService'
-export * from './functions/hasAvailableSeatService'
+export const hasService = hasServiceImport
+export const hasAvailableSeatService = hasAvailableSeatServiceImport
