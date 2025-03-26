@@ -102,3 +102,7 @@ export class Duffel {
 }
 
 export const DuffelError = _DuffelError
+
+// Exports helper functions:
+export * from './functions/hasService'
+export * from './functions/hasAvailableSeatService'
