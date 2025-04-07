@@ -137,6 +137,46 @@ describe('Identity Endpoints', () => {
       )
       expect(response.data).toEqual(mockUpdatedCustomerUserResponse.data)
     })
+
+    it('should list customer users', async () => {
+      nock(/(.*)/)
+        .get('/identity/customer/users')
+        .reply(200, {
+          data: [
+            mockCreatedCustomerUserResponse.data,
+            {
+              id: 'icu_def456',
+              created_at: '2025-03-19T00:00:00Z',
+              email: 'alice.smith@example.com',
+              given_name: 'Alice',
+              family_name: 'Smith',
+              group: { id: 'usg_67890', name: 'Regular' },
+              live_mode: true,
+              phone_number: '+11234567890',
+            },
+          ],
+          meta: {
+            after: null,
+            before: null,
+            limit: 50,
+          },
+        })
+
+      const response = await duffel.identity.customerUsers.list()
+      expect(response.data).toEqual([
+        mockCreatedCustomerUserResponse.data,
+        {
+          id: 'icu_def456',
+          created_at: '2025-03-19T00:00:00Z',
+          email: 'alice.smith@example.com',
+          given_name: 'Alice',
+          family_name: 'Smith',
+          group: { id: 'usg_67890', name: 'Regular' },
+          live_mode: true,
+          phone_number: '+11234567890',
+        },
+      ])
+    })
   })
 
   describe('CustomerUserGroups', () => {
