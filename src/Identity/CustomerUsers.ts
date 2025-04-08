@@ -1,6 +1,6 @@
 import { Client } from '../Client'
 import { Resource } from '../Resource'
-import { DuffelResponse } from '../types'
+import { DuffelResponse, PaginationMeta } from '../types'
 import { CustomerUser, CustomerUserPayload } from './IdentityTypes'
 
 export class CustomerUsers extends Resource {
@@ -38,4 +38,14 @@ export class CustomerUsers extends Resource {
     data: CustomerUserPayload,
   ): Promise<DuffelResponse<CustomerUser>> =>
     this.request({ method: 'PUT', path: `${this.path}/${id}`, data })
+
+  /**
+   * Retrieves a list of customer user groups
+   * Allows filtering by email
+
+   */
+  public list = async (
+    options?: PaginationMeta & { email?: string },
+  ): Promise<DuffelResponse<CustomerUser[]>> =>
+    this.request({ method: 'GET', path: this.path, params: options })
 }
