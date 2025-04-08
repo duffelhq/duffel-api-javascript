@@ -2,6 +2,7 @@
 import {
   StaysAccommodation,
   StaysAccommodationBrand,
+  StaysAccommodationReviewResponse,
   StaysAccommodationSuggestion,
   StaysBooking,
   StaysLoyaltyProgramme,
@@ -156,6 +157,34 @@ export const MOCK_ACCOMMODATION: StaysAccommodation = {
   supported_loyalty_programme: 'duffel_hotel_group_rewards',
 }
 
+export const MOCK_REVIEW_RESPONSE: StaysAccommodationReviewResponse = {
+  reviews: [
+    {
+      reviewer_name: 'Alice Johnson',
+      score: 5.1,
+      text: 'Amazing stay! The staff was incredibly friendly and the rooms were spotless. Highly recommend!',
+      created_at: '2023-03-01',
+    },
+    {
+      reviewer_name: 'Bob Smith',
+      score: 4.8,
+      text: 'Great location and comfortable rooms. The gym could use some more equipment though.',
+      created_at: '2023-02-15',
+    },
+    {
+      reviewer_name: 'Catherine Lee',
+      score: 3.0,
+      text: 'The hotel was decent, but the Wi-Fi was unreliable and the parking was expensive.',
+      created_at: '2023-01-20',
+    },
+    {
+      reviewer_name: 'David Brown',
+      score: 5.2,
+      text: 'Absolutely loved it! The food was fantastic and the view from the room was breathtaking.',
+      created_at: '2023-03-10',
+    },
+  ],
+}
 export const MOCK_SEARCH_RESULT: StaysSearchResult = {
   accommodation: MOCK_ACCOMMODATION,
   id: 'sta_something',
