@@ -694,3 +694,14 @@ export interface StaysLoyaltyProgramme {
   logo_url_svg: string
   logo_url_png_small: string
 }
+
+export interface StaysAccommodationReview {
+  created_at: string
+  reviewer_name: string
+  score: number
+  text: string
+}
+
+export interface StaysAccommodationReviewResponse {
+  reviews: Array<StaysAccommodationReview>
+}

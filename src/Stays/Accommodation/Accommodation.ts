@@ -4,9 +4,10 @@ import {
   ListAccommodationParams,
   StaysAccommodationSuggestion,
   StaysAccommodation,
+  StaysAccommodationReviewResponse,
 } from '../StaysTypes'
 import { Resource } from '../../Resource'
-import { DuffelResponse } from '../../types'
+import { DuffelResponse, PaginationMeta } from '../../types'
 
 export class Accommodation extends Resource {
   /**
@@ -34,6 +35,16 @@ export class Accommodation extends Resource {
         query: query,
         location: location,
       },
+    })
+
+  public reviews = async (
+    id: StaysAccommodation['id'],
+    options?: PaginationMeta,
+  ): Promise<DuffelResponse<StaysAccommodationReviewResponse>> =>
+    this.request({
+      method: 'GET',
+      path: `${this.path}/${id}/reviews`,
+      params: options,
     })
 
   /**

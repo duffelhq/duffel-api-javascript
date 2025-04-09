@@ -1,6 +1,10 @@
 import nock from 'nock'
 import { Duffel } from '../../index'
-import { MOCK_ACCOMMODATION_SUGGESTION, MOCK_ACCOMMODATION } from '../mocks'
+import {
+  MOCK_ACCOMMODATION_SUGGESTION,
+  MOCK_ACCOMMODATION,
+  MOCK_REVIEW_RESPONSE,
+} from '../mocks'
 
 const duffel = new Duffel({ token: 'mockToken' })
 describe('Stays/Accommodation', () => {
@@ -49,7 +53,7 @@ describe('Stays/Accommodation', () => {
     expect(response.data).toEqual(mockResponse.data)
   })
 
-  it('should send GET to /stays/{id} when `get` is called', async () => {
+  it('should send GET to /stays/accommodation/{id} when `get` is called', async () => {
     const id = MOCK_ACCOMMODATION.id
     const mockResponse = { data: MOCK_ACCOMMODATION }
 
@@ -60,6 +64,37 @@ describe('Stays/Accommodation', () => {
       .reply(200, mockResponse)
 
     const response = await duffel.stays.accommodation.get(id)
+    expect(response.data).toEqual(mockResponse.data)
+  })
+
+  it('should send GET to /stays/accommodation/{id}/reviews when `get` is called', async () => {
+    const id = MOCK_ACCOMMODATION.id
+    const mockResponse = { data: MOCK_REVIEW_RESPONSE }
+
+    nock(/(.*)/)
+      .get(`/stays/accommodation/${id}/reviews`, () => {
+        return true
+      })
+      .reply(200, mockResponse)
+
+    const response = await duffel.stays.accommodation.reviews(id)
+    expect(response.data).toEqual(mockResponse.data)
+  })
+
+  it('should send GET to /stays/accommodation/{id}/reviews with pagination options when `get` is called', async () => {
+    const id = MOCK_ACCOMMODATION.id
+    const mockResponse = { data: MOCK_REVIEW_RESPONSE }
+
+    nock(/(.*)/)
+      .get(`/stays/accommodation/${id}/reviews?limit=1&after=EXAMPLE`, () => {
+        return true
+      })
+      .reply(200, mockResponse)
+
+    const response = await duffel.stays.accommodation.reviews(id, {
+      limit: 1,
+      after: 'EXAMPLE',
+    })
     expect(response.data).toEqual(mockResponse.data)
   })
 
