@@ -644,6 +644,8 @@ interface CommonStaysSearchParams {
   check_out_date: string
   rooms: number
   guests: Array<Guest>
+  mobile?: boolean
+  free_cancellation_only?: boolean
 }
 
 export type LocationParams = {

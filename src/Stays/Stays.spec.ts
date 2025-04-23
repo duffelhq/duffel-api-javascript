@@ -23,6 +23,8 @@ describe('Stays', () => {
       check_out_date: '2023-10-24',
       guests: [{ type: 'adult' }, { type: 'adult' }, { type: 'child', age: 5 }],
       rooms: 1,
+      mobile: false,
+      free_cancellation_only: false,
     }
 
     nock(/(.*)/)
