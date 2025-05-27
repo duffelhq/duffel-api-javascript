@@ -28,7 +28,6 @@ describe('Cards', () => {
       address_line_1: '1 Downing St',
       address_postal_code: 'EC2A 4RQ',
       address_region: 'London',
-      brand: 'visa',
       expiry_month: '03',
       expiry_year: '30',
       name: 'Neil Armstrong',
