@@ -2,14 +2,6 @@ import { Client } from '../../Client'
 import { Resource } from '../../Resource'
 import { DuffelResponse } from '../../types'
 
-export type CardBrand =
-  | 'visa'
-  | 'mastercard'
-  | 'uatp'
-  | 'american_express'
-  | 'diners_club'
-  | 'jcb'
-
 interface CardParameters {
   /**
    * The first line of the card owner's address
@@ -32,10 +24,6 @@ interface CardParameters {
    * The ISO 3166-1 alpha-2 code for the card owner's country
    */
   address_country_code: string
-  /**
-   * The brand or the type of the card
-   */
-  brand: CardBrand
   /**
    * The month that the card expires in as a two-digit string, e.g. "01"
    */
@@ -66,7 +54,7 @@ interface CardRecord {
   id: string
   live_mode: boolean
   multi_use: boolean
-  unavailble_at: string
+  unavailable_at: string
   brand: string
   last_4_digits: string
 }
