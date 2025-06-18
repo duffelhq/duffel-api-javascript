@@ -1,5 +1,8 @@
-import { OfferSliceSegment } from '../Offers/OfferTypes'
-import { PlaceType, Place } from '../../types'
+import {
+  OfferSliceSegment,
+  OfferSliceSegmentPassengerBaggage,
+} from '../Offers/OfferTypes'
+import { PlaceType, Place, CabinClass } from '../../types'
 
 /**
  * @link https://duffel.com/docs/api/order-change-offers/schema
@@ -137,5 +140,32 @@ export interface OrderChangeOfferSlice {
   /**
    * The segments - that is, specific flights - that the airline is offering to get the passengers from the `origin` to the `destination`
    */
-  segments: Array<Omit<OfferSliceSegment, 'passengers'>>
+  segments: Array<
+    Pick<
+      OfferSliceSegment,
+      | 'aircraft'
+      | 'arriving_at'
+      | 'departing_at'
+      | 'destination'
+      | 'destination_terminal'
+      | 'distance'
+      | 'duration'
+      | 'id'
+      | 'marketing_carrier'
+      | 'marketing_carrier_flight_number'
+      | 'operating_carrier'
+      | 'operating_carrier_flight_number'
+      | 'origin'
+      | 'origin_terminal'
+    > & {
+      /** Additional segment-specific information about the passengers included in the offer (e.g. their baggage allowance and the cabin class they will be travelling in) */
+      passengers: Array<{
+        baggages: OfferSliceSegmentPassengerBaggage[]
+        cabin_class: CabinClass | null
+        cabin_class_marketing_name: string | null
+        passenger_id: string
+        seat: { designator: string; disclosure: string; name: string }
+      }>
+    }
+  >
 }

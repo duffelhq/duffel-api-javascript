@@ -6,7 +6,7 @@ export const mockOrderChange: OrderChange = {
       {
         segments: [
           {
-            stops: [],
+            passengers: [],
             origin_terminal: 'B',
             origin: {
               time_zone: 'Europe/London',
@@ -135,7 +135,7 @@ export const mockOrderChange: OrderChange = {
       {
         segments: [
           {
-            stops: [],
+            passengers: [],
             origin_terminal: 'B',
             origin: {
               time_zone: 'Europe/London',

@@ -4,7 +4,7 @@ import { OrderChangeOfferSlices } from '../OrderChangeOffers/OrderChangeOfferTyp
 export interface OrderChangeSliceResponse {
   remove: {
     slice_id: string
-  }
+  }[]
   add: {
     /**
      * The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date on which the passengers want to depart
@@ -21,8 +21,8 @@ export interface OrderChangeSliceResponse {
     /**
      * The cabin that the passengers want to travel in
      */
-    cabin_class: CabinClass
-  }
+    cabin_class: CabinClass | null
+  }[]
 }
 
 export interface OrderChangeOffers {
@@ -122,7 +122,7 @@ export interface CreateOrderChangeRequest {
       /**
        * The cabin that the passengers want to travel in
        */
-      cabin_class: CabinClass
+      cabin_class?: CabinClass | null
       /**
        * The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date on which the passengers want to depart
        */
