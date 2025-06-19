@@ -31,10 +31,10 @@ describe('OrderChangeRequests', () => {
     const response = await new OrderChangeRequests(
       new Client({ token: 'mockToken' }),
     ).create(mockCreateChangeRequest)
-    expect(response.data?.slices.remove.slice_id).toBe(
+    expect(response.data?.slices.remove[0].slice_id).toBe(
       mockCreateChangeRequest.slices.remove[0].slice_id,
     )
-    expect(response.data?.slices.add.destination.iata_code).toBe(
+    expect(response.data?.slices.add[0].destination.iata_code).toBe(
       mockCreateChangeRequest.slices.add[0].destination,
     )
   })

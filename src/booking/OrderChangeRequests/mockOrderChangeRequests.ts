@@ -5,53 +5,57 @@ import {
 
 export const mockOrderChangeRequest: OrderChangeRequestResponse = {
   slices: {
-    remove: {
-      slice_id: 'sli_00009htYpSCXrwaB9Dn123',
-    },
-    add: {
-      origin: {
-        type: 'airport',
-        time_zone: 'Europe/London',
-        name: 'Heathrow',
-        longitude: -141.951519,
-        latitude: 64.068865,
-        id: 'arp_lhr_gb',
-        icao_code: 'EGLL',
-        iata_country_code: 'GB',
-        iata_code: 'LHR',
-        iata_city_code: 'LON',
-        city_name: 'London',
-        city: {
-          name: 'London',
-          id: 'cit_lon_gb',
-          iata_country_code: 'GB',
-          iata_code: 'LON',
-          type: 'city',
-        },
+    remove: [
+      {
+        slice_id: 'sli_00009htYpSCXrwaB9Dn123',
       },
-      destination: {
-        type: 'airport',
-        time_zone: 'Europe/London',
-        name: 'Heathrow',
-        longitude: -141.951519,
-        latitude: 64.068865,
-        id: 'arp_lhr_gb',
-        icao_code: 'EGLL',
-        iata_country_code: 'GB',
-        iata_code: 'LHR',
-        iata_city_code: 'LON',
-        city_name: 'London',
-        city: {
-          name: 'London',
-          id: 'cit_lon_gb',
+    ],
+    add: [
+      {
+        origin: {
+          type: 'airport',
+          time_zone: 'Europe/London',
+          name: 'Heathrow',
+          longitude: -141.951519,
+          latitude: 64.068865,
+          id: 'arp_lhr_gb',
+          icao_code: 'EGLL',
           iata_country_code: 'GB',
-          iata_code: 'LON',
-          type: 'city',
+          iata_code: 'LHR',
+          iata_city_code: 'LON',
+          city_name: 'London',
+          city: {
+            name: 'London',
+            id: 'cit_lon_gb',
+            iata_country_code: 'GB',
+            iata_code: 'LON',
+            type: 'city',
+          },
         },
+        destination: {
+          type: 'airport',
+          time_zone: 'Europe/London',
+          name: 'Heathrow',
+          longitude: -141.951519,
+          latitude: 64.068865,
+          id: 'arp_lhr_gb',
+          icao_code: 'EGLL',
+          iata_country_code: 'GB',
+          iata_code: 'LHR',
+          iata_city_code: 'LON',
+          city_name: 'London',
+          city: {
+            name: 'London',
+            id: 'cit_lon_gb',
+            iata_country_code: 'GB',
+            iata_code: 'LON',
+            type: 'city',
+          },
+        },
+        departure_date: '2020-04-24',
+        cabin_class: 'economy',
       },
-      departure_date: '2020-04-24',
-      cabin_class: 'economy',
-    },
+    ],
   },
   order_id: 'ord_0000A3bQ8FJIQoEfuC07n6',
   order_change_offers: [
@@ -62,7 +66,7 @@ export const mockOrderChangeRequest: OrderChangeRequestResponse = {
           {
             segments: [
               {
-                stops: [],
+                passengers: [],
                 origin_terminal: 'B',
                 origin: {
                   time_zone: 'Europe/London',
@@ -191,8 +195,8 @@ export const mockOrderChangeRequest: OrderChangeRequestResponse = {
           {
             segments: [
               {
+                passengers: [],
                 origin_terminal: 'B',
-                stops: [],
                 origin: {
                   time_zone: 'Europe/London',
                   name: 'Heathrow',
@@ -338,50 +342,52 @@ export const mockOrderChangeRequestAltered: OrderChangeRequestResponse = {
   ...mockOrderChangeRequest,
   slices: {
     ...mockOrderChangeRequest.slices,
-    add: {
-      origin: {
-        type: 'airport',
-        time_zone: 'Europe/London',
-        name: 'Heathrow',
-        longitude: -141.951519,
-        latitude: 64.068865,
-        id: 'arp_lhr_gb',
-        icao_code: 'EGLL',
-        iata_country_code: 'GB',
-        iata_code: 'LHR',
-        iata_city_code: 'LON',
-        city_name: 'London',
-        city: {
-          name: 'London',
-          id: 'cit_lon_gb',
+    add: [
+      {
+        origin: {
+          type: 'airport',
+          time_zone: 'Europe/London',
+          name: 'Heathrow',
+          longitude: -141.951519,
+          latitude: 64.068865,
+          id: 'arp_lhr_gb',
+          icao_code: 'EGLL',
           iata_country_code: 'GB',
-          iata_code: 'LON',
-          type: 'city',
+          iata_code: 'LHR',
+          iata_city_code: 'LON',
+          city_name: 'London',
+          city: {
+            name: 'London',
+            id: 'cit_lon_gb',
+            iata_country_code: 'GB',
+            iata_code: 'LON',
+            type: 'city',
+          },
         },
-      },
-      destination: {
-        type: 'airport',
-        time_zone: 'America/New_York',
-        name: 'John F. Kennedy International Airport',
-        longitude: -73.778519,
-        latitude: 40.640556,
-        id: 'arp_jfk_us',
-        icao_code: 'KJFK',
-        iata_country_code: 'US',
-        iata_code: 'JFK',
-        iata_city_code: 'NYC',
-        city_name: 'New York',
-        city: {
-          type: 'city',
-          name: 'New York',
-          id: 'cit_nyc_us',
+        destination: {
+          type: 'airport',
+          time_zone: 'America/New_York',
+          name: 'John F. Kennedy International Airport',
+          longitude: -73.778519,
+          latitude: 40.640556,
+          id: 'arp_jfk_us',
+          icao_code: 'KJFK',
           iata_country_code: 'US',
-          iata_code: 'NYC',
+          iata_code: 'JFK',
+          iata_city_code: 'NYC',
+          city_name: 'New York',
+          city: {
+            type: 'city',
+            name: 'New York',
+            id: 'cit_nyc_us',
+            iata_country_code: 'US',
+            iata_code: 'NYC',
+          },
         },
+        departure_date: '2020-04-24',
+        cabin_class: 'economy',
       },
-      departure_date: '2020-04-24',
-      cabin_class: 'economy',
-    },
+    ],
   },
 }
 
@@ -390,7 +396,7 @@ export const mockCreateChangeRequest: CreateOrderChangeRequest = {
   slices: {
     remove: [
       {
-        slice_id: mockOrderChangeRequest.slices.remove.slice_id,
+        slice_id: mockOrderChangeRequest.slices.remove[0].slice_id,
       },
     ],
     add: [
