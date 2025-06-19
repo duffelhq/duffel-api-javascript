@@ -80,6 +80,11 @@ export interface DuffelResponse<T_Data> {
    * The headers from the http response
    */
   headers?: Headers
+
+  /**
+   * The status from the http response
+   */
+  status: number
 }
 
 export interface SDKOptions {

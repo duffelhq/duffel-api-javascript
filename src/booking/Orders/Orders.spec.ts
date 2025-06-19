@@ -94,6 +94,21 @@ describe('Orders', () => {
     expect(response.data?.id).toBe(mockOrder.id)
   })
 
+  test('should surface 202 case', async () => {
+    nock(/(.*)/)
+      .post(`/air/orders`, (body) => {
+        expect(body.data).toEqual(mockCreateOrderRequest)
+        return true
+      })
+      .reply(202, { data: { message: 'Not done yet' } })
+
+    const response = await new Orders(
+      new Client({ token: 'mockToken' }),
+    ).create(mockCreateOrderRequest)
+
+    expect(response.status).toBe(202)
+  })
+
   test('should get orders matching a passenger name', async () => {
     nock(/(.*)/)
       .get(`/air/orders?passenger_name[]=Earhart`)
