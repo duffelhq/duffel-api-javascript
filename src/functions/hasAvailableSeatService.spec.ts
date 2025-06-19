@@ -1,4 +1,4 @@
-import { SeatMap } from 'types'
+import { SeatMap } from '../types'
 import { hasAvailableSeatService } from './hasAvailableSeatService'
 
 describe('hasAvailableSeatService', () => {

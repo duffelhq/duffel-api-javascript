@@ -1,4 +1,4 @@
-import { SeatMap } from 'types'
+import { SeatMap } from '../types'
 
 export function hasAvailableSeatService(seatMaps?: SeatMap[]): boolean {
   if (!Array.isArray(seatMaps) || seatMaps.length === 0) return false

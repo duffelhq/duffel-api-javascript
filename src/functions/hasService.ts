@@ -1,4 +1,4 @@
-import { Offer, SeatMap } from 'types'
+import { Offer, SeatMap } from '../types'
 import { hasAvailableSeatService } from './hasAvailableSeatService'
 
 export function hasService(offer: Offer, seatMaps?: SeatMap[]) {
