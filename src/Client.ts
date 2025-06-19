@@ -139,10 +139,18 @@ export class Client {
     }
 
     if (!response.ok || ('errors' in responseBody && responseBody.errors)) {
-      throw new DuffelError({ ...responseBody, headers: response.headers })
+      throw new DuffelError({
+        ...responseBody,
+        status: response.status,
+        headers: response.headers,
+      })
     }
 
-    return { ...responseBody, headers: response.headers }
+    return {
+      ...responseBody,
+      status: response.status,
+      headers: response.headers,
+    }
   }
 
   async *paginatedRequest<T_Data = any>({
@@ -158,7 +166,7 @@ export class Client {
       params,
     })
     for (const item of response.data) {
-      yield { data: item }
+      yield { data: item, status: response.status }
     }
 
     while (response.meta && 'after' in response.meta && response.meta.after) {
@@ -171,7 +179,7 @@ export class Client {
         },
       })
       for (const item of response.data) {
-        yield { data: item }
+        yield { data: item, status: response.status }
       }
     }
   }

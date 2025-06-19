@@ -3,6 +3,22 @@ import { Duffel } from '../../index'
 import { MOCK_BOOKING } from '../mocks'
 import { StaysBookingPayload } from './Bookings'
 
+const mockBookingParams: StaysBookingPayload = {
+  quote_id: 'quo_123',
+  loyalty_programme_account_number: '123456789',
+  guests: [
+    {
+      given_name: 'John',
+      family_name: 'Smith',
+    },
+  ],
+  email: 'a@example.com',
+  phone_number: '+447700900000',
+  metadata: {
+    customer_reference_number: 'ABXYZZ53Z',
+  },
+}
+
 const duffel = new Duffel({ token: 'mockToken' })
 describe('Stays/Bookings', () => {
   afterEach(() => {
@@ -11,21 +27,6 @@ describe('Stays/Bookings', () => {
 
   it('should post to /stays/bookings when `create` is called', async () => {
     const mockResponse = { data: MOCK_BOOKING }
-    const mockBookingParams: StaysBookingPayload = {
-      quote_id: 'quo_123',
-      loyalty_programme_account_number: '123456789',
-      guests: [
-        {
-          given_name: 'John',
-          family_name: 'Smith',
-        },
-      ],
-      email: 'a@example.com',
-      phone_number: '+447700900000',
-      metadata: {
-        customer_reference_number: 'ABXYZZ53Z',
-      },
-    }
 
     nock(/(.*)/)
       .post('/stays/bookings', (body) => {
@@ -35,6 +36,17 @@ describe('Stays/Bookings', () => {
       .reply(200, mockResponse)
     const response = await duffel.stays.bookings.create(mockBookingParams)
     expect(response.data).toEqual(mockResponse.data)
+  })
+
+  it('should post to /stays/bookings when `create` is called', async () => {
+    nock(/(.*)/)
+      .post('/stays/bookings', (body) => {
+        expect(body.data).toEqual(mockBookingParams)
+        return true
+      })
+      .reply(202, { data: { message: 'Not done yet' } })
+    const response = await duffel.stays.bookings.create(mockBookingParams)
+    expect(response.status).toEqual(202)
   })
 
   it('should get to /stays/bookings when `list` is called', async () => {
