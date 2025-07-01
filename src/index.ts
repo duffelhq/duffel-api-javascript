@@ -1,5 +1,6 @@
 import { PaymentIntents } from './DuffelPayments'
 import {
+  BatchOfferRequests,
   OfferRequests,
   Offers,
   OrderCancellations,
@@ -29,6 +30,7 @@ export interface DuffelAPIClient {
   aircraft: Aircraft
   airlines: Airlines
   airports: Airports
+  batchOfferRequests: BatchOfferRequests
   offers: Offers
   offerRequests: OfferRequests
   orders: Orders
@@ -48,6 +50,7 @@ export class Duffel {
   public airlines: Airlines
   public airports: Airports
   public links: Sessions
+  public batchOfferRequests: BatchOfferRequests
   public offerRequests: OfferRequests
   public offers: Offers
   public orders: Orders
@@ -77,6 +80,7 @@ export class Duffel {
     this.airports = new Airports(this.client)
     this.airlineInitiatedChanges = new AirlineInitiatedChanges(this.client)
     this.links = new Sessions(this.client)
+    this.batchOfferRequests = new BatchOfferRequests(this.client)
     this.offerRequests = new OfferRequests(this.client)
     this.offers = new Offers(this.client)
     this.orders = new Orders(this.client)
