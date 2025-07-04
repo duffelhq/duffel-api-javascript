@@ -102,22 +102,32 @@ export interface CreateOrderChangeParameters {
 }
 
 export interface ConfirmOrderChangePayment {
-  /**
-   * The amount of the payment. This should be the same as the change_total_amount of the order change.
-   */
+  /** The payment details to use to pay for the order change, if there is an amount to be paid.
+   * Some order changes may not need this.
+   * If the change_total_amount is zero or negative, there is no need to pass a payment object. */
+  payment?: {
+    /**
+     * The amount of the payment. This should be the same as the change_total_amount of the order change.
+     */
 
-  amount: string
-  /**
-   * The currency of the change_total_amount, as an [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency code.
-   */
-  currency: string
+    amount: string
+    /**
+     * The currency of the change_total_amount, as an [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency code.
+     */
+    currency: string
 
-  /**
-   * The type of payment you want to use for the Order Change.
-   * If you are an IATA agent with your own agreements with airlines, in some cases, you can pay using ARC/BSP cash by specifying arc_bsp_cash.
-   * Otherwise, you must pay using your Duffel account's balance by specifying balance.
-   * In test mode, your balance is unlimited.
-   * If you're not sure which of these options applies to you, get in touch with the Duffel support team at [help@duffel.com](mailto:help@duffel.com).
-   */
-  type: PaymentType
+    /**
+     * The type of payment you want to use for the Order Change.
+     * If you are an IATA agent with your own agreements with airlines, in some cases, you can pay using ARC/BSP cash by specifying arc_bsp_cash.
+     * Otherwise, you must pay using your Duffel account's balance by specifying balance.
+     * In test mode, your balance is unlimited.
+     * If you're not sure which of these options applies to you, get in touch with the Duffel support team at [help@duffel.com](mailto:help@duffel.com).
+     */
+    type: PaymentType | 'card'
+
+    /**
+     * The id of the 3DSecure Session ID. This is the autentication when paying by card.
+     */
+    three_d_secure_session_id?: string
+  }
 }
