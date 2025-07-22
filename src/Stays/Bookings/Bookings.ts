@@ -9,12 +9,23 @@ export interface StaysBookingPayload {
   guests: Array<{
     given_name: string
     family_name: string
+    /**
+     * Creates an association between the guest and a previously created user.
+     * This is intended to allow guests the ability to manage their own bookings.
+     * @example ["icu_0000000000000000000000"]
+     */
+    user_id?: string
   }>
   email: string
   phone_number: string
   accommodation_special_requests?: string
   payment?: { card_id: string } | { three_d_secure_session_id: string }
   metadata?: StaysBooking['metadata']
+  /**
+   * The ids of users that would be allowed to manage the booking.
+   * @example ["icu_0000000000000000000000"]
+   */
+  users?: string[]
 }
 
 export class Bookings extends Resource {

@@ -214,6 +214,13 @@ export interface CreateOrderPassenger extends Omit<OrderPassenger, 'type'> {
   identity_documents?: OrderPassengerIdentityDocument[]
 
   /**
+   * Creates an association between the passenger and a previously created user.
+   * This is intended to allow passengers the ability to manage their own orders.
+   * @example "icu_0000000000000000000000"
+   */
+  user_id?: string
+
+  /**
    * The passenger's email address
    * @example "amelia@duffel.com"
    */
@@ -629,6 +636,12 @@ export interface CreateOrder {
    * The payment action you want to take for your order. You can only use pay_later with offers that contain requires_instant_payment: false.
    */
   type: 'instant' | 'pay_later'
+
+  /**
+   * The ids of users that would be allowed to manage the order.
+   * @example ["icu_0000000000000000000000"]
+   */
+  users?: string[]
 
   /**
    * Metadata contains a set of key-value pairs that you can attach to an object. It can be useful for storing additional information about the object, in a structured format. Duffel does not use this information. You should not store sensitive information in this field.

@@ -40,8 +40,10 @@ export const mockCreateOrderRequest: CreateOrder = {
       family_name: 'Earhart',
       email: 'amelia@duffel.com',
       born_on: '1987-07-24',
+      user_id: 'icu_00009htyDGjIfajdNBZRlw',
     },
   ],
+  users: ['icu_00009htyDGjIfajdNBZRlw'],
 }
 
 export const mockOrder: Order = {

@@ -239,6 +239,7 @@ export const MOCK_CREATE_BOOKING_PAYLOAD: StaysBookingPayload = {
   email: 'jean@example.com',
   phone_number: '+44 07242242424',
   accommodation_special_requests: '',
+  users: ['icu_00009htyDGjIfajdNBZRlw'],
 }
 
 export const MOCK_QUOTE: StaysQuote = {
