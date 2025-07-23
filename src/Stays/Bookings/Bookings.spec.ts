@@ -17,6 +17,7 @@ const mockBookingParams: StaysBookingPayload = {
   metadata: {
     customer_reference_number: 'ABXYZZ53Z',
   },
+  users: ['icu_00009htyDGjIfajdNBZRlw'],
 }
 
 const duffel = new Duffel({ token: 'mockToken' })
