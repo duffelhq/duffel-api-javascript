@@ -33,6 +33,7 @@ export const MOCK_ACCOMMODATION: StaysAccommodation = {
   ],
   rating: 4,
   review_score: 8.8,
+  review_count: 336,
   rooms: [
     {
       rates: [
@@ -196,6 +197,10 @@ export const MOCK_SEARCH_RESULT: StaysSearchResult = {
   cheapest_rate_currency: 'GBP',
   cheapest_rate_public_amount: null,
   cheapest_rate_public_currency: 'GBP',
+  cheapest_rate_base_amount: '665.83',
+  cheapest_rate_base_currency: 'GBP',
+  cheapest_rate_due_at_accommodation_amount: '39.95',
+  cheapest_rate_due_at_accommodation_currency: 'GBP',
 }
 
 export const MOCK_BOOKING: StaysBooking = {
@@ -255,6 +260,8 @@ export const MOCK_QUOTE: StaysQuote = {
   fee_currency: 'USD',
   tax_amount: null,
   tax_currency: 'USD',
+  deposit_amount: '0.00',
+  deposit_currency: 'USD',
   due_at_accommodation_amount: null,
   due_at_accommodation_currency: 'USD',
   supported_loyalty_programme: 'duffel_hotel_group_rewards',

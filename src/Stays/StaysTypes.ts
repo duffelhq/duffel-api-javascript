@@ -396,6 +396,13 @@ export interface StaysAccommodation {
   rating: number | null
 
   /**
+   * The number of reviews that contributed to the aggregated review score
+
+   * Example: 336
+   */
+  review_count: number | null
+
+  /**
    * A review score of this accommodation, aggregated from guest reviews. If available, the value is a score from the 1.0-10.0 range. This value is consolidated by Duffel based on user review data from multiple sources.
    */
   review_score: number | null
@@ -526,6 +533,22 @@ export interface StaysQuote {
    * Example: "GBP"
    */
   due_at_accommodation_currency: string
+
+  /**
+   * The portion of total_amount that is payable before check in as deposit for the stay.
+   * It may be null if the quote is for a deposit rate but we couldn't get full deposit information —
+   * in that case, deposit details are expected to be specified in the rate conditions.
+   *
+   * Example: "159.80"
+   */
+  deposit_amount: string | null
+
+  /**
+   * The currency of the tax_amount, as an ISO 4217 currency code.
+   *
+   * Example: "GBP"
+   */
+  deposit_currency: string
 
   /**
    * The loyalty programme that this quote supports.
@@ -686,8 +709,12 @@ export interface StaysSearchResult {
   guests: Array<Guest>
   cheapest_rate_total_amount: string
   cheapest_rate_currency: string
+  cheapest_rate_base_amount: string | null
+  cheapest_rate_base_currency: string | null
   cheapest_rate_public_amount: string | null
   cheapest_rate_public_currency: string
+  cheapest_rate_due_at_accommodation_amount: string | null
+  cheapest_rate_due_at_accommodation_currency: string | null
 }
 
 export interface StaysLoyaltyProgramme {
