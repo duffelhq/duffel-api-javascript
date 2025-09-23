@@ -734,3 +734,10 @@ export interface StaysAccommodationReview {
 export interface StaysAccommodationReviewResponse {
   reviews: Array<StaysAccommodationReview>
 }
+
+export type ListParamsBookings = {
+  /**
+   * Whether to filter bookings matching a given customer user id.
+   */
+  user_id?: string
+}
