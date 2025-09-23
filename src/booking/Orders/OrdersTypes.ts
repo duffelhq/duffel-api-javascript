@@ -670,6 +670,11 @@ export interface ListParamsOrders {
    * Whether to filter orders matching a given passenger name record (PNR)
    */
   booking_reference?: string
+
+  /**
+   * Whether to filter orders matching a given customer user id.
+   */
+  user_id?: string
 }
 
 export interface UpdateSingleOrder {
