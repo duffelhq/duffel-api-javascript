@@ -5,6 +5,7 @@ export const mockAirlineInitiatedChange: AirlineInitiatedChange = {
   travel_agent_ticket: null,
   removed: [
     {
+      fare_brand_name: 'Economy Basic',
       conditions: {
         change_before_departure: {
           penalty_currency: 'GBP',
@@ -140,6 +141,7 @@ export const mockAirlineInitiatedChange: AirlineInitiatedChange = {
   available_actions: ['accept', 'cancel', 'change'],
   added: [
     {
+      fare_brand_name: 'Economy Basic',
       conditions: {
         change_before_departure: {
           penalty_currency: 'GBP',

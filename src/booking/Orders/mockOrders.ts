@@ -57,6 +57,7 @@ export const mockOrder: Order = {
   cancellation: null,
   slices: [
     {
+      fare_brand_name: 'Economy Basic',
       segments: [
         {
           passengers: [
@@ -300,6 +301,7 @@ export const mockOnHoldOrders: Order[] = [
     tax_amount: '15.90',
     slices: [
       {
+        fare_brand_name: 'Economy Basic',
         segments: [
           {
             passengers: [
@@ -480,6 +482,7 @@ export const mockOnHoldOrders: Order[] = [
     tax_amount: '17.50',
     slices: [
       {
+        fare_brand_name: 'Economy Basic',
         segments: [
           {
             passengers: [
