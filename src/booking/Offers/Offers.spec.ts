@@ -1,7 +1,7 @@
 import nock from 'nock'
 import { Client } from '../../Client'
 import { Duffel } from '../../index'
-import { mockOffer, mockUpdatedOffer } from './mockOffer'
+import { mockOffer, mockOfferPriced, mockUpdatedOffer } from './mockOffer'
 import { Offers } from './Offers'
 
 const duffel = new Duffel({ token: 'mockToken' })
@@ -108,5 +108,31 @@ describe('offers', () => {
     expect(response.data.passengers[0].loyalty_programme_accounts).toHaveLength(
       1,
     )
+  })
+
+  test('should get offer price', async () => {
+    nock(/(.*)/)
+      .patch(`/air/offers/${mockOffer.id}/actions/price`)
+      .reply(200, { data: mockOfferPriced })
+
+    const response = await new Offers(
+      new Client({ token: 'mockToken' }),
+    ).getPriced({
+      offerId: mockOffer.id,
+      intended_payment_methods: [
+        {
+          type: 'card',
+          card_id: 'card_00009htYpSCXrwaB9DnUm0',
+        },
+      ],
+      intended_services: [
+        {
+          id: 'ase_00009UhD4ongolulWd9123',
+          quantity: 1,
+        },
+      ],
+    })
+
+    expect(response.data).toStrictEqual(mockOfferPriced)
   })
 })

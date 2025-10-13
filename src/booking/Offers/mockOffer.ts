@@ -1,4 +1,4 @@
-import { Offer } from '../../types'
+import { Offer, OfferPriced } from '../../types'
 
 export const mockOffer: Offer = {
   updated_at: '2020-01-17T10:12:14.545Z',
@@ -274,4 +274,24 @@ export const mockUpdatedOffer = {
   given_name: 'Amelia',
   family_name: 'Earhart',
   age: 14,
+}
+
+export const mockOfferPriced: OfferPriced = {
+  ...mockOffer,
+  intended_payment_methods: [
+    {
+      type: 'card',
+      card_id: 'card_00009htYpSCXrwaB9DnUm0',
+      surcharge_amount: '2.50',
+      surcharge_currency: 'GBP',
+      charge_amount: '41.81',
+      charge_currency: 'GBP',
+    },
+  ],
+  intended_services: [
+    {
+      id: 'ase_00009UhD4ongolulWd9123',
+      quantity: 1,
+    },
+  ],
 }
