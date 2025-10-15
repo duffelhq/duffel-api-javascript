@@ -190,6 +190,16 @@ export interface StaysRate {
   loyalty_programme_required: boolean
 
   /**
+   * The estimated commission amount for this rate.
+   */
+  estimated_commission_amount: string | null
+
+  /**
+   * The currency of the estimated_commission_amount.
+   */
+  estimated_commission_currency: string | null
+
+  /**
    * The source of the rate.
    * Useful in scenarios where a rate requires explicitly showing the source.
    */
@@ -654,6 +664,16 @@ export interface StaysBooking {
    * Deprecated: Instructions to access the accommodation in the booking
    */
   key_collection: StaysBookingKeyCollection | null
+
+  /**
+   * The estimated commission amount for this rate.
+   */
+  estimated_commission_amount: string | null
+
+  /**
+   * The currency of the estimated_commission_amount.
+   */
+  estimated_commission_currency: string | null
 }
 
 // Age is not required for adult, but required for child
