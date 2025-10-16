@@ -707,3 +707,76 @@ export interface UpdateOffer {
   family_name: string
   age: number
 }
+
+export type OfferIntendedPaymentMethod =
+  | {
+      /**
+       * The type of payment method intended to use
+       */
+      type: 'card'
+
+      /**
+       * The ID of the card intended to pay with
+       */
+      card_id: string
+    }
+  | {
+      /**
+       * The type of payment method intended to use
+       */
+      type: 'airline_credit'
+
+      /**
+       * The ID of the airline credit intended to pay with
+       */
+      airline_credit_id: string
+    }
+
+export interface OfferIntendedService {
+  /**
+   * The ID of the service to pay for
+   */
+  id: string
+
+  /**
+   * The quantity of the service ID to pay for
+   */
+  quantity: number
+}
+
+export interface GetOfferPricedParams {
+  /**
+   * The ID of the offer
+   */
+  offerId: string
+
+  /**
+   * The payment methods intended to use to pay for the offer
+   */
+  intended_payment_methods: OfferIntendedPaymentMethod[]
+
+  /**
+   * The services intended to book along with the offer
+   */
+  intended_services: OfferIntendedService[]
+}
+
+/**
+ * Represents a priced offer, including the charge and surcharge amounts for the intended payment methods and services
+ */
+export interface OfferPriced extends Offer {
+  /**
+   * The payment methods intended to use to pay for the offer, along with the charge and surcharge amounts
+   */
+  intended_payment_methods: (OfferIntendedPaymentMethod & {
+    charge_currency: string
+    charge_amount: string
+    surcharge_amount: string
+    surcharge_currency: string
+  })[]
+
+  /**
+   * The services intended to book along with the offer
+   */
+  intended_services: OfferIntendedService[]
+}
