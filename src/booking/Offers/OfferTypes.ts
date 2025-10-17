@@ -746,11 +746,6 @@ export interface OfferIntendedService {
 
 export interface GetOfferPricedParams {
   /**
-   * The ID of the offer
-   */
-  offerId: string
-
-  /**
    * The payment methods intended to use to pay for the offer
    */
   intended_payment_methods: OfferIntendedPaymentMethod[]

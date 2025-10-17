@@ -102,13 +102,13 @@ export class Offers extends Resource {
 
   /**
    * Price the offer with intended payment methods and intended services. This will return the total amount that will be charged to the customer, including any applicable surcharges.
+   * @param {string} offerId - Duffel's unique identifier for the offer
    * @param {Object.<GetOfferPricedParams>} params - The intended payment methods and services of the offer
-   * @param {string} params.offerId - Duffel's unique identifier for the offer
    */
-  public getPriced = async ({
-    offerId,
-    ...params
-  }: GetOfferPricedParams): Promise<DuffelResponse<OfferPriced>> =>
+  public getPriced = async (
+    offerId: string,
+    params: GetOfferPricedParams,
+  ): Promise<DuffelResponse<OfferPriced>> =>
     this.request({
       method: 'POST',
       path: `${this.path}/${offerId}/actions/price`,
