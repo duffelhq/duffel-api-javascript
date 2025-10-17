@@ -63,6 +63,8 @@ export const MOCK_ACCOMMODATION: StaysAccommodation = {
           supported_loyalty_programme: null,
           loyalty_programme_required: false,
           source: 'duffel_hotel_group',
+          estimated_commission_amount: '10.00',
+          estimated_commission_currency: 'GBP',
         },
         {
           total_currency: 'GBP',
@@ -94,6 +96,8 @@ export const MOCK_ACCOMMODATION: StaysAccommodation = {
           supported_loyalty_programme: 'duffel_hotel_group_rewards',
           loyalty_programme_required: true,
           source: 'duffel_hotel_group',
+          estimated_commission_amount: '10.00',
+          estimated_commission_currency: 'GBP',
         },
       ],
       photos: [
@@ -230,6 +234,8 @@ export const MOCK_BOOKING: StaysBooking = {
   metadata: {
     checkout_reference: 'usr_0000AePJGl5G9ZYfmNllrs',
   },
+  estimated_commission_amount: '10.00',
+  estimated_commission_currency: 'GBP',
 }
 
 export const MOCK_CREATE_BOOKING_PAYLOAD: StaysBookingPayload = {
