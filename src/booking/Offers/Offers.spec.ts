@@ -117,8 +117,7 @@ describe('offers', () => {
 
     const response = await new Offers(
       new Client({ token: 'mockToken' }),
-    ).getPriced({
-      offerId: mockOffer.id,
+    ).getPriced(mockOffer.id, {
       intended_payment_methods: [
         {
           type: 'card',
