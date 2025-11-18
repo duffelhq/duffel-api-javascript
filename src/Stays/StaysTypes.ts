@@ -81,6 +81,7 @@ export type StaysSource =
   | 'priceline'
   | 'travelport'
   | 'expedia'
+  | 'sabre'
   | 'duffel_hotel_group'
 
 export interface StaysRate {
