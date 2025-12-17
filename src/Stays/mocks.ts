@@ -65,6 +65,7 @@ export const MOCK_ACCOMMODATION: StaysAccommodation = {
           source: 'duffel_hotel_group',
           estimated_commission_amount: '10.00',
           estimated_commission_currency: 'GBP',
+          expires_at: '2023-03-28T12:00:00Z',
         },
         {
           total_currency: 'GBP',
@@ -98,6 +99,7 @@ export const MOCK_ACCOMMODATION: StaysAccommodation = {
           source: 'duffel_hotel_group',
           estimated_commission_amount: '10.00',
           estimated_commission_currency: 'GBP',
+          expires_at: '2023-03-28T12:00:00Z',
         },
       ],
       photos: [
@@ -205,6 +207,7 @@ export const MOCK_SEARCH_RESULT: StaysSearchResult = {
   cheapest_rate_base_currency: 'GBP',
   cheapest_rate_due_at_accommodation_amount: '39.95',
   cheapest_rate_due_at_accommodation_currency: 'GBP',
+  expires_at: '2023-03-28T12:00:00Z',
 }
 
 export const MOCK_BOOKING: StaysBooking = {
