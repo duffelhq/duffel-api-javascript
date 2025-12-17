@@ -205,6 +205,11 @@ export interface StaysRate {
    * Useful in scenarios where a rate requires explicitly showing the source.
    */
   source: StaysSource
+
+  /**
+   * The ISO 8601 date and time at which the rate will expire
+   */
+  expires_at: string
 }
 
 export interface StaysRoomRate extends StaysRate {
@@ -736,6 +741,10 @@ export interface StaysSearchResult {
   cheapest_rate_public_currency: string
   cheapest_rate_due_at_accommodation_amount: string | null
   cheapest_rate_due_at_accommodation_currency: string | null
+  /**
+   * The ISO 8601 date and time at which the search result will expire
+   */
+  expires_at: string
 }
 
 export interface StaysLoyaltyProgramme {
