@@ -66,6 +66,8 @@ export const MOCK_ACCOMMODATION: StaysAccommodation = {
           estimated_commission_amount: '10.00',
           estimated_commission_currency: 'GBP',
           expires_at: '2023-03-28T12:00:00Z',
+          code: null,
+          description: null,
         },
         {
           total_currency: 'GBP',
@@ -100,6 +102,8 @@ export const MOCK_ACCOMMODATION: StaysAccommodation = {
           estimated_commission_amount: '10.00',
           estimated_commission_currency: 'GBP',
           expires_at: '2023-03-28T12:00:00Z',
+          code: 'ABC',
+          description: 'ABC - Free cancellation up to 1 hour after booking',
         },
       ],
       photos: [

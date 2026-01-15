@@ -210,6 +210,24 @@ export interface StaysRate {
    * The ISO 8601 date and time at which the rate will expire
    */
   expires_at: string
+
+  /**
+   * A rate code is an alphanumeric identifier of specific negotiated pricing and booking conditions.
+   * Rate codes are only returned when special contracted rates are available through the hotel provider,
+   * distinguishing them from standard public rates.
+   */
+  code: string | null
+
+  /**
+   * The rate description provided by the rate supplier.
+   * This typically includes important information about what's included in the rate,
+   * such as meal plans, amenities, credits, upgrades, or special benefits.
+   * This field is returned exactly as provided by the supplier and is not normalised or
+   * standardised across sources.
+   * It's intended for internal use or agent review rather than direct display to the guest,
+   * as formatting and content quality may vary significantly between suppliers.
+   */
+  description: string | null
 }
 
 export interface StaysRoomRate extends StaysRate {
