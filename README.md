@@ -13,7 +13,7 @@ The Duffel JavaScript client library - sometimes known as an SDK - makes it easy
 
 ## Requirements
 
-To use the Duffel JavaScript client library, you'll need to be using **Node.js v12 (LTS)** or later.
+To use the Duffel JavaScript client library, you'll need to be using **Node.js v18 (LTS)** or later.
 
 You can only use the library in **server-side** JavaScript applications developed in Node.js. It won't work in frontend applications that run in your users' browsers.
 
