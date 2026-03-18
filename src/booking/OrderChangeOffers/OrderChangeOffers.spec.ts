@@ -17,6 +17,7 @@ describe('OrderChangeOffers', () => {
       new Client({ token: 'mockToken' }),
     ).get(mockOrderChangeOffer.id)
     expect(response.data?.id).toBe(mockOrderChangeOffer.id)
+    expect(response.data?.slices.add[0].fare_brand_name).toBe('Economy Basic')
   })
 
   test('should get a page of order change offers', async () => {
