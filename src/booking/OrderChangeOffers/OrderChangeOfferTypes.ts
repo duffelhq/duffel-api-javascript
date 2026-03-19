@@ -123,6 +123,17 @@ export interface OrderChangeOfferSlice {
   duration?: string | null
 
   /**
+   * The name of the fare brand associated with this slice.
+   * A fare brand specifies the travel conditions you get on your slice made available
+   * by the airline. e.g. a British Airways Economy Basic fare will only include a hand baggage allowance.
+   * It is worth noting that the fare brand names are defined by the airlines themselves and therefore they
+   * are subject to change without any prior notice. We're in the process of adding support for fare_brand_name across
+   * all our airlines, so for now, this field may be null in some offers.
+   * This will become a non-nullable attribute in the near future.
+   */
+  fare_brand_name: string | null
+
+  /**
    * Duffel's unique identifier for the slice. It identifies the slice of an order (i.e. the same slice across orders will have different `id`s.
    */
   id: string
