@@ -6,7 +6,7 @@ version: 2.1
 
 aliases:
   - &working_directory ~/duffel_app
-  - &cache_directory ~/.cache/yarn
+  - &cache_directory ~/.yarn/berry/cache
 
 executors:
   node-executor:
@@ -29,15 +29,14 @@ commands:
     steps:
       - restore_cache:
           key: v${CACHE_VERSION}-yarn-packages-{{ checksum "yarn.lock" }}
-          paths:
-            - *cache_directory
 
   setup:
     description: Set up common system expectations
     steps:
       - checkout
       - restore_deps_cache
-      - run: yarn install --frozen-lockfile --cache-folder ~/.cache/yarn
+      - run: corepack enable
+      - run: yarn install --immutable
       - save_deps_cache
 
 jobs:
@@ -58,7 +57,8 @@ jobs:
     executor: node-executor
     steps:
       - setup
-      - run: yarn commitlint --from main
+      - run: git fetch origin main --depth=1
+      - run: yarn commitlint --from origin/main
 
 workflows:
   build_test_and_deploy:
