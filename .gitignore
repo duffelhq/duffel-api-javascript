@@ -37,3 +37,12 @@ dist
 # mock.json helper
 mock.json
 index.d.ts
+
+# yarn v4
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
