@@ -35,8 +35,7 @@ commands:
     steps:
       - checkout
       - restore_deps_cache
-      - run: corepack enable
-      - run: yarn install --immutable
+      - run: corepack yarn install --immutable
       - save_deps_cache
 
 jobs:
@@ -44,21 +43,21 @@ jobs:
     executor: node-executor
     steps:
       - setup
-      - run: yarn lint
-      - run: yarn prettier-check
+      - run: corepack yarn lint
+      - run: corepack yarn prettier-check
   test:
     executor: node-executor
     # We decided to go with `large` because smaller resource classes were running out of memory.
     resource_class: large
     steps:
       - setup
-      - run: yarn test
+      - run: corepack yarn test
   commitlint:
     executor: node-executor
     steps:
       - setup
       - run: git fetch origin main --depth=1
-      - run: yarn commitlint --from origin/main
+      - run: corepack yarn commitlint --from origin/main
 
 workflows:
   build_test_and_deploy:
