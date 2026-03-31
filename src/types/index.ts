@@ -1,6 +1,7 @@
 export * from '../DuffelPayments/PaymentIntents/PaymentIntentsType'
 export * from '../Places/Suggestions/SuggestionsType'
 export * from '../Stays/StaysTypes'
+export * from '../Cars/CarsTypes'
 export * from '../booking/AirlineInitiatedChanges/AirlineInitiatedChangesTypes'
 export * from '../booking/OfferRequests/OfferRequestsTypes'
 export * from '../booking/BatchOfferRequests/BatchOfferRequestsTypes'
