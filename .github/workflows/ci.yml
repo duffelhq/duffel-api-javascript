@@ -29,7 +29,7 @@ jobs:
 
       - name: Get yarn cache directory path
         id: yarn-cache-dir-path
-        run: echo "dir=$(yarn config get cacheFolder)" >> "$GITHUB_OUTPUT"
+        run: echo "dir=$(corepack yarn config get cacheFolder)" >> "$GITHUB_OUTPUT"
 
       - name: Cache Yarn packages
         uses: actions/cache@v4
@@ -40,13 +40,13 @@ jobs:
             ${{ runner.os }}-yarn-
 
       - name: Install dependencies
-        run: yarn install --immutable
+        run: corepack yarn install --immutable
 
       - name: Lint
-        run: yarn lint
+        run: corepack yarn lint
 
       - name: Check formatting
-        run: yarn prettier-check
+        run: corepack yarn prettier-check
 
   test:
     name: Test
@@ -65,7 +65,7 @@ jobs:
 
       - name: Get yarn cache directory path
         id: yarn-cache-dir-path
-        run: echo "dir=$(yarn config get cacheFolder)" >> "$GITHUB_OUTPUT"
+        run: echo "dir=$(corepack yarn config get cacheFolder)" >> "$GITHUB_OUTPUT"
 
       - name: Cache Yarn packages
         uses: actions/cache@v4
@@ -76,10 +76,10 @@ jobs:
             ${{ runner.os }}-yarn-
 
       - name: Install dependencies
-        run: yarn install --immutable
+        run: corepack yarn install --immutable
 
       - name: Run tests
-        run: yarn test
+        run: corepack yarn test
 
   commitlint:
     name: Commitlint
@@ -100,7 +100,7 @@ jobs:
 
       - name: Get yarn cache directory path
         id: yarn-cache-dir-path
-        run: echo "dir=$(yarn config get cacheFolder)" >> "$GITHUB_OUTPUT"
+        run: echo "dir=$(corepack yarn config get cacheFolder)" >> "$GITHUB_OUTPUT"
 
       - name: Cache Yarn packages
         uses: actions/cache@v4
@@ -111,10 +111,10 @@ jobs:
             ${{ runner.os }}-yarn-
 
       - name: Install dependencies
-        run: yarn install --immutable
+        run: corepack yarn install --immutable
 
       - name: Fetch main for commitlint
         run: git fetch origin main --depth=1
 
       - name: Run commitlint
-        run: yarn commitlint --from origin/main
+        run: corepack yarn commitlint --from origin/main

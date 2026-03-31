@@ -13,15 +13,18 @@ jobs:
           fetch-depth: 0
 
       - name: Setup Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
-          node-version: '18'
+          node-version-file: .tool-versions
+
+      - name: Enable Corepack
+        run: corepack enable
 
       - name: Get yarn cache directory path
         id: yarn-cache-dir-path
-        run: echo "::set-output name=dir::$(yarn cache dir)"
+        run: echo "dir=$(corepack yarn config get cacheFolder)" >> "$GITHUB_OUTPUT"
 
-      - uses: actions/cache@v3
+      - uses: actions/cache@v4
         id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
         with:
           path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
@@ -30,14 +33,14 @@ jobs:
             ${{ runner.os }}-yarn-
 
       - name: Install dependencies
-        run: yarn install --frozen-lock-file --prefer-offline
+        run: corepack yarn install --immutable
 
       - name: Get version from package.json before release step
         id: initversion
-        run: echo "::set-output name=version::$(npm run get-version --silent)"
+        run: echo "version=$(npm run get-version --silent)" >> "$GITHUB_OUTPUT"
 
       - name: Build NPM package
-        run: yarn build
+        run: corepack yarn build
 
       - name: Release to NPM
         id: release
@@ -48,11 +51,11 @@ jobs:
           GIT_AUTHOR_EMAIL: duffel-bot-read-write@duffel.com
           GIT_COMMITTER_NAME: duffel-bot
           GIT_COMMITTER_EMAIL: duffel-bot-read-write@duffel.com
-        run: yarn release
+        run: corepack yarn release
 
       - name: Get version from package.json after release step
         id: extractver
-        run: echo "::set-output name=extractver::$(npm run get-version --silent)"
+        run: echo "extractver=$(npm run get-version --silent)" >> "$GITHUB_OUTPUT"
 
       - name: Check if package versions are different
         run: |
