@@ -134,4 +134,28 @@ describe('offers', () => {
 
     expect(response.data).toStrictEqual(mockOfferPriced)
   })
+
+  test('should get all fares for same itinerary', async () => {
+    const firstClassSlices = mockOffer.slices.map((slice) => {
+      return {
+        ...slice,
+        fare_brand_name: 'First',
+      }
+    })
+    const mockFirstClassOffer = {
+      ...mockOffer,
+      id: 'off_0000B50zZOir8zhPjDwwGi',
+      slices: firstClassSlices,
+    }
+    const offers = [mockOffer, mockFirstClassOffer]
+    nock(/(.*)/)
+      .post(`/air/offers/${mockOffer.id}/upsell`)
+      .reply(200, { data: offers })
+
+    const response = await new Offers(
+      new Client({ token: 'mockToken' }),
+    ).upsellFares(mockOffer.id)
+
+    expect(response.data).toStrictEqual(offers)
+  })
 })

@@ -114,4 +114,16 @@ export class Offers extends Resource {
       path: `${this.path}/${offerId}/actions/price`,
       data: params,
     })
+
+  /**
+   * Retrieve all fare brands given a basic fare offer. Applicable only for some airlines. All of the returned offers have the same itinerary.
+   * @param {string} offerId - Duffel's unique identifier for the offer
+   */
+  public upsellFares = async (
+    offerId: string,
+  ): Promise<DuffelResponse<Offer[]>> =>
+    this.request({
+      method: 'POST',
+      path: `${this.path}/${offerId}/upsell`,
+    })
 }
