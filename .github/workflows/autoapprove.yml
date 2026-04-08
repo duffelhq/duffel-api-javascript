@@ -6,7 +6,7 @@ jobs:
   auto-approve:
     runs-on: ubuntu-latest
     steps:
-      - uses: hmarr/auto-approve-action@v2
+      - uses: hmarr/auto-approve-action@f0939ea97e9205ef24d872e76833fa908a770363 # v4.0.0
         if: github.actor == 'duffel-bot'
         with:
           github-token: '${{ secrets.GITHUB_TOKEN }}'
