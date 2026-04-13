@@ -25,6 +25,7 @@ describe('Stays', () => {
       rooms: 1,
       mobile: false,
       free_cancellation_only: false,
+      instant_payment: null,
     }
 
     nock(/(.*)/)
