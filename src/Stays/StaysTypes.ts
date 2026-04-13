@@ -713,6 +713,11 @@ interface CommonStaysSearchParams {
   guests: Array<Guest>
   mobile?: boolean
   free_cancellation_only?: boolean
+  /**
+   * Preview: when `true`, only pay-now (Duffel/source) rates; when `false`, only pay-at-property;
+   * when `null` or omitted, all rates. See Duffel Stays search API schema.
+   */
+  instant_payment?: boolean | null
 }
 
 export type LocationParams = {
