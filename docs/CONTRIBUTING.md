@@ -6,7 +6,7 @@ To be able to publish the correct version to NPM, we are currently following [An
 
 ### CommitLint to the rescue
 
-Before creating a commit we will run a husky hook which will check if the commit structure is valid or not. If you don't want to create the commit manually, you can use `yarn commit` which will use [`commitzen`](https://github.com/commitizen/cz-cli) to help you out creating the message.
+Before creating a commit we will run a husky hook which will check if the commit structure is valid or not.
 
 ## Client CI
 

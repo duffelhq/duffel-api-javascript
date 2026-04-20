@@ -32,15 +32,9 @@
     "example": "ts-node ./examples/example.ts",
     "get-version": "echo $npm_package_version",
     "release": "npx semantic-release",
-    "commit": "git-cz",
     "commitlint": "commitlint",
     "prettier": "prettier --write --loglevel=warn .",
     "prettier-check": "prettier --check ."
-  },
-  "config": {
-    "commitizen": {
-      "path": "@commitlint/cz-commitlint"
-    }
   },
   "lint-staged": {
     "*.{ts,tsx}": [
@@ -69,16 +63,14 @@
     "@babel/preset-typescript": "7.28.5",
     "@commitlint/cli": "17.8.1",
     "@commitlint/config-angular": "17.8.1",
-    "@commitlint/cz-commitlint": "17.8.1",
     "@rollup/plugin-commonjs": "25.0.8",
     "@rollup/plugin-node-resolve": "15.3.1",
-    "@rollup/plugin-terser": "0.4.4",
+    "@rollup/plugin-terser": "1.0.0",
     "@rollup/plugin-typescript": "12.3.0",
     "@types/jest": "29.5.14",
     "@typescript-eslint/eslint-plugin": "6.7.5",
     "@typescript-eslint/parser": "6.7.5",
     "colors": "1.4.0",
-    "commitizen": "4.3.1",
     "dotenv": "16.6.1",
     "eslint": "8.57.1",
     "eslint-config-prettier": "9.1.2",
@@ -95,10 +87,11 @@
     "semantic-release": "22.0.12",
     "ts-jest": "29.4.6",
     "ts-node": "10.9.2",
+    "tslib": "2.8.1",
     "typescript": "5.9.3"
   },
   "engines": {
-    "node": ">=18.*"
+    "node": ">=20"
   },
   "release": {
     "plugins": [
