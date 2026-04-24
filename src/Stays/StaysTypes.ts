@@ -228,6 +228,15 @@ export interface StaysRate {
    * as formatting and content quality may vary significantly between suppliers.
    */
   description: string | null
+
+  /**
+   * The name of the rate, provided by the rate supplier.
+   * This is typically a short, human-readable label that identifies the rate,
+   * such as "Best Available Rate" or "Advance Purchase".
+   *
+   * Example: "Best Available Rate"
+   */
+  name: string | null
 }
 
 export interface StaysRoomRate extends StaysRate {

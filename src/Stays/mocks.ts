@@ -68,6 +68,7 @@ export const MOCK_ACCOMMODATION: StaysAccommodation = {
           expires_at: '2023-03-28T12:00:00Z',
           code: null,
           description: null,
+          name: 'Best Available Rate',
         },
         {
           total_currency: 'GBP',
@@ -104,6 +105,7 @@ export const MOCK_ACCOMMODATION: StaysAccommodation = {
           expires_at: '2023-03-28T12:00:00Z',
           code: 'ABC',
           description: 'ABC - Free cancellation up to 1 hour after booking',
+          name: 'Refundable Rate',
         },
       ],
       photos: [
