@@ -299,7 +299,12 @@ export interface StaysAmenity {
 
 export interface StaysChain {
   /**
-   * The hotel chain’s name
+   * Duffel ID for this chain
+   */
+  id: string
+
+  /**
+   * The hotel chain's name
    */
   name: string
 }
@@ -802,4 +807,146 @@ export type ListParamsBookings = {
    * Whether to filter bookings matching a given customer user id.
    */
   user_id?: string
+}
+
+/**
+ * A negotiated rate that enables passing rate access codes for stays accommodation.
+ * Can be associated with either a chain or specific accommodations, but not both.
+ */
+export interface StaysNegotiatedRate {
+  /**
+   * The ID of the Negotiated Rate
+   *
+   * Example: "nre_0000AvtkNoC81yBytDM9PE"
+   */
+  id: string
+
+  /**
+   * The rate access code to be utilised when using this negotiated rate
+   *
+   * Example: "DUFFEL"
+   */
+  rate_access_code: string
+
+  /**
+   * The display name of the negotiated rate
+   *
+   * Example: "2025 Negotiated Rate"
+   */
+  display_name: string
+
+  /**
+   * Whether this negotiated rate is for live mode. When false, it is for test mode
+   *
+   * Example: false
+   */
+  live_mode: boolean
+
+  /**
+   * The ID of the hotel chain this negotiated rate is valid for.
+   * Mutually exclusive with accommodation_ids.
+   *
+   * Example: "chn_0000B6QFxO9EOY5cqw5kYK"
+   */
+  chain_id: string | null
+
+  /**
+   * The accommodation ids this negotiated rate is valid for use with.
+   * Mutually exclusive with chain_id.
+   *
+   * Example: ["acc_0000AWr2VsUNIF1Vl91xg0"]
+   */
+  accommodation_ids: string[] | null
+}
+
+/**
+ * Payload for creating a negotiated rate associated with a chain.
+ * You must provide either chain_id or accommodation_ids, but not both.
+ */
+export interface StaysNegotiatedRateCreatePayloadWithChain {
+  /**
+   * The rate access code to be utilised when using this negotiated rate
+   *
+   * Example: "DUFFEL"
+   */
+  rate_access_code: string
+
+  /**
+   * The display name of the negotiated rate
+   *
+   * Example: "2025 Negotiated Rate"
+   */
+  display_name: string
+
+  /**
+   * The ID of the hotel chain this negotiated rate is valid for
+   *
+   * Example: "chn_0000B6QFxO9EOY5cqw5kYK"
+   */
+  chain_id: string
+}
+
+/**
+ * Payload for creating a negotiated rate associated with accommodations.
+ * You must provide either chain_id or accommodation_ids, but not both.
+ */
+export interface StaysNegotiatedRateCreatePayloadWithAccommodations {
+  /**
+   * The rate access code to be utilised when using this negotiated rate
+   *
+   * Example: "DUFFEL"
+   */
+  rate_access_code: string
+
+  /**
+   * The display name of the negotiated rate
+   *
+   * Example: "2025 Negotiated Rate"
+   */
+  display_name: string
+
+  /**
+   * The accommodation ids this negotiated rate is valid for use with
+   *
+   * Example: ["acc_0000AWr2VsUNIF1Vl91xg0"]
+   */
+  accommodation_ids: string[]
+}
+
+/**
+ * Payload for creating a negotiated rate.
+ * You must provide either chain_id or accommodation_ids, but not both.
+ */
+export type StaysNegotiatedRateCreatePayload =
+  | StaysNegotiatedRateCreatePayloadWithChain
+  | StaysNegotiatedRateCreatePayloadWithAccommodations
+
+/**
+ * Payload for updating a negotiated rate.
+ * You can update the display_name and change the association to chain_id or accommodation_ids.
+ * If updating the association, you must provide only one of chain_id or accommodation_ids.
+ */
+export interface StaysNegotiatedRateUpdatePayload {
+  /**
+   * The display name of the negotiated rate
+   *
+   * Example: "2025 Negotiated Rate"
+   */
+  display_name?: string
+
+  /**
+   * The ID of the hotel chain this negotiated rate is valid for.
+   * Setting this will remove any existing accommodation_ids association.
+   *
+   * Example: "chn_0000B6QFxO9EOY5cqw5kYK"
+   */
+  chain_id?: string
+
+  /**
+   * The accommodation ids this negotiated rate is valid for use with.
+   * Setting this will remove any existing chain_id association.
+   *
+   * Example: ["acc_0000AWr2VsUNIF1Vl91xg0"]
+   */
+  accommodation_ids?: string[]
 }

@@ -6,6 +6,7 @@ import { Accommodation } from './Accommodation'
 import { Brands } from './Brands'
 import { LoyaltyProgrammes } from './LoyaltyProgrammes'
 import { Bookings } from './Bookings'
+import { NegotiatedRates } from './NegotiatedRates'
 import { Quotes } from './Quotes'
 import { SearchResults } from './SearchResults'
 
@@ -18,6 +19,7 @@ export class Stays extends Resource {
   public accommodation: Accommodation
   public loyaltyProgrammes: LoyaltyProgrammes
   public brands: Brands
+  public negotiatedRates: NegotiatedRates
   public searchResults: SearchResults
   public quotes: Quotes
   public bookings: Bookings
@@ -29,6 +31,7 @@ export class Stays extends Resource {
     this.accommodation = new Accommodation(client)
     this.brands = new Brands(client)
     this.loyaltyProgrammes = new LoyaltyProgrammes(client)
+    this.negotiatedRates = new NegotiatedRates(client)
     this.searchResults = new SearchResults(client)
     this.quotes = new Quotes(client)
     this.bookings = new Bookings(client)

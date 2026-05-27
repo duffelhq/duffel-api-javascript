@@ -5,7 +5,9 @@ import {
   StaysAccommodationReviewResponse,
   StaysAccommodationSuggestion,
   StaysBooking,
+  StaysChain,
   StaysLoyaltyProgramme,
+  StaysNegotiatedRate,
   StaysQuote,
   StaysSearchResult,
 } from './StaysTypes'
@@ -14,6 +16,11 @@ import { StaysBookingPayload } from './Bookings/Bookings'
 export const MOCK_BRAND: StaysAccommodationBrand = {
   id: 'bra_DQPneLbCejxRuxAqD7amaW',
   name: 'The Ritz-Carlton',
+}
+
+export const MOCK_CHAIN: StaysChain = {
+  id: 'chn_0000AWr2VsUNIF1Vl91xg0',
+  name: 'Marriott International',
 }
 
 export const MOCK_ACCOMMODATION: StaysAccommodation = {
@@ -164,9 +171,7 @@ export const MOCK_ACCOMMODATION: StaysAccommodation = {
     instructions: 'Key is at the property. Collect from the lock box.',
   },
   brand: MOCK_BRAND,
-  chain: {
-    name: 'Marriott International',
-  },
+  chain: MOCK_CHAIN,
   supported_loyalty_programme: 'duffel_hotel_group_rewards',
 }
 
@@ -300,3 +305,12 @@ export const MOCK_LOYALTY_PROGRAMMES: StaysLoyaltyProgramme[] = [
       'https://assets.duffel.com/img/stays/loyalty-programmes/transparent-logo/duffel_hotel_group_rewards.png',
   },
 ]
+
+export const MOCK_NEGOTIATED_RATE: StaysNegotiatedRate = {
+  id: 'nre_0000AvtkNoC81yBytDM9PE',
+  rate_access_code: 'DUFFEL',
+  display_name: '2025 Negotiated Rate',
+  live_mode: false,
+  chain_id: null,
+  accommodation_ids: ['acc_0000AWr2VsUNIF1Vl91xg0'],
+}
