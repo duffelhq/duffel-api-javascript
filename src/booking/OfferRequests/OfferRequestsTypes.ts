@@ -5,7 +5,7 @@ import {
   Place,
   PlaceType,
 } from '../../types'
-import { Offer } from '../Offers/OfferTypes'
+import { Offer, OfferSliceSegment } from '../Offers/OfferTypes'
 
 export interface OfferRequestSlice {
   /**
@@ -292,6 +292,17 @@ export interface CreateOfferRequest {
    * whereas return trips will need two.
    */
   slices: CreateOfferRequestSlice[]
+
+  /**
+   * When set to `true` and the offer request contains more than one slice,
+   * Duffel will fire additional one-way searches per slice to find
+   * split-ticket itinerary candidates. Split-ticket offers are only returned
+   * when combined with the `view=itineraries` query parameter.
+   *
+   * Requires this capability to be enabled on your Duffel account.
+   * @link https://duffel.com/docs/guides/selling-split-ticket-itineraries
+   */
+  include_split_ticket?: boolean
 }
 
 export type TimeRangeFilter = { from: string; to: string }
@@ -326,6 +337,19 @@ export interface CreateOfferRequestSlice {
   departure_time: TimeRangeFilter | null
 }
 
+/**
+ * The shape of the offer request response.
+ *
+ * - `offers` (default) — a flat list of offers under `data.offers`.
+ * - `itineraries` — offers are grouped per slice into a hierarchy of
+ *   itineraries and fare brands under `data.slices[].itineraries[]`. This is
+ *   the view required to surface split-ticket candidates created with
+ *   `include_split_ticket: true`.
+ *
+ * @link https://duffel.com/docs/guides/selling-split-ticket-itineraries
+ */
+export type OfferRequestView = 'offers' | 'itineraries'
+
 export interface CreateOfferRequestQueryParameters {
   /**
    * When set to `true`, the offer request resource returned will include all the offers returned by the airlines.
@@ -334,6 +358,15 @@ export interface CreateOfferRequestQueryParameters {
    * You should use this option if you want to take advantage of the pagination, sorting and filtering that the [List Offers](https://duffel.com/docs/api/offers/get-offers) endpoint provides.
    */
   return_offers?: boolean
+
+  /**
+   * Controls the shape of the response. Defaults to `offers`, which returns a
+   * flat list of offers. Set to `itineraries` to receive offers grouped by
+   * slice, itinerary and fare brand — required to retrieve split-ticket
+   * candidates produced by `include_split_ticket: true`.
+   * @link https://duffel.com/docs/guides/selling-split-ticket-itineraries
+   */
+  view?: OfferRequestView
 
   /**
    * The maximum amount of time in milliseconds to wait for each airline search to complete.
@@ -348,4 +381,110 @@ export interface CreateOfferRequestQueryParameters {
    * times out with an empty response.
    */
   supplier_timeout?: number
+}
+
+/**
+ * Discriminator for offers returned under the `itineraries` view.
+ *
+ * - `single_ticket` — a single offer from one airline that covers every slice
+ *   in the original offer request.
+ * - `split_ticket` — an offer that covers a single slice, intended to be
+ *   combined with offers for the remaining slices (potentially from a
+ *   different airline) to fulfil the journey.
+ *
+ * @link https://duffel.com/docs/guides/selling-split-ticket-itineraries
+ */
+export type ItineraryOfferType = 'single_ticket' | 'split_ticket'
+
+/**
+ * An offer returned under the `itineraries` view.
+ *
+ * It is structurally the same as a regular {@link Offer} (minus
+ * `available_services`, which is only populated by the Get single offer
+ * endpoint) but carries a `type` discriminator describing whether the offer
+ * covers the full journey or a single slice that needs to be combined with
+ * other offers.
+ */
+export interface ItineraryOffer extends Omit<Offer, 'available_services'> {
+  /**
+   * Whether the offer covers every slice from a single airline
+   * (`single_ticket`) or only the slice it is nested under and needs to be
+   * combined with other offers to complete the journey (`split_ticket`).
+   */
+  type: ItineraryOfferType
+}
+
+/**
+ * A fare brand grouping offers that share the same itinerary segments.
+ */
+export interface ItineraryBrand {
+  /**
+   * The airline's marketing name for the fare brand, e.g. "Economy Basic".
+   */
+  fare_brand_name: string
+
+  /**
+   * The offers available for this fare brand on this itinerary.
+   */
+  offers: ItineraryOffer[]
+}
+
+/**
+ * One way the airline can fly a passenger from the slice's origin to its
+ * destination. A single itinerary is a fixed list of segments which may be
+ * sold under one or more fare brands.
+ */
+export interface Itinerary {
+  /**
+   * The segments that make up this itinerary, in the order they are flown.
+   */
+  segments: OfferSliceSegment[]
+
+  /**
+   * The fare brands available for this itinerary, each carrying one or more
+   * bookable offers.
+   */
+  brands: ItineraryBrand[]
+}
+
+/**
+ * A slice as represented in the `itineraries` view of an offer request.
+ *
+ * Unlike {@link OfferRequestSlice}, it does not include the `departure_date`
+ * or origin/destination type fields directly — the per-segment scheduling
+ * lives inside `itineraries[].segments[]`.
+ */
+export interface OfferRequestItinerariesViewSlice {
+  /**
+   * The city or airport the passengers want to depart from.
+   */
+  origin: Place
+
+  /**
+   * The city or airport the passengers want to travel to.
+   */
+  destination: Place
+
+  /**
+   * The itineraries available for this slice, each grouping offers by fare
+   * brand.
+   */
+  itineraries: Itinerary[]
+}
+
+/**
+ * The response payload returned when an offer request is created with the
+ * `view=itineraries` query parameter. Offers are grouped per slice rather than
+ * returned as a flat list, which is required to surface split-ticket
+ * candidates produced by `include_split_ticket: true`.
+ *
+ * @link https://duffel.com/docs/guides/selling-split-ticket-itineraries
+ */
+export interface OfferRequestItinerariesView
+  extends Omit<OfferRequest, 'slices' | 'offers'> {
+  /**
+   * The slices that make up this offer request, each carrying the itineraries
+   * and offers available for that slice.
+   */
+  slices: OfferRequestItinerariesViewSlice[]
 }

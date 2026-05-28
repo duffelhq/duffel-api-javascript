@@ -1,5 +1,10 @@
 import { mockOffer } from '../Offers/mockOffer'
-import { CreateOfferRequest, OfferRequest } from '../../types'
+import {
+  CreateOfferRequest,
+  ItineraryOffer,
+  OfferRequest,
+  OfferRequestItinerariesView,
+} from '../../types'
 
 export const mockCreateOfferRequest: CreateOfferRequest = {
   slices: [
@@ -83,4 +88,43 @@ export const mockOfferRequest: OfferRequest = {
   id: 'orq_00009hjdomFOCJyxHG7k7k',
   created_at: '2020-02-12T15:21:01.927Z',
   cabin_class: 'economy',
+}
+
+const { available_services: _availableServices, ...mockOfferWithoutServices } =
+  mockOffer
+
+const mockSplitTicketOffer: ItineraryOffer = {
+  ...mockOfferWithoutServices,
+  id: 'off_00009htYpSCXrwaB9Dn456',
+  type: 'split_ticket',
+}
+
+const mockSingleTicketOffer: ItineraryOffer = {
+  ...mockOfferWithoutServices,
+  type: 'single_ticket',
+}
+
+export const mockItinerariesOfferRequest: OfferRequestItinerariesView = {
+  id: mockOfferRequest.id,
+  created_at: mockOfferRequest.created_at,
+  live_mode: mockOfferRequest.live_mode,
+  cabin_class: mockOfferRequest.cabin_class,
+  passengers: mockOfferRequest.passengers,
+  slices: [
+    {
+      origin: mockOfferRequest.slices[0].origin,
+      destination: mockOfferRequest.slices[0].destination,
+      itineraries: [
+        {
+          segments: mockOffer.slices[0].segments,
+          brands: [
+            {
+              fare_brand_name: 'Economy Basic',
+              offers: [mockSplitTicketOffer, mockSingleTicketOffer],
+            },
+          ],
+        },
+      ],
+    },
+  ],
 }
