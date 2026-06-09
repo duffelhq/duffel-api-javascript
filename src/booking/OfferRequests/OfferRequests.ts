@@ -78,9 +78,9 @@ export class OfferRequests extends Resource {
       QueryParams extends { view: 'itineraries' }
         ? OfferRequestItinerariesView
         : // Ensure that the `offers` field can't be accessed if `return_offers` is false
-        QueryParams extends { return_offers: false }
-        ? Omit<OfferRequest, 'offers'>
-        : OfferRequest
+          QueryParams extends { return_offers: false }
+          ? Omit<OfferRequest, 'offers'>
+          : OfferRequest
     >
   > => {
     const { return_offers, supplier_timeout, view, ...data } = options
