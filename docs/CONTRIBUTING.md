@@ -12,6 +12,18 @@ Before creating a commit we will run a husky hook which will check if the commit
 
 Every time we merge to `main`, GitHub will run the action by checking the commit messages with [semantic-release](https://github.com/semantic-release/semantic-release) and automatically bump the correct version to be deployed by following [semver](https://semver.org). When the deployment is done it will create a bump in our package version, using our `duffel-bot`, and will be auto-approved by the GitHub action via our auto approve workflow (`autoapprove.yml`).
 
+### Publishing to NPM (trusted publishing)
+
+We publish to NPM using [trusted publishing](https://docs.npmjs.com/trusted-publishers) (OIDC) rather than a long-lived `NPM_TOKEN`. The `Release to NPM` workflow requests the `id-token: write` permission, and npm verifies the publish came from this repository's `release.yml` workflow.
+
+This requires a trusted publisher to be configured for the `@duffel/api` package on npmjs.com (Package settings → "Trusted Publisher"), pointing at:
+
+- Organization/owner: `duffelhq`
+- Repository: `duffel-api-javascript`
+- Workflow filename: `release.yml`
+
+There is intentionally **no** `NPM_TOKEN` secret in the workflow — setting one would override the OIDC flow and cause publishing to fail.
+
 ### CI flow
 
 1. Developer opens PR to `main`

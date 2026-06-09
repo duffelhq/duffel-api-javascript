@@ -6,6 +6,11 @@ on:
 jobs:
   Release:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write # to publish a GitHub release and tags
+      issues: write # to comment on released issues
+      pull-requests: write # to comment on released pull requests
+      id-token: write # to enable OIDC for npm trusted publishing and provenance
     steps:
       - name: Checkout
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
@@ -16,6 +21,11 @@ jobs:
         uses: actions/setup-node@53b83947a5a98c8d113130e565377fae1a50d02f # v6.3.0
         with:
           node-version-file: .tool-versions
+
+      # Trusted publishing requires npm CLI >= 11.5.1, which is newer than the
+      # version bundled with Node 20. semantic-release publishes via the npm CLI.
+      - name: Upgrade npm for trusted publishing
+        run: npm install -g npm@latest
 
       - name: Enable Corepack
         run: corepack enable
@@ -45,8 +55,9 @@ jobs:
       - name: Release to NPM
         id: release
         env:
+          # No NPM_TOKEN: npm trusted publishing (OIDC) is used instead. Any
+          # NPM_TOKEN value here would override and break the OIDC token exchange.
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           GIT_AUTHOR_NAME: duffel-bot
           GIT_AUTHOR_EMAIL: duffel-bot-read-write@duffel.com
           GIT_COMMITTER_NAME: duffel-bot
