@@ -50,7 +50,8 @@
     "set-value": "4.0.1",
     "minimist": "1.2.8",
     "semver": "7.5.3",
-    "@aashutoshrathi/word-wrap": "npm:word-wrap"
+    "@aashutoshrathi/word-wrap": "npm:word-wrap",
+    "@semantic-release/npm": "13.1.5"
   },
   "dependencies": {
     "@types/node": "18.0.0",
