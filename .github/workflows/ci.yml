@@ -148,8 +148,5 @@ jobs:
       - name: Install dependencies
         run: corepack yarn install --immutable
 
-      - name: Fetch main for commitlint
-        run: git fetch origin main --depth=1
-
       - name: Run commitlint
         run: corepack yarn commitlint --from origin/main
