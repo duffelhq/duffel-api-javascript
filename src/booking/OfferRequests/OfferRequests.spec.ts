@@ -1,7 +1,11 @@
 import nock from 'nock'
 import { Client } from '../../Client'
 import { CreateOfferRequest, OfferRequest } from './OfferRequestsTypes'
-import { mockCreateOfferRequest, mockOfferRequest } from './mockOfferRequest'
+import {
+  mockCreateOfferRequest,
+  mockItinerariesOfferRequest,
+  mockOfferRequest,
+} from './mockOfferRequest'
 import { OfferRequests } from './OfferRequests'
 import { OfferPrivateFare } from '../../types'
 
@@ -200,5 +204,67 @@ describe('OfferRequests', () => {
 
     expect(response.data.offers[0].private_fares).toHaveLength(1)
     expect(response.data.offers[0].private_fares[0].type).toBe('leisure')
+  })
+
+  test('should forward `include_split_ticket` in the request body', async () => {
+    nock(/(.*)/)
+      .post(`/air/offer_requests/`, (body) => {
+        expect(body?.data?.include_split_ticket).toBe(true)
+        return true
+      })
+      .reply(200, { data: mockOfferRequest })
+
+    const response = await new OfferRequests(
+      new Client({ token: 'mockToken' }),
+    ).create({
+      ...mockCreateOfferRequest,
+      include_split_ticket: true,
+    })
+    expect(response.data?.id).toBe(mockOfferRequest.id)
+  })
+
+  test('should forward `view=itineraries` as a query parameter and return the itineraries-view shape', async () => {
+    nock(/(.*)/)
+      .post(`/air/offer_requests/`)
+      .query({ view: 'itineraries' })
+      .reply(200, { data: mockItinerariesOfferRequest })
+
+    const response = await new OfferRequests(
+      new Client({ token: 'mockToken' }),
+    ).create({
+      ...mockCreateOfferRequest,
+      include_split_ticket: true,
+      view: 'itineraries',
+    })
+
+    const slice = response.data.slices[0]
+    expect(slice.itineraries).toHaveLength(1)
+    const brand = slice.itineraries[0].brands[0]
+    expect(brand.fare_brand_name).toBe('Economy Basic')
+    expect(brand.offers.map((offer) => offer.type)).toEqual([
+      'split_ticket',
+      'single_ticket',
+    ])
+  })
+
+  test('should not strip `include_split_ticket` from the body when `view` is omitted', async () => {
+    nock(/(.*)/)
+      .post(`/air/offer_requests/`, (body) => {
+        expect(body?.data?.include_split_ticket).toBe(true)
+        return true
+      })
+      .query((queryObject) => {
+        expect(queryObject?.view).toBe(undefined)
+        return true
+      })
+      .reply(200, { data: mockOfferRequest })
+
+    const response = await new OfferRequests(
+      new Client({ token: 'mockToken' }),
+    ).create({
+      ...mockCreateOfferRequest,
+      include_split_ticket: true,
+    })
+    expect(response.data?.id).toBe(mockOfferRequest.id)
   })
 })

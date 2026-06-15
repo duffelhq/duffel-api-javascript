@@ -5,6 +5,7 @@ import {
   CreateOfferRequestQueryParameters,
   DuffelResponse,
   OfferRequest,
+  OfferRequestItinerariesView,
   PaginationMeta,
 } from '../../types'
 
@@ -58,22 +59,31 @@ export class OfferRequests extends Resource {
    * To search for flights, you'll need to create an `offer request`.
    * An offer request describes the passengers and where and when they want to travel (in the form of a list of `slices`).
    * It may also include additional filters (e.g. a particular cabin to travel in).
-   * @param {Object} [options] - the parameters for making an offer requests (required: slices, passengers; optional: cabin_class, return_offers)
+   * @param {Object} [options] - the parameters for making an offer requests (required: slices, passengers; optional: cabin_class, return_offers, view, include_split_ticket)
    * When `return_offers` is set to `true`, the offer request resource returned will include all the `offers` returned by the airlines.
    * If set to false, the offer request resource won't include any `offers`. To retrieve the associated offers later, use the List Offers endpoint, specifying the `offer_request_id`.
+   * When `view` is set to `'itineraries'`, offers are grouped per slice into a hierarchy of itineraries and fare brands.
+   * Combine `view: 'itineraries'` with `include_split_ticket: true` to surface split-ticket candidates.
    * @link https://duffel.com/docs/api/offer-requests/create-offer-request
+   * @link https://duffel.com/docs/guides/selling-split-ticket-itineraries
    */
   public create = async <QueryParams extends CreateOfferRequestQueryParameters>(
     options: CreateOfferRequest & QueryParams,
   ): Promise<
     DuffelResponse<
-      // Ensure that the `offers` field can't be accessed if `return_offers` is false
-      QueryParams extends { return_offers: false }
-        ? Omit<OfferRequest, 'offers'>
-        : OfferRequest
+      // The response shape depends on the `view` query parameter. The
+      // `itineraries` view always returns the grouped representation and never
+      // includes a top-level `offers` list, so it takes precedence over the
+      // `return_offers` discriminator.
+      QueryParams extends { view: 'itineraries' }
+        ? OfferRequestItinerariesView
+        : // Ensure that the `offers` field can't be accessed if `return_offers` is false
+          QueryParams extends { return_offers: false }
+          ? Omit<OfferRequest, 'offers'>
+          : OfferRequest
     >
   > => {
-    const { return_offers, supplier_timeout, ...data } = options
+    const { return_offers, supplier_timeout, view, ...data } = options
 
     return this.request({
       method: 'POST',
@@ -84,6 +94,7 @@ export class OfferRequests extends Resource {
           return_offers !== null && { return_offers }),
         ...(supplier_timeout !== undefined &&
           supplier_timeout !== null && { supplier_timeout }),
+        ...(view !== undefined && view !== null && { view }),
       },
     })
   }
