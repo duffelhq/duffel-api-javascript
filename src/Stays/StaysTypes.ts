@@ -82,7 +82,8 @@ export type StaysSource =
   | 'travelport'
   | 'expedia'
   | 'sabre'
-  | 'duffel_hotel_group'
+  | 'duffel' // Tagged on rates actually sourced via Duffel
+  | 'duffel_hotel_group' // Tagged on rates for our test Duffel Hotel.
 
 export interface StaysRate {
   /**
