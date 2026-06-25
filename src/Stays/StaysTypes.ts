@@ -238,6 +238,13 @@ export interface StaysRate {
    * Example: "Best Available Rate"
    */
   name: string | null
+
+  /**
+   * The ID of the negotiated rate (e.g. `nre_…`) that this rate was matched to,
+   * when the rate is returned as a result of a negotiated rate passed in the search.
+   * Returned when possible at fetch rates, quote and booking.
+   */
+  negotiated_rate_id?: string | null
 }
 
 export interface StaysRoomRate extends StaysRate {
@@ -733,6 +740,13 @@ interface CommonStaysSearchParams {
    * when `null` or omitted, all rates. See Duffel Stays search API schema.
    */
   instant_payment?: boolean | null
+
+  /**
+   * A list of negotiated rate IDs (e.g. `nre_…`) to apply to this search.
+   * Any eligible negotiated rates are returned alongside the standard public rates.
+   * Matching is best-effort: a supported negotiated rate is not guaranteed to be available.
+   */
+  negotiated_rate_ids?: string[]
 }
 
 export type LocationParams = {
@@ -779,6 +793,16 @@ export interface StaysSearchResult {
   cheapest_rate_public_currency: string
   cheapest_rate_due_at_accommodation_amount: string | null
   cheapest_rate_due_at_accommodation_currency: string | null
+  /**
+   * The negotiated rates that were searched for and are supported by this result.
+   * A supported negotiated rate does not guarantee that a negotiated rate is available.
+   */
+  supported_negotiated_rates?: Array<{
+    /** The ID of the negotiated rate (e.g. `nre_…`). */
+    id: string
+    /** The display name of the negotiated rate. */
+    display_name: string
+  }>
   /**
    * The ISO 8601 date and time at which the search result will expire
    */
