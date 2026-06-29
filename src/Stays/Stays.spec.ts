@@ -119,4 +119,28 @@ describe('Stays', () => {
     const response = await duffel.stays.search(mockSearchParams)
     expect(response.data).toEqual(mockResponse.data)
   })
+
+  it('should send `negotiated_rate_ids` and surface negotiated rate fields in the response', async () => {
+    const mockResponse = { data: { results: [MOCK_SEARCH_RESULT] } }
+    const mockSearchParams: StaysSearchParams = {
+      accommodation: {
+        ids: ['acc_12345'],
+        fetch_rates: true,
+      },
+      check_in_date: '2023-10-20',
+      check_out_date: '2023-10-24',
+      guests: [{ type: 'adult' }, { type: 'adult' }],
+      rooms: 1,
+      negotiated_rate_ids: ['nre_0000AvtkNoC81yBytDM9PE'],
+    }
+
+    nock(/(.*)/)
+      .post('/stays/search', (body) => {
+        expect(body.data).toEqual(mockSearchParams)
+        return true
+      })
+      .reply(200, mockResponse)
+    const response = await duffel.stays.search(mockSearchParams)
+    expect(response.data).toEqual(mockResponse.data)
+  })
 })

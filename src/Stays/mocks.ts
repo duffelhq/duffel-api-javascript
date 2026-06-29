@@ -74,6 +74,7 @@ export const MOCK_ACCOMMODATION: StaysAccommodation = {
           estimated_commission_currency: 'GBP',
           expires_at: '2023-03-28T12:00:00Z',
           code: null,
+          negotiated_rate_id: null,
           description: null,
           name: 'Best Available Rate',
         },
@@ -111,6 +112,7 @@ export const MOCK_ACCOMMODATION: StaysAccommodation = {
           estimated_commission_currency: 'GBP',
           expires_at: '2023-03-28T12:00:00Z',
           code: 'ABC',
+          negotiated_rate_id: 'nre_0000AvtkNoC81yBytDM9PE',
           description: 'ABC - Free cancellation up to 1 hour after booking',
           name: 'Refundable Rate',
         },
@@ -218,6 +220,9 @@ export const MOCK_SEARCH_RESULT: StaysSearchResult = {
   cheapest_rate_base_currency: 'GBP',
   cheapest_rate_due_at_accommodation_amount: '39.95',
   cheapest_rate_due_at_accommodation_currency: 'GBP',
+  supported_negotiated_rates: [
+    { id: 'nre_0000AvtkNoC81yBytDM9PE', display_name: '2025 Negotiated Rate' },
+  ],
   expires_at: '2023-03-28T12:00:00Z',
 }
 
