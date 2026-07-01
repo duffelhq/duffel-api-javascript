@@ -94,9 +94,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/core@npm:8.0.0":
-  version: 8.0.0
-  resolution: "@babel/core@npm:8.0.0"
+"@babel/core@npm:8.0.1":
+  version: 8.0.1
+  resolution: "@babel/core@npm:8.0.1"
   dependencies:
     "@babel/code-frame": "npm:^8.0.0"
     "@babel/generator": "npm:^8.0.0"
@@ -114,7 +114,7 @@ __metadata:
     json5: "npm:^2.2.3"
     obug: "npm:^2.1.1"
     semver: "npm:^7.7.3"
-  checksum: 10c0/55c131fb9d1413a3963e748edd56274168e8bea5dd4fcff1c0483ee6e0df4077818dd229011d014b3fe0218a2b563066476ce815f512327ff59c106d8be79b77
+  checksum: 10c0/e7fd9266d22906132fb052383a624358f54268dade31d50264416afeab6e5648cd23c7e845a89a501d270b80601d6e89abc67de0a9f1f55133f4abd8ac745be7
   languageName: node
   linkType: hard
 
@@ -1946,7 +1946,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@duffel/api@workspace:."
   dependencies:
-    "@babel/core": "npm:8.0.0"
+    "@babel/core": "npm:8.0.1"
     "@babel/preset-env": "npm:7.29.7"
     "@babel/preset-typescript": "npm:7.29.7"
     "@commitlint/cli": "npm:17.8.1"
