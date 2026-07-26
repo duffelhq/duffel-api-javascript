@@ -20,19 +20,36 @@ export class DuffelError extends Error {
   public errors: ApiResponseError[]
   public headers: Headers
 
+  /**
+   * The [HTTP status](https://httpstatuses.com/) the SDK received.
+   *
+   * `meta` is only populated when the API returned a JSON body, so this is the
+   * only status available when a proxy or gateway responds with something else.
+   *
+   * It is the status of the response that arrived, not necessarily the outcome
+   * of the request at Duffel: a gateway can time out or fail while Duffel still
+   * processes the request successfully. Treat it as diagnostic information, and
+   * do not use it on its own to decide whether the request took effect or
+   * whether it is safe to retry.
+   */
+  public status: number | undefined
+
   constructor({
     meta,
     errors,
     headers,
+    status,
   }: {
     meta: ApiResponseMeta
     errors: ApiResponseError[]
     headers: Headers
+    status?: number
   }) {
     super()
     this.meta = meta
     this.errors = errors
     this.headers = headers
+    this.status = status ?? meta?.status
   }
 }
 
