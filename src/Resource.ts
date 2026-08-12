@@ -29,4 +29,13 @@ export class Resource {
     params?: Record<string, any>
   }): AsyncGenerator<DuffelResponse<T_Data>, void, unknown> =>
     this.client.paginatedRequest({ path, params })
+
+  protected requestFile = ({
+    method,
+    path,
+  }: {
+    method: string
+    path: string
+  }): Promise<DuffelResponse<Buffer>> =>
+    this.client.requestFile({ method, path })
 }
