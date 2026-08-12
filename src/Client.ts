@@ -153,6 +153,60 @@ export class Client {
     }
   }
 
+  /**
+   * Downloads binary content (e.g. a PDF or Apple Wallet pass) rather than a JSON envelope.
+   */
+  public requestFile = async ({
+    method,
+    path,
+  }: {
+    method: string
+    path: string
+  }): Promise<DuffelResponse<Buffer>> => {
+    const fullPath = new URL(path, this.basePath)
+    const userAgent = [
+      `Duffel/${this.apiVersion}`,
+      `duffel_api_javascript/${process.env.npm_package_version}`,
+      this.source ? `source/${this.source}` : '',
+    ]
+      .join(' ')
+      .trim()
+
+    const headers = {
+      'User-Agent': userAgent,
+      'Duffel-Version': this.apiVersion,
+      Authorization: `Bearer ${this.token}`,
+    }
+
+    if (this.debug?.verbose) {
+      console.info('Endpoint: ', fullPath.href)
+      console.info('Method: ', method)
+    }
+
+    const response = await fetch(fullPath.href, { method, headers })
+
+    if (this.debug?.verbose && response.headers.get('x-request-id')) {
+      console.info('Request ID: ', response.headers.get('x-request-id'))
+    }
+
+    if (!response.ok) {
+      const responseBody = await response.json()
+      throw new DuffelError({
+        ...responseBody,
+        status: response.status,
+        headers: response.headers,
+      })
+    }
+
+    const data = await response.buffer()
+
+    return {
+      data,
+      status: response.status,
+      headers: response.headers,
+    }
+  }
+
   async *paginatedRequest<T_Data = any>({
     path,
     params,

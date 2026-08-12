@@ -21,6 +21,7 @@ import { Sessions } from './Links'
 import { Webhooks } from './notifications'
 import { Stays } from './Stays/Stays'
 import { Cars } from './Cars/Cars'
+import { Trains } from './Trains/Trains'
 import { Cards } from './Payments/Cards'
 import { ThreeDSecureSessions } from './Payments/ThreeDSecureSessions'
 import { Identity } from './Identity/Identity'
@@ -68,6 +69,7 @@ export class Duffel {
   public webhooks: Webhooks
   public stays: Stays
   public cars: Cars
+  public trains: Trains
   public three_d_secure_sessions: ThreeDSecureSessions
   public identity: Identity
 
@@ -99,6 +101,7 @@ export class Duffel {
     this.webhooks = new Webhooks(this.client)
     this.stays = new Stays(this.client)
     this.cars = new Cars(this.client)
+    this.trains = new Trains(this.client)
     this.three_d_secure_sessions = new ThreeDSecureSessions(this.client)
     this.identity = new Identity(this.client)
 
