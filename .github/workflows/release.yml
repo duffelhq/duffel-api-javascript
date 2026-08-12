@@ -3,6 +3,7 @@ on:
   push:
     branches:
       - main
+      - thep/grnd-745-canary-beta-versioning
 jobs:
   Release:
     runs-on: ubuntu-latest
