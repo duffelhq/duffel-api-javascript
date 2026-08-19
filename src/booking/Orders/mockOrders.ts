@@ -274,6 +274,7 @@ export const mockOrder: Order = {
     },
   ],
   created_at: '2020-04-11T15:48:11.642Z',
+  content: 'self_managed',
   conditions: {
     refund_before_departure: {
       penalty_currency: 'GBP',
@@ -463,6 +464,7 @@ export const mockOnHoldOrders: Order[] = [
     id: 'ord_0000A6GioOO1UDbjb7nIi8',
     documents: [],
     created_at: '2021-04-15T11:12:53.465121Z',
+    content: 'managed',
     conditions: {
       refund_before_departure: null,
       change_before_departure: null,
@@ -644,6 +646,7 @@ export const mockOnHoldOrders: Order[] = [
     id: 'ord_0000A6GiZRU4WXtdZJrivT',
     documents: [],
     created_at: '2021-04-15T11:10:11.352074Z',
+    content: 'self_managed',
     conditions: {
       refund_before_departure: null,
       change_before_departure: null,
