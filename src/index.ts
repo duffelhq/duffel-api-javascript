@@ -14,7 +14,12 @@ import {
   AirlineInitiatedChanges,
 } from './booking'
 import { Client, Config, DuffelError as _DuffelError } from './Client'
-import { Aircraft, Airlines, Airports } from './supportingResources'
+import {
+  Aircraft,
+  Airlines,
+  Airports,
+  LoyaltyProgrammes,
+} from './supportingResources'
 import { Suggestions } from './Places/Suggestions'
 import { Refunds } from './DuffelPayments/Refunds'
 import { Sessions } from './Links'
@@ -32,6 +37,7 @@ export interface DuffelAPIClient {
   airlines: Airlines
   airports: Airports
   batchOfferRequests: BatchOfferRequests
+  loyaltyProgrammes: LoyaltyProgrammes
   offers: Offers
   offerRequests: OfferRequests
   orders: Orders
@@ -51,6 +57,7 @@ export class Duffel {
   public airlines: Airlines
   public airports: Airports
   public links: Sessions
+  public loyaltyProgrammes: LoyaltyProgrammes
   public batchOfferRequests: BatchOfferRequests
   public offerRequests: OfferRequests
   public offers: Offers
@@ -82,6 +89,7 @@ export class Duffel {
     this.airports = new Airports(this.client)
     this.airlineInitiatedChanges = new AirlineInitiatedChanges(this.client)
     this.links = new Sessions(this.client)
+    this.loyaltyProgrammes = new LoyaltyProgrammes(this.client)
     this.batchOfferRequests = new BatchOfferRequests(this.client)
     this.offerRequests = new OfferRequests(this.client)
     this.offers = new Offers(this.client)
