@@ -24,8 +24,10 @@ jobs:
 
       # Trusted publishing requires npm CLI >= 11.5.1, which is newer than the
       # version bundled with Node 20. semantic-release publishes via the npm CLI.
+      # Pin to npm 11 (not @latest): npm 12+ requires Node >= 22 and would fail
+      # with EBADENGINE on the Node 20 runtime defined in .tool-versions.
       - name: Upgrade npm for trusted publishing
-        run: npm install -g npm@latest
+        run: npm install -g npm@^11.5.1
 
       - name: Enable Corepack
         run: corepack enable
