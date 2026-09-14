@@ -1936,6 +1936,7 @@ __metadata:
     ts-node: "npm:10.9.2"
     tslib: "npm:2.8.1"
     typescript: "npm:5.9.3"
+    vm2: "npm:3.9.17"
   languageName: unknown
   linkType: soft
 
@@ -3652,7 +3653,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"acorn-walk@npm:^8.1.1":
+"acorn-walk@npm:^8.1.1, acorn-walk@npm:^8.2.0":
   version: 8.3.5
   resolution: "acorn-walk@npm:8.3.5"
   dependencies:
@@ -3667,6 +3668,15 @@ __metadata:
   bin:
     acorn: bin/acorn
   checksum: 10c0/c9c52697227661b68d0debaf972222d4f622aa06b185824164e153438afa7b08273432ca43ea792cadb24dada1d46f6f6bb1ef8de9956979288cc1b96bf9914e
+  languageName: node
+  linkType: hard
+
+"acorn@npm:^8.7.0":
+  version: 8.18.0
+  resolution: "acorn@npm:8.18.0"
+  bin:
+    acorn: bin/acorn
+  checksum: 10c0/be771be2135cc07910cf76f444ad514d7dcfd6d4a8026e597e93155275abc8ef61eee12211d52146e9d962874269b634f397464942087be013c89d0c54c5f8e5
   languageName: node
   linkType: hard
 
@@ -10364,6 +10374,18 @@ __metadata:
   version: 7.0.2
   resolution: "validate-npm-package-name@npm:7.0.2"
   checksum: 10c0/adf32e943148e13e8df13d06b855493908e6ae7a847610e8543c6291cbf42f40e653249a5b2275e2e615e3224c574ade5a9064a9e2d1ab629386284ea99e8f39
+  languageName: node
+  linkType: hard
+
+"vm2@npm:3.9.17":
+  version: 3.9.17
+  resolution: "vm2@npm:3.9.17"
+  dependencies:
+    acorn: "npm:^8.7.0"
+    acorn-walk: "npm:^8.2.0"
+  bin:
+    vm2: bin/vm2
+  checksum: 10c0/4a7ef6300e3d76cf834d50bab535cf22d2eaa0efa0acbc0a34e199d8ef7f473fc56116f7012186c44ceca879956e207baf9ee76762593d3a5c8499042dbc2d6a
   languageName: node
   linkType: hard
 

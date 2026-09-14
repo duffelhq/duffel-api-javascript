@@ -56,7 +56,8 @@
   "dependencies": {
     "@types/node": "18.0.0",
     "@types/node-fetch": "2.6.13",
-    "node-fetch": "2.7.0"
+    "node-fetch": "2.7.0",
+    "vm2": "3.9.17"
   },
   "devDependencies": {
     "@babel/core": "8.0.1",
