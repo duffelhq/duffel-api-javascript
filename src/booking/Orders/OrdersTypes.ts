@@ -473,6 +473,8 @@ export interface OrderPayment {
   currency: string
 }
 
+export type OrderContent = 'managed' | 'self_managed'
+
 export interface Order {
   /**
    * The amount of tax payable on the order for all the flights booked
@@ -541,6 +543,11 @@ export interface Order {
    * The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601#Durations) datetime at which the order was created
    */
   created_at: string
+
+  /**
+   * The content management type for this order
+   */
+  content: OrderContent
 
   /**
    * The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601#Durations) datetime at which the order was cancelled, if it has been cancelled
