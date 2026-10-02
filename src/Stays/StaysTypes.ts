@@ -687,6 +687,11 @@ export interface StaysBooking {
   guests: Array<{ given_name: string; family_name: string }>
 
   /**
+   * The guest types and child ages provided in the original search.
+   */
+  guest_types?: Array<{ type: 'adult'; age: null } | Child> | null
+
+  /**
    * The loyalty programme that this booking supports.
    */
   supported_loyalty_programme: StaysLoyaltyProgrammeReference | null

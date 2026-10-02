@@ -244,6 +244,10 @@ export const MOCK_BOOKING: StaysBooking = {
       family_name: 'Ei',
     },
   ],
+  guest_types: [
+    { type: 'adult', age: null },
+    { type: 'child', age: 7 },
+  ],
   supported_loyalty_programme: null,
   loyalty_programme_account_number: null,
   rooms: 1,
