@@ -661,6 +661,21 @@ export interface StaysBooking {
   check_out_date: string
 
   /**
+   * The portion of total_amount that is payable before check in as deposit for the stay.
+   * If there is no deposit, deposit_amount is "0.00".
+   *
+   * Example: "159.80"
+   */
+  deposit_amount: string
+
+  /**
+   * The currency of the deposit_amount, as an ISO 4217 currency code.
+   *
+   * Example: "GBP"
+   */
+  deposit_currency: string
+
+  /**
    * A booking reference for the property you’ll be staying in. This is the reference you should use when contacting the accommodation.
    */
   reference: string | null
