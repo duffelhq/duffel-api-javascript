@@ -237,6 +237,8 @@ export const MOCK_BOOKING: StaysBooking = {
   confirmed_at: '2022-12-20T15:45:03.000000Z',
   check_out_date: '2023-05-24',
   check_in_date: '2023-05-20',
+  deposit_amount: '159.80',
+  deposit_currency: 'GBP',
   cancelled_at: null,
   guests: [
     {
