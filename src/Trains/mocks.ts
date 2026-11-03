@@ -277,6 +277,7 @@ export const MOCK_BOOKING: TrainBooking = {
   fares: [MOCK_FARE],
   journeys: [MOCK_QUOTE_JOURNEY],
   passengers: [MOCK_BOOKING_PASSENGER],
+  passenger_cards: [],
   seat_reservations: [MOCK_SEAT_RESERVATION],
   delivery_method: MOCK_BOOKING_DELIVERY_METHOD,
   metadata: { internal_ref: 'abc123' },
@@ -300,6 +301,27 @@ export const MOCK_BOOKING_CANCELLATION: TrainBookingCancellation = {
       currency: 'USD',
       refund_to: 'card',
       processed_at: null,
+    },
+  ],
+  fees: [
+    {
+      description: 'Admin Fee',
+      amount: '10.00',
+      currency: 'USD',
+    },
+  ],
+  refundables: [
+    {
+      fare_id: MOCK_FARE.id,
+      description: 'Fare Refund',
+      amount: '111.00',
+      currency: 'USD',
+    },
+  ],
+  important_information: [
+    {
+      title: 'Obtaining refunds for printed tickets',
+      text: 'If the tickets have already been printed at a station ticket machine, they must be posted back to the ticket issuer before the refund can be processed.',
     },
   ],
 }

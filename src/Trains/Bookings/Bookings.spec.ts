@@ -24,6 +24,22 @@ describe('Trains/Bookings', () => {
     expect(response.data).toEqual(mockResponse.data)
   })
 
+  it('should return the pending message when `create` responds with 202', async () => {
+    const mockResponse = {
+      data: {
+        message:
+          'The booking is pending confirmation. A webhook notification will follow with the outcome.',
+      },
+    }
+
+    nock(/(.*)/).post('/trains/bookings').reply(202, mockResponse)
+
+    const response = await duffel.trains.bookings.create(
+      MOCK_CREATE_BOOKING_PAYLOAD,
+    )
+    expect(response.data).toEqual(mockResponse.data)
+  })
+
   it('should get /trains/bookings/{id} when `get` is called', async () => {
     const mockResponse = { data: MOCK_BOOKING }
 

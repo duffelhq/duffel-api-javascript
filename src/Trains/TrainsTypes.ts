@@ -336,6 +336,16 @@ export interface TrainCreateBookingPayload {
 
 export type TrainBookingStatus = 'created' | 'paid' | 'ticketed' | 'cancelled'
 
+/**
+ * Returned from booking creation instead of a booking when the outcome is not
+ * yet known: with HTTP 200 when the booking is confirmed with the supplier but
+ * still being processed, or HTTP 202 when it is pending confirmation. In both
+ * cases a webhook notification follows with the outcome.
+ */
+export interface TrainBookingPending {
+  message: string
+}
+
 export type TrainTicketAssetFormat = 'pdf' | 'pkpass' | 'collection_reference'
 
 export interface TrainTicketAsset {
@@ -394,6 +404,7 @@ export interface TrainBooking {
   fares: TrainFare[]
   journeys: TrainJourney[]
   passengers: TrainBookingPassenger[]
+  passenger_cards: TrainPassengerCard[]
   seat_reservations: TrainSeatReservation[]
   delivery_method: TrainBookingDeliveryMethod
   metadata: Record<string, string> | null
@@ -409,6 +420,36 @@ export interface TrainBookingCancellationRefund {
   processed_at: string | null
 }
 
+/**
+ * A fee that applies to the whole refund amount of a booking cancellation.
+ * For example an admin fee the supplier deducts from the whole refund amount.
+ */
+export interface TrainBookingCancellationFee {
+  description: string
+  amount: string
+  currency: string
+}
+
+/**
+ * A refundable unit within a booking cancellation. Usually a refundable fare,
+ * but can also be an additional fee refunded on top of that.
+ */
+export interface TrainBookingCancellationRefundable {
+  fare_id: string | null
+  description: string | null
+  amount: string
+  currency: string
+}
+
+/**
+ * A free-text notice shown alongside a booking cancellation, for example
+ * instructions on how to get a refund for already-printed tickets.
+ */
+export interface TrainBookingCancellationImportantInformation {
+  title: string
+  text: string
+}
+
 export interface TrainBookingCancellation {
   id: string
   booking_id: string
@@ -417,6 +458,9 @@ export interface TrainBookingCancellation {
   created_at: string
   updated_at: string
   refunds: TrainBookingCancellationRefund[]
+  fees: TrainBookingCancellationFee[]
+  refundables: TrainBookingCancellationRefundable[]
+  important_information: TrainBookingCancellationImportantInformation[]
 }
 
 export type ListTrainBookingsParams = PaginationMeta

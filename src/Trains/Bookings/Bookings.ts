@@ -2,6 +2,7 @@ import { Client } from '../../Client'
 import {
   ListTrainBookingsParams,
   TrainBooking,
+  TrainBookingPending,
   TrainCreateBookingPayload,
 } from '../TrainsTypes'
 import { Resource } from '../../Resource'
@@ -25,11 +26,15 @@ export class Bookings extends Resource {
 
   /**
    * Create a booking from a quote
+   *
+   * When the booking outcome is not yet known, the API responds with a
+   * `TrainBookingPending` message (HTTP 200 or 202) instead of a booking, and
+   * a webhook notification follows with the outcome.
    * @param {object} payload - The booking payload, including quote id, passengers, payment and delivery method
    */
   public create = async (
     payload: TrainCreateBookingPayload,
-  ): Promise<DuffelResponse<TrainBooking>> =>
+  ): Promise<DuffelResponse<TrainBooking | TrainBookingPending>> =>
     this.request({ method: 'POST', path: this.path, data: payload })
 
   /**
