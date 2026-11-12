@@ -275,3 +275,19 @@ const duffel = new Duffel({
 ## Documentation
 
 You can learn more about the Duffel API and the library in our [documentation](https://duffel.com/docs).
+
+## GitHub Actions lockfile
+
+Every action the workflows use, including the actions those actions call, is
+locked to a commit in `.github/workflows/actions.lock`. The **Verify
+actions.lock** check fails CI when the lockfile is out of date. After adding a
+workflow or changing any `uses:` line, regenerate it:
+
+```sh
+gh extension install github/gh-actions-lock   # once
+gh actions-lock
+git add .github/workflows/
+```
+
+Don't hand-edit `actions.lock`. See GitHub's
+[workflow dependency lockfile docs](https://docs.github.com/en/actions/concepts/security/workflow-dependency-lockfiles).
