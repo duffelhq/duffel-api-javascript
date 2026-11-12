@@ -13,12 +13,12 @@ jobs:
       id-token: write # to enable OIDC for npm trusted publishing and provenance
     steps:
       - name: Checkout
-        uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6.1.0
+        uses: actions/checkout@v6.1.0
         with:
           fetch-depth: 0
 
       - name: Setup Node.js
-        uses: actions/setup-node@53b83947a5a98c8d113130e565377fae1a50d02f # v6.3.0
+        uses: actions/setup-node@v6.3.0
         with:
           node-version-file: .tool-versions
 
@@ -44,7 +44,7 @@ jobs:
         id: yarn-cache-dir-path
         run: echo "dir=$(corepack yarn config get cacheFolder)" >> "$GITHUB_OUTPUT"
 
-      - uses: actions/cache@caa296126883cff596d87d8935842f9db880ef25 # v5.1.0
+      - uses: actions/cache@v5.1.0
         id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
         with:
           path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
@@ -87,7 +87,7 @@ jobs:
       - name: Create Pull Request with updated package files
         id: cpr
         if: steps.initversion.outputs.version != steps.extractver.outputs.extractver
-        uses: peter-evans/create-pull-request@5f6978faf089d4d20b00c7766989d076bb2fc7f1 # v8.1.1
+        uses: peter-evans/create-pull-request@v8.1.1
         with:
           token: ${{ secrets.PAT }}
           commit-message: 'ci(release): ${{ steps.extractver.outputs.extractver }}'
@@ -106,7 +106,7 @@ jobs:
 
       - name: Enable Pull Request Automerge
         if: steps.cpr.outputs.pull-request-operation == 'created'
-        uses: peter-evans/enable-pull-request-automerge@a660677d5469627102a1c1e11409dd063606628d # v3.0.0
+        uses: peter-evans/enable-pull-request-automerge@v3.0.0
         with:
           token: ${{ secrets.PAT }}
           pull-request-number: ${{ steps.cpr.outputs.pull-request-number }}
