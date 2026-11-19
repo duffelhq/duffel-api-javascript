@@ -2,6 +2,35 @@ import { PaginationMeta } from './../types'
 
 export type StaysBedType = 'single' | 'double' | 'queen' | 'king' | 'sofabed'
 
+export type StaysAccommodationType =
+  | 'aparthotel'
+  | 'apartment'
+  | 'bed_and_breakfast'
+  | 'cabin'
+  | 'campsite'
+  | 'capsule_hotel'
+  | 'chalet'
+  | 'cottage'
+  | 'farm_stay'
+  | 'glamping'
+  | 'guest_house'
+  | 'holiday_park'
+  | 'homestay'
+  | 'hostel'
+  | 'hotel'
+  | 'houseboat'
+  | 'inn'
+  | 'lodge'
+  | 'love_hotel'
+  | 'motel'
+  | 'resort'
+  | 'riad'
+  | 'ryokan'
+  | 'tented_lodge'
+  | 'treehouse'
+  | 'vacation_home'
+  | 'villa'
+
 export interface StaysBed {
   /**
    * The type of beds available in the room Available types: "single", "double", "queen", "king", "sofabed"
@@ -472,11 +501,17 @@ export interface StaysAccommodation {
    * The loyalty programme that this accommodation supports.
    */
   supported_loyalty_programme: StaysLoyaltyProgrammeReference | null
+
+  /**
+   * The type of this accommodation.
+   */
+  type: StaysAccommodationType | null
 }
 
 export interface StaysAccommodationSuggestion {
   accommodation_id: StaysAccommodation['id']
   accommodation_name: StaysAccommodation['name']
+  accommodation_type: StaysAccommodation['type']
   accommodation_location: StaysLocation
 }
 
@@ -772,6 +807,8 @@ interface CommonStaysSearchParams {
 export type LocationParams = {
   radius: number
   geographic_coordinates: GeographicCoordinates
+  accommodation_type_includes?: StaysAccommodationType[]
+  accommodation_type_excludes?: StaysAccommodationType[]
 }
 
 type LocationSearchParams = {
@@ -791,6 +828,8 @@ export interface ListAccommodationParams extends PaginationMeta {
   radius?: LocationParams['radius']
   latitude: GeographicCoordinates['latitude']
   longitude: GeographicCoordinates['longitude']
+  'accommodation_type_includes[]'?: StaysAccommodationType[]
+  'accommodation_type_excludes[]'?: StaysAccommodationType[]
 }
 
 export interface StaysSearchResponse {
