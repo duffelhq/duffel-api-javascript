@@ -25,6 +25,7 @@ export const MOCK_CHAIN: StaysChain = {
 
 export const MOCK_ACCOMMODATION: StaysAccommodation = {
   id: 'acc_0000AWr2VsUNIF1Vl91xg0',
+  type: 'hotel',
   amenities: [
     { type: 'parking', description: 'Parking' },
     { type: 'wifi', description: 'Wi-Fi available' },
@@ -303,6 +304,7 @@ export const MOCK_QUOTE: StaysQuote = {
 export const MOCK_ACCOMMODATION_SUGGESTION: StaysAccommodationSuggestion = {
   accommodation_id: MOCK_ACCOMMODATION.id,
   accommodation_name: MOCK_ACCOMMODATION.name,
+  accommodation_type: MOCK_ACCOMMODATION.type,
   accommodation_location: MOCK_ACCOMMODATION.location,
 }
 
